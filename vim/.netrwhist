@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/backlight/dotfiles/config/awesome/themes/default'
+let g:netrw_dirhist_7='/home/backlight/dotfiles/config/awesome/themes'
+let g:netrw_dirhist_6='/home/backlight/dotfiles/config/awesome/themes/default'
+let g:netrw_dirhist_5='/home/backlight/.config/ranger'
+let g:netrw_dirhist_4='/home/backlight/.config/awesome/ui'
+let g:netrw_dirhist_3='/home/backlight/.config/awesome/ui/components'
+let g:netrw_dirhist_2='/home/backlight/.config/awesome/ui/components/button_maker'
+let g:netrw_dirhist_1='/home/backlight/.config/awesome/key_mapping'
