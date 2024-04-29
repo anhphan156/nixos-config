@@ -54,6 +54,14 @@ awful.keyboard.append_global_keybindings({
         {description = "open a terminal", group = "launcher"}
     ),
 
+    awful.key(
+        { altkey,           }, spacekey,
+        function ()
+            awful.spawn.with_shell('rofi -show run')
+        end,
+        {description = "open rofi", group = "launcher"}
+    ),
+
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
     awful.key({ modkey }, "p", function() menubar.show() end,
