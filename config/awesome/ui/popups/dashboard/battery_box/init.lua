@@ -1,5 +1,4 @@
 local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
 local wibox = require('wibox')
 local gears = require('gears')
 
@@ -41,8 +40,20 @@ local battery_box = wibox.widget{
 }
 
 awesome.connect_signal('daemon::battery', function(percentage)
+    local green = { '#33f266' }
+    local yellow = { '#f2f422' }
+    local red = { '#aa2222' }
+
     battery_arcchart.value = percentage
     battery_text.text = percentage .. '%'
+    
+    if(tonumber(percentage) < 15) then
+        battery_arcchart.colors = red
+    elseif(tonumber(percentage) < 50) then
+        battery_arcchart.colors = yellow
+    elseif(tonumber(percentage) < 101) then
+        battery_arcchart.colors = green
+    end
 end)
 
 return battery_box

@@ -7,3 +7,5 @@ neofetch
 .zcompdump*
 .netrwhist
 font-manager
+config/awesome/api/
+.zsh_history

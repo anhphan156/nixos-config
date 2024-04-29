@@ -4,20 +4,13 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local menubar = require('menubar')
 local hotkeys_popup = require("awful.hotkeys_popup")
-local dpi = beautiful.xresources.apply_dpi
 
 local button_maker = require('ui.components.button_maker')
 
-require('ui.popups.dashboard')
-
-terminal = 'kitty'
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
-
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "manual", user.terminal .. " -e man awesome" },
+   { "edit config", user.editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
@@ -26,7 +19,7 @@ mymainmenu = awful.menu(
     {
         items = {
             { "awesome", myawesomemenu, beautiful.awesome_icon },
-            { "open terminal", terminal }
+            { "open terminal", user.terminal }
         }
     }
 )
@@ -39,7 +32,7 @@ mylauncher = awful.widget.launcher(
 )
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = user.terminal -- Set the terminal for applications that require it
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(

@@ -41,22 +41,34 @@ do
 end
 -- }}}
 
+-- Keyboard map indicator and switcher
+mykeyboardlayout = awful.widget.keyboardlayout()
+
 -- Themes define colours, icons, font and wallpapers.
 local theme_dir = os.getenv("HOME") .. "/.config/awesome/themes/"
 local theme_name = "default/"
 beautiful.init(theme_dir .. theme_name .. "theme.lua")
 
+user = {
+    name = 'backlight',
+        
+    terminal = 'kitty',
+    editor = os.getenv('EDITOR') or 'vim',
+    --editor_cmd = user.erminal .. ' -e ' .. user.editor,
+    editor_cmd = '',
+    file_browser = '',
+}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+dpi = beautiful.xresources.apply_dpi
 
 -- Custom modules
 require('rules')
 require('signals.client')
 require('signals.screen')
 require('key_mapping')
-require('ui.wibar')
 require('daemons')
+require('ui.popups.dashboard')
+require('ui.wibar')
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {

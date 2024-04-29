@@ -4,9 +4,6 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
-
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
     -- buttons for the titlebar

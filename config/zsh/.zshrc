@@ -75,6 +75,7 @@ plugins=(
     z
     vi-mode
     zsh-syntax-highlighting
+    jsontools
 )
 
 

@@ -1,9 +1,9 @@
 local awful = require('awful')
 local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
 local gears = require('gears')
 local wibox = require('wibox')
 local naughty = require('naughty')
+local helpers = require('helpers')
 
 local profile_box = require('ui.popups.dashboard.profile_box')
 local uptime_box = require('ui.popups.dashboard.uptime_box')
@@ -42,12 +42,12 @@ local grid = wibox.widget {
     {
         row_index = 1,
         col_index = 1,
-        row_span = 7,
+        row_span = 6,
         col_span = 2,
         widget = profile_box
     },
     {
-        row_index = 8,
+        row_index = 7,
         col_index = 1,
         row_span = 1,
         col_span = 2,
@@ -76,7 +76,7 @@ local grid = wibox.widget {
     },
     homogeneous = true,
     expand = false,
-    spacing = 8,
+    spacing = dpi(12),
     column_count = 9,
     min_cols_size = dpi(180),
     min_rows_size = dpi(80),
@@ -92,6 +92,7 @@ awesome.connect_signal(
     'dashboard::toggle',
     function()
         dashboard.visible = not dashboard.visible 
+        helpers.minimize_all_clients(dashboard.visible)
     end
 )
 
