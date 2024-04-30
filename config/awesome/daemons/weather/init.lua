@@ -28,10 +28,10 @@ local script = [[bash -c '
 
 local update_widget = function(weather_data, stderr)
 	awesome.emit_signal("daemon::weather", weather_data:gsub("\n", ""))
-	naughty.notify({
-		title = "stderr",
-		text = stderr,
-	})
+	-- naughty.notify({
+	-- 	title = "stderr",
+	-- 	text = stderr,
+	-- })
 end
 
 local timer

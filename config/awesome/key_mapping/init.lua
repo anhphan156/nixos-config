@@ -303,5 +303,3 @@ client.connect_signal("request::default_keybindings", function()
 		end, { description = "(un)maximize horizontally", group = "client" }),
 	})
 end)
-
-return key_mapping
