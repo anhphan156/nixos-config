@@ -7,3 +7,8 @@ local opt = { noremap = true, silent = true }
 
 map("i", "jk", "<esc>")
 map("n", "\\w", "<esc>:w<CR>", opt)
+
+map("n", "\\f", "<esc>:BLines<CR>", opt)
+map("n", "\\g", "<esc>:GFiles<CR>", opt)
+map("n", "\\r", "<esc>:Rg<CR>", opt)
+map("n", "Y", "<esc>Vy", opt)

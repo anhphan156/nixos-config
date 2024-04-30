@@ -105,6 +105,7 @@ plugins=(
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias vim=nvim
 alias zshconfig="vim ~/.config/zsh/.zshrc && source ~/.config/zsh/.zshrc"
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh

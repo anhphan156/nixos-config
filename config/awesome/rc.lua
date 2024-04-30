@@ -20,24 +20,30 @@ local naughty = require("naughty")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
+	naughty.notify({
+		preset = naughty.config.presets.critical,
+		title = "Oops, there were errors during startup!",
+		text = awesome.startup_errors,
+	})
 end
 
 -- Handle runtime errors after startup
 do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
+	local in_error = false
+	awesome.connect_signal("debug::error", function(err)
+		-- Make sure we don't go into an endless error loop
+		if in_error then
+			return
+		end
+		in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
-        in_error = false
-    end)
+		naughty.notify({
+			preset = naughty.config.presets.critical,
+			title = "Oops, an error happened!",
+			text = tostring(err),
+		})
+		in_error = false
+	end)
 end
 -- }}}
 
@@ -47,44 +53,43 @@ local theme_name = "default/"
 beautiful.init(theme_dir .. theme_name .. "theme.lua")
 
 user = {
-    name = 'backlight',
-        
-    terminal = 'kitty',
-    editor = os.getenv('EDITOR') or 'vim',
-    --editor_cmd = user.erminal .. ' -e ' .. user.editor,
-    editor_cmd = '',
-    file_browser = '',
+	name = "backlight",
+
+	terminal = "kitty",
+	editor = os.getenv("EDITOR") or "nvim",
+	--editor_cmd = user.erminal .. ' -e ' .. user.editor,
+	editor_cmd = "",
+	file_browser = "",
 }
 
 dpi = beautiful.xresources.apply_dpi
 
 -- Custom modules
-require('rules')
-require('signals.client')
-require('signals.screen')
-require('key_mapping')
-require('daemons')
-require('ui.popups.dashboard')
-require('ui.wibar')
+require("rules")
+require("signals.client")
+require("signals.screen")
+require("key_mapping")
+require("daemons")
+require("ui.popups.dashboard")
+require("ui.wibar")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
+	awful.layout.suit.floating,
+	awful.layout.suit.tile,
+	--awful.layout.suit.tile.left,
+	--awful.layout.suit.tile.bottom,
+	--awful.layout.suit.tile.top,
+	awful.layout.suit.fair,
+	--awful.layout.suit.fair.horizontal,
+	awful.layout.suit.spiral,
+	awful.layout.suit.spiral.dwindle,
+	--awful.layout.suit.max,
+	--awful.layout.suit.max.fullscreen,
+	--awful.layout.suit.magnifier,
+	--awful.layout.suit.corner.nw,
+	-- awful.layout.suit.corner.ne,
+	-- awful.layout.suit.corner.sw,
+	-- awful.layout.suit.corner.se,
 }
 -- }}}
-
