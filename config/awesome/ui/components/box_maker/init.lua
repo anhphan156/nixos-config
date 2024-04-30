@@ -19,7 +19,7 @@ box_maker.box = function(content_widget, margin)
             {
                 content_widget,
                 widget = wibox.container.margin,
-                margins = dpi(margin)
+                margins = margin
             },
             widget = wibox.container.background,
             bg = beautiful.titlebar_bg_normal,

@@ -3,7 +3,7 @@ local gears = require('gears')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local menubar = require('menubar')
-local hotkeys_popup = require("awful.hotkeys_popup")
+local naughty = require('naughty')
 
 local button_maker = require('ui.components.button_maker')
 local box_maker = require('ui.components.box_maker')
@@ -73,14 +73,21 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
+    local icon_size = dpi(50)
+
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    s.mylayoutbox = awful.widget.layoutbox{
+        screen = s,
+        buttons = {
+           awful.button({ }, 1, function () awful.layout.inc( 1) end),
+           awful.button({ }, 3, function () awful.layout.inc(-1) end),
+           awful.button({ }, 4, function () awful.layout.inc( 1) end),
+           awful.button({ }, 5, function () awful.layout.inc(-1) end)
+        },
+        forced_width = dpi(30),
+        forced_height = icon_size,
+    }
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -101,7 +108,7 @@ awful.screen.connect_for_each_screen(function(s)
         position = 'top',
         screen = s,
         margins = wibar_margins,
-        height = dpi(45),
+        height = dpi(50),
         bg = beautiful.invisible
     })
 
@@ -113,7 +120,7 @@ awful.screen.connect_for_each_screen(function(s)
 
                 button_maker.text_button(
                     'dashboard',
-                     0,
+                     dpi(0),
                      beautiful.text_white_color,
                      function() awesome.emit_signal('dashboard::toggle') end
                 ),
@@ -121,25 +128,40 @@ awful.screen.connect_for_each_screen(function(s)
                 s.mytaglist,
 
                 layout = wibox.layout.fixed.horizontal,
-            }, 12),
+            }, dpi(12)),
 
             box_maker.box({ -- Middle widgets
                 widget = wibox.widget.textclock
-            }, 12),
+            }, dpi(12)),
 
             box_maker.box({ -- Right widgets
-                button_maker.text_button(
-                    'emoji',
-                    0,
-                    beautiful.text_white_color,
+                button_maker.icon_button(
+                    beautiful.screenshot_icon,
+                    { top = dpi(0), right = dpi(10), bottom = dpi(0), left = dpi(0) },
+                    dpi(30),
+                    icon_size,
+                    function()
+                        awful.spawn.easy_async_with_shell(
+                            [[maim -u -b 3 -m 5 -s /tmp/maim_clipboard 
+                            && xclip -selection clipboard -t image/png /tmp/maim_clipboard 
+                            && rm /tmp/maim_clipboard]],
+                            function()
+                                naughty.notify({ title = 'Screenshot taken', text = 'Screenshot saved to clipboard' })
+                            end
+                        ) 
+                    end
+                ),
+                button_maker.icon_button(
+                    beautiful.emoji_picker_icon,
+                    { top = dpi(0), right = dpi(10), bottom = dpi(0), left = dpi(0) },
+                    dpi(30),
+                    icon_size,
                     function() awful.spawn.with_shell('rofi -modi emoji -show emoji') end
                 ),
-                mykeyboardlayout,
-                wibox.widget.systray(),
                 s.mylayoutbox,
 
                 layout = wibox.layout.fixed.horizontal,
-            }, 12),
+            }, dpi(12)),
 
             layout = wibox.layout.align.horizontal,
         },

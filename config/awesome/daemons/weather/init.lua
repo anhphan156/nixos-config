@@ -14,6 +14,8 @@ local script = [[bash -c '
         temp=$(echo $result | jq '.current.temp_c') 
         if [ "${condition,,}" = "overcast" ]; then
             code=1
+        elif [ "${condition,,}" = "light rain" ]; then
+            code=2
         fi
 
         echo "$condition" "$temp" "$code"
@@ -22,8 +24,12 @@ local script = [[bash -c '
     fi
 ']]
 
-local update_widget = function(weather_data)
+local update_widget = function(weather_data, stderr)
     awesome.emit_signal('daemon::weather', weather_data:gsub('\n', ''))
+    --naughty.notify({
+        --title = 'stderr',
+        --text = stderr
+    --})
 end
 
 local timer
@@ -35,7 +41,7 @@ timer = gears.timer {
     callback = function()
         awful.spawn.easy_async_with_shell('date -r ' .. file .. ' +%s', function(last_update, _, _, exit_code)
             if exit_code == 1 then
-                awful.spawn.easy_async_with_shell(script .. ' | tee ' .. file, function(stdout) update_widget(stdout) end)
+                awful.spawn.easy_async_with_shell(script .. ' | tee ' .. file, function(stdout, stderr) update_widget(stdout, stderr) end)
                 return
             end
             
