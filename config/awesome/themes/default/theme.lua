@@ -32,11 +32,13 @@ theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
 
 theme.arcchart_color = '#331f45'
+theme.text_white_color = '#aaaaaa'
 
 theme.invisible = '#00000000'
 theme.profile_pic = themes_path.."default/firefly.png"
 
 theme.uptime_icon = themes_path..'default/icons/mist.png'
+theme.overcast_icon = themes_path..'default/icons/cloud.png'
 
 -- There are other variable sets
 -- overriding the default one when

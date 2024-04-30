@@ -12,3 +12,4 @@ config/awesome/api/
 viminfo
 .viminfo
 vim/bundle/
+config/qalculate

@@ -4,10 +4,10 @@ local gears = require('gears')
 
 local button_maker = {}
 
-button_maker.text_button = function(text, margins, callback)
+button_maker.text_button = function(text, margins, color, callback)
     local button = wibox.widget {
         {
-            text = text,
+            markup = '<span foreground="' .. color .. '">' .. text .. '</span>',
             widget = wibox.widget.textbox
         },
         margins = margins,

@@ -26,7 +26,7 @@ local profile_box = wibox.widget {
             },
             {
                 {
-                    text = user.name,
+                    markup = '<b>' .. user.name .. '</b>',
                     font = 'sans 25',
                     widget = wibox.widget.textbox
                 },

@@ -46,7 +46,7 @@ ruled.client.connect_signal("request::rules", function()
     }
 
     ruled.client.append_rule {
-        rule       = { class = "firefox"     },
+        rule_any       = { class = {"firefox", "feh"}     },
         properties = { titlebars_enabled = false }
     }
 end)

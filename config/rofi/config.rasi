@@ -1,13 +1,15 @@
 configuration {
-    modes: "window,drun,run,ssh";
+    modes: "window,drun,run,calc,combi";
+    combi-modes: "window,calc";
     font: "AnkaCoder-r 15";
 
     display-window: "";
-    display-windowcd: "";
     display-run: "";
     display-ssh: "";
     display-drun: "";
-    display-combi: "";
+    display-calc: "";
+    display-combi: "";
+    display-emoji: "";
 
     separator-style: "none";
     color-normal: "@xbg, @xfg, @xbg, @xfg, @xbg";
@@ -23,7 +25,7 @@ configuration {
 /*	fixed-num-lines: true;*/
     separator-style: "solid";
 /*	show-icons: false;*/
-/*	terminal: "rofi-sensible-terminal";*/
+    terminal: "kitty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
@@ -49,7 +51,6 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-/*	combi-modes: "window,run";*/
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -61,7 +62,7 @@ configuration {
 /*	click-to-exit: true;*/
 /*	max-history-size: 25;*/
 /*	combi-hide-mode-prefix: false;*/
-/*	combi-display-format: "{mode} {text}";*/
+    combi-display-format: "{mode} {text}";
 /*	matching-negate-char: '-' /* unsupported */;*/
 /*	cache-dir: ;*/
 /*	window-thumbnail: false;*/
@@ -222,7 +223,7 @@ horibox {
 
 mode-switcher{
     orientation: vertical;
-    margin: 0px 10px;
+    margin: 20px 10px;
 }
 
 button {
@@ -253,15 +254,19 @@ listview {
 entry {
     spacing:    0;
     text-color: @xfg;
-    margin: 25px 0px 0px 10px;
+    margin: 520px 0px 0px 00px;
     placeholder: "There is no place like ~/";
 }
 
 element {
     spacing: 0px;
-    margin: -1px;
+    margin: 10px 0px 0px 0px;
     orientation: horizontal;
     children: [ element-text ];
+}
+element selected.normal {
+    background-color: rgba (0,0,0,0%);
+    text-color:       @x9;
 }
 element normal.normal {
     background-color: rgba (0,0,0,0%);
@@ -290,7 +295,7 @@ prompt {
     spacing:    0;
     border:     0;
     text-color: @xfg;
-    margin: 25px 10px 0px 0px;
+    margin: 520px 15px 0px 20px;
 }
 
 textbox-prompt-colon {

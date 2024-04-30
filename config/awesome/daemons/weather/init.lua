@@ -10,17 +10,20 @@ local script = [[bash -c '
     result=$(curl -sf "http://api.weatherapi.com/v1/current.json?key=]] .. api.weather_api  .. [[&q=l6y2w8&aqi=no")
 
     if [ ! -z "$result" ]; then
-        condition=$(echo $result | jq '.current.condition.text') 
+        condition=$(echo $result | jq '.current.condition.text' | tr -d \") 
         temp=$(echo $result | jq '.current.temp_c') 
+        if [ "${condition,,}" = "overcast" ]; then
+            code=1
+        fi
 
-        echo "$condition" "$temp"
+        echo "$condition" "$temp" "$code"
     else
         echo '...'
     fi
 ']]
 
 local update_widget = function(weather_data)
-    awesome.emit_signal('daemon::weather', weather_data)
+    awesome.emit_signal('daemon::weather', weather_data:gsub('\n', ''))
 end
 
 local timer

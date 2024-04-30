@@ -5,15 +5,18 @@ local wibox = require('wibox')
 local naughty = require('naughty')
 local helpers = require('helpers')
 
+local box_maker = require('ui.components.box_maker')
+
 local profile_box = require('ui.popups.dashboard.profile_box')
 local uptime_box = require('ui.popups.dashboard.uptime_box')
 local battery_box = require('ui.popups.dashboard.battery_box')
+local weather_box = require('ui.popups.dashboard.weather_box')
 
 local dashboard = awful.popup {
     widget = wibox.container.background,
     bg = beautiful.invisible,
     --bg = '#990000',
-    visible = true,
+    visible = false,
     forced_width = 1980,
     maximum_width = 1980,
     maximum_height = 720,
@@ -26,17 +29,6 @@ local dashboard = awful.popup {
         )
     end,
 }
-
-local make_box = function(text)
-    return wibox.widget{
-        {
-            text = text,
-            widget = wibox.widget.textbox
-        },
-        widget = wibox.container.background,
-        bg = beautiful.titlebar_bg_normal 
-    }
-end
 
 local grid = wibox.widget {
     {
@@ -61,18 +53,25 @@ local grid = wibox.widget {
         widget = battery_box
     },
     {
-        row_index = 2,
+        row_index = 1,
         col_index = 5,
-        row_span = 3,
+        row_span = 2,
         col_span = 2,
-        widget = make_box('test')
+        widget = weather_box
+    },
+    {
+        row_index = 3,
+        col_index = 5,
+        row_span = 2,
+        col_span = 2,
+        widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = 'test' }, 10)
     },
     {
         row_index = 1,
         col_index = 7,
         row_span = 6,
         col_span = 3,
-        widget = make_box('test')
+        widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = 'test' }, 10)
     },
     homogeneous = true,
     expand = false,
