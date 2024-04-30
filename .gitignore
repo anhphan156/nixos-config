@@ -13,3 +13,11 @@ viminfo
 .viminfo
 vim/bundle/
 config/qalculate
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
