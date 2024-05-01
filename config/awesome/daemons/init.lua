@@ -1,3 +1,4 @@
-require('daemons.uptime')
-require('daemons.battery')
-require('daemons.weather')
+require("daemons.uptime")
+require("daemons.battery")
+require("daemons.weather")
+require("daemons.ram")

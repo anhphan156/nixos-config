@@ -10,39 +10,6 @@ local keys = require("key_mapping.keys")
 local button_maker = require("ui.components.button_maker")
 local box_maker = require("ui.components.box_maker")
 
-myawesomemenu = {
-	{
-		"hotkeys",
-		function()
-			hotkeys_popup.show_help(nil, awful.screen.focused())
-		end,
-	},
-	{ "manual", user.terminal .. " -e man awesome" },
-	{ "edit config", user.editor_cmd .. " " .. awesome.conffile },
-	{ "restart", awesome.restart },
-	{
-		"quit",
-		function()
-			awesome.quit()
-		end,
-	},
-}
-
-mymainmenu = awful.menu({
-	items = {
-		{ "awesome", myawesomemenu, beautiful.awesome_icon },
-		{ "open terminal", user.terminal },
-	},
-})
-
-mylauncher = awful.widget.launcher({
-	image = beautiful.awesome_icon,
-	menu = mymainmenu,
-})
-
--- Menubar configuration
-menubar.utils.terminal = user.terminal -- Set the terminal for applications that require it
-
 awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7" }, s, awful.layout.layouts[1])
@@ -66,27 +33,27 @@ awful.screen.connect_for_each_screen(function(s)
 		-- style = {
 		-- 	shape = gears.shape.powerline,
 		-- },
-		layout = {
-			spacing = 18,
-			spacing_widget = {
-				color = "#dddddd",
-				shape = gears.shape.powerline,
-				widget = wibox.widget.separator,
-			},
-			layout = wibox.layout.fixed.horizontal,
-		},
+		-- layout = {
+		-- 	spacing = 18,
+		-- 	spacing_widget = {
+		-- 		color = "#dddddd",
+		-- 		shape = gears.shape.powerline,
+		-- 		widget = wibox.widget.separator,
+		-- 	},
+		-- 	layout = wibox.layout.fixed.horizontal,
+		-- },
 		widget_template = {
 			{
 				{
 					id = "text_icon",
 					widget = wibox.widget.textbox,
 					markup = "<b>" .. beautiful.tag_icon_inactive .. "</b>",
-					font = "sans 18",
+					font = "sans 16",
 				},
 				widget = wibox.container.margin,
 				margins = {
-					left = dpi(20),
-					right = dpi(0),
+					left = dpi(00),
+					right = dpi(10),
 				},
 			},
 			widget = wibox.container.background,
@@ -149,11 +116,23 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mywibox:setup({
 		{
 			box_maker.box({ -- Left widgets
-				mylauncher,
-
-				button_maker.text_button("dashboard", dpi(0), beautiful.text_white_color, function()
-					awesome.emit_signal("dashboard::toggle")
-				end),
+				button_maker.text_button(
+					beautiful.dashboard_icon,
+					{ right = dpi(10), left = dpi(10) },
+					beautiful.text_red_color,
+					function()
+						awesome.emit_signal("dashboard::toggle")
+					end
+				),
+				-- button_maker.icon_button(
+				-- 	beautiful.dashboard_icon,
+				-- 	{ top = dpi(0), right = dpi(10), bottom = dpi(0), left = dpi(0) },
+				-- 	dpi(30),
+				-- 	dpi(10),
+				-- 	function()
+				-- 		awesome.emit_signal("dashboard::toggle")
+				-- 	end
+				-- ),
 
 				s.mytaglist,
 
@@ -197,6 +176,7 @@ awful.screen.connect_for_each_screen(function(s)
 			}, dpi(12)),
 
 			layout = wibox.layout.align.horizontal,
+			expand = "none",
 		},
 
 		widget = wibox.container.background,

@@ -31,9 +31,14 @@ theme.border_normal = "#000000"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
-theme.arcchart_color = "#331f45"
 theme.text_white_color = "#aaaaaa"
 theme.text_red_color = "#ce3332"
+
+theme.battery_green_color = "#33f266"
+theme.battery_yellow_color = "#f2f422"
+theme.battery_red_color = theme.text_red_color
+theme.battery_unplugged_background_color = "#111111"
+theme.battery_plugged_background_color = "#229944"
 
 theme.invisible = "#00000000"
 theme.profile_pic = themes_path .. "default/firefly.png"
@@ -41,12 +46,18 @@ theme.profile_pic = themes_path .. "default/firefly.png"
 theme.screenshot_icon = themes_path .. "default/icons/screenshot.png"
 theme.emoji_picker_icon = themes_path .. "default/icons/emoji.png"
 theme.uptime_icon = themes_path .. "default/icons/compositor.png"
+theme.battery_icon = themes_path .. "default/icons/battery.png"
+theme.ram_icon = themes_path .. "default/icons/ram.png"
 theme.overcast_icon = themes_path .. "default/icons/cloud.png"
 theme.rain_icon = themes_path .. "default/icons/rain.png"
 theme.cloud_icon = themes_path .. "default/icons/cloud.png"
+theme.mist_icon = themes_path .. "default/icons/mist.png"
 
 theme.tag_icon_active = " "
 theme.tag_icon_inactive = "  "
+
+--theme.dashboard_icon = themes_path .. "default/icons/dashboard.png"
+theme.dashboard_icon = ""
 
 -- There are other variable sets
 -- overriding the default one when
