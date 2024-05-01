@@ -22,3 +22,10 @@ foo.*
 *.log
 data
 config/gtk-2.0
+config/obsidian
+config/pulse
+config/zsh/.z*
+config/mpd/database
+config/mpd/log
+config/mpd/pid
+config/mpd/playlists

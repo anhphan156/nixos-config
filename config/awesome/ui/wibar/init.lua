@@ -11,6 +11,8 @@ local button_maker = require("ui.components.button_maker")
 local box_maker = require("ui.components.box_maker")
 
 awful.screen.connect_for_each_screen(function(s)
+	s.systray = wibox.widget.systray()
+	s.systray.visible = true
 	-- Each screen has its own tag table.
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7" }, s, awful.layout.layouts[1])
 
@@ -144,6 +146,11 @@ awful.screen.connect_for_each_screen(function(s)
 			}, dpi(12)),
 
 			box_maker.box({ -- Right widgets
+				{
+					s.systray,
+					widget = wibox.container.margin,
+					margins = { right = dpi(17), left = dpi(3), top = dpi(2) },
+				},
 				button_maker.icon_button(
 					beautiful.screenshot_icon,
 					{ top = dpi(0), right = dpi(10), bottom = dpi(0), left = dpi(0) },

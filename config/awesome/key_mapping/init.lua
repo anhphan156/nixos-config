@@ -35,24 +35,15 @@ awful.keyboard.append_global_keybindings({
 	end),
 
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		naughty.notify({
-			title = "volumn button",
-			text = "up",
-		})
+		awful.spawn.with_shell("pamixer -i 5")
 	end),
 
 	awful.key({}, "XF86AudioLowerVolume", function()
-		naughty.notify({
-			title = "volumn button",
-			text = "down",
-		})
+		awful.spawn.with_shell("pamixer -d 5")
 	end),
 
 	awful.key({}, "XF86AudioMute", function()
-		naughty.notify({
-			title = "volumn button",
-			text = "mute",
-		})
+		awful.spawn.with_shell("pamixer -t")
 	end),
 
 	--  awful.key({ modkey,           }, "w", function () mymainmenu:show() end,

@@ -26,7 +26,7 @@ local notification_widget = function(n)
 				},
 			},
 			strategy = "max",
-			width = dpi(450),
+			width = dpi(850),
 			height = dpi(180),
 			widget = wibox.container.constraint,
 		},

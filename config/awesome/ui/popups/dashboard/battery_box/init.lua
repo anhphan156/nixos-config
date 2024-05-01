@@ -49,6 +49,10 @@ awesome.connect_signal("daemon::battery", function(percentage)
 
 	if tonumber(percentage) < 15 then
 		battery_arcchart.colors = { beautiful.battery_red_color }
+		naughty.notify({
+			title = "Alert",
+			text = "Battery is low",
+		})
 	elseif tonumber(percentage) < 50 then
 		battery_arcchart.colors = { beautiful.battery_yellow_color }
 	elseif tonumber(percentage) < 101 then
