@@ -33,6 +33,7 @@ theme.border_marked = "#91231c"
 
 theme.arcchart_color = "#331f45"
 theme.text_white_color = "#aaaaaa"
+theme.text_red_color = "#ce3332"
 
 theme.invisible = "#00000000"
 theme.profile_pic = themes_path .. "default/firefly.png"
@@ -43,6 +44,9 @@ theme.uptime_icon = themes_path .. "default/icons/compositor.png"
 theme.overcast_icon = themes_path .. "default/icons/cloud.png"
 theme.rain_icon = themes_path .. "default/icons/rain.png"
 theme.cloud_icon = themes_path .. "default/icons/cloud.png"
+
+theme.tag_icon_active = " "
+theme.tag_icon_inactive = "  "
 
 -- There are other variable sets
 -- overriding the default one when
@@ -59,6 +63,7 @@ theme.cloud_icon = themes_path .. "default/icons/cloud.png"
 
 theme.titlebar_bg_normal = "#222222"
 theme.titlebar_bg_focus = "#222222"
+theme.taglist_fg_focus = "#ee5500"
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)

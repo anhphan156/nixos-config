@@ -1,4 +1,5 @@
 local awful = require("awful")
+local beautiful = require("beautiful")
 local wibox = require("wibox")
 local keys = require("key_mapping.keys")
 
@@ -25,7 +26,7 @@ local titlebar_init = function(c)
 				-- awful.titlebar.widget.iconwidget(c),
 				buttons = keys.titlebar_icon_buttons(c),
 				widget = wibox.widget.textbox,
-				markup = '<span foreground = "#ee3323"><b></b></span>',
+				markup = '<span foreground = "' .. beautiful.text_red_color .. '"><b></b></span>',
 			},
 			margins = {
 				top = dpi(0),
