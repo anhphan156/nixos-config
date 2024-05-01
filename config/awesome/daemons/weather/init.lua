@@ -20,6 +20,8 @@ local script = [[bash -c '
             code=3
         elif [ "${condition,,}" = "mist" ]; then
             code=4
+        elif [ "${condition,,}" = "fog" ]; then
+            code=5
         fi
 
         echo "$condition" "$temp" "$code"

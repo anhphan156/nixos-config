@@ -66,8 +66,7 @@ dpi = beautiful.xresources.apply_dpi
 
 -- Custom modules
 require("rules")
-require("signals.client")
-require("signals.screen")
+require("signals")
 require("key_mapping")
 require("daemons")
 require("ui.popups.dashboard")
