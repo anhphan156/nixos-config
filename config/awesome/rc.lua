@@ -60,6 +60,7 @@ user = {
 	--editor_cmd = user.erminal .. ' -e ' .. user.editor,
 	editor_cmd = "",
 	file_browser = "",
+	music_player = "ncmpcpp",
 }
 
 dpi = beautiful.xresources.apply_dpi

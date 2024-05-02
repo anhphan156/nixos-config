@@ -5,6 +5,8 @@ local naughty = require("naughty")
 
 local battery_arcchart = wibox.container.arcchart()
 -- local battery_text = wibox.widget.textbox()
+--
+local low_warning = true
 
 local battery_box = wibox.widget({
 	{
@@ -49,14 +51,19 @@ awesome.connect_signal("daemon::battery", function(percentage)
 
 	if tonumber(percentage) < 15 then
 		battery_arcchart.colors = { beautiful.battery_red_color }
-		naughty.notify({
-			title = "Alert",
-			text = "Battery is low",
-		})
+		if low_warning then
+			naughty.notify({
+				title = "Alert",
+				text = "Battery is low",
+			})
+		end
+		low_warning = false
 	elseif tonumber(percentage) < 50 then
 		battery_arcchart.colors = { beautiful.battery_yellow_color }
+		low_warning = true
 	elseif tonumber(percentage) < 101 then
 		battery_arcchart.colors = { beautiful.battery_green_color }
+		low_warning = true
 	end
 end)
 
