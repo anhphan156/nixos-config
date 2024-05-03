@@ -8,6 +8,7 @@
 
     imports = [
         ./shell/zsh.nix
+        ./picom/picom.nix
     ];
 
     home.username = "backspace";
@@ -30,16 +31,19 @@
         discord
         obsidian
 
-
         ranger
         cmatrix
-        neofetch
+        fastfetch
+        bunnyfetch
         pamixer
         rofi
         rofi-calc
         rofi-emoji
         fzf
         xclip
+        bat
+        maim
+        bc
 
         xorg.xbacklight
         #font-manager
@@ -80,10 +84,12 @@
     #  /etc/profiles/per-user/backspace/etc/profile.d/hm-session-vars.sh
     #
     home.sessionVariables = {
-        # EDITOR = "emacs";
+        EDITOR = "nvim";
     };
 
-    #services.picom.enable = true;
+    home.sessionPath = [
+        "/home/backspace/dotfiles/bin/"
+    ];
 
     # Let Home Manager install and manage itself.
     programs.home-manager = {

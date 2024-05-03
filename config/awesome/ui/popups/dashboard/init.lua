@@ -32,62 +32,62 @@ local dashboard = awful.popup({
 })
 
 local grid = wibox.widget({
-	{
-		row_index = 1,
-		col_index = 1,
-		row_span = 6,
-		col_span = 2,
-		widget = profile_box,
-	},
-	{
-		row_index = 7,
-		col_index = 1,
-		row_span = 1,
-		col_span = 2,
-		widget = uptime_box,
-	},
-	{
-		row_index = 1,
-		col_index = 3,
-		row_span = 3,
-		col_span = 2,
-		widget = battery_box,
-	},
-	{
-		row_index = 4,
-		col_index = 3,
-		row_span = 3,
-		col_span = 2,
-		widget = ram_box,
-	},
-	{
-		row_index = 1,
-		col_index = 5,
-		row_span = 2,
-		col_span = 2,
-		widget = weather_box,
-	},
-	{
-		row_index = 3,
-		col_index = 5,
-		row_span = 4,
-		col_span = 2,
-		widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1" }),
-	},
-	{
-		row_index = 1,
-		col_index = 7,
-		row_span = 6,
-		col_span = 3,
-		widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2" }),
-	},
-	{
-		row_index = 7,
-		col_index = 3,
-		row_span = 1,
-		col_span = 7,
-		widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 3" }),
-	},
+	-- {
+	-- 	row_index = 1,
+	-- 	col_index = 1,
+	-- 	row_span = 2,
+	-- 	col_span = 1,
+	-- 	widget = profile_box,
+	-- },
+	-- {
+	-- 	row_index = 9,
+	-- 	col_index = 1,
+	-- 	row_span = 1,
+	-- 	col_span = 2,
+	-- 	widget = uptime_box,
+	-- },
+	-- {
+	-- 	row_index = 1,
+	-- 	col_index = 3,
+	-- 	row_span = 3,
+	-- 	col_span = 2,
+	-- 	widget = battery_box,
+	-- },
+	-- {
+	-- 	row_index = 4,
+	-- 	col_index = 3,
+	-- 	row_span = 3,
+	-- 	col_span = 2,
+	-- 	widget = ram_box,
+	-- },
+	-- {
+	-- 	row_index = 1,
+	-- 	col_index = 5,
+	-- 	row_span = 2,
+	-- 	col_span = 2,
+	-- 	widget = weather_box,
+	-- },
+	-- {
+	-- 	row_index = 3,
+	-- 	col_index = 5,
+	-- 	row_span = 4,
+	-- 	col_span = 2,
+	-- 	widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1" }),
+	-- },
+	-- {
+	-- 	row_index = 1,
+	-- 	col_index = 7,
+	-- 	row_span = 6,
+	-- 	col_span = 3,
+	-- 	widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2" }),
+	-- },
+	-- {
+	-- 	row_index = 7,
+	-- 	col_index = 3,
+	-- 	row_span = 1,
+	-- 	col_span = 7,
+	-- 	widget = box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 3" }),
+	-- },
 	homogeneous = true,
 	expand = false,
 	spacing = dpi(12),
@@ -96,6 +96,15 @@ local grid = wibox.widget({
 	min_rows_size = dpi(80),
 	layout = wibox.layout.grid,
 })
+
+grid:add_widget_at(profile_box, 1, 1, 6, 2);
+grid:add_widget_at(uptime_box, 7, 1, 1, 2);
+grid:add_widget_at(battery_box, 1, 3, 3, 2);
+grid:add_widget_at(ram_box, 4, 3, 3, 2);
+grid:add_widget_at(weather_box, 1, 5, 2, 2);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1"}), 3, 5, 4, 2);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2"}), 1, 7, 6, 3);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2"}), 7, 3, 1, 7);
 
 dashboard:setup({
 	grid,

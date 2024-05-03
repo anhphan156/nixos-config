@@ -1,6 +1,6 @@
 configuration {
-    modes: "window,drun,run,calc,combi";
-    combi-modes: "window,calc";
+    modes: "window,drun,run";
+    combi-modes: "window";
     font: "AnkaCoder-r 15";
 
     display-window: "";

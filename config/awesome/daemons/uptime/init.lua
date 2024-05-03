@@ -1,7 +1,7 @@
 local awful = require('awful')
 
 local script = [[
-    bash -c "uptime -p"
+    bash -c "echo uptime"
 ]]
 
 awful.widget.watch(script, 60, function(widget, stdout)
