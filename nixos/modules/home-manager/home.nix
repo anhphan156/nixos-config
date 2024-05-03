@@ -6,9 +6,19 @@
         allowUnfreePredicate = (_: true);
     };
 
+    nixpkgs.overlays = [
+        (final : prev : {
+            ncmpcpp = prev.ncmpcpp.override {
+                visualizerSupport = true;
+            };
+        })
+    ];
+
     imports = [
         ./shell/zsh.nix
         ./picom/picom.nix
+        ./music/mpd.nix
+        ./music/ncmpcpp.nix
     ];
 
     home.username = "backspace";
@@ -44,6 +54,7 @@
         bat
         maim
         bc
+        id3v2
 
         xorg.xbacklight
         #font-manager

@@ -12,3 +12,5 @@ map("n", "\\f", "<esc>:BLines<CR>", opt)
 map("n", "\\g", "<esc>:GFiles<CR>", opt)
 map("n", "\\r", "<esc>:Rg<CR>", opt)
 map("n", "Y", "<esc>Vy", opt)
+
+map("n", "\\\"", "<esc>bi\"<esc>ea\"<esc>", opt)
