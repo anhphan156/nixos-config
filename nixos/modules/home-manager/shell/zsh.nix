@@ -1,7 +1,13 @@
+{ config, ...} :
 {
   programs.zsh ={
     enable = true;
     syntaxHighlighting.enable = true;
+
+    history.path = "${config.xdg.dataHome}/zsh/zsh_history";
+    sessionVariables = {
+        "ZSHZ_DATA" = "${config.xdg.dataHome}/zsh/.z";
+    };
 
     shellAliases = {
         "rebuild" = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
@@ -13,8 +19,6 @@
       theme = "robbyrussell";
     };
 
-    dotDir = ".config/zsh/";
-    history.path = ".config/zsh/zsh_history";
     initExtra = ''
         neofetch
         

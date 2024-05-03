@@ -26,22 +26,23 @@
     # environment.
     home.packages = with pkgs; [
         kitty
+        firefox
+        discord
+        obsidian
+
 
         ranger
         cmatrix
+        neofetch
         pamixer
         rofi
         rofi-calc
         rofi-emoji
         fzf
-        neofetch
-
-        firefox
-        discord
-        obsidian
+        xclip
 
         xorg.xbacklight
-        font-manager
+        #font-manager
 
         ghc
     ];
