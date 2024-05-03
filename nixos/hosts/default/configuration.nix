@@ -103,6 +103,7 @@ in
     nerdfonts
     ankacoder
     material-icons
+    texlivePackages.typicons
   ];
 
   environment.variables.EDITOR = "nvim";
