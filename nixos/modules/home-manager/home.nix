@@ -12,6 +12,14 @@
                 visualizerSupport = true;
             };
         })
+        #(final : prev : {
+        #    font-manager = prev.font-manager.overrideAttrs (old : {
+        #        owner = "FontManager";
+        #        repo = "font-manager";
+        #        rev = "600f498946c3904064b4e4fdf96e5841f6a827e4";
+        #        hash = "0qj14gbzjfba6kxs3n2jp19sidiiqw2rmsfwkz65hav2681c7rzf";
+        #    });
+        #})
     ];
 
     imports = [
@@ -58,8 +66,11 @@
 
         xorg.xbacklight
         #font-manager
+        arandr
 
         ghc
+
+        ( import ../../scripts/search_docs.nix { inherit pkgs; } )
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -101,6 +112,15 @@
     home.sessionPath = [
         "/home/backspace/dotfiles/bin/"
     ];
+
+    dconf.settings = {
+        "org/virt-manager/virt-manager/connections" = {
+            autoconnect = ["qemu:///system"];
+            uris = ["qemu:///system"];
+        };
+    };
+
+    #services.pasystray.enable = true;
 
     # Let Home Manager install and manage itself.
     programs.home-manager = {
