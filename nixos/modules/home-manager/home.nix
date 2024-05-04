@@ -27,6 +27,7 @@
         ./picom/picom.nix
         ./music/mpd.nix
         ./music/ncmpcpp.nix
+        ./autorandr/autorandr.nix
     ];
 
     home.username = "backspace";
@@ -66,9 +67,9 @@
         id3v2
         nix-prefetch-git
 
-        xorg.xbacklight
         #font-manager
         arandr
+        #xorg.xrandr
         lxappearance
 
         tokyonight-gtk-theme

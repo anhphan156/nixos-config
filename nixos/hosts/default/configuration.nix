@@ -75,14 +75,14 @@ in
 
     programs = {
         zsh.enable = true;
-        #light.enable = true;
+        light.enable = true;
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.backspace = {
         isNormalUser = true;
         description = "backspace";
-        extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
+        extraGroups = [ "networkmanager" "wheel" "audio" "video" "libvirtd" ];
         packages = with pkgs; [];
         shell = pkgs.zsh;
     };
@@ -102,6 +102,8 @@ in
         curl
         cmake
         gcc
+        brightnessctl
+        acpilight
     ];
 
     fonts.fonts = with pkgs; [
