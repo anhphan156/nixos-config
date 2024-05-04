@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 awesome-client "
     local naughty = require('naughty')
@@ -7,4 +7,3 @@ awesome-client "
         text='$2'
     })
 "
-

@@ -24,6 +24,7 @@ in
             ./hardware-configuration.nix
             inputs.home-manager.nixosModules.default
             ../../modules/virtualization/virtualization.nix
+            (import ../../modules/acpid/acpid.nix { inherit pkgs awesome; })
         ];
 
     # Bootloader.
@@ -48,11 +49,14 @@ in
     # Select internationalisation properties.
     i18n.defaultLocale = "en_CA.UTF-8";
 
+    services.libinput.touchpad.naturalScrolling = true;
+
     # Configure keymap in X11
     services.xserver = {
         layout = "us";
         xkbVariant = "";
         enable = true;
+        #videoDrivers = [ "nvidia" ];
 
         displayManager = {
             sddm.enable = true;
