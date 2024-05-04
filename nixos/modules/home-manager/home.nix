@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
     nixpkgs.config = {
@@ -28,6 +28,8 @@
         ./music/mpd.nix
         ./music/ncmpcpp.nix
         ./autorandr/autorandr.nix
+
+        ( import ./browser/firefox.nix { inherit (inputs) firefox-addons; } )
     ];
 
     home.username = "backspace";
@@ -46,7 +48,6 @@
     # environment.
     home.packages = with pkgs; [
         kitty
-        firefox
         discord
         obsidian
         cinnamon.nemo
@@ -78,6 +79,7 @@
         ghc
 
         ( import ../../scripts/search_docs.nix { inherit pkgs; } )
+        ( import ../../scripts/music_retag.nix { inherit pkgs; } )
     ];
 
     home.file = {
