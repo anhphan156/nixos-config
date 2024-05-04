@@ -102,8 +102,6 @@ in
         curl
         cmake
         gcc
-        nix-prefetch-git
-        nix-prefetch-github
     ];
 
     fonts.fonts = with pkgs; [
