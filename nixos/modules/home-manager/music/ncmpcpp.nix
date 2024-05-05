@@ -3,6 +3,7 @@
         enable = true;
         mpdMusicDir = "/home/backspace/data/Music";
         settings = {
+            "execute_on_song_change" = ''bash -c "awesome-client \"awesome.emit_signal('ncmpcpp::songchanged', '$(mpc --format "%title% by %artist%" current)')\""'';
             "autocenter_mode" = "yes";            
             "allow_for_physical_item_deletion" = "no";
 

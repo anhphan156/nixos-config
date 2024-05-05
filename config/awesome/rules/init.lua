@@ -1,5 +1,6 @@
 local awful = require('awful')
 local ruled = require('ruled')
+local mpd_titlebar_init = require('ui.titlebar.ncmpcpp')
 
 ruled.client.connect_signal("request::rules", function()
     -- All clients will match this rule.
@@ -46,7 +47,15 @@ ruled.client.connect_signal("request::rules", function()
     }
 
     ruled.client.append_rule {
-        rule_any       = { class = {"firefox", "feh"}     },
+        rule_any       = { class = {"firefox", "feh", "kittymusic"}     },
         properties = { titlebars_enabled = false }
+    }
+
+    ruled.client.append_rule {
+        rule_any = {
+            class = { "kittymusic" }
+        },
+        properties = {},
+        callback = mpd_titlebar_init
     }
 end)

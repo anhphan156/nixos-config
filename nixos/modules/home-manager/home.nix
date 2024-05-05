@@ -23,6 +23,7 @@
     ];
 
     imports = [
+        ( import ./packages.nix { inherit pkgs; } )
         ./shell/zsh.nix
         ./picom/picom.nix
         ./music/mpd.nix
@@ -44,46 +45,8 @@
     # release notes.
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
-    home.packages = with pkgs; [
-        kitty
-        discord
-        obsidian
-        cinnamon.nemo
-
-        ranger
-        cmatrix
-        fastfetch
-        bunnyfetch
-        pamixer
-        rofi
-        rofi-calc
-        rofi-emoji
-        fzf
-        xclip
-        bat
-        maim
-        bc
-        id3v2
-        nix-prefetch-git
-
-        #font-manager
-        arandr
-        #xorg.xrandr
-        lxappearance
-
-        tokyonight-gtk-theme
-        paper-gtk-theme
-
-        ghc
-
-        ( import ../../scripts/search_docs.nix { inherit pkgs; } )
-        ( import ../../scripts/music_retag.nix { inherit pkgs; } )
-    ];
-
     home.file = {
-        ".config/awesome/".source = ../../../config/awesome;
+        #".config/awesome/".source = ../../../config/awesome;
         ".config/ranger/".source = ../../../config/ranger;
         ".config/kitty/".source = ../../../config/kitty;
         ".config/rofi/".source = ../../../config/rofi;
@@ -125,10 +88,6 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager = {
-        enable = true;
-    };
-
-    programs.neovim = {
         enable = true;
     };
 
