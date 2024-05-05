@@ -6,7 +6,7 @@ local keys = require("key_mapping.keys")
 
 local song_title = wibox.widget.textbox()
 song_title.font = 'Anka/Coder 16'
-song_title.markup = '<span foreground = "' .. beautiful.text_red_color .. '"><b>Playing Title</b></span>'
+song_title.markup = '<span foreground = "' .. beautiful.text_red_color .. '"><b>It\'s a perfect day for music</b></span>'
 
 local mpd_titlebar_init = function(c)
     local top_bar_config = {

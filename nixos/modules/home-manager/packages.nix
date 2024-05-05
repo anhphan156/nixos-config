@@ -28,6 +28,7 @@
         nix-prefetch-git
         neovim
         mpc-cli
+        (ffmpeg.override { withXcb = true; })
 
         font-manager
         arandr

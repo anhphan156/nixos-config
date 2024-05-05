@@ -43,6 +43,10 @@
                 "100:class_g = 'discord'"
             ];
 
+            window-shader-fg-rule = [
+                "/home/backspace/dotfiles/config/picom/test.glsl:class_g = 'kittymusic'"
+            ];
+
             fading = true;
             fade-in-step = 0.03;
             fade-out-step = 0.03;
