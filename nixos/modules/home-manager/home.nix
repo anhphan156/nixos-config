@@ -29,7 +29,7 @@
         ./music/mpd.nix
         ./music/ncmpcpp.nix
         ./autorandr/autorandr.nix
-
+        ( import ./launcher/rofi.nix { inherit config pkgs; } )
         ( import ./browser/firefox.nix { inherit (inputs) firefox-addons; } )
     ];
 
@@ -49,7 +49,6 @@
         #".config/awesome/".source = ../../../config/awesome;
         ".config/ranger/".source = ../../../config/ranger;
         ".config/kitty/".source = ../../../config/kitty;
-        ".config/rofi/".source = ../../../config/rofi;
         ".config/nvim/".source = ../../../config/nvim;
     };
 

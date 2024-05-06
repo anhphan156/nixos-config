@@ -15,9 +15,6 @@
         fastfetch
         bunnyfetch
         pamixer
-        rofi
-        rofi-calc
-        rofi-emoji
         fzf
         xclip
         bat
