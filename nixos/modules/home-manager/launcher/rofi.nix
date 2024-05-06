@@ -9,9 +9,9 @@
         extraConfig = {
             modes= "window,drun,run,combi";
             combi-modes= "window,drun,run";
-            font= "AnkaCoder-r 15";
+            font= "AnkaCoder 15";
 
-            display-window= "";
+            display-window= "";
             display-run= "";
             display-ssh= "";
             display-drun= "";
@@ -19,11 +19,11 @@
             display-combi= "";
             display-emoji= "";
 
-            separator-style= "none";
-            color-normal= "@xbg, @xfg, @xbg, @xfg, @xbg";
-            color-urgent= "@xbg, @x1, @xbg, @x1, @xfg";
-            color-active= "@xbg, @xfg, @xbg, @xfg, @xbg";
-            color-window= "@xbg, @x1, @xfg";
+            separator-style= "solid";
+            color-normal= "#1D1F28, #FDFDFD, #1D1F28, #FDFDFD, #1D1F28";
+            color-urgent= "#1D1F28, #F37F97, #1D1F28, #F37F97, #FDFDFD";
+            color-active= "#1D1F28, #FDFDFD, #1D1F28, #FDFDFD, #1D1F28";
+            color-window= "#1D1F28, #F37F97, #FDFDFD";
 
             window-format= "[{w}] ·· {c} ··   {t}";
 
@@ -125,7 +125,7 @@
             };
             "listview" = {
                 scrollbar = mkLiteral "false";
-                margin = mkLiteral "-5px 0px"; # hide the dashed line"
+                margin = mkLiteral "-11px 0px"; # hide the dashed line"
             };
 
             "entry" = {
@@ -142,8 +142,8 @@
                 children = map mkLiteral [ "element-text" ];
             };
             "element selected.normal" = {
-                background-color = mkLiteral "rgba (0,0,0,0%)";
-                text-color = mkLiteral       "@x9";
+                background-color = mkLiteral "rgba (100,222,180,10%)";
+                text-color = mkLiteral       "@x2";
             };
             "element normal.normal" = {
                 background-color = mkLiteral "rgba (0,0,0,0%)";
@@ -153,17 +153,17 @@
             "element-text" = {
                 vertical-align = mkLiteral  "0.5";
                 horizontal-align = mkLiteral "1.0";
-                padding = mkLiteral "12px 25px";
+                padding = mkLiteral "13px 25px";
                 text-color = mkLiteral       "@xfg";
             };
 
             "element normal.active" = {
                 background-color = mkLiteral "rgba (0,0,0,0%)";
-                text-color = mkLiteral       "@x5";
+                text-color = mkLiteral "@x5";
             };
             "element alternate.normal" = {
                 background-color = mkLiteral "rgba (0,0,0,0%)";
-                text-color = mkLiteral       "@xfg";
+                text-color = mkLiteral "@xfg";
             };
 
             "prompt" = {

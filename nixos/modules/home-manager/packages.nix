@@ -28,7 +28,7 @@
         (ffmpeg.override { withXcb = true; })
         fortune
 
-        font-manager
+        #font-manager
         arandr
         #xorg.xrandr
         lxappearance

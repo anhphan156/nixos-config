@@ -6,24 +6,9 @@
         allowUnfreePredicate = (_: true);
     };
 
-    nixpkgs.overlays = [
-        (final : prev : {
-            ncmpcpp = prev.ncmpcpp.override {
-                visualizerSupport = true;
-            };
-        })
-        #(final : prev : {
-        #    font-manager = prev.font-manager.overrideAttrs (old : {
-        #        owner = "FontManager";
-        #        repo = "font-manager";
-        #        rev = "600f498946c3904064b4e4fdf96e5841f6a827e4";
-        #        hash = "0qj14gbzjfba6kxs3n2jp19sidiiqw2rmsfwkz65hav2681c7rzf";
-        #    });
-        #})
-    ];
-
     imports = [
         ( import ./packages.nix { inherit pkgs; } )
+        ./overlay.nix
         ./shell/zsh.nix
         ./picom/picom.nix
         ./music/mpd.nix
@@ -72,9 +57,9 @@
         EDITOR = "nvim";
     };
 
-    home.sessionPath = [
-        "/home/backspace/dotfiles/bin/"
-    ];
+    #home.sessionPath = [
+    #    "/home/backspace/dotfiles/bin/"
+    #];
 
     dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
@@ -92,11 +77,7 @@
 
     services.pasystray.enable = true;
 
-    # Let Home Manager install and manage itself.
-    programs.home-manager = {
-        enable = true;
-    };
-
+    programs.home-manager.enable = true;
     programs.ripgrep.enable = true;
 
     programs.git = {
