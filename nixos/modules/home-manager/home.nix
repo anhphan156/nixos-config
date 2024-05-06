@@ -84,7 +84,14 @@
         };
     };
 
-    #services.pasystray.enable = true;
+    systemd.user.targets.tray = {
+		Unit = {
+			Description = "Home Manager System Tray";
+			Requires = [ "graphical-session-pre.target" ];
+		};
+	};
+
+    services.pasystray.enable = true;
 
     # Let Home Manager install and manage itself.
     programs.home-manager = {

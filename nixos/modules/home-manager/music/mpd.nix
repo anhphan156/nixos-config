@@ -37,14 +37,14 @@ in
         '';
     };
 
-    services.mpd-discord-rpc = {
-        enable = true;
-        settings = {
-            hosts = [ "localhost:6600" ];
-            format = {
-                details = "$title";
-                state = "By $artist";
-            };
-        };
-    };
+    #services.mpd-discord-rpc = {
+    #    enable = true;
+    #    settings = {
+    #        hosts = [ "localhost:6600" ];
+    #        format = {
+    #            details = "$title";
+    #            state = "By $artist";
+    #        };
+    #    };
+    #};
 }

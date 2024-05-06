@@ -22,8 +22,9 @@ vec4 window_shader() {
     vec4 c = texelFetch(tex, ivec2(texcoord), 0);
     c = default_post_processing(c);
 
-    vec2 uv = texcoord / vec2(1920., 1080.);
-    uv.x *= 1920.0/1080.0;
+    vec2 texSize = textureSize(tex, 0);
+    vec2 uv = texcoord / texSize;
+    uv.x *= texSize.x/texSize.y;
     uv.y = fract(uv.y - time * -.0001) - .2;
 
     vec2 cuv = uv;
@@ -34,7 +35,7 @@ vec4 window_shader() {
     d = smin(d, length(cuv - vec2(.2 - sin(anim) * .1, 0.0)), .02);
     d = smin(d, length(cuv - vec2(.25 - sin(anim) * .15, .2 + cos(anim) * .1)), .02);
     d = smin(d, length(cuv - vec2(.28 - sin(anim) * .05, .225 + cos(anim) * .012)), .02);
-    float r = .02;
+    float r = .04;
     float m = smoothstep(r, r+.001, d);
 
     c.xyz = mix(vec3(.5, .3, .9), c.xyz, m);

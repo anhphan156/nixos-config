@@ -13,6 +13,8 @@ local battery_box = require("ui.popups.dashboard.battery_box")
 local ram_box = require("ui.popups.dashboard.ram_box")
 local weather_box = require("ui.popups.dashboard.weather_box")
 
+local fortune_text = wibox.widget.textbox()
+
 local dashboard = awful.popup({
 	widget = wibox.container.background,
 	bg = beautiful.invisible,
@@ -104,16 +106,25 @@ grid:add_widget_at(ram_box, 4, 3, 3, 2);
 grid:add_widget_at(weather_box, 1, 5, 2, 2);
 grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1"}), 3, 5, 4, 2);
 grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2"}), 1, 7, 6, 3);
-grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2"}), 7, 3, 1, 7);
+
+grid:add_widget_at(box_maker.flex_box({ 
+    {
+        widget = fortune_text, text = "Fetching fortune text ..."
+    },
+    widget = wibox.container.place
+}), 7, 3, 1, 7);
 
 dashboard:setup({
-	grid,
-	widget = wibox.container.place,
+	widget = grid
 })
 
 awesome.connect_signal("dashboard::toggle", function()
 	dashboard.visible = not dashboard.visible
 	helpers.minimize_all_clients(dashboard.visible)
+end)
+
+awesome.connect_signal('daemon::fortune', function(fortune)
+    fortune_text.markup = '<i>' .. fortune .. '</i>'
 end)
 
 return dashboard

@@ -29,6 +29,7 @@
         neovim
         mpc-cli
         (ffmpeg.override { withXcb = true; })
+        fortune
 
         font-manager
         arandr
