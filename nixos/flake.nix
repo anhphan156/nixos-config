@@ -23,6 +23,7 @@
     {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
         modules = [
           ./hosts/default/configuration.nix
           inputs.home-manager.nixosModules.default

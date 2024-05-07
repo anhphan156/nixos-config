@@ -31,6 +31,8 @@ theme.border_normal = "#000000"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
+theme.corner_radius = dpi(14)
+
 theme.text_white_color = "#aaaaaa"
 theme.text_red_color = "#ce3332"
 
@@ -45,6 +47,7 @@ theme.profile_pic = themes_path .. "default/firefly.png"
 
 theme.screenshot_icon = themes_path .. "default/icons/screenshot.png"
 theme.emoji_picker_icon = themes_path .. "default/icons/emoji.png"
+theme.control_center_icon = themes_path .. "default/icons/control_center.png"
 theme.uptime_icon = themes_path .. "default/icons/compositor.png"
 theme.battery_icon = themes_path .. "default/icons/battery.png"
 theme.ram_icon = themes_path .. "default/icons/ram.png"

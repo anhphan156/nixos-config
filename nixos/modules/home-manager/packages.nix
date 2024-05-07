@@ -10,7 +10,6 @@
         cinnamon.nemo
         pureref
 
-        ranger
         cmatrix
         fastfetch
         bunnyfetch
@@ -27,6 +26,7 @@
         mpc-cli
         (ffmpeg.override { withXcb = true; })
         fortune
+        jq
 
         #font-manager
         arandr

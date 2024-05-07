@@ -177,6 +177,15 @@ awful.screen.connect_for_each_screen(function(s)
 						awful.spawn.with_shell("rofi -modi emoji -show emoji")
 					end
 				),
+				button_maker.icon_button(
+					beautiful.control_center_icon,
+					{ top = dpi(0), right = dpi(10), bottom = dpi(0), left = dpi(0) },
+					dpi(30),
+					icon_size,
+					function()
+                        awesome.emit_signal('control_center::toggle')
+					end
+				),
 				s.mylayoutbox,
 
 				layout = wibox.layout.fixed.horizontal,

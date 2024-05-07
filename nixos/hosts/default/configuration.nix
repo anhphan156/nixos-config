@@ -25,6 +25,7 @@ in
             inputs.home-manager.nixosModules.default
             ../../modules/virtualization/virtualization.nix
             (import ../../modules/acpid/acpid.nix { inherit pkgs awesome; })
+            ../../modules/laptop/laptop.nix
         ];
 
     # Bootloader.
@@ -61,6 +62,10 @@ in
         displayManager = {
             sddm.enable = true;
             defaultSession = "none+awesome";
+            autoLogin = {
+                enable = true;
+                user = "backspace";
+            };
         };
 
         windowManager.awesome = {

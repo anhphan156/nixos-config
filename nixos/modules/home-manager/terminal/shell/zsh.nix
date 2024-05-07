@@ -10,8 +10,9 @@
         };
 
         shellAliases = {
-            "rebuild" = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
-            "v" = "nvim";
+            "rebuild" = " sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
+            "v" = " nvim";
+            "vim" = " nvim";
         };
         oh-my-zsh = {
             enable = true;

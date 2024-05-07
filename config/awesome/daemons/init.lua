@@ -1,5 +1,5 @@
 require("daemons.uptime")
 require("daemons.battery")
---require("daemons.weather")
+require("daemons.weather")
 require("daemons.ram")
 require("daemons.fortune")

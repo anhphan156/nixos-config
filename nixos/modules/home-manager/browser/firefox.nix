@@ -46,6 +46,15 @@
                         }];
                         definedAliases = [ "@hm" ];
                     };
+                    "Hoogle" = {
+                        urls = [{
+                            template = "https://hoogle.haskell.org/";
+                            params = [
+                                { name = "hoogle"; value = "{searchTerms}"; }
+                            ];
+                        }];
+                        definedAliases = [ "@hg" ];
+                    };
                 };
             };
             extensions = with firefox-addons.packages."x86_64-linux"; [

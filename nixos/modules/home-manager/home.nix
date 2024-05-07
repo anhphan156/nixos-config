@@ -9,7 +9,8 @@
     imports = [
         ( import ./packages.nix { inherit pkgs; } )
         ./overlay.nix
-        ./shell/zsh.nix
+        ./terminal/shell/zsh.nix
+        ./terminal/ranger.nix
         ./picom/picom.nix
         ./music/mpd.nix
         ./music/ncmpcpp.nix
@@ -32,7 +33,6 @@
 
     home.file = {
         #".config/awesome/".source = ../../../config/awesome;
-        ".config/ranger/".source = ../../../config/ranger;
         ".config/kitty/".source = ../../../config/kitty;
         ".config/nvim/".source = ../../../config/nvim;
     };

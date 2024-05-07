@@ -71,6 +71,7 @@ require("signals")
 require("key_mapping")
 require("daemons")
 require("ui.popups.dashboard")
+require("ui.popups.control_center")
 require("ui.wibar")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.

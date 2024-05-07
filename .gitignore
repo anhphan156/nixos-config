@@ -7,7 +7,7 @@ neofetch
 .zcompdump*
 .netrwhist
 font-manager
-config/awesome/api/
+config/awesome/apikeys/
 .zsh_history
 viminfo
 .viminfo
