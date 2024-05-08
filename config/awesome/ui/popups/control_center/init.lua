@@ -2,6 +2,7 @@ local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
 local beautiful = require('beautiful')
+local box_maker = require("ui.components.box_maker")
 
 local control_center = awful.popup({
 	widget = wibox.container.background,
@@ -26,14 +27,28 @@ local control_center = awful.popup({
 	end,
 })
 
-control_center:setup({
-    {
-        widget = wibox.widget.textbox,
-        text = 'asdf'
-    },
-    widget = wibox.container.place,
+local grid = wibox.widget{
+    layout = wibox.layout.grid,
+    homogeneous          = true,
+    spacing              = dpi(5),
+    minimum_column_width = dpi(25),
+    minimum_row_height   = dpi(10),
+    column_count = 8,
     forced_width = dpi(500),
     forced_height = dpi(700),
+}
+
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1"}), 1, 1, 1, 7);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2"}), 1, 8, 1, 1);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 3"}), 2, 1, 1, 1);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 4"}), 2, 2, 1, 1);
+
+control_center:setup({
+    {
+        widget = grid,
+    },
+    widget = wibox.container.margin,
+    margins = { top = dpi(30), left = dpi(20) }
 })
 
 awesome.connect_signal('control_center::toggle', function()

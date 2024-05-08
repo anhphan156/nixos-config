@@ -13,6 +13,8 @@
         url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lua-pam.url = "github:anhphan156/lua-pam";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: 
