@@ -38,6 +38,7 @@ awesome.connect_signal("daemon::weather", function(weather_data)
 	icon_map[3] = beautiful.cloud_icon
 	icon_map[4] = beautiful.mist_icon
 	icon_map[5] = beautiful.mist_icon
+	icon_map[6] = beautiful.clear_icon
 
 	--weather_text.markup = '<b>'.. weather_data .. '</b>'
 	weather_text.text = weather_data

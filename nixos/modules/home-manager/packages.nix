@@ -13,6 +13,7 @@
         cmatrix
         fastfetch
         bunnyfetch
+        #pfetch
         pamixer
         fzf
         xclip
@@ -27,6 +28,11 @@
         (ffmpeg.override { withXcb = true; })
         fortune
         jq
+        btop
+        lolcat
+        asciiquarium
+        cbonsai
+        figlet
 
         #font-manager
         arandr

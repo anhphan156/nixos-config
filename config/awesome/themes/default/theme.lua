@@ -35,6 +35,7 @@ theme.corner_radius = dpi(14)
 
 theme.text_white_color = "#aaaaaa"
 theme.text_red_color = "#ce3332"
+theme.grey = '#444444'
 
 theme.battery_green_color = "#33f266"
 theme.battery_yellow_color = "#f2f422"
@@ -49,12 +50,19 @@ theme.screenshot_icon = themes_path .. "default/icons/screenshot.png"
 theme.emoji_picker_icon = themes_path .. "default/icons/emoji.png"
 theme.control_center_icon = themes_path .. "default/icons/control_center.png"
 theme.uptime_icon = themes_path .. "default/icons/compositor.png"
+theme.poweroff_icon = themes_path .. "default/icons/poweroff.png"
 theme.battery_icon = themes_path .. "default/icons/battery.png"
 theme.ram_icon = themes_path .. "default/icons/ram.png"
 theme.overcast_icon = themes_path .. "default/icons/cloud.png"
 theme.rain_icon = themes_path .. "default/icons/rain.png"
 theme.cloud_icon = themes_path .. "default/icons/cloud.png"
 theme.mist_icon = themes_path .. "default/icons/mist.png"
+theme.clear_icon = themes_path .. "default/icons/star.png"
+theme.play_icon = themes_path .. "default/icons/play.png"
+theme.next_icon = themes_path .. "default/icons/next.png"
+theme.prev_icon = themes_path .. "default/icons/prev.png"
+theme.repeat_icon = themes_path .. "default/icons/repeat.png"
+theme.shuffle_icon = themes_path .. "default/icons/shuffle.png"
 
 theme.tag_icon_active = " "
 theme.tag_icon_inactive = "  "

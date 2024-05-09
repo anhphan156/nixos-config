@@ -13,6 +13,7 @@
             "rebuild" = " sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
             "v" = " nvim";
             "vim" = " nvim";
+            "nvim" = " nvim";
         };
         oh-my-zsh = {
             enable = true;
@@ -21,7 +22,7 @@
         };
 
         initExtra = ''
-            fastfetch
+            bunnyfetch
             
             GREEN='\033[0;32m'
             RED='\033[0;31m'

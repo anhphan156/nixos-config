@@ -22,6 +22,8 @@ local script = [[bash -c '
             code=4
         elif [ "${condition,,}" = "fog" ]; then
             code=5
+        elif [ "${condition,,}" = "clear" ]; then
+            code=6
         fi
 
         echo "$condition" "$temp" "$code"
