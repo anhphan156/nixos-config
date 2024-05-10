@@ -63,7 +63,10 @@ grid:add_widget_at(
             dpi(0),
             dpi(40),
             dpi(40),
-            function() end
+            function()
+                awesome.emit_signal('acpi::power_button')
+                control_center.visible = false
+            end
         ),
         widget = wibox.container.place
     }
