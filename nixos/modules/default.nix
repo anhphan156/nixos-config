@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
     imports = [
         ./laptop/laptop.nix
         ./virtualization/virtualization.nix
-        #(import ../../modules/acpid/acpid.nix { inherit pkgs awesome; })
+        ./acpid/acpid.nix
     ];
 
     laptop.enable = lib.mkDefault true;

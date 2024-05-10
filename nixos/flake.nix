@@ -18,15 +18,12 @@
     };
 
     outputs = { self, nixpkgs, ... }@inputs: 
-        let
-        #system = "x86_64-linux";
-        #pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
+    {
         nixosConfigurations.default = nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
+                ./overlay/default.nix
                 ./hosts/default/configuration.nix
                 ./modules/default.nix
 
