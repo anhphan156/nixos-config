@@ -26,7 +26,26 @@
                     '';
                     event = "ac_adapter/*";
                 };
+                button-power = {
+                    action = ''
+                        p=$(echo $PATH | grep '/run/current-system/sw/bin')
+                        if [ -z $p ]; then
+                            PATH=$PATH:/run/current-system/sw/bin
+                        fi
+                        vals=($1)
+                        case ''${vals[1]} in
+                            PBTN)
+                                ${pkgs.sudo}/bin/sudo -u backspace XDG_RUNTIME_DIR="/run/user/$(id -u backspace)" ${pkgs.awesome}/bin/awesome-client "awesome.emit_signal('acpi::power_button')"
+                                ;;
+                        esac
+                    '';
+                    event = "button/power.*";
+                };
             };
         };
+
+        services.logind.extraConfig = ''
+            HandlePowerKey=ignore
+        '';
     };
 }

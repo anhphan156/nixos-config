@@ -33,6 +33,7 @@
         asciiquarium
         cbonsai
         figlet
+        acpid
 
         #font-manager
         arandr

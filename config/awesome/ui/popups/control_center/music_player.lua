@@ -2,6 +2,7 @@ local wibox = require('wibox')
 local awful = require('awful')
 local button_maker = require('ui.components.button_maker')
 local beautiful = require('beautiful')
+local naughty = require('naughty')
 
 local icon_size = dpi(60)
 
@@ -9,14 +10,19 @@ local is_playing = false
 
 local title_text = wibox.widget.textbox()
 title_text.font = '14'
-title_text.markup = 'Music'
+title_text.markup = 'Not Playing'
 title_text.forced_width = dpi(300)
 title_text.forced_height = dpi(20)
 title_text.halign = 'center'
 
 local check_is_playing = function()
-    awful.spawn.easy_async_with_shell('mpc current', function(stdout)
-        is_playing = not (stdout == nil or stdout == '')
+    awful.spawn.easy_async_with_shell('mpc status "%state%"', function(stdout)
+        if stdout:gsub('\n','') == 'paused' then
+            is_playing = false
+            title_text.markup = '<span foreground=\'' .. beautiful.text_white_color .. '\'><i>Not Playing</i></span>'
+        else
+            is_playing = true
+        end
     end)
 end
 
