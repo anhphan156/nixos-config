@@ -25,11 +25,12 @@ local toggle = function()
     then 
         awful.spawn.with_shell('mpc play')
         is_playing = true
+        set_title()
     else
         awful.spawn.with_shell('mpc pause')
         is_playing = false
+        title_text.markup = '<span foreground=\'' .. beautiful.text_white_color .. '\'><i>Not Playing</i></span>'
     end
-    set_title()
 end
 
 local next = function()
@@ -39,6 +40,16 @@ end
 
 local prev = function()
     awful.spawn.with_shell('mpc prev')
+    set_title()
+end
+
+local song_repeat = function()
+    awful.spawn.with_shell('mpc repeat')
+    set_title()
+end
+
+local random = function()
+    awful.spawn.with_shell('mpc random')
     set_title()
 end
 
@@ -54,7 +65,7 @@ local music_player = wibox.widget{
                 dpi(0),
                 icon_size,
                 icon_size,
-                function() end
+                song_repeat
             ),
             button_maker.icon_button(
                 beautiful.prev_icon,
@@ -82,7 +93,7 @@ local music_player = wibox.widget{
                 dpi(0),
                 icon_size,
                 icon_size,
-                function() end
+                random
             ),
             layout = wibox.layout.fixed.horizontal,
             spacing = dpi(10)
