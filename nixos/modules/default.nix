@@ -6,7 +6,7 @@
         ./acpid/acpid.nix
     ];
 
-    laptop.enable = lib.mkDefault true;
+    laptop.enable = lib.mkDefault false;
     virtualization.enable = lib.mkDefault true;
     acpid.enable = lib.mkDefault true;
 }

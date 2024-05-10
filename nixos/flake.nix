@@ -23,8 +23,8 @@
             specialArgs = { inherit inputs; };
             system = "x86_64-linux";
             modules = [
-                ./overlay/default.nix
                 ./hosts/default/configuration.nix
+                ./overlay/default.nix
                 ./modules/default.nix
 
                 inputs.home-manager.nixosModules.default

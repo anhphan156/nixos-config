@@ -7,7 +7,7 @@
     };
 
     imports = [
-        ( import ./packages.nix { inherit pkgs; } )
+        ./packages.nix  
         ./overlay.nix
         ./terminal/shell/zsh.nix
         ./terminal/ranger.nix
@@ -15,8 +15,8 @@
         ./music/mpd.nix
         ./music/ncmpcpp.nix
         ./autorandr/autorandr.nix
-        ( import ./launcher/rofi.nix { inherit config pkgs; } )
-        ( import ./browser/firefox.nix { inherit (inputs) firefox-addons; } )
+        ./launcher/rofi.nix
+        ./browser/firefox.nix
     ];
 
     home.username = "backspace";

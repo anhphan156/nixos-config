@@ -1,5 +1,4 @@
-{ firefox-addons }:
-
+{ inputs, ... }:
 {
     programs.firefox = {
         enable = true;
@@ -57,7 +56,7 @@
                     };
                 };
             };
-            extensions = with firefox-addons.packages."x86_64-linux"; [
+            extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
                 ublock-origin
             ];
             #bookmarks = [
