@@ -7,8 +7,8 @@
     };
 
     imports = [
+        ../../overlay
         ./packages.nix  
-        ./overlay.nix
         ./terminal/shell/zsh.nix
         ./terminal/ranger.nix
         ./picom/picom.nix

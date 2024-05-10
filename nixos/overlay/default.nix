@@ -15,7 +15,16 @@ let
             '';
         });
     };
+    overlay-ncmpcpp = final : prev : {
+        ncmpcpp = prev.ncmpcpp.override {
+            visualizerSupport = true;
+            clockSupport = true;
+        };
+    };
 in
 {
-    nixpkgs.overlays = [ overlay-awesome ];
+    nixpkgs.overlays = [
+        overlay-awesome
+        overlay-ncmpcpp
+    ];
 }

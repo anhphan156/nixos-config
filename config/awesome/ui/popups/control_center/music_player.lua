@@ -14,6 +14,12 @@ title_text.forced_width = dpi(300)
 title_text.forced_height = dpi(20)
 title_text.halign = 'center'
 
+local check_is_playing = function()
+    awful.spawn.easy_async_with_shell('mpc current', function(stdout)
+        is_playing = not (stdout == nil or stdout == '')
+    end)
+end
+
 local set_title = function()
     awful.spawn.easy_async_with_shell('mpc --format "%title% by %artist%" current', function(stdout)
         title_text.markup = '<span foreground=\'' .. beautiful.text_white_color .. '\'><i>' .. stdout .. '</i></span>'
@@ -103,6 +109,9 @@ local music_player = wibox.widget{
     widget = wibox.container.place
 }
 
-awesome.connect_signal('music_player::set_title', set_title)
+awesome.connect_signal('music_player::set_title', function() 
+    set_title()
+    check_is_playing()
+end)
 
 return music_player

@@ -24,8 +24,8 @@
             system = "x86_64-linux";
             modules = [
                 ./hosts/default/configuration.nix
-                ./overlay/default.nix
-                ./modules/default.nix
+                ./overlay
+                ./modules
 
                 inputs.home-manager.nixosModules.default
                 {
