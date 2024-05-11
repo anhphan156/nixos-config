@@ -45,6 +45,7 @@
 
             window-shader-fg-rule = [
                 "/home/backspace/dotfiles/config/picom/test.glsl:class_g = 'kittymusic'"
+                #"/home/backspace/dotfiles/config/picom/test.glsl:window_type = 'splash'"
             ];
 
             fading = true;

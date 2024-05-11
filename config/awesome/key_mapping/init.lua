@@ -23,7 +23,7 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "q", function()
-		awesome.emit_signal("dashboard::toggle")
+		awesome.emit_signal("lockscreen::toggle")
 	end),
 
 	awful.key({}, "XF86MonBrightnessUp", function()

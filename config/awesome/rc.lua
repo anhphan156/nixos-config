@@ -74,6 +74,7 @@ require("ui.popups.dashboard")
 require("ui.popups.control_center")
 require("ui.popups.power_menu")
 require("ui.wibar")
+require("ui.lockscreen")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {

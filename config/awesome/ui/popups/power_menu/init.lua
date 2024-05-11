@@ -8,7 +8,7 @@ local naughty = require('naughty')
 local icon_size = dpi(200)
 local s_width = awful.screen.focused().geometry.width
 local s_height = awful.screen.focused().geometry.height
-local menu_width = 400
+local menu_width = 600
 local menu_height = 250
 local placement_left = (s_width - menu_width) / 2.0;
 local placement_top = (s_height - menu_height) / 2.0;
@@ -52,6 +52,16 @@ power_menu:setup({
             icon_size,
             icon_size,
             function() awful.spawn.with_shell('reboot') end
+        ),
+        button_maker.icon_button(
+            beautiful.lock_icon,
+            dpi(0),
+            icon_size,
+            icon_size,
+            function() 
+                power_menu.visible = false
+                awesome.emit_signal('lockscreen::lock') 
+            end
         ),
         layout = wibox.layout.fixed.horizontal    
     },
