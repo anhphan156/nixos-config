@@ -4,8 +4,6 @@ local beautiful = require('beautiful')
 local naughty = require('naughty')
 local liblua_pam = require("liblua_pam")
 
-local temp = wibox.widget.textbox()
-
 local lockscreen = wibox {
     ontop = true,
     type = 'splash',
@@ -13,31 +11,35 @@ local lockscreen = wibox {
     screen = screen.primary,
     bg = beautiful.invisible,
     widget = {
-        temp,
+        {
+            widget = wibox.widget.textbox,
+            font = "icomoon 150",
+            markup = "<span foreground='#ee3333'></span>"
+        },
         widget = wibox.container.place
     }
 }
 
 awful.placement.maximize(lockscreen)
 
-local dummy_textbox = wibox.widget.textbox()
-local get_passwd = function()
+local function get_passwd()
     awful.prompt.run {
+        hooks = {
+            {{ }, 'Escape', function() 
+                get_passwd()
+            end}
+        },
         exe_callback = function(input) 
             local auth = liblua_pam.auth_current_user(input)
             if auth then
                 lockscreen.visible = false
             else
-                temp.text = "false"
+                get_passwd()
             end
         end,
-        textbox = dummy_textbox
+        textbox = wibox.widget.textbox()
     }
 end
-
-awesome.connect_signal('lockscreen::toggle', function() 
-    lockscreen.visible = not lockscreen.visible
-end)
 
 awesome.connect_signal('lockscreen::lock', function() 
     lockscreen.visible = true
