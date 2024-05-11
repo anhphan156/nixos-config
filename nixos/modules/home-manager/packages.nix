@@ -38,10 +38,7 @@
         #font-manager
         arandr
         #xorg.xrandr
-        lxappearance
-
-        tokyonight-gtk-theme
-        paper-gtk-theme
+        #lxappearance
 
         ghc
 

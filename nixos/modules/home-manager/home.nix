@@ -17,6 +17,7 @@
         ./autorandr/autorandr.nix
         ./launcher/rofi.nix
         ./browser/firefox.nix
+        ./theming
     ];
 
     home.username = "backspace";
