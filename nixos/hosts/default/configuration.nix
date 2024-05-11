@@ -51,11 +51,12 @@
 
         displayManager = {
             sddm.enable = true;
+            sddm.theme = "${import ../../packages/MarianArlt-sddm-sugar-dark { inherit pkgs; }}";
             defaultSession = "none+awesome";
-            autoLogin = {
-                enable = true;
-                user = "backspace";
-            };
+            #autoLogin = {
+            #    enable = true;
+            #    user = "backspace";
+            #};
         };
 
         windowManager.awesome = {
@@ -101,6 +102,8 @@
         brightnessctl
         acpilight
         inputs.lua-pam.packages."x86_64-linux".default
+        libsForQt5.qt5.qtgraphicaleffects
+        libsForQt5.qt5.qtquickcontrols2
     ];
 
     fonts.fonts = with pkgs; [
