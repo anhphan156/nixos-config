@@ -1,8 +1,8 @@
 { pkgs }:
 let
     image = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/anhphan156/dotfiles/main/config/kitty/bg.png";
-        sha256 = "0qkj466iapk588dpb6ql738lsm3cy8az8a4k00frss3zx4njgxa9";
+        url = "https://raw.githubusercontent.com/anhphan156/dotfiles/main/config/kitty/firefly.jpg";
+        sha256 = "1mgv2vi991mq0zz9gi3ds57fzlk7cxjcvrqs5j1iww2qvw6vgr4s";
     };
 in
 pkgs.stdenv.mkDerivation {
