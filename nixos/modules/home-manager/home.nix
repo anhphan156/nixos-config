@@ -11,6 +11,8 @@
         ./packages.nix  
         ./terminal/shell/zsh.nix
         ./terminal/ranger.nix
+        ./terminal/nvim
+        ./terminal/kitty
         ./picom/picom.nix
         ./music/mpd.nix
         ./music/ncmpcpp.nix
@@ -20,6 +22,8 @@
         ./theming
         ./awesome
     ];
+
+    awesome_config.enable = lib.mkForce true;
 
     home.username = "backspace";
     home.homeDirectory = "/home/backspace";
@@ -33,10 +37,6 @@
     # release notes.
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
-    home.file = {
-        ".config/kitty/".source = ../../../config/kitty;
-        ".config/nvim/".source = ../../../config/nvim;
-    };
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
     # shell provided by Home Manager. If you don't want to manage your shell
