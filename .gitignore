@@ -8,6 +8,7 @@ neofetch
 .netrwhist
 font-manager
 config/awesome/apikeys/
+config/awesome/themes/default/colors.lua
 .zsh_history
 viminfo
 .viminfo

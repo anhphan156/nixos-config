@@ -41,6 +41,7 @@
         #lxappearance
 
         ghc
+        valgrind
 
         ( import ../../scripts/search_docs.nix { inherit pkgs; } )
         ( import ../../scripts/music_retag.nix { inherit pkgs; } )

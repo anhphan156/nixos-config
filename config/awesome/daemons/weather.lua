@@ -1,13 +1,12 @@
 local awful = require("awful")
 local gears = require("gears")
-local apikeys = require("apikeys")
 local naughty = require("naughty")
 
 local interval = 3600
 local file = "~/.cache/apicalls/last_weather.text"
 
 local script = [[bash -c '
-    result=$(curl -sf "http://api.weatherapi.com/v1/current.json?key=]] .. apikeys.weather_api .. [[&q=l6y2w8&aqi=no")
+    result=$(curl -sf "http://api.weatherapi.com/v1/current.json?key=]] .. user.weather_api_key .. [[&q=l6y2w8&aqi=no")
 
     if [ ! -z "$result" ]; then
         condition=$(echo $result | jq '.current.condition.text' | tr -d \") 

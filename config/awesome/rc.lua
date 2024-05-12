@@ -53,7 +53,7 @@ local theme_name = "default/"
 beautiful.init(theme_dir .. theme_name .. "theme.lua")
 
 user = {
-	name = "backlight",
+	name = "backspace",
 
 	terminal = "kitty",
 	editor = os.getenv("EDITOR") or "nvim",

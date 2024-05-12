@@ -13,6 +13,12 @@ float hash21(vec2 p);
 float smin( float a, float b, float k );
 
 vec4 window_shader() {
+
+    // config
+    float water_level = .33;
+    float circle_radius = .3;
+
+
     vec4 c = texelFetch(tex, ivec2(texcoord), 0);
     c = default_post_processing(c);
 
@@ -23,7 +29,7 @@ vec4 window_shader() {
 
     float t = time * 0.001;
 
-    float d = uv.y - fbm(vec3(uv.x, 0.0, t * .5), 2.0, 0.5, 3.0) - .33;
+    float d = uv.y - fbm(vec3(uv.x, 0.0, t * .5), 2.0, 0.5, 3.0) - water_level;
     
     vec2 duv = fract(uv * vec2(3.35,1.0)) / vec2(3.35, 1.0);
 
@@ -40,7 +46,7 @@ vec4 window_shader() {
     vec4 cc = mix(
         mix(c, vec4(.2,.3,.8,1.), vec4(col, 1.0)), 
         c, 
-        smoothstep(0.15, 0.151, length(uv - vec2(.887, .5)))
+        smoothstep(circle_radius, circle_radius + .001, length(uv - vec2(.887, .5)))
     );
         
     return cc;

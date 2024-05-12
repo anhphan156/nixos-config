@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
     nixpkgs.config = {
@@ -18,6 +18,7 @@
         ./launcher/rofi.nix
         ./browser/firefox.nix
         ./theming
+        ./awesome
     ];
 
     home.username = "backspace";
@@ -33,11 +34,9 @@
     home.stateVersion = "23.11"; # Please read the comment before changing.
 
     home.file = {
-        #".config/awesome/".source = ../../../config/awesome;
         ".config/kitty/".source = ../../../config/kitty;
         ".config/nvim/".source = ../../../config/nvim;
     };
-
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
     # shell provided by Home Manager. If you don't want to manage your shell
