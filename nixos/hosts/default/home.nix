@@ -61,6 +61,7 @@
 	};
 
     services.pasystray.enable = true;
+    services.network-manager-applet.enable = true;
 
     programs.home-manager.enable = true;
     programs.ripgrep.enable = true;

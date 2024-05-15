@@ -32,6 +32,7 @@ theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
 theme.corner_radius = dpi(14)
+theme.wibar_icon_size = dpi(50)
 
 theme.text_white_color = "#aaaaaa"
 theme.text_red_color = "#ce3332"

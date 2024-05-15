@@ -3,6 +3,7 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local titlebar_init = require("ui.titlebar")
+local keys = require('key_mapping.keys')
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", titlebar_init)
@@ -32,3 +33,6 @@ client.connect_signal("manage", function(c)
 		awful.placement.no_offscreen(c)
 	end
 end)
+
+client.connect_signal("request::default_mousebindings", keys.client_buttons)
+client.connect_signal("request::default_keybindings", keys.client_keys)
