@@ -1,5 +1,14 @@
-{ pkgs, ... }:
-
+{ pkgs, config, ... }:
+let
+    music_utils = if config.ncmpcpp.enable then
+        with pkgs; [ 
+            ( import ../scripts/spawn_ncmpcpp.nix { inherit pkgs; } )
+            ( import ../scripts/music_retag.nix { inherit pkgs; } )
+            mpc-cli
+        ]
+    else
+        [];
+in
 {
     # The home.packages option allows you to install Nix packages into your
     # environment.
@@ -23,7 +32,6 @@
         xdotool
         nix-prefetch-git
         neovim
-        mpc-cli
         (ffmpeg.override { withXcb = true; })
         unzip
         fortune
@@ -43,8 +51,6 @@
         ghc
         valgrind
 
-        ( import ../../scripts/search_docs.nix { inherit pkgs; } )
-        ( import ../../scripts/music_retag.nix { inherit pkgs; } )
-        ( import ../../scripts/spawn_ncmpcpp.nix { inherit pkgs; } )
-    ];
+        ( import ../scripts/search_docs.nix { inherit pkgs; } )
+    ] ++ music_utils;
 }

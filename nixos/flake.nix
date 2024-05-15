@@ -27,11 +27,14 @@
                 ./overlay
                 ./modules
 
-                inputs.home-manager.nixosModules.default
+                inputs.home-manager.nixosModules.home-manager
                 {
                     home-manager = {
                         extraSpecialArgs = { inherit inputs; };
-                        users.backspace = import ./modules/home-manager/home.nix;
+                        users.backspace.imports = [
+                            ./hosts/default/home.nix
+                            ./home-manager-modules
+                        ];
                     };
                 }
             ];
