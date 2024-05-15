@@ -25,6 +25,7 @@
         neovim
         mpc-cli
         (ffmpeg.override { withXcb = true; })
+        unzip
         fortune
         jq
         btop

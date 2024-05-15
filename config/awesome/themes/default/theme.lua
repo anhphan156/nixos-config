@@ -89,6 +89,10 @@ theme.titlebar_bg_normal = "#222222"
 theme.titlebar_bg_focus = "#222222"
 theme.taglist_fg_focus = "#ee5500"
 
+theme.radialprogressbar_border_width = dpi(5)
+theme.radialprogressbar_border_color = '#111111'
+theme.radialprogressbar_color = '#eeeeee'
+
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)

@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
+require("key_mapping.audio_brightness")
 
 local modkey = "Mod4"
 local altkey = "Mod1"
@@ -25,26 +26,6 @@ awful.keyboard.append_global_keybindings({
 	-- awful.key({ modkey }, "q", function()
 	-- 	awesome.emit_signal("lockscreen::toggle")
 	-- end),
-
-	awful.key({}, "XF86MonBrightnessUp", function()
-		awful.spawn.with_shell("xbacklight -inc 5")
-	end),
-
-	awful.key({}, "XF86MonBrightnessDown", function()
-		awful.spawn.with_shell("xbacklight -dec 5")
-	end),
-
-	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn.with_shell("pamixer -i 5")
-	end),
-
-	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn.with_shell("pamixer -d 5")
-	end),
-
-	awful.key({}, "XF86AudioMute", function()
-		awful.spawn.with_shell("pamixer -t")
-	end),
 
 	--  awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
 	--            {description = "show main menu", group = "awesome"}),
