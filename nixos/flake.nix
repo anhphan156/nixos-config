@@ -18,26 +18,17 @@
     };
 
     outputs = { self, nixpkgs, ... }@inputs: 
-    {
-        nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            system = "x86_64-linux";
-            modules = [
-                ./hosts/default/configuration.nix
-                ./overlay
-                ./modules
+    let
+        user = {
+            name = "backspace";
+            real_name = "tbd";
+        };
 
-                inputs.home-manager.nixosModules.home-manager
-                {
-                    home-manager = {
-                        extraSpecialArgs = { inherit inputs; };
-                        users.backspace.imports = [
-                            ./hosts/default/home.nix
-                            ./home-manager-modules
-                        ];
-                    };
-                }
-            ];
+        rootPath = ./.;
+    in
+    {
+        nixosConfigurations = {
+            default = import ./hosts/default { inherit inputs user rootPath; };
         };
     };
 }
