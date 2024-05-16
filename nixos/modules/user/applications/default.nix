@@ -1,0 +1,5 @@
+{
+    imports = [
+        ./browser/firefox.nix
+    ];
+}

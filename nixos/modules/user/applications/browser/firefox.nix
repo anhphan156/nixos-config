@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ user, inputs, ... }:
 {
-    programs.firefox = {
+    home-manager.users."${user.name}".programs.firefox = {
         enable = true;
         policies = {
             NoDefaultBookmarks = true;

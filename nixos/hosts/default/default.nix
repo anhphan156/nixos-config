@@ -10,18 +10,9 @@ inputs.nixpkgs.lib.nixosSystem {
         (rootPath + /overlay)
         (rootPath + /modules/system)
         (rootPath + /modules/user)
+        (rootPath + /packages/user_packages)
         inputs.home-manager.nixosModules.home-manager
 
-        {
-            home-manager = {
-                extraSpecialArgs = { inherit inputs; };
-                users."${user.name}".imports = [
-                    ./home.nix
-                    (rootPath + /home-manager-modules)
-                    (rootPath + /overlay)
-                ];
-            };
-        }
         ({ config, pkgs, lib, inputs, ... }:
         {
             imports =
@@ -61,33 +52,6 @@ inputs.nixpkgs.lib.nixosSystem {
             i18n.defaultLocale = "en_CA.UTF-8";
 
             services.libinput.touchpad.naturalScrolling = true;
-
-            # Configure keymap in X11
-            services.xserver = {
-                layout = "us";
-                xkbVariant = "";
-                enable = true;
-                #videoDrivers = [ "nvidia" ];
-
-                displayManager = {
-                    sddm.enable = true;
-                    sddm.theme = "${import ../../packages/MarianArlt-sddm-sugar-dark { inherit pkgs; }}";
-                    defaultSession = "none+awesome";
-                    #autoLogin = {
-                    #    enable = true;
-                    #    user = "backspace";
-                    #};
-                };
-
-                windowManager.awesome = {
-                    enable = true;
-                    package = pkgs.awesome;
-                    luaModules = with pkgs.luaPackages; [
-                        luarocks
-                        luadbi-mysql
-                    ];
-                };
-            };
 
             programs = {
                 zsh.enable = true;
@@ -135,9 +99,17 @@ inputs.nixpkgs.lib.nixosSystem {
 
             environment.variables.EDITOR = "nvim";
 
+            home-manager = {
+                users."${user.name}".imports = [
+                    ./home.nix
+                    (rootPath + /overlay)
+                ];
+            };
+
             laptop.enable = lib.mkForce true;
             mpd.enable = lib.mkForce true;
             ncmpcpp.enable = lib.mkForce true;
+            awesome_config.enable = lib.mkForce true;
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
             # programs.mtr.enable = true;

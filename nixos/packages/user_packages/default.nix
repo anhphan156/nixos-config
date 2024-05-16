@@ -1,8 +1,6 @@
-{ pkgs, config, ... }:
+{ pkgs, user, ... }:
 {
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
-    home.packages = with pkgs; [
+    home-manager.users."${user.name}".home.packages = with pkgs; [
         discord
         obsidian
         cinnamon.nemo
@@ -41,6 +39,6 @@
         ghc
         valgrind
 
-        ( import ../scripts/search_docs.nix { inherit pkgs; } )
+        ( import ../../scripts/search_docs.nix { inherit pkgs; } )
     ];
 }

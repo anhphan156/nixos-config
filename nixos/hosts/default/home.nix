@@ -6,10 +6,6 @@
         allowUnfreePredicate = (_: true);
     };
 
-    awesome_config.enable = lib.mkForce true;
-    #mpd.enable = lib.mkForce true;
-    #ncmpcpp.enable = lib.mkForce true;
-
     home.username = "backspace";
     home.homeDirectory = "/home/backspace";
 

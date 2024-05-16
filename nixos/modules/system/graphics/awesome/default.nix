@@ -1,0 +1,22 @@
+{ config, lib, user, ... }:
+{
+    options = {
+        awesome_config.enable = lib.mkEnableOption "enable awesome_config";
+    };
+
+    config = lib.mkIf config.awesome_config.enable {
+        home-manager.users."${user.name}" = { config, ... }:
+            let
+                awesome_path = "${config.home.homeDirectory}/dotfiles/config/awesome";
+            in
+            {
+                home.file."${awesome_path}/themes/default/colors.lua".text = ''
+                        local colors = {}
+                        return colors
+                '';
+                xdg.configFile = {
+                    "awesome/".source = config.lib.file.mkOutOfStoreSymlink awesome_path;
+                };
+            };
+    };
+}

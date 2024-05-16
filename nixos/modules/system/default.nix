@@ -6,6 +6,8 @@
         ./acpid/acpid.nix
         ./graphics/picom.nix
         ./autorandr/autorandr.nix
+        ./graphics/awesome
+        ./graphics/xserver
     ];
 
     laptop.enable = lib.mkDefault false;
