@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { user, inputs, rootPath, ... }:
 inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit inputs user rootPath; };
@@ -104,6 +100,8 @@ inputs.nixpkgs.lib.nixosSystem {
             ncmpcpp.enable = lib.mkForce true;
             gui.enable = lib.mkForce true;
             awesome_config.enable = config.gui.enable;
+            discord.enable = lib.mkForce true;
+            keepassxc.enable = lib.mkForce true;
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
             # programs.mtr.enable = true;

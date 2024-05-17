@@ -28,7 +28,7 @@
     in
     {
         nixosConfigurations = {
-            default = import ./hosts/default { inherit inputs user rootPath; };
+            backlight = import ./hosts/backlight { inherit inputs user rootPath; };
         };
     };
 }

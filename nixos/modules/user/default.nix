@@ -1,6 +1,5 @@
 {
     imports = [
-        ./applications/rofi
         ./music
         ./terminal
         ./applications

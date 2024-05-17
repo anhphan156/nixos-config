@@ -13,7 +13,7 @@
                 };
 
                 shellAliases = {
-                    "rebuild" = " sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
+                    "rebuild-backlight" = " sudo nixos-rebuild switch --flake ~/dotfiles/nixos#backlight";
                     "v" = " nvim";
                     "vim" = " nvim";
                     "nvim" = " nvim";

@@ -1,7 +1,6 @@
 { pkgs, user, ... }:
 {
     home-manager.users."${user.name}".home.packages = with pkgs; [
-        discord
         obsidian
         cinnamon.nemo
         pureref
