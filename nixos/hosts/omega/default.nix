@@ -71,6 +71,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
             gui.enable = lib.mkForce true;
             awesome_config.enable = lib.mkForce true;
+            keepassxc.enable = lib.mkForce true;
 
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
