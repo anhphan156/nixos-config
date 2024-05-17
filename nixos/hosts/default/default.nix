@@ -8,8 +8,7 @@ inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
         (rootPath + /overlay)
-        (rootPath + /modules/system)
-        (rootPath + /modules/user)
+        (rootPath + /modules)
         (rootPath + /packages/user_packages)
         inputs.home-manager.nixosModules.home-manager
 
@@ -51,8 +50,6 @@ inputs.nixpkgs.lib.nixosSystem {
             # Select internationalisation properties.
             i18n.defaultLocale = "en_CA.UTF-8";
 
-            services.libinput.touchpad.naturalScrolling = true;
-
             programs = {
                 zsh.enable = true;
                 light.enable = true;
@@ -85,9 +82,6 @@ inputs.nixpkgs.lib.nixosSystem {
                 gcc
                 brightnessctl
                 acpilight
-                inputs.lua-pam.packages."x86_64-linux".default
-                libsForQt5.qt5.qtgraphicaleffects
-                libsForQt5.qt5.qtquickcontrols2
             ];
 
             fonts.fonts = with pkgs; [
@@ -102,14 +96,14 @@ inputs.nixpkgs.lib.nixosSystem {
             home-manager = {
                 users."${user.name}".imports = [
                     ./home.nix
-                    (rootPath + /overlay)
                 ];
             };
 
             laptop.enable = lib.mkForce true;
             mpd.enable = lib.mkForce true;
             ncmpcpp.enable = lib.mkForce true;
-            awesome_config.enable = lib.mkForce true;
+            gui.enable = lib.mkForce true;
+            awesome_config.enable = config.gui.enable;
             # Some programs need SUID wrappers, can be configured further or are
             # started in user sessions.
             # programs.mtr.enable = true;

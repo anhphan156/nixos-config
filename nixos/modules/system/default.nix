@@ -2,6 +2,7 @@
 {
     imports = [
         ./laptop/laptop.nix
+        ./laptop/touchpad.nix
         ./virtualization/virtualization.nix
         ./acpid/acpid.nix
         ./graphics/picom.nix
@@ -10,7 +11,6 @@
         ./graphics/xserver
     ];
 
-    laptop.enable = lib.mkDefault false;
     virtualization.enable = lib.mkDefault true;
     acpid.enable = lib.mkDefault true;
 }

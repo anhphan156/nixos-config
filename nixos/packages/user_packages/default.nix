@@ -19,7 +19,6 @@
         id3v2
         xdotool
         nix-prefetch-git
-        #neovim
         (ffmpeg.override { withXcb = true; })
         unzip
         fortune
@@ -39,6 +38,6 @@
         ghc
         valgrind
 
-        ( import ../../scripts/search_docs.nix { inherit pkgs; } )
+        ( import ../user_scripts/search_docs.nix { inherit pkgs; } )
     ];
 }

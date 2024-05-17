@@ -1,9 +1,9 @@
 {
     imports = [
-        ./rofi.nix
+        ./applications/rofi
         ./music
         ./terminal
         ./applications
-        ./theming
+        ./theming/gtk.nix
     ];
 }

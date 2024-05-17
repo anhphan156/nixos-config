@@ -1,6 +1,6 @@
-{ pkgs, user, ... }:
+{ pkgs, user, lib, config, ... }:
 {
-    config = {
+    config = lib.mkIf config.gui.enable {
         home-manager.users."${user.name}" = {
             gtk.enable = true;
 

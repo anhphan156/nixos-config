@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 let
     overlay-awesome = final: prev: {
         awesome = prev.awesome.overrideAttrs (oa: {
@@ -21,10 +21,13 @@ let
             clockSupport = true;
         };
     };
-in
-{
-    nixpkgs.overlays = [
+
+    overlays = [
         overlay-awesome
         overlay-ncmpcpp
     ];
+in
+{
+    nixpkgs.overlays = overlays;
+    home-manager.users."${user.name}".nixpkgs.overlays = overlays;
 }

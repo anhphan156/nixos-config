@@ -1,10 +1,14 @@
-{ config, lib, user, ... }:
+{ config, pkgs, lib, user, inputs, ... }:
 {
     options = {
         awesome_config.enable = lib.mkEnableOption "enable awesome_config";
     };
 
     config = lib.mkIf config.awesome_config.enable {
+        environment.systemPackages = with pkgs; [
+            inputs.lua-pam.packages."x86_64-linux".default
+        ];
+
         home-manager.users."${user.name}" = { config, ... }:
             let
                 awesome_path = "${config.home.homeDirectory}/dotfiles/config/awesome";

@@ -1,5 +1,9 @@
 { rootPath, pkgs, ... }:
 {
+    environment.systemPackages = with pkgs; [
+        libsForQt5.qt5.qtgraphicaleffects
+        libsForQt5.qt5.qtquickcontrols2
+    ];
     services.displayManager = {
         sddm.enable = true;
         sddm.theme = "${import (rootPath + /packages/MarianArlt-sddm-sugar-dark) { inherit pkgs; }}";
