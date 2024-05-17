@@ -77,6 +77,7 @@ inputs.nixpkgs.lib.nixosSystem {
                 users."${user.name}".imports = [ ./home.nix ];
             };
 
+            isOmega.enable = lib.mkForce true;
             gui.enable = lib.mkForce true;
             awesome_config.enable = lib.mkForce true;
             keepassxc.enable = lib.mkForce true;

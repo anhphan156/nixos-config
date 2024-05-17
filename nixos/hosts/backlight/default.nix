@@ -95,6 +95,7 @@ inputs.nixpkgs.lib.nixosSystem {
                 ];
             };
 
+            isBacklight.enable = lib.mkForce true;
             laptop.enable = lib.mkForce true;
             mpd.enable = lib.mkForce true;
             ncmpcpp.enable = lib.mkForce true;
