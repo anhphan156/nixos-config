@@ -18,7 +18,7 @@
         id3v2
         xdotool
         nix-prefetch-git
-        (ffmpeg.override { withXcb = true; })
+        #(ffmpeg.override { withXcb = true; })
         unzip
         fortune
         jq
