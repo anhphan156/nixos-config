@@ -81,8 +81,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
             isOmega.enable = lib.mkForce true;
             gui.enable = lib.mkForce true;
-            xsv.enable = lib.mkForce true;
-            awesome.enable = lib.mkForce true;
+            hyprland.enable = lib.mkForce true;
             keepassxc.enable = lib.mkForce true;
 
             # This value determines the NixOS release from which the default

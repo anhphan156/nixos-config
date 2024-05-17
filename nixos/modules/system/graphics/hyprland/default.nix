@@ -1,5 +1,9 @@
 { pkgs, lib, config, inputs, user, ... }:
 {
+    imports = [
+        ./bind.nix
+    ];
+
     options = {
         hyprland.enable = lib.mkEnableOption "Enable hyprland";
     };
@@ -22,15 +26,19 @@
                 enable = true;
                 settings = {
                     decoration = {
-                        shadow_offset = "0 5";
+                        shadow_offset = "5 5";
                         "col.shadow" = "rgba(00000099)";
+                        rounding = "10";
+                        active_opacity = "0.9";
+                        inactive_opacity = "0.6";
+
+                        blur = {
+                            enabled = true;
+                            ignore_opacity = true;
+                            size = "8";
+                            passes = "2";
+                        };
                     };
-                    "$mod" = "SUPER";
-                    bindm = [
-                        "$mod, mouse:272, movewindow"
-                        "$mod, mouse:273, resizewindow"
-                        "$mod ALT, mouse:272, resizewindow"
-                    ];
                 };
             };
         };

@@ -16,7 +16,7 @@
 
         lua-pam.url = "github:anhphan156/lua-pam";
 
-        hyprland.url = "github:hyprwm/Hyprland";
+        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
 
     outputs = { self, nixpkgs, ... }@inputs: 
