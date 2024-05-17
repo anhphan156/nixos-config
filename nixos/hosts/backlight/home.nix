@@ -42,13 +42,6 @@
     #    "/home/backspace/dotfiles/bin/"
     #];
 
-    dconf.settings = {
-        "org/virt-manager/virt-manager/connections" = {
-            autoconnect = ["qemu:///system"];
-            uris = ["qemu:///system"];
-        };
-    };
-
     systemd.user.targets.tray = {
 		Unit = {
 			Description = "Home Manager System Tray";

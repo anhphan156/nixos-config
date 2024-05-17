@@ -49,6 +49,7 @@ inputs.nixpkgs.lib.nixosSystem {
             programs = {
                 zsh.enable = true;
                 light.enable = true;
+                dconf.enable = true;
             };
 
             # Define a user account. Don't forget to set a password with ‘passwd’.
