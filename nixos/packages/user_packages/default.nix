@@ -8,7 +8,6 @@
         cmatrix
         fastfetch
         bunnyfetch
-        #pfetch
         pamixer
         fzf
         xclip
@@ -28,11 +27,6 @@
         cbonsai
         figlet
         acpid
-
-        #font-manager
-        arandr
-        #xorg.xrandr
-        #lxappearance
 
         ghc
         valgrind

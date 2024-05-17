@@ -1,10 +1,18 @@
 { user, lib, config, ... } :
+let
+    isHyprland = config.hyprland.enable;
+in
 {
-    config = lib.mkIf config.gui.enable {
+    options = {
+        rofi.enable = lib.mkEnableOption "Enable Rofi";
+    };
+
+    config = lib.mkIf (config.gui.enable && config.rofi.enable) {
         home-manager.users."${user.name}".imports = [
             ({ config, lib, pkgs, ... }:{
                 programs.rofi = {
                     enable = true;
+                    package = lib.mkIf isHyprland pkgs.rofi-wayland;
                     plugins = with pkgs; [
                         rofi-calc
                         rofi-emoji

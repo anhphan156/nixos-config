@@ -4,5 +4,6 @@
         ./terminal
         ./applications
         ./theming/gtk.nix
+        ./gaming
     ];
 }

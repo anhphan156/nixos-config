@@ -3,9 +3,15 @@
     config = lib.mkIf (config.gui.enable && config.hyprland.enable) {
         home-manager.users."${user.name}".wayland.windowManager.hyprland.settings = {
             "$mod" = "SUPER";
+            # mod: SUPER SUPERSHIFT CTRL_SHIFT
+            # key symbols: https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h 
             bind = [
-                "$mod, Q,exec,kitty"
-                "$mod, F,exec,firefox"
+                "$mod, RETURN, exec, kitty"
+                "$mod, W, killactive"
+                "ALT, SPACE, execr, rofi -show run"
+
+                "ALT, TAB, cyclenext"
+                "ALT, TAB, bringactivetotop"
             ];
             bindm = [
                 "$mod, mouse:272, movewindow"

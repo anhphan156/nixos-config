@@ -101,6 +101,7 @@ inputs.nixpkgs.lib.nixosSystem {
             xsv.enable = lib.mkForce true;
             awesome.enable = lib.mkForce true;
             picom.enable = lib.mkForce true;
+            rofi.enable = lib.mkForce true;
             laptop.enable = lib.mkForce true;
             mpd.enable = lib.mkForce true;
             ncmpcpp.enable = lib.mkForce true;

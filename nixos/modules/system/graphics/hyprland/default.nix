@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, user, ... }:
+{ pkgs, lib, config, inputs, user, rootPath, ... }:
 {
     imports = [
         ./bind.nix
@@ -14,6 +14,8 @@
             polkit
             xdg-desktop-portal-hyprland
             xwayland
+            waybar
+            dunst libnotify
         ];
 
         programs.hyprland = {
@@ -25,6 +27,12 @@
             wayland.windowManager.hyprland = {
                 enable = true;
                 settings = {
+                    exec-once = ''${rootPath + /packages/user_scripts/hyprland_startup.nix}/bin/start'';
+
+                    general = {
+                        border_size = "0";
+                    };
+
                     decoration = {
                         shadow_offset = "5 5";
                         "col.shadow" = "rgba(00000099)";
@@ -39,6 +47,20 @@
                             passes = "2";
                         };
                     };
+
+                    input = {
+                        #follow_mouse = "1";
+                    };
+
+                    monitor = [
+                        "HDMI-A-1,1920x1080,0x0,1"
+                        "DP-1,1920x1080@144,1920x0,1"
+                        "DP-3,3840x2160,3840x0,1"
+                    ];
+
+                    windowrulev2 = [
+                        "opacity 1.0 override 1.0 override,class:(firefox)"
+                    ];
                 };
             };
         };
