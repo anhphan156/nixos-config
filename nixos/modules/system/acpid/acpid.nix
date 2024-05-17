@@ -8,7 +8,7 @@
         services.acpid = {
             enable = true;
             handlers = {
-                ac-power = {
+                ac-power = lib.mkIf config.laptop.enable {
                     action = ''
                         p=$(echo $PATH | grep '/run/current-system/sw/bin')
                         if [ -z $p ]; then

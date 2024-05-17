@@ -11,6 +11,5 @@
         ./graphics/xserver
     ];
 
-    virtualization.enable = lib.mkDefault true;
     acpid.enable = lib.mkDefault true;
 }

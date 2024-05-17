@@ -19,6 +19,16 @@ inputs.nixpkgs.lib.nixosSystem {
             # Bootloader.
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
+            boot.loader.systemd-boot.configurationLimit = 3;
+
+            nix.gc = {
+                automatic = true;
+                dates = "weekly";
+                options = "--delete-older-than 1w";
+            };
+
+            nix.settings.auto-optimise-store = true;
+            nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
             networking.hostName = "omega"; # Define your hostname.
             # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -29,8 +39,6 @@ inputs.nixpkgs.lib.nixosSystem {
 
             # Enable networking
             networking.networkmanager.enable = true;
-
-            nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
             # Set your time zone.
             time.timeZone = "America/Toronto";
