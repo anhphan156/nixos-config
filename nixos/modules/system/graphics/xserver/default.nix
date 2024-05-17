@@ -1,31 +1,24 @@
-{ rootPath, pkgs, ... }:
+{ rootPath, pkgs, lib, config, ... }:
 {
-    environment.systemPackages = with pkgs; [
-        libsForQt5.qt5.qtgraphicaleffects
-        libsForQt5.qt5.qtquickcontrols2
-    ];
-    services.displayManager = {
-        sddm.enable = true;
-        sddm.theme = "${import (rootPath + /packages/MarianArlt-sddm-sugar-dark) { inherit pkgs; }}";
-        defaultSession = "none+awesome";
-        #autoLogin = {
-        #    enable = true;
-        #    user = "backspace";
-        #};
+    options = {
+        xsv.enable = lib.mkEnableOption "Enable Xserver";
     };
-    services.xserver = {
-        xkb.layout = "us";
-        xkb.variant = "";
-        enable = true;
-        #videoDrivers = [ "nvidia" ];
 
-        windowManager.awesome = {
+    config = lib.mkIf (config.xsv.enable && config.gui.enable) {
+        services.xserver = {
+            xkb.layout = "us";
+            xkb.variant = "";
             enable = true;
-            package = pkgs.awesome;
-            luaModules = with pkgs.luaPackages; [
-                luarocks
-                luadbi-mysql
-            ];
+            #videoDrivers = [ "nvidia" ];
+
+            windowManager.awesome = lib.mkIf config.awesome.enable {
+                enable = true;
+                package = pkgs.awesome;
+                luaModules = with pkgs.luaPackages; [
+                    luarocks
+                    luadbi-mysql
+                ];
+            };
         };
     };
 }

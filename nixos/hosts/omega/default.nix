@@ -58,6 +58,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
             # Allow unfree packages
             nixpkgs.config.allowUnfree = true;
+            nixpkgs.config.pulseaudio = true;
 
             # List packages installed in system profile. To search, run:
             # $ nix search wget
@@ -71,6 +72,7 @@ inputs.nixpkgs.lib.nixosSystem {
             programs = {
                 zsh.enable = true;
                 light.enable = true;
+                dconf.enable = true;
             };
 
             home-manager = {
@@ -79,27 +81,9 @@ inputs.nixpkgs.lib.nixosSystem {
 
             isOmega.enable = lib.mkForce true;
             gui.enable = lib.mkForce true;
-            awesome_config.enable = lib.mkForce true;
+            xsv.enable = lib.mkForce true;
+            awesome.enable = lib.mkForce true;
             keepassxc.enable = lib.mkForce true;
-
-            # Some programs need SUID wrappers, can be configured further or are
-            # started in user sessions.
-            # programs.mtr.enable = true;
-            # programs.gnupg.agent = {
-            #   enable = true;
-            #   enableSSHSupport = true;
-            # };
-
-            # List services that you want to enable:
-
-            # Enable the OpenSSH daemon.
-            # services.openssh.enable = true;
-
-            # Open ports in the firewall.
-            # networking.firewall.allowedTCPPorts = [ ... ];
-            # networking.firewall.allowedUDPPorts = [ ... ];
-            # Or disable the firewall altogether.
-            # networking.firewall.enable = false;
 
             # This value determines the NixOS release from which the default
             # settings for stateful data, like file locations and database versions

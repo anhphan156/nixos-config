@@ -97,11 +97,12 @@ inputs.nixpkgs.lib.nixosSystem {
             };
 
             isBacklight.enable = lib.mkForce true;
+            gui.enable = lib.mkForce true;
+            xsv.enable = lib.mkForce true;
+            awesome.enable = lib.mkForce true;
             laptop.enable = lib.mkForce true;
             mpd.enable = lib.mkForce true;
             ncmpcpp.enable = lib.mkForce true;
-            gui.enable = lib.mkForce true;
-            awesome_config.enable = config.gui.enable;
             discord.enable = lib.mkForce true;
             keepassxc.enable = lib.mkForce true;
             # Some programs need SUID wrappers, can be configured further or are

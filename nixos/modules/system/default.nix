@@ -9,6 +9,8 @@
         ./autorandr/autorandr.nix
         ./graphics/awesome
         ./graphics/xserver
+        ./graphics/sddm
+        ./graphics/hyprland
     ];
 
     acpid.enable = lib.mkDefault true;

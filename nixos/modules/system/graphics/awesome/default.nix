@@ -1,10 +1,10 @@
 { config, pkgs, lib, user, inputs, ... }:
 {
     options = {
-        awesome_config.enable = lib.mkEnableOption "enable awesome_config";
+        awesome.enable = lib.mkEnableOption "enable awesome_config";
     };
 
-    config = lib.mkIf config.awesome_config.enable {
+    config = lib.mkIf (config.awesome.enable && config.gui.enable) {
         environment.systemPackages = with pkgs; [
             inputs.lua-pam.packages."x86_64-linux".default
         ];
