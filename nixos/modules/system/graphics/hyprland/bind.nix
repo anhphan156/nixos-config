@@ -12,7 +12,9 @@
 
                 "ALT, TAB, cyclenext"
                 "ALT, TAB, bringactivetotop"
-            ];
+            ] 
+            ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") [ 1 2 3 4 5 6 ];
+
             bindm = [
                 "$mod, mouse:272, movewindow"
                 "$mod, mouse:273, resizewindow"

@@ -2,6 +2,7 @@
 {
     imports = [
         ./bind.nix
+        ../waybar
     ];
 
     options = {
@@ -14,7 +15,6 @@
             polkit
             xdg-desktop-portal-hyprland
             xwayland
-            waybar
             dunst libnotify
         ];
 
@@ -30,7 +30,8 @@
                     exec-once = ''${rootPath + /packages/user_scripts/hyprland_startup.nix}/bin/start'';
 
                     general = {
-                        border_size = "0";
+                        border_size = "3";
+                        "col.active_border" = "rgb(ce3454) rgb(82d5ff) 45deg";
                     };
 
                     decoration = {
@@ -60,6 +61,13 @@
 
                     windowrulev2 = [
                         "opacity 1.0 override 1.0 override,class:(firefox)"
+                    ];
+
+                    workspace = [
+                        "2, monitor:DP-1"
+                        "3, monitor:DP-1"
+                        "4, monitor:DP-1"
+                        "5, monitor:HDMI-A-1"
                     ];
                 };
             };
