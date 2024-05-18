@@ -58,7 +58,6 @@ inputs.nixpkgs.lib.nixosSystem {
 
             # Allow unfree packages
             nixpkgs.config.allowUnfree = true;
-            nixpkgs.config.pulseaudio = true;
 
             # List packages installed in system profile. To search, run:
             # $ nix search wget
@@ -86,6 +85,7 @@ inputs.nixpkgs.lib.nixosSystem {
             keepassxc.enable = lib.mkForce true;
             discord.enable = lib.mkForce true;
             gaming.enable = lib.mkForce true;
+            pipewire.enable = lib.mkForce true;
 
             # This value determines the NixOS release from which the default
             # settings for stateful data, like file locations and database versions

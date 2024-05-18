@@ -63,6 +63,10 @@
                         "opacity 1.0 override 1.0 override,class:(firefox)"
                     ];
 
+                    layerrule = [
+                        "animation slidefade 20%, rofi"
+                    ];
+
                     workspace = [
                         "2, monitor:DP-1"
                         "3, monitor:DP-1"
