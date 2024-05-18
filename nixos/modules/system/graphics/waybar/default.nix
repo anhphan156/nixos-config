@@ -1,6 +1,10 @@
-{ user, config, rootPath, ... }:
+{ user, lib, config, rootPath, ... }:
 {
-    config = {
+    options = {
+        waybar.enable = lib.mkEnableOption "Enable waybar";
+    };
+
+    config = lib.mkIf (config.gui.enable && config.hyprland.enable && config.waybar.enable) {
         home-manager.users."${user.name}" = { config, ... }:
         let
             waybar_path = "${config.home.homeDirectory}/dotfiles/config/waybar/style.css";

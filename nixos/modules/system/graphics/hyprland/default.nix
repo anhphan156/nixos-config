@@ -3,6 +3,7 @@
     imports = [
         ./bind.nix
         ../waybar
+        ./pyprland
     ];
 
     options = {
@@ -17,6 +18,8 @@
             xwayland
             dunst libnotify
             pyprland
+            grim slurp
+            wl-clipboard
         ];
 
         programs.hyprland = {
@@ -25,10 +28,16 @@
         };
 
         home-manager.users."${user.name}" = {
-            wayland.windowManager.hyprland = {
+            wayland.windowManager.hyprland = 
+            let
+                autostart = pkgs.pkgs.writeShellScriptBin "start" ''
+                    pypr &
+                '';
+            in
+            {
                 enable = true;
                 settings = {
-                    exec-once = ''${rootPath + /packages/user_scripts/hyprland_startup.nix}/bin/start'';
+                    exec-once = "${autostart}/bin/start";
 
                     general = {
                         border_size = "3";

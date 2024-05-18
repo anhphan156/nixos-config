@@ -81,6 +81,8 @@ inputs.nixpkgs.lib.nixosSystem {
             isOmega.enable = lib.mkForce true;
             gui.enable = lib.mkForce true;
             hyprland.enable = lib.mkForce true;
+            pyprland.enable = lib.mkForce true;
+            waybar.enable = lib.mkForce true;
             rofi.enable = lib.mkForce true;
             keepassxc.enable = lib.mkForce true;
             discord.enable = lib.mkForce true;
