@@ -16,6 +16,7 @@
             xdg-desktop-portal-hyprland
             xwayland
             dunst libnotify
+            pyprland
         ];
 
         programs.hyprland = {
@@ -73,6 +74,7 @@
                         "4, monitor:DP-1"
                         "5, monitor:HDMI-A-1"
                     ];
+
                 };
             };
         };

@@ -17,8 +17,8 @@
                         margin-top = 10;
                         output = [
                             "DP-1"
-                            "DP-3"
-                            "HDMI-A-1"
+                            #"DP-3"
+                            #"HDMI-A-1"
                         ];
                         modules-left = [
                             "hyprland/workspaces" "tray"
