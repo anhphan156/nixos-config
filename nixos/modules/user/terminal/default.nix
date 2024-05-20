@@ -4,5 +4,6 @@
         ./nvim
         ./shell/zsh.nix
         ./ranger.nix
+        ./tmux
     ];
 }

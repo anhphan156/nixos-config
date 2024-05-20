@@ -20,6 +20,8 @@
             pyprland
             grim slurp
             wl-clipboard
+            swww
+            wireplumber
         ];
 
         programs.hyprland = {
@@ -32,12 +34,19 @@
             let
                 autostart = pkgs.pkgs.writeShellScriptBin "start" ''
                     pypr &
+
+                    swww init &
+                    sleep 1
+                    swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
                 '';
             in
             {
                 enable = true;
                 settings = {
-                    exec-once = "${autostart}/bin/start";
+                    exec-once = [
+                        "${autostart}/bin/start"
+                        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                    ];
 
                     general = {
                         border_size = "3";
@@ -65,7 +74,7 @@
 
                     monitor = [
                         "HDMI-A-1,1920x1080,0x0,1"
-                        "DP-1,1920x1080@144,1920x0,1"
+                        "DP-1,1920x1080@144,1920x0,1,bitdepth,10"
                         "DP-3,3840x2160,3840x0,1"
                     ];
 

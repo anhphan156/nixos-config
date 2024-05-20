@@ -84,8 +84,11 @@ inputs.nixpkgs.lib.nixosSystem {
             pyprland.enable = lib.mkForce true;
             waybar.enable = lib.mkForce true;
             rofi.enable = lib.mkForce true;
+            tmux.enable = lib.mkForce true;
             keepassxc.enable = lib.mkForce true;
-            discord.enable = lib.mkForce true;
+            vesktop.enable = lib.mkForce true;
+            firefox.enable = lib.mkForce true;
+            googlechrome.enable = lib.mkForce true;
             gaming.enable = lib.mkForce true;
             pipewire.enable = lib.mkForce true;
 

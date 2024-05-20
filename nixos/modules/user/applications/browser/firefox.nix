@@ -1,6 +1,9 @@
 { lib, config, user, inputs, ... }:
 {
-    config = lib.mkIf config.gui.enable {
+    options = {
+        firefox.enable = lib.mkEnableOption "Enable Firefox";
+    };
+    config = lib.mkIf (config.gui.enable && config.firefox.enable) {
         home-manager.users."${user.name}".programs.firefox = {
             enable = true;
             policies = {
