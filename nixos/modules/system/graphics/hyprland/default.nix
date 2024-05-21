@@ -20,8 +20,8 @@
             pyprland
             grim slurp
             wl-clipboard
-            swww
-            wireplumber
+            wireplumber # streaming stuff
+            swww ( import (rootPath + /packages/user_scripts/swww_triple_monitor.nix) { inherit pkgs; } )
         ];
 
         programs.hyprland = {
@@ -70,6 +70,7 @@
 
                     input = {
                         #follow_mouse = "1";
+                        sensitivity = "0.0";
                     };
 
                     monitor = [
