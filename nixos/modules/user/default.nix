@@ -1,9 +1,9 @@
 {
-    imports = [
-        ./music
-        ./terminal
-        ./applications
-        ./theming/gtk.nix
-        ./gaming
-    ];
+  imports = [
+    ./music
+    ./terminal
+    ./applications
+    ./theming/gtk.nix
+    ./gaming
+  ];
 }

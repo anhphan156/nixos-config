@@ -1,6 +1,9 @@
-{ lib, config, ... }:
 {
-    config = lib.mkIf config.laptop.enable {
-        services.libinput.touchpad.naturalScrolling = true;
-    };
+  lib,
+  config,
+  ...
+}: {
+  config = lib.mkIf config.laptop.enable {
+    services.libinput.touchpad.naturalScrolling = true;
+  };
 }

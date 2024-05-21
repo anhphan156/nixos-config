@@ -1,9 +1,9 @@
 {
-    imports = [
-        ./kitty
-        ./nvim
-        ./shell/zsh.nix
-        ./ranger.nix
-        ./tmux
-    ];
+  imports = [
+    ./kitty
+    ./nvim
+    ./shell/zsh.nix
+    ./ranger.nix
+    ./tmux
+  ];
 }
