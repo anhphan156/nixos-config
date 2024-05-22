@@ -2,14 +2,22 @@
   user,
   rootPath,
   pkgs,
+  config,
+  lib,
   ...
 }: {
-  home-manager.users."${user.name}".home = {
-    file = {
-      ".config/nvim/".source = ../../../../../config/nvim;
+    options = {
+        nvim.enable = lib.mkEnableOption "Enable Neovim";
     };
-    packages = with pkgs; [
-      neovim
-    ];
-  };
+    
+    config = lib.mkIf config.nvim.enable {
+        home-manager.users."${user.name}".home = {
+            file = {
+            ".config/nvim/".source = ../../../../../config/nvim;
+            };
+            packages = with pkgs; [
+            neovim
+            ];
+        };
+    };
 }

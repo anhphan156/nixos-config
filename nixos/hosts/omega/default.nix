@@ -12,6 +12,7 @@ inputs.nixpkgs.lib.nixosSystem {
     (rootPath + /modules)
     (rootPath + /packages/user_packages)
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixvim.nixosModules.nixvim
 
     ({
       config,
