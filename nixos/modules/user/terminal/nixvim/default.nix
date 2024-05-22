@@ -97,43 +97,53 @@
         mini = {
           enable = true;
           modules = {
-            pairs = {};
-          };
-        };
-
-        indent-blankline = {
-          enable = true;
-	  settings = {
-		scope = {
-		show_end = false;
-		show_exact_scope = true;
-		show_start = false;
-		};
-	  };
-        };
-
-        dressing = {
-          enable = true;
-          settings = {
-            input = {
-              enabled = true;
-              border = "rounded";
-              insert_only = true;
+            pairs = {
               mappings = {
-                i = {
-                  "<C-c>" = "Close";
-                  "<CR>" = "Confirm";
-                  "<Down>" = "HistoryNext";
-                  "<Up>" = "HistoryPrev";
+                "\"" = {
+                  action = "closeopen";
+                  pair = "\"\"";
+                  neigh_pattern = "[^\\`].";
+                  register = {cr = false;};
                 };
               };
             };
           };
         };
 
-      	noice = {
-	enable = true;
-	};
+        indent-blankline = {
+          enable = true;
+          settings = {
+            scope = {
+              show_end = false;
+              show_exact_scope = true;
+              show_start = false;
+            };
+          };
+        };
+
+        # dressing = {
+        #   enable = true;
+        #   settings = {
+        #     input = {
+        #       enabled = true;
+        #       border = "rounded";
+        #       insert_only = true;
+        #       mappings = {
+        #         i = {
+        #           "<C-c>" = "Close";
+        #           "<CR>" = "Confirm";
+        #           "<Down>" = "HistoryNext";
+        #           "<Up>" = "HistoryPrev";
+        #         };
+        #       };
+        #     };
+        #   };
+        # };
+        notify.enable = true;
+
+        noice = {
+          enable = true;
+        };
       };
     };
   };
