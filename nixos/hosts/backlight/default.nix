@@ -90,6 +90,7 @@ inputs.nixpkgs.lib.nixosSystem {
         gcc
         brightnessctl
         acpilight
+        inputs.alejandra.defaultPackage.${pkgs.system}
       ];
 
       fonts.fonts = with pkgs; [
