@@ -68,9 +68,15 @@
         telescope.enable = true;
         neocord.enable = true;
 
-        autoclose = {
+        #autoclose = {
+        #  enable = true;
+        #  options.autoIndent = true;
+        #};
+        nvim-autopairs = {
           enable = true;
-          options.autoIndent = true;
+          settings = {
+            enable_check_bracket_line = true;
+          };
         };
         bufferline = {
           enable = true;
@@ -99,6 +105,29 @@
             powerline_fonts = true;
             theme = "dark";
           };
+        };
+
+        dressing = {
+          enable = true;
+          settings = {
+            input = {
+              enabled = true;
+              border = "rounded";
+              insert_only = true;
+              mappings = {
+                i = {
+                  "<C-c>" = "Close";
+                  "<CR>" = "Confirm";
+                  "<Down>" = "HistoryNext";
+                  "<Up>" = "HistoryPrev";
+                };
+              };
+            };
+          };
+        };
+
+        notify = {
+          enable = true;
         };
       };
     };
