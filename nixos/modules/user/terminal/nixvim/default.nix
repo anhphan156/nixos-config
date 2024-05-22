@@ -1,9 +1,13 @@
 {
   config,
   lib,
-  user,
+  pkgs,
   ...
 }: {
+  imports = [
+    ./keymaps.nix
+  ];
+
   options = {
     nixvim.enable = lib.mkOption {
       default = true;
@@ -16,44 +20,26 @@
     programs.nixvim = {
       enable = true;
 
+      opts = {
+        number = true;
+        relativenumber = true;
+        shiftwidth = 2;
+        tabstop = 2;
+        smartindent = true;
+      };
+
+      highlight = {
+        NeoTreeNormal.bg = "NONE";
+        NeoTreeNormal.ctermbg = "NONE";
+        NeoTreeNormalNC.bg = "NONE";
+        NeoTreeNormalNC.ctermbg = "NONE";
+      };
+
       autoCmd = [
         {
           event = ["BufRead"];
           pattern = ["*.nix"];
           command = "%!alejandra -qq";
-        }
-      ];
-
-      keymaps = [
-        {
-          action = "<esc>";
-          key = "jk";
-          options.silent = true;
-          mode = "i";
-        }
-        {
-          action = "<esc>:w<CR>";
-          key = "<leader>w";
-          options.silent = true;
-          mode = "n";
-        }
-        {
-          action = ":Neotree toggle<CR>";
-          key = "<leader>t";
-          options.silent = true;
-          mode = "n";
-        }
-        {
-          action = "<cmd>Telescope find_files<cr>";
-          key = "<leader>ff";
-          options.silent = true;
-          mode = "n";
-        }
-        {
-          action = "<cmd>Telescope live_grep<cr>";
-          key = "<leader>fg";
-          options.silent = true;
-          mode = "n";
         }
       ];
 
@@ -66,7 +52,70 @@
         treesitter.enable = true;
         fugitive.enable = true;
         telescope.enable = true;
-        neocord.enable = true;
+        gitsigns.enable = true;
+
+        presence-nvim = {
+					enable = true;
+					autoUpdate = true;
+				};
+
+				obsidian = {
+					enable = true;
+					settings = {
+						workspaces = [
+							{
+								name = "obsidian";
+								path = "~/data/obsidian";
+							}
+						];
+					};
+				};
+
+        startup = {
+          enable = true;
+          theme = "evil";
+        };
+
+        lsp = {
+          enable = true;
+          servers = {
+            clangd.enable = true;
+            nixd.enable = true;
+            lua-ls.enable = true;
+          };
+        };
+        lsp-format = {
+          enable = true;
+          lspServersToEnable = "all";
+        };
+        cmp = {
+          enable = true;
+          autoEnableSources = true;
+          settings = {
+            mapping = {
+              __raw = ''
+                cmp.mapping.preset.insert({
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                  })
+              '';
+            };
+            sources = [
+              {
+                name = "nvim_lsp";
+              }
+              {
+                name = "path";
+              }
+              {
+                name = "buffer";
+              }
+            ];
+          };
+        };
 
         bufferline = {
           enable = true;
@@ -103,7 +152,7 @@
                   action = "closeopen";
                   pair = "\"\"";
                   neigh_pattern = "[^\\`].";
-                  register = {cr = false;};
+                  register = {cr = true;};
                 };
               };
             };
@@ -116,35 +165,21 @@
             scope = {
               show_end = false;
               show_exact_scope = true;
-              show_start = false;
+              show_start = true;
             };
+            debounce = 200;
           };
         };
 
-        # dressing = {
-        #   enable = true;
-        #   settings = {
-        #     input = {
-        #       enabled = true;
-        #       border = "rounded";
-        #       insert_only = true;
-        #       mappings = {
-        #         i = {
-        #           "<C-c>" = "Close";
-        #           "<CR>" = "Confirm";
-        #           "<Down>" = "HistoryNext";
-        #           "<Up>" = "HistoryPrev";
-        #         };
-        #       };
-        #     };
-        #   };
-        # };
         notify.enable = true;
-
         noice = {
           enable = true;
         };
       };
+
+      extraPlugins = with pkgs.vimPlugins; [
+        nui-nvim
+      ];
     };
   };
 }

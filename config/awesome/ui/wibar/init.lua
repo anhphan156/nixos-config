@@ -12,11 +12,11 @@ return function(s)
 		position = "top",
 		screen = s,
 		margins = {
-            top = dpi(10),
-            bottom = dpi(10),
-            left = dpi(10),
-            right = dpi(10),
-        },
+			top = dpi(10),
+			bottom = dpi(10),
+			left = dpi(10),
+			right = dpi(10),
+		},
 		height = dpi(50),
 		bg = beautiful.invisible,
 	})
@@ -90,7 +90,7 @@ return function(s)
 					dpi(30),
 					beautiful.wibar_icon_size,
 					function()
-                        awesome.emit_signal('control_center::toggle')
+						awesome.emit_signal('control_center::toggle')
 					end
 				),
 				s.mylayoutbox,
@@ -104,10 +104,10 @@ return function(s)
 
 		widget = wibox.container.background,
 		bg = beautiful.invisible,
-        shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 12)
-        end
+		shape = function(cr, width, height)
+			gears.shape.rounded_rect(cr, width, height, 12)
+		end
 	})
 
-    return wibar
+	return wibar
 end

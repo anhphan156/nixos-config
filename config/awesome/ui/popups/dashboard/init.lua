@@ -104,14 +104,14 @@ grid:add_widget_at(uptime_box, 7, 1, 1, 2);
 grid:add_widget_at(battery_box, 1, 3, 3, 2);
 grid:add_widget_at(ram_box, 4, 3, 3, 2);
 grid:add_widget_at(weather_box, 1, 5, 2, 2);
-grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1"}), 3, 5, 4, 2);
-grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2"}), 1, 7, 6, 3);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 1" }), 3, 5, 4, 2);
+grid:add_widget_at(box_maker.flex_box({ widget = wibox.widget.textbox, text = "test 2" }), 1, 7, 6, 3);
 
-grid:add_widget_at(box_maker.flex_box({ 
-    {
-        widget = fortune_text, text = "Fetching fortune text ..."
-    },
-    widget = wibox.container.place
+grid:add_widget_at(box_maker.flex_box({
+	{
+		widget = fortune_text, text = "Fetching fortune text ..."
+	},
+	widget = wibox.container.place
 }), 7, 3, 1, 7);
 
 dashboard:setup({
@@ -124,7 +124,7 @@ awesome.connect_signal("dashboard::toggle", function()
 end)
 
 awesome.connect_signal('daemon::fortune', function(fortune)
-    fortune_text.markup = '<i>' .. fortune .. '</i>'
+	fortune_text.markup = '<i>' .. fortune .. '</i>'
 end)
 
 return dashboard
