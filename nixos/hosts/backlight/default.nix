@@ -11,6 +11,7 @@ inputs.nixpkgs.lib.nixosSystem {
     (rootPath + /overlay)
     (rootPath + /modules)
     (rootPath + /packages/user_packages)
+    inputs.nixvim.nixosModules.nixvim
     inputs.home-manager.nixosModules.home-manager
 
     ({
