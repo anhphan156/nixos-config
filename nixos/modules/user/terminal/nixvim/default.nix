@@ -55,21 +55,21 @@
         gitsigns.enable = true;
 
         presence-nvim = {
-					enable = true;
-					autoUpdate = true;
-				};
+          enable = true;
+          autoUpdate = true;
+        };
 
-				obsidian = {
-					enable = true;
-					settings = {
-						workspaces = [
-							{
-								name = "obsidian";
-								path = "~/data/obsidian";
-							}
-						];
-					};
-				};
+        obsidian = {
+          enable = true;
+          settings = {
+            workspaces = [
+              {
+                name = "obsidian";
+                path = "~/data/obsidian";
+              }
+            ];
+          };
+        };
 
         startup = {
           enable = true;
@@ -82,6 +82,9 @@
             clangd.enable = true;
             nixd.enable = true;
             lua-ls.enable = true;
+            rust-analyzer.enable = true;
+            rust-analyzer.installRustc = true;
+            rust-analyzer.installCargo = true;
           };
         };
         lsp-format = {

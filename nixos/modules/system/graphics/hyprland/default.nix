@@ -11,6 +11,7 @@
     ./bind.nix
     ../waybar
     ./pyprland
+		../mako
   ];
 
   options = {
@@ -18,11 +19,16 @@
   };
 
   config = lib.mkIf (config.hyprland.enable && config.gui.enable) {
+    mako.enable = lib.mkForce true;
+    pyprland.enable = lib.mkForce true;
+    waybar.enable = lib.mkForce true;
+    rofi.enable = lib.mkForce true;
+    pipewire.enable = lib.mkForce true;
+
     environment.systemPackages = with pkgs; [
       polkit
       xdg-desktop-portal-hyprland
       xwayland
-      dunst
       libnotify
       pyprland
       grim
