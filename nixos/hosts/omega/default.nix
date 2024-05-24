@@ -104,6 +104,7 @@ inputs.nixpkgs.lib.nixosSystem {
       googlechrome.enable = lib.mkForce true;
       gaming.enable = lib.mkForce true;
       virtualization.enable = lib.mkForce true;
+			water_reminder.enable = lib.mkForce true;
 
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions
