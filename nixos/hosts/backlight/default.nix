@@ -119,6 +119,8 @@ inputs.nixpkgs.lib.nixosSystem {
       ncmpcpp.enable = lib.mkForce true;
       discord.enable = lib.mkForce true;
       keepassxc.enable = lib.mkForce true;
+      firefox.enable = lib.mkForce true;
+      tmux.enable = lib.mkForce true;
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;
