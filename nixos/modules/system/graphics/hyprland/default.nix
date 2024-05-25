@@ -79,6 +79,7 @@
               ignore_opacity = true;
               size = "8";
               passes = "2";
+							xray = true;
             };
           };
 
@@ -99,6 +100,8 @@
 
           layerrule = [
             "animation slidefade 20%, rofi"
+            "blur, ^(rofi)$"
+            "ignorezero, ^(rofi)$"
           ];
 
           workspace = [
