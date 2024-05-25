@@ -1,4 +1,8 @@
-{user, lib, ...}: {
+{
+  user,
+  lib,
+  ...
+}: {
   home-manager.users."${user.name}".imports = [
     ({config, ...}: {
       programs.zsh = {
@@ -11,8 +15,8 @@
         };
 
         shellAliases = {
-          "rebuild-backlight" = " sudo nixos-rebuild switch --flake ~/dotfiles/nixos#backlight";
-          "rebuild-omega" = " sudo nixos-rebuild switch --flake ~/dotfiles/nixos#omega";
+          "rebuild-backlight" = " sudo nixos-rebuild switch --flake ~/dotfiles#backlight";
+          "rebuild-omega" = " sudo nixos-rebuild switch --flake ~/dotfiles#omega";
           "v" = " nvim";
           "vim" = " nvim";
           "nvim" = " nvim";

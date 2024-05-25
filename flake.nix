@@ -12,11 +12,10 @@
     };
 
     rootPath = ./.;
-		dotfilesPath = ./..;
   in {
     nixosConfigurations = {
-      backlight = import ./hosts/backlight {inherit inputs user rootPath dotfilesPath;};
-      omega = import ./hosts/omega {inherit inputs user rootPath dotfilesPath;};
+      backlight = import ./hosts/backlight {inherit inputs user rootPath;};
+      omega = import ./hosts/omega {inherit inputs user rootPath;};
     };
   };
 

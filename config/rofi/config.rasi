@@ -160,14 +160,14 @@ configuration {
 }
 
 window {
-    background-color: #aabbcc50;
+    background-color: #aabbcc01;
 		fullscreen: false;
     border: 0;
     border-color: @x14;
     border-radius: 12px;
     padding: 00;
     width: 50%;
-    height: 55%;
+    height: 560px;
     children: [ horibox ];
 }
 
@@ -183,9 +183,8 @@ horibox {
 
 inputbar {
 		width: 25%;
-		height: 25%;
-    margin: 520px 10px 10px 10px;
-		padding: 20px 10px;
+    margin: 500px 10px 10px 10px;
+		padding: 15px 10px 0px 10px;
 		background-color: rgba(50, 50, 50, 80%);
 		border-radius: 12px;
 		children: [ prompt, entry ];

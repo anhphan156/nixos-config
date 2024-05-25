@@ -2,16 +2,15 @@
   config,
   lib,
   user,
-  dotfilesPath,
-	pkgs,
+  pkgs,
   ...
 }: {
   options.eww.enable = lib.mkEnableOption "Enable Eww";
 
   config = lib.mkIf config.eww.enable {
-		environment.systemPackages = with pkgs; [
-			eww
-		];
+    environment.systemPackages = with pkgs; [
+      eww
+    ];
     home-manager.users."${user.name}" = {config, ...}: {
       # programs.eww = {
       #   enable = true;

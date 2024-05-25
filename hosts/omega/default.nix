@@ -2,11 +2,10 @@
   user,
   inputs,
   rootPath,
-  dotfilesPath,
   ...
 }:
 inputs.nixpkgs.lib.nixosSystem {
-  specialArgs = {inherit inputs user rootPath dotfilesPath;};
+  specialArgs = {inherit inputs user rootPath;};
   system = "x86_64-linux";
   modules = [
     (rootPath + /overlay)

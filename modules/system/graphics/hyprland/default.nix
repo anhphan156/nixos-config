@@ -48,7 +48,6 @@
       wayland.windowManager.hyprland = let
         autostart = pkgs.pkgs.writeShellScriptBin "start" ''
           pypr &
-          eww daemon
 
           swww init &
           sleep 1
@@ -60,6 +59,8 @@
           exec-once = [
             "${autostart}/bin/start"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+						"eww daemon"
+						"eww open bar"
           ];
 
           general = {
@@ -99,9 +100,10 @@
           ];
 
           layerrule = [
-            "animation slidefade 20%, rofi"
+            "animation popin 20%, ^(rofi)$"
             "blur, ^(rofi)$"
             "ignorezero, ^(rofi)$"
+            "dimaround, ^(rofi)$"
           ];
 
           workspace = [
