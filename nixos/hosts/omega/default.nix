@@ -2,10 +2,11 @@
   user,
   inputs,
   rootPath,
+  dotfilesPath,
   ...
 }:
 inputs.nixpkgs.lib.nixosSystem {
-  specialArgs = {inherit inputs user rootPath;};
+  specialArgs = {inherit inputs user rootPath dotfilesPath;};
   system = "x86_64-linux";
   modules = [
     (rootPath + /overlay)
@@ -97,6 +98,7 @@ inputs.nixpkgs.lib.nixosSystem {
       isOmega.enable = lib.mkForce true;
       gui.enable = lib.mkForce true;
       hyprland.enable = lib.mkForce true;
+      eww.enable = lib.mkForce true;
       tmux.enable = lib.mkForce true;
       keepassxc.enable = lib.mkForce true;
       vesktop.enable = lib.mkForce true;
@@ -104,7 +106,7 @@ inputs.nixpkgs.lib.nixosSystem {
       googlechrome.enable = lib.mkForce true;
       gaming.enable = lib.mkForce true;
       virtualization.enable = lib.mkForce true;
-			water_reminder.enable = lib.mkForce true;
+      water_reminder.enable = lib.mkForce true;
 
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions

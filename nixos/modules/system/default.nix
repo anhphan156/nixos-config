@@ -14,6 +14,7 @@
     ./graphics/xserver
     ./graphics/sddm
     ./graphics/hyprland
+		./graphics/eww/default.nix
     ./audio/pipewire.nix
     ./audio/pulseaudio.nix
   ];

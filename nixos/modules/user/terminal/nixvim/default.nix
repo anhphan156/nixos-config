@@ -28,6 +28,8 @@
         smartindent = true;
       };
 
+      clipboard.providers.wl-copy.enable = true;
+
       highlight = {
         NeoTreeNormal.bg = "NONE";
         NeoTreeNormal.ctermbg = "NONE";
@@ -139,6 +141,7 @@
           enableRefreshOnWrite = true;
           closeIfLastWindow = true;
           popupBorderStyle = "NC";
+					buffers.followCurrentFile.enabled = true;
         };
 
         lualine = {

@@ -16,6 +16,7 @@
           "v" = " nvim";
           "vim" = " nvim";
           "nvim" = " nvim";
+					"mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
         };
         oh-my-zsh = {
           enable = true;

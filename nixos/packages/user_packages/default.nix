@@ -30,6 +30,7 @@
     cbonsai
     figlet
     acpid
+		mpv
 
     ghc
     valgrind
