@@ -2,6 +2,7 @@
   lib,
   config,
   user,
+  pkgs,
   ...
 }: {
   options = {
@@ -15,10 +16,17 @@
     ];
     programs.virt-manager.enable = true;
 
-    home-manager.users."${user.name}".dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
+    home-manager.users."${user.name}" = {
+      home.pointerCursor = lib.mkIf config.hyprland.enable {
+				gtk.enable = true;
+				package = pkgs.vanilla-dmz;
+				name = "Vanilla-DMZ";
+			};
+      dconf.settings = {
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu:///system"];
+        };
       };
     };
   };

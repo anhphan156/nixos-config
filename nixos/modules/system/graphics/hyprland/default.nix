@@ -11,6 +11,7 @@
     ./bind.nix
     ../waybar
     ./pyprland
+    ../mako
   ];
 
   options = {
@@ -18,11 +19,15 @@
   };
 
   config = lib.mkIf (config.hyprland.enable && config.gui.enable) {
+    mako.enable = lib.mkForce true;
+    pyprland.enable = lib.mkForce true;
+    rofi.enable = lib.mkForce true;
+    pipewire.enable = lib.mkForce true;
+
     environment.systemPackages = with pkgs; [
       polkit
       xdg-desktop-portal-hyprland
       xwayland
-      dunst
       libnotify
       pyprland
       grim
@@ -41,11 +46,13 @@
     home-manager.users."${user.name}" = {
       wayland.windowManager.hyprland = let
         autostart = pkgs.pkgs.writeShellScriptBin "start" ''
-          pypr &
+					pypr &
+					eww daemon
+					eww open bar
 
-          swww init &
-          sleep 1
-          swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
+					swww init &
+					sleep 1
+					swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
         '';
       in {
         enable = true;
