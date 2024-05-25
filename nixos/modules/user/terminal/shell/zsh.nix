@@ -1,4 +1,4 @@
-{user, ...}: {
+{user, lib, ...}: {
   home-manager.users."${user.name}".imports = [
     ({config, ...}: {
       programs.zsh = {
@@ -16,7 +16,7 @@
           "v" = " nvim";
           "vim" = " nvim";
           "nvim" = " nvim";
-					"mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
+          "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
         };
         oh-my-zsh = {
           enable = true;
@@ -24,9 +24,7 @@
           theme = "robbyrussell";
         };
 
-        initExtra = ''
-          fastfetch
-
+        initExtra = lib.mkAfter ''
           GREEN='\033[0;32m'
           RED='\033[0;31m'
           MAGENTA='\033[0;35m'

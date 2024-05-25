@@ -36,6 +36,7 @@
       wireplumber # streaming stuff
       swww
       (import (rootPath + /packages/user_scripts/swww_triple_monitor.nix) {inherit pkgs;})
+      (import (rootPath + /packages/user_scripts/swww_single_monitor.nix) {inherit pkgs;})
     ];
 
     programs.hyprland = {
@@ -46,13 +47,12 @@
     home-manager.users."${user.name}" = {
       wayland.windowManager.hyprland = let
         autostart = pkgs.pkgs.writeShellScriptBin "start" ''
-					pypr &
-					eww daemon
-					eww open bar
+          pypr &
+          eww daemon
 
-					swww init &
-					sleep 1
-					swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
+          swww init &
+          sleep 1
+          swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
         '';
       in {
         enable = true;
