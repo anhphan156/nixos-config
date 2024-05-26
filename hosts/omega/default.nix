@@ -97,7 +97,6 @@ inputs.nixpkgs.lib.nixosSystem {
       isOmega.enable = lib.mkForce true;
       gui.enable = lib.mkForce true;
       hyprland.enable = lib.mkForce true;
-      eww.enable = lib.mkForce true;
       tmux.enable = lib.mkForce true;
       keepassxc.enable = lib.mkForce true;
       vesktop.enable = lib.mkForce true;

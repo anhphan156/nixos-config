@@ -5,6 +5,7 @@
   ...
 }: let
   isHyprland = config.hyprland.enable;
+	rofi_path = "${config.dotfilesPath}/config/rofi";
 in {
   options = {
     rofi.enable = lib.mkEnableOption "Enable Rofi";
@@ -18,8 +19,14 @@ in {
         pkgs,
         ...
       }: {
-        home.packages = [ (if isHyprland then pkgs.rofi-wayland else pkgs.rofi) ];
-        xdg.configFile."rofi/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/rofi";
+        home.packages = [
+          (
+            if isHyprland
+            then pkgs.rofi-wayland
+            else pkgs.rofi
+          )
+        ];
+        xdg.configFile."rofi/".source = config.lib.file.mkOutOfStoreSymlink rofi_path;
 
         programs.rofi = {
           enable = false;

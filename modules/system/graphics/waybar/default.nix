@@ -2,17 +2,18 @@
   user,
   lib,
   config,
-  rootPath,
   ...
-}: {
+}: 
+let
+	waybar_path = "${config.dotfilesPath}/config/waybar/style.css";
+in
+{
   options = {
     waybar.enable = lib.mkEnableOption "Enable waybar";
   };
 
   config = lib.mkIf (config.gui.enable && config.hyprland.enable && config.waybar.enable) {
-    home-manager.users."${user.name}" = {config, ...}: let
-      waybar_path = "${config.home.homeDirectory}/dotfiles/config/waybar/style.css";
-    in {
+    home-manager.users."${user.name}" = {config, ...}: {
       programs.waybar = {
         enable = true;
         systemd.enable = true;

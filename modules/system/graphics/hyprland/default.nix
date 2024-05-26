@@ -23,6 +23,7 @@
     pyprland.enable = lib.mkForce true;
     rofi.enable = lib.mkForce true;
     pipewire.enable = lib.mkForce true;
+		eww.enable = lib.mkForce true;
 
     environment.systemPackages = with pkgs; [
       polkit

@@ -4,7 +4,11 @@
   user,
   pkgs,
   ...
-}: {
+}: 
+let
+	eww_path = "${config.dotfilesPath}/config/eww";
+in
+{
   options.eww.enable = lib.mkEnableOption "Enable Eww";
 
   config = lib.mkIf config.eww.enable {
@@ -17,7 +21,7 @@
       #   configDir = dotfilesPath + /config/eww;
       # };
       xdg.configFile = {
-        "eww/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/eww";
+        "eww/".source = config.lib.file.mkOutOfStoreSymlink eww_path;
       };
     };
   };

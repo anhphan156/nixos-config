@@ -5,7 +5,10 @@
   user,
   inputs,
   ...
-}: {
+}: 
+let
+	awesome_path = "${config.dotfilesPath}/config/awesome";
+in {
   options = {
     awesome.enable = lib.mkEnableOption "enable awesome_config";
   };
@@ -15,9 +18,7 @@
       inputs.lua-pam.packages."x86_64-linux".default
     ];
 
-    home-manager.users."${user.name}" = {config, ...}: let
-      awesome_path = "${config.home.homeDirectory}/dotfiles/config/awesome";
-    in {
+    home-manager.users."${user.name}" = {config, ...}: {
       home.file."${awesome_path}/themes/default/colors.lua".text = ''
         local colors = {}
         return colors
