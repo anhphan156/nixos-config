@@ -3,28 +3,16 @@ configuration {
     combi-modes: "window";
     font: "AnkaCoder-r 15";
 
-    display-window: "";
-    display-run: "";
+    display-window: "";
+    display-run: "♥";
     display-ssh: "";
-    display-drun: "";
+    display-drun: "";
     display-calc: "";
     display-combi: "";
     display-emoji: "";
 
-    separator-style: "none";
-    color-normal: "@xbg, @xfg, @xbg, @xfg, @xbg";
-    color-urgent: "@xbg, @x1, @xbg, @x1, @xfg";
-    color-active: "@xbg, @xfg, @xbg, @xfg, @xbg";
-    color-window: "@xbg, @x1, @xfg";
 
-    window-format: "[{w}] ·· {c} ··   {t}";
 
-    location: 0;
-    /*yoffset: 0;*/
-    /*xoffset: 200;*/
-/*	fixed-num-lines: true;*/
-    separator-style: "solid";
-/*	show-icons: false;*/
     terminal: "kitty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
@@ -45,7 +33,6 @@ configuration {
 /*	sorting-method: "normal";*/
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
-    sidebar-mode: true;
 /*	hover-select: false;*/
 /*	eh: 1;*/
 /*	auto-select: false;*/
@@ -169,45 +156,18 @@ configuration {
 }
 
 * {
-    selected-normal-foreground:  rgba ( 52, 60, 72, 100 % );
-    foreground:                  rgba ( 224, 224, 224, 100 % );
-    normal-foreground:           @foreground;
-    alternate-normal-background: rgba ( 52, 60, 72, 100 % );
-    red:                         rgba ( 220, 50, 47, 100 % );
-    selected-urgent-foreground:  rgba ( 224, 224, 224, 100 % );
-    blue:                        rgba ( 38, 139, 210, 100 % );
-    urgent-foreground:           rgba ( 240, 98, 146, 100 % );
-    alternate-urgent-background: rgba ( 52, 60, 72, 100 % );
-    active-foreground:           rgba ( 224, 224, 224, 100 % );
-    lightbg:                     rgba ( 238, 232, 213, 100 % );
-    selected-active-foreground:  rgba ( 52, 60, 72, 100 % );
-    alternate-active-background: rgba ( 52, 60, 72, 100 % );
-    background:                  rgba ( 52, 60, 72, 100 % );
-    alternate-normal-foreground: @foreground;
-    normal-background:           rgba ( 52, 60, 72, 100 % );
-    lightfg:                     rgba ( 88, 104, 117, 100 % );
-    selected-normal-background:  rgba ( 224, 224, 224, 100 % );
-    border-color:                rgba ( 240, 98, 146, 100 % );
-    /*spacing:                     2;*/
-    separatorcolor:              rgba ( 224, 224, 224, 100 % );
-    urgent-background:           rgba ( 52, 60, 72, 100 % );
-    selected-urgent-background:  rgba ( 240, 98, 146, 100 % );
-    alternate-urgent-foreground: @urgent-foreground;
-    background-color:            rgba ( 0, 0, 0, 0 % );
-    alternate-active-foreground: @active-foreground;
-    active-background:           rgba ( 52, 60, 72, 100 % );
-    selected-active-background:  rgba ( 224, 224, 224, 100 % );
+		separatorcolor: rgba(0,0,0,0);
 }
 
 window {
-    /*background-color: @xbg;*/
-    background-image: url("bg.jpg");
+    background-color: #aabbcc01;
+		fullscreen: false;
     border: 0;
     border-color: @x14;
     border-radius: 12px;
     padding: 00;
     width: 50%;
-    height: 55%;
+    height: 560px;
     children: [ horibox ];
 }
 
@@ -218,7 +178,16 @@ mainbox {
 
 horibox {
     orientation: horizontal;
-    children: [ listview, mode-switcher, prompt, entry ];
+    children: [ listview, mode-switcher, inputbar ];
+}
+
+inputbar {
+		width: 25%;
+    margin: 500px 10px 10px 10px;
+		padding: 15px 10px 0px 10px;
+		background-color: rgba(50, 50, 50, 80%);
+		border-radius: 12px;
+		children: [ prompt, entry ];
 }
 
 mode-switcher{
@@ -227,8 +196,8 @@ mode-switcher{
 }
 
 button {
-    margin: 5px;
-    padding: 5px;
+    margin: 5px 0px;
+    padding: 5px 7px;
     background-color: @xbg;
     text-color: @x7;
     border: 2px;
@@ -248,25 +217,27 @@ textbox {
 
 listview {
     scrollbar: false;
-    margin: -5px 0px; // hide the dashed line
+		background-color: rgba(50, 50, 50, 80%);
+		margin: 10px 10px;
+		border-radius: 12px;
 }
 
 entry {
-    spacing:    0;
-    text-color: @xfg;
-    margin: 520px 0px 0px 00px;
+		margin: 0px 15px;
+    text-color: rgba(230, 230, 230, 100%);
     placeholder: "There is no place like ~/";
 }
 
 element {
     spacing: 0px;
-    margin: 10px 0px 0px 0px;
+    margin: 10px;
     orientation: horizontal;
     children: [ element-text ];
+		border-radius: 24px;
 }
 element selected.normal {
-    background-color: rgba (0,0,0,0%);
-    text-color:       @x9;
+    background-color: @x9;
+    text-color:       rgba(30, 30, 30, 100%);
 }
 element normal.normal {
     background-color: rgba (0,0,0,0%);
@@ -295,7 +266,6 @@ prompt {
     spacing:    0;
     border:     0;
     text-color: @xfg;
-    margin: 520px 15px 0px 20px;
 }
 
 textbox-prompt-colon {
