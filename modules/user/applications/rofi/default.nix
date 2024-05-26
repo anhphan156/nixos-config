@@ -18,8 +18,8 @@ in {
         pkgs,
         ...
       }: {
-				home.packages = [ pkgs.rofi-wayland ];	
-				xdg.configFile."rofi/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/rofi";
+        home.packages = [ (if isHyprland then pkgs.rofi-wayland else pkgs.rofi) ];
+        xdg.configFile."rofi/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/rofi";
 
         programs.rofi = {
           enable = false;
@@ -33,13 +33,13 @@ in {
             combi-modes = "window,drun,run";
             font = "AnkaCoder 15";
 
-						display-window= "";
-						display-run= "♥";
-						display-ssh= "";
-						display-drun= "";
-						display-calc= "";
-						display-combi= "";
-						display-emoji= "";
+            display-window = "";
+            display-run = "♥";
+            display-ssh = "";
+            display-drun = "";
+            display-calc = "";
+            display-combi = "";
+            display-emoji = "";
 
             terminal = "kitty";
             sort = false;
@@ -51,29 +51,29 @@ in {
           in {
             "*" = {
               separatorcolor = mkLiteral "rgba(0,0,0,0%)";
-							trprt = mkLiteral "#00000000";
-							trprtbg = mkLiteral "rgba(50,50,50,80%)";
-							xbg=    mkLiteral "#1D1F28";
-							xfg=    mkLiteral "#FDFDFD";
-							x0=     mkLiteral "#282A36";
-							x1=     mkLiteral "#F37F97";
-							x2=     mkLiteral "#5ADECD";
-							x3=     mkLiteral "#F2A272";
-							x4=     mkLiteral "#8897F4";
-							x5=     mkLiteral "#C574DD";
-							x6=     mkLiteral "#79E6F3";
-							x7=     mkLiteral "#FDFDFD";
-							x8=     mkLiteral "#414458";
-							x9=     mkLiteral "#FF4971";
-							x10=    mkLiteral "#18E3C8";
-							x11=    mkLiteral "#FF8037";
-							x12=    mkLiteral "#556FFF";
-							x13=    mkLiteral "#B043D1";
-							x14=    mkLiteral "#3FDCEE";
-							x15=    mkLiteral "#FDFDFD";
+              trprt = mkLiteral "#00000000";
+              trprtbg = mkLiteral "rgba(50,50,50,80%)";
+              xbg = mkLiteral "#1D1F28";
+              xfg = mkLiteral "#FDFDFD";
+              x0 = mkLiteral "#282A36";
+              x1 = mkLiteral "#F37F97";
+              x2 = mkLiteral "#5ADECD";
+              x3 = mkLiteral "#F2A272";
+              x4 = mkLiteral "#8897F4";
+              x5 = mkLiteral "#C574DD";
+              x6 = mkLiteral "#79E6F3";
+              x7 = mkLiteral "#FDFDFD";
+              x8 = mkLiteral "#414458";
+              x9 = mkLiteral "#FF4971";
+              x10 = mkLiteral "#18E3C8";
+              x11 = mkLiteral "#FF8037";
+              x12 = mkLiteral "#556FFF";
+              x13 = mkLiteral "#B043D1";
+              x14 = mkLiteral "#3FDCEE";
+              x15 = mkLiteral "#FDFDFD";
             };
             "window" = {
-							background-color = mkLiteral "#aabbcc50";
+              background-color = mkLiteral "#aabbcc50";
               border = mkLiteral "0";
               border-color = mkLiteral "@trprt";
               border-radius = mkLiteral "12px";
@@ -90,15 +90,15 @@ in {
               orientation = mkLiteral "horizontal";
               children = map mkLiteral ["listview" "mode-switcher" "inputbar"];
             };
-						"inputbar" = {
-							width = mkLiteral "25%";
-							height = mkLiteral "25%";
-							margin = mkLiteral "520px 10px 10px 10px";
-							padding = mkLiteral "20px 10px";
-							background-color = mkLiteral "@trprtbg";
-							border-radius = mkLiteral "12px";
+            "inputbar" = {
+              width = mkLiteral "25%";
+              height = mkLiteral "25%";
+              margin = mkLiteral "520px 10px 10px 10px";
+              padding = mkLiteral "20px 10px";
+              background-color = mkLiteral "@trprtbg";
+              border-radius = mkLiteral "12px";
               children = map mkLiteral ["prompt" "entry"];
-						};
+            };
             "mode-switcher" = {
               orientation = mkLiteral "vertical";
               margin = mkLiteral "20px 10px";
