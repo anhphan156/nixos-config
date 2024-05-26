@@ -24,12 +24,12 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	-- awful.key({ modkey }, "q", function()
-        -- awesome.emit_signal("lockscreen::toggle")
-        -- local axis = "vertically"
-        -- local f = awful.placement.scale
-        --     + awful.placement.left
-        --     + (axis and awful.placement["maximize_"..axis] or nil)
-        -- local geo = f(client.focus, {honor_workarea=true, to_percent = 0.5})
+	-- awesome.emit_signal("lockscreen::toggle")
+	-- local axis = "vertically"
+	-- local f = awful.placement.scale
+	--     + awful.placement.left
+	--     + (axis and awful.placement["maximize_"..axis] or nil)
+	-- local geo = f(client.focus, {honor_workarea=true, to_percent = 0.5})
 	-- end),
 
 	--  awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
@@ -56,7 +56,7 @@ awful.keyboard.append_global_keybindings({
 	end, { description = "open a terminal", group = "launcher" }),
 
 	awful.key({ altkey }, spacekey, function()
-		awful.spawn.with_shell("rofi -show run")
+		awful.spawn.with_shell("rofi -show run -config ~/.config/rofi/configX.rasi")
 	end, { description = "open rofi", group = "launcher" }),
 
 	--awful.key(
