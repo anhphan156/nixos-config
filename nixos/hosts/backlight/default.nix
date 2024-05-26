@@ -121,6 +121,7 @@ inputs.nixpkgs.lib.nixosSystem {
       keepassxc.enable = lib.mkForce true;
       firefox.enable = lib.mkForce true;
       tmux.enable = lib.mkForce true;
+      water_reminder.enable = lib.mkForce true;
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;
