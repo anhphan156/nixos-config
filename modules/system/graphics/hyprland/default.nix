@@ -59,8 +59,7 @@
           exec-once = [
             "${autostart}/bin/start"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-						"eww daemon"
-						"eww open bar"
+            "eww daemon"
           ];
 
           general = {
@@ -80,7 +79,7 @@
               ignore_opacity = true;
               size = "8";
               passes = "2";
-							xray = true;
+              xray = true;
             };
           };
 
