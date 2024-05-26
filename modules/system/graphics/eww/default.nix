@@ -3,6 +3,7 @@
   lib,
   user,
   pkgs,
+	rootPath,
   ...
 }: {
   options.eww.enable = lib.mkEnableOption "Enable Eww";
@@ -17,7 +18,7 @@
       #   configDir = dotfilesPath + /config/eww;
       # };
       xdg.configFile = {
-        "eww/".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/eww";
+        "eww/".source = config.lib.file.mkOutOfStoreSymlink (rootPath + /config/eww);
       };
     };
   };
