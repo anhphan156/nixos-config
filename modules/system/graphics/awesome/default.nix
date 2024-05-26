@@ -4,7 +4,6 @@
   lib,
   user,
   inputs,
-	rootPath,
   ...
 }: {
   options = {
@@ -17,7 +16,7 @@
     ];
 
     home-manager.users."${user.name}" = {config, ...}: let
-      awesome_path = rootPath + /config/awesome;
+      awesome_path = "${config.home.homeDirectory}/dotfiles/config/awesome";
     in {
       home.file."${awesome_path}/themes/default/colors.lua".text = ''
         local colors = {}

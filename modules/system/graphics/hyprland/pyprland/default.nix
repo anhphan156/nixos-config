@@ -2,7 +2,6 @@
   config,
   user,
   lib,
-	rootPath,
   ...
 }: {
   options = {
@@ -10,9 +9,11 @@
   };
 
   config = lib.mkIf (config.gui.enable && config.hyprland.enable && config.pyprland.enable) {
-    home-manager.users."${user.name}" = {config, ...}:{
+    home-manager.users."${user.name}" = {config, ...}: let
+      pyprland_path = "${config.home.homeDirectory}/dotfiles/config/hypr/pyprland.toml";
+    in {
       xdg.configFile = {
-        "hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink (rootPath + /config/hypr/pyprland.toml);
+        "hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink pyprland_path;
       };
     };
   };

@@ -10,7 +10,9 @@
   };
 
   config = lib.mkIf (config.gui.enable && config.hyprland.enable && config.waybar.enable) {
-    home-manager.users."${user.name}" = {config, ...}: {
+    home-manager.users."${user.name}" = {config, ...}: let
+      waybar_path = "${config.home.homeDirectory}/dotfiles/config/waybar/style.css";
+    in {
       programs.waybar = {
         enable = true;
         systemd.enable = true;
@@ -55,7 +57,7 @@
       };
 
       xdg.configFile = {
-        "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink (rootPath + /config/waybar/style.css);
+        "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink waybar_path;
       };
     };
   };
