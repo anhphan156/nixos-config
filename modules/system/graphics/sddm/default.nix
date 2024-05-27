@@ -18,10 +18,10 @@
         if config.awesome.enable
         then "none+awesome"
         else "hyprland";
-      #autoLogin = {
-      #    enable = true;
-      #    user = "backspace";
-      #};
+      autoLogin = {
+          enable = true;
+          user = "backspace";
+      };
     };
   };
 }

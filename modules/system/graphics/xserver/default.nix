@@ -16,9 +16,11 @@
       xorg.xrandr
     ];
 
+		console.useXkbConfig = true;
+
     services.xserver = {
       xkb.layout = "us";
-      xkb.variant = "";
+      xkb.variant = if config.dvorak.enable then "dvorak" else "";
       enable = true;
       #videoDrivers = [ "nvidia" ];
 

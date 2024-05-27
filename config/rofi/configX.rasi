@@ -160,7 +160,7 @@ configuration {
 }
 
 window {
-    background-image: url("bg.jpg", WIDTH);
+    background-image: url("bg.jpg", HEIGHT);
 		fullscreen: false;
     border: 0;
     border-color: @x14;
