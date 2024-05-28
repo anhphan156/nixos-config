@@ -23,7 +23,7 @@
     pyprland.enable = lib.mkForce true;
     rofi.enable = lib.mkForce true;
     pipewire.enable = lib.mkForce true;
-		eww.enable = lib.mkForce true;
+    eww.enable = lib.mkForce true;
 
     environment.systemPackages = with pkgs; [
       polkit
@@ -97,6 +97,8 @@
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
+						"float,title:(GLFW)"
+						"animation slidefade 20%,title:(GLFW)"
           ];
 
           layerrule = [

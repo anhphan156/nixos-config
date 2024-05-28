@@ -19,9 +19,9 @@
             "$mod, W, killactive"
             "ALT, SPACE, execr, rofi -show run"
 
-						# window control
-						"$mod, F, togglefloating"
-						"$mod, M, fullscreen, 1"
+            # window control
+            "$mod, F, togglefloating"
+            "$mod, M, fullscreen, 1"
 
             # alt tab
             "ALT, TAB, cyclenext"
@@ -33,6 +33,9 @@
             # screenshots
             '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''
             "SUPERSHIFT, S, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+
+						#misc
+						"SUPERSHIFT, W, exec, swww_sm"
           ]
           ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") [1 2 3 4 5 6];
 

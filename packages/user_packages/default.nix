@@ -31,6 +31,10 @@
     figlet
     acpid
     mpv
+    cava
+
+		blender
+		obs-studio
 
     ghc
     valgrind
