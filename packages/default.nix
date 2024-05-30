@@ -22,52 +22,50 @@
   ];
 
   home-manager.users."${user.name}" = {
+    nixpkgs.config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
 
-        nixpkgs.config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
+    home.packages = with pkgs; [
+      obsidian
+      cinnamon.nemo
+      pureref
 
-		home.packages = with pkgs; [
-    obsidian
-    cinnamon.nemo
-    pureref
+      cmatrix
+      bunnyfetch
+      pamixer
+      fzf
+      xclip
+      bat
+      maim
+      bc
+      id3v2
+      xdotool
+      nix-prefetch-git
+      #(ffmpeg.override { withXcb = true; })
+      unzip
+      fortune
+      jq
+      btop
+      lolcat
+      asciiquarium
+      cbonsai
+      figlet
+      acpid
+      mpv
+      cava
 
-    cmatrix
-    fastfetch
-    bunnyfetch
-    pamixer
-    fzf
-    xclip
-    bat
-    maim
-    bc
-    id3v2
-    xdotool
-    nix-prefetch-git
-    #(ffmpeg.override { withXcb = true; })
-    unzip
-    fortune
-    jq
-    btop
-    lolcat
-    asciiquarium
-    cbonsai
-    figlet
-    acpid
-    mpv
-    cava
+      blender
+      obs-studio
 
-    blender
-    obs-studio
+      ghc
+      valgrind
+      gdb
 
-    ghc
-    valgrind
-    gdb
-
-    (import ./user_scripts/search_docs.nix {inherit pkgs;})
-    (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
-    (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
-  ];
-	};
+      (import ./user_scripts/search_docs.nix {inherit pkgs;})
+      (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
+      (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
+    ];
+  };
 }

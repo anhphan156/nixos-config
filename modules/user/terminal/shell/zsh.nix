@@ -1,11 +1,11 @@
 {
   user,
   lib,
-	pkgs,
+  pkgs,
   ...
 }: {
   programs.zsh.enable = true;
-	users.users."${user.name}".shell = pkgs.zsh;
+  users.users."${user.name}".shell = pkgs.zsh;
 
   home-manager.users."${user.name}".imports = [
     ({config, ...}: {
@@ -31,6 +31,11 @@
           plugins = ["git" "z" "vi-mode"];
           theme = "robbyrussell";
         };
+
+				envExtra = ''
+					export LC_ALL=en_CA.UTF-8
+					export LANG=en_CA.UTF-8
+				'';
 
         initExtra = lib.mkAfter ''
           GREEN='\033[0;32m'
