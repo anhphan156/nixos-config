@@ -18,6 +18,7 @@
             "$mod, RETURN, exec, kitty"
             "$mod, W, killactive"
             "ALT, SPACE, execr, rofi -show run"
+            "SUPERSHIFT, 1, exec, [floating] nemo"
 
             # window control
             "$mod, F, togglefloating"
@@ -34,8 +35,8 @@
             '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''
             "SUPERSHIFT, S, exec, grim -g \"$(slurp -d)\" - | wl-copy"
 
-						#misc
-						"SUPERSHIFT, W, exec, swww_sm"
+            #misc
+            "SUPERSHIFT, W, exec, swww_sm"
           ]
           ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") [1 2 3 4 5 6];
 

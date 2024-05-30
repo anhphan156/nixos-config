@@ -10,15 +10,13 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     (rootPath + /overlay)
     (rootPath + /modules)
-    (rootPath + /packages/user_packages)
+    (rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
 
     ({
-      config,
       pkgs,
       lib,
-      inputs,
       ...
     }: {
       imports = [
@@ -41,14 +39,6 @@ inputs.nixpkgs.lib.nixosSystem {
       nix.settings.experimental-features = ["nix-command" "flakes"];
 
       networking.hostName = "omega"; # Define your hostname.
-      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-      # Configure network proxy if necessary
-      # networking.proxy.default = "http://user:password@proxy:port/";
-      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-      # Enable networking
-      networking.networkmanager.enable = true;
 
       # Set your time zone.
       time.timeZone = "America/Toronto";
@@ -60,38 +50,8 @@ inputs.nixpkgs.lib.nixosSystem {
       users.users."${user.name}" = {
         isNormalUser = true;
         description = "tbd";
-        extraGroups = ["networkmanager" "wheel" "audio" "libvirtd"];
+        extraGroups = ["wheel"];
         packages = with pkgs; [];
-        shell = pkgs.zsh;
-      };
-
-      # Allow unfree packages
-      nixpkgs.config.allowUnfree = true;
-
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        vim
-        wget
-        git
-        brightnessctl
-        acpilight
-        cmake
-        gnumake
-        curl
-        gcc
-        inputs.alejandra.defaultPackage.${pkgs.system}
-      ];
-      fonts.fonts = with pkgs; [(nerdfonts.override {fonts = ["FiraCode"];}) ankacoder material-icons texlivePackages.typicons];
-
-      programs = {
-        zsh.enable = true;
-        light.enable = true;
-        dconf.enable = true;
-      };
-
-      home-manager = {
-        users."${user.name}".imports = [./home.nix];
       };
 
       isOmega.enable = lib.mkForce true;

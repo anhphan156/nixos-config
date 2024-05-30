@@ -29,7 +29,8 @@
 		:halign "start"
 		:valign "center"
 		:orientation "h"
-		"let's go baby"))
+		(systray)
+		))
 
 (defwidget center []
 	(box

@@ -10,7 +10,7 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     (rootPath + /overlay)
     (rootPath + /modules)
-    (rootPath + /packages/user_packages)
+    (rootPath + /packages)
     inputs.nixvim.nixosModules.nixvim
     inputs.home-manager.nixosModules.home-manager
 
@@ -38,18 +38,9 @@ inputs.nixpkgs.lib.nixosSystem {
       };
 
       nix.settings.auto-optimise-store = true;
-
       nix.settings.experimental-features = ["nix-command" "flakes"];
 
       networking.hostName = "backspace"; # Define your hostname.
-      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-      # Configure network proxy if necessary
-      # networking.proxy.default = "http://user:password@proxy:port/";
-      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-      # Enable networking
-      networking.networkmanager.enable = true;
 
       # Set your time zone.
       time.timeZone = "America/Toronto";
@@ -57,55 +48,11 @@ inputs.nixpkgs.lib.nixosSystem {
       # Select internationalisation properties.
       i18n.defaultLocale = "en_CA.UTF-8";
 
-      programs = {
-        zsh.enable = true;
-        light.enable = true;
-        dconf.enable = true;
-      };
-
-      # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users."${user.name}" = {
         isNormalUser = true;
         description = "backspace";
-        extraGroups = ["networkmanager" "wheel" "audio" "video" "libvirtd"];
+        extraGroups = ["wheel"];
         packages = with pkgs; [];
-        shell = pkgs.zsh;
-      };
-
-      # Allow unfree packages
-      nixpkgs.config.allowUnfree = true;
-
-      nixpkgs.config.pulseaudio = true;
-
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-        wget
-        vim
-        git
-        curl
-        cmake
-        gnumake
-        gcc
-        brightnessctl
-        acpilight
-        inputs.alejandra.defaultPackage.${pkgs.system}
-      ];
-
-      fonts.fonts = with pkgs; [
-        nerdfonts
-        ankacoder
-        material-icons
-        texlivePackages.typicons
-      ];
-
-      environment.variables.EDITOR = "nvim";
-
-      home-manager = {
-        users."${user.name}".imports = [
-          ./home.nix
-        ];
       };
 
       isBacklight.enable = lib.mkForce true;
@@ -115,14 +62,14 @@ inputs.nixpkgs.lib.nixosSystem {
       picom.enable = lib.mkForce true;
       rofi.enable = lib.mkForce true;
       laptop.enable = lib.mkForce true;
-      mpd.enable = lib.mkForce true;
-      ncmpcpp.enable = lib.mkForce true;
+      music.enable = lib.mkForce true;
       discord.enable = lib.mkForce true;
       keepassxc.enable = lib.mkForce true;
       firefox.enable = lib.mkForce true;
       tmux.enable = lib.mkForce true;
       water_reminder.enable = lib.mkForce true;
-			dvorak.enable = lib.mkForce true;
+      dvorak.enable = lib.mkForce true;
+      light_control.enable = lib.mkForce true;
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;

@@ -92,13 +92,13 @@
           monitor = [
             "HDMI-A-1,1920x1080,0x0,1"
             "DP-1,1920x1080@144,1920x0,1,bitdepth,10"
-            "DP-3,3840x2160,3840x0,1"
+            "DP-3,3840x2160,3840x0,1.5"
           ];
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
-						"float,title:(GLFW)"
-						"animation slidefade 20%,title:(GLFW)"
+            "float,title:(GLFW)"
+            "animation slidefade 20%,title:(GLFW)"
           ];
 
           layerrule = [
@@ -109,10 +109,12 @@
           ];
 
           workspace = [
+            "1, monitor:DP-1"
             "2, monitor:DP-1"
             "3, monitor:DP-1"
             "4, monitor:DP-1"
             "5, monitor:HDMI-A-1"
+            "6, monitor:DP-3"
           ];
         };
       };

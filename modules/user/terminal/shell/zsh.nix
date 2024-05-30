@@ -1,8 +1,12 @@
 {
   user,
   lib,
+	pkgs,
   ...
 }: {
+  programs.zsh.enable = true;
+	users.users."${user.name}".shell = pkgs.zsh;
+
   home-manager.users."${user.name}".imports = [
     ({config, ...}: {
       programs.zsh = {

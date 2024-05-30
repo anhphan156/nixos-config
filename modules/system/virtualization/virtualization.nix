@@ -16,12 +16,16 @@
     ];
     programs.virt-manager.enable = true;
 
+		users.users."${user.name}" = {
+			extraGroups = lib.mkAfter [ "libvirtd" ];
+		};
+
     home-manager.users."${user.name}" = {
       home.pointerCursor = lib.mkIf config.hyprland.enable {
-				gtk.enable = true;
-				package = pkgs.vanilla-dmz;
-				name = "Vanilla-DMZ";
-			};
+        gtk.enable = true;
+        package = pkgs.vanilla-dmz;
+        name = "Vanilla-DMZ";
+      };
       dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
           autoconnect = ["qemu:///system"];

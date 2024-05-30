@@ -14,9 +14,10 @@
     ./graphics/xserver
     ./graphics/sddm
     ./graphics/hyprland
-		./graphics/eww/default.nix
+    ./graphics/eww/default.nix
     ./audio/pipewire.nix
     ./audio/pulseaudio.nix
+		./networking
   ];
 
   acpid.enable = lib.mkDefault true;
