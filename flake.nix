@@ -9,8 +9,8 @@
     user = {
       name = "backspace";
       real_name = "tbd";
-			git_name = "anhphan";
-			git_email = "anh.phan156@protonmail.com";
+      git_name = "anhphan";
+      git_email = "anh.phan156@protonmail.com";
     };
 
     rootPath = ./.;
@@ -18,6 +18,7 @@
     nixosConfigurations = {
       backlight = import ./hosts/backlight {inherit inputs user rootPath;};
       omega = import ./hosts/omega {inherit inputs user rootPath;};
+			installer = import ./hosts/installer {inherit inputs user rootPath;};
     };
   };
 

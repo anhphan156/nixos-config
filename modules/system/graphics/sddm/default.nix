@@ -5,7 +5,7 @@
   rootPath,
   ...
 }: {
-  config = {
+  config = lib.mkIf config.gui.enable {
     environment.systemPackages = with pkgs; [
       libsForQt5.qt5.qtgraphicaleffects
       libsForQt5.qt5.qtquickcontrols2
@@ -19,8 +19,8 @@
         then "none+awesome"
         else "hyprland";
       autoLogin = {
-          enable = true;
-          user = "backspace";
+        enable = true;
+        user = "backspace";
       };
     };
   };
