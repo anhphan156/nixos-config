@@ -1,6 +1,6 @@
 {
   imports = [
-		./homemanager
+    ./homemanager
     ./music
     ./terminal
     ./applications
@@ -9,5 +9,7 @@
     ./misc/water_reminder.nix
     ./misc/dconf.nix
     ./git
+    ./repos/dotfiles.nix
+		./secrets/pass
   ];
 }

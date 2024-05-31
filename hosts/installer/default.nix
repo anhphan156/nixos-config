@@ -49,9 +49,9 @@ inputs.nixpkgs.lib.nixosSystem {
       ];
 
       systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
-			services.openssh = {
-				extraConfig = "AcceptEnv LANG LANGUAGE LC_*";
-			};
+      services.openssh = {
+        extraConfig = "AcceptEnv LANG LANGUAGE LC_*";
+      };
       networking.wireless.enable = lib.mkForce false;
     })
   ];
