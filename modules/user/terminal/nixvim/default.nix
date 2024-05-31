@@ -29,9 +29,9 @@
       };
 
       clipboard = {
-				register = "unnamedplus";
-				providers.wl-copy.enable = true;
-			};
+        register = "unnamedplus";
+        providers.wl-copy.enable = true;
+      };
 
       highlight = {
         NeoTreeNormal.bg = "NONE";
@@ -64,7 +64,7 @@
           autoUpdate = true;
         };
 
-        obsidian = {
+        obsidian = lib.mkIf config.obsidian.enable {
           enable = true;
           settings = {
             workspaces = [

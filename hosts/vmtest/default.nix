@@ -1,4 +1,3 @@
-#nix build .#nixosConfigurations.installer.config.system.build.isoImage
 {
   user,
   inputs,
@@ -14,15 +13,18 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.nixvim.nixosModules.nixvim
     ({
       pkgs,
-      modulesPath,
       lib,
       ...
     }: {
-      imports = [
-        "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-      ];
+			imports = [
+				./disk-config.nix
+				inputs.disko.nixosModules.default
+			];
 
-      networking.hostName = "NixosInstaller"; # Define your hostname.
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.efi.canTouchEfiVariables = true;
+
+      networking.hostName = "vmtest"; # Define your hostname.
 
       # Set your time zone.
       time.timeZone = "America/Toronto";
@@ -39,14 +41,12 @@ inputs.nixpkgs.lib.nixosSystem {
 
       nix.settings.experimental-features = ["nix-command" "flakes"];
 
-      nixpkgs.hostPlatform = "x86_64-linux";
-
       environment.systemPackages = with pkgs; [
         disko
         git
         curl
         wget
-				bat
+        bat
       ];
 
       systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];

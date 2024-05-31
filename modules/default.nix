@@ -18,6 +18,7 @@
       readOnly = true;
       default = "/home/${user.name}/dotfiles";
     };
-		dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";
+    dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";
+		obsidian.enable = lib.mkEnableOption "Enable obsidian";
   };
 }

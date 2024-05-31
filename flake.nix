@@ -18,7 +18,8 @@
     nixosConfigurations = {
       backlight = import ./hosts/backlight {inherit inputs user rootPath;};
       omega = import ./hosts/omega {inherit inputs user rootPath;};
-			installer = import ./hosts/installer {inherit inputs user rootPath;};
+      installer = import ./hosts/installer {inherit inputs user rootPath;};
+      vmtest = import ./hosts/vmtest {inherit inputs user rootPath;};
     };
   };
 
@@ -48,5 +49,15 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+		disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+		};
   };
 }
