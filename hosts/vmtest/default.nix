@@ -13,7 +13,7 @@ inputs.nixpkgs.lib.nixosSystem {
     (rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
-		inputs.disko.nixosModules.default
+    inputs.disko.nixosModules.default
     ({
       pkgs,
       lib,
@@ -58,6 +58,8 @@ inputs.nixpkgs.lib.nixosSystem {
 
       networking.wireless.enable = lib.mkForce false;
       tmux.enable = lib.mkForce true;
+
+			system.stateVersion = "24.05";
     })
   ];
 }

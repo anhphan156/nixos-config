@@ -50,14 +50,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-		disko = {
+    disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
-		};
+    };
 
-		impermanence = {
+    impermanence = {
       url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
-		};
+    };
   };
 }
