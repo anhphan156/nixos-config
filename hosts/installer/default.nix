@@ -46,7 +46,8 @@ inputs.nixpkgs.lib.nixosSystem {
         git
         curl
         wget
-				bat
+        bat
+				inputs.alejandra.defaultPackage.${pkgs.system}
       ];
 
       systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];

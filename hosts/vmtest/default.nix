@@ -8,18 +8,20 @@ inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {inherit inputs user rootPath;};
   system = "x86_64-linux";
   modules = [
+    (rootPath + /overlay)
     (rootPath + /modules)
+    (rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
+		inputs.disko.nixosModules.default
     ({
       pkgs,
       lib,
       ...
     }: {
-			imports = [
-				./disk-config.nix
-				inputs.disko.nixosModules.default
-			];
+      imports = [
+        ./disk-config.nix
+      ];
 
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
