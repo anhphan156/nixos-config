@@ -21,6 +21,7 @@
 		./users
 		./nix_settings
 		./locale
+		./openssh
   ];
 
   acpid.enable = lib.mkDefault true;
