@@ -42,7 +42,6 @@ inputs.nixpkgs.lib.nixosSystem {
       ];
 
       systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
-			openssh.enable = lib.mkForce true;	
 
       networking.wireless.enable = lib.mkForce false;
       tmux.enable = lib.mkForce true;
