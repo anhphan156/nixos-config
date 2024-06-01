@@ -1,6 +1,10 @@
 {
   disko.devices = {
     disk = {
+			nodev."/" = {
+				fsType = "tmpfs";
+				mountOptions = [ "size=2G" "defaults" "mode=775" ];
+			};
       vdb = {
         type = "disk";
         device = "/dev/vda";
@@ -24,15 +28,11 @@
               content = {
                 type = "luks";
                 name = "crypted";
-								passwordFile = "/tmp/secret.key";
+                passwordFile = "/tmp/secret.key";
                 content = {
                   type = "btrfs";
                   extraArgs = ["-f"];
                   subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      mountOptions = ["compress=zstd" "noatime"];
-                    };
                     "/persistence" = {
                       mountpoint = "/persistence";
                       mountOptions = ["compress=zstd" "noatime"];

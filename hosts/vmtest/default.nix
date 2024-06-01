@@ -27,22 +27,6 @@ inputs.nixpkgs.lib.nixosSystem {
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
 
-			boot.initrd.postDeviceCommands = lib.mkAfter ''
-				mkdir /btrfs_tmp
-				mkdir /btrfs_tmp/root
-				mkdir /btrfs_tmp/old_roots
-				mount -o subvol=/root /dev/mapper/crypted /btrfs_tmp/root
-
-				if [[ -e /btrfs_tmp/root ]]; then
-        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-        mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-    fi
-
-				btrfs subvolume create /btrfs_tmp/root
-				cp -r /btrfs_tmp/old_roots /btrfs_tmp/root
-				umount /btrfs_tmp/root
-			'';
-
       networking.hostName = "vmtest"; # Define your hostname.
 
       # Set your time zone.
