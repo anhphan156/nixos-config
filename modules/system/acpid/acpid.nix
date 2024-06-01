@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    acpid.enable = lib.mkEnableOption "enable acpid";
+    cyanea.system.acpid.enable = lib.mkEnableOption "enable acpid";
   };
 
-  config = lib.mkIf config.acpid.enable {
+  config = lib.mkIf config.cyanea.system.acpid.enable {
     services.acpid = {
       enable = true;
       handlers = {

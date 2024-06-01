@@ -28,7 +28,6 @@
     };
 
     home.packages = with pkgs; [
-      obsidian
       cinnamon.nemo
       pureref
 

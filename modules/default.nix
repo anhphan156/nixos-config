@@ -6,19 +6,25 @@
   imports = [
     ./user
     ./system
+		./services
+		./applications
+		./gaming
+		./theming
+		./terminal
+		./homemanager
+		./virtualization
   ];
 
   options = {
-    gui.enable = lib.mkEnableOption "Enable GUI";
-    isBacklight.enable = lib.mkEnableOption "Enable services only for backlight";
-    isOmega.enable = lib.mkEnableOption "Enable services only for omega";
-    dotfilesPath = lib.mkOption {
-      description = "Path to this project in string";
-      type = lib.types.str;
-      readOnly = true;
-      default = "/home/${user.name}/dotfiles";
-    };
-    dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";
-		obsidian.enable = lib.mkEnableOption "Enable obsidian";
+    cyanea.graphical.gui.enable = lib.mkEnableOption "Enable GUI";
+    cyanea.user = {
+			dotfilesPath = lib.mkOption {
+				description = "Path to this project in string";
+				type = lib.types.str;
+				readOnly = true;
+				default = "/home/${user.name}/dotfiles";
+			};
+		};
+    cyanea.keyboards.dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";
   };
 }

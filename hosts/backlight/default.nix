@@ -15,21 +15,34 @@
 
 	networking.hostName = "backspace"; # Define your hostname.
 
-	isBacklight = enabled;
-	gui = enabled;
-	xsv = enabled;
-	awesome = enabled;
-	picom = enabled;
-	rofi = enabled;
-	laptop = enabled;
-	music = enabled;
-	discord = enabled;
-	keepassxc = enabled;
-	firefox = enabled;
-	tmux = enabled;
-	water_reminder = enabled;
-	dvorak = enabled;
-	light_control = enabled;
+	cyanea = {
+		desktopApp = {
+			vesktop = enabled;
+			firefox = enabled;
+			keepassxc = enabled;
+			rofi = enabled;
+		};
+		system = {
+			acpid = enabled;
+			autorandr = enabled;
+			laptop = enabled;
+			light_control = enabled;
+		};
+		graphical = {
+			gui = enabled;
+			xsv = enabled;
+			awesome = enabled;
+			picom = enabled;
+		};
+		services = {
+			water_reminder = enabled;
+		};
+		terminal = {
+			tmux = enabled;
+		};
+		keyboards.dvorak = enabled;
+		music = enabled;
+	};
 
 	system.stateVersion = "23.11";
 }

@@ -3,16 +3,14 @@
   lib,
   config,
   ...
-}: 
-let
-	waybar_path = "${config.dotfilesPath}/config/waybar/style.css";
-in
-{
+}: let
+  waybar_path = "${config.cyanea.user.dotfilesPath}/config/waybar/style.css";
+in {
   options = {
-    waybar.enable = lib.mkEnableOption "Enable waybar";
+    cyanea.graphical.waybar.enable = lib.mkEnableOption "Enable waybar";
   };
 
-  config = lib.mkIf (config.gui.enable && config.hyprland.enable && config.waybar.enable) {
+  config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.graphical.hyprland.enable && config.cyanea.graphical.waybar.enable) {
     home-manager.users."${user.name}" = {config, ...}: {
       programs.waybar = {
         enable = true;

@@ -4,7 +4,9 @@
   lib,
   ...
 }: {
-  config = lib.mkIf config.isBacklight.enable {
+	options.cyanea.system.autorandr.enable = lib.mkEnableOption "Enable autorandr";
+
+  config = lib.mkIf config.cyanea.system.autorandr.enable {
     home-manager.users."${user.name}" = {
       services.autorandr.enable = true;
       programs.autorandr = {

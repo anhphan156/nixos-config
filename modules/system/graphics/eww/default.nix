@@ -4,14 +4,12 @@
   user,
   pkgs,
   ...
-}: 
-let
-	eww_path = "${config.dotfilesPath}/config/eww";
-in
-{
-  options.eww.enable = lib.mkEnableOption "Enable Eww";
+}: let
+  eww_path = "${config.cyanea.user.dotfilesPath}/config/eww";
+in {
+  options.cyanea.graphical.eww.enable = lib.mkEnableOption "Enable Eww";
 
-  config = lib.mkIf config.eww.enable {
+  config = lib.mkIf config.cyanea.graphical.eww.enable {
     environment.systemPackages = with pkgs; [
       eww
     ];

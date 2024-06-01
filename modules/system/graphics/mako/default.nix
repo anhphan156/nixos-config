@@ -4,8 +4,8 @@
   user,
   ...
 }: {
-  options.mako.enable = lib.mkEnableOption "Enable Mako";
-  config = lib.mkIf config.mako.enable {
+  options.cyanea.graphical.mako.enable = lib.mkEnableOption "Enable Mako";
+  config = lib.mkIf config.cyanea.graphical.mako.enable {
     home-manager.users.${user.name} = {config, ...}: {
       services.mako = {
         enable = true;

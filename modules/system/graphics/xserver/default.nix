@@ -4,12 +4,16 @@
   user,
   config,
   ...
-}: {
+}: 
+let
+	cfg = config.cyanea.graphical;
+in
+{
   options = {
-    xsv.enable = lib.mkEnableOption "Enable Xserver";
+    cyanea.graphical.xsv.enable = lib.mkEnableOption "Enable Xserver";
   };
 
-  config = lib.mkIf (config.xsv.enable && config.gui.enable) {
+  config = lib.mkIf (cfg.xsv.enable && cfg.gui.enable) {
     home-manager.users."${user.name}".home.packages = with pkgs; [
       arandr
       xorg.xrandr
@@ -20,7 +24,7 @@
     services.xserver = {
       xkb.layout = "us";
       xkb.variant =
-        if config.dvorak.enable
+        if config.cyanea.keyboards.dvorak.enable
         then "dvorak"
         else "";
       enable = true;

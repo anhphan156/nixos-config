@@ -1,20 +1,19 @@
 {
   config,
-  pkgs,
   lib,
   user,
   inputs,
   ...
-}: 
-let
-	awesome_path = "${config.dotfilesPath}/config/awesome";
+}: let
+  awesome_path = "${config.cyanea.user.dotfilesPath}/config/awesome";
+	cfg = config.cyanea.graphical;
 in {
   options = {
-    awesome.enable = lib.mkEnableOption "enable awesome_config";
+    cyanea.graphical.awesome.enable = lib.mkEnableOption "enable awesome_config";
   };
 
-  config = lib.mkIf (config.awesome.enable && config.gui.enable) {
-    environment.systemPackages = with pkgs; [
+  config = lib.mkIf (cfg.awesome.enable && cfg.gui.enable) {
+    environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
     ];
 

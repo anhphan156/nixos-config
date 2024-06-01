@@ -13,9 +13,7 @@
 
 	networking.hostName = "NixosInstaller"; # Define your hostname.
 
-	users.users."${user.name}" = {
-		initialPassword = "123";
-	};
+	users.users."${user.name}".initialPassword = "123";
 
 	nixpkgs.hostPlatform = "x86_64-linux";
 	nixpkgs.config.allowUnfree = true;
@@ -34,5 +32,5 @@
 	systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
 
 	networking.wireless.enable = lib.mkForce false;
-	tmux = lib.enabled;
+	cyanea.terminal.tmux = lib.enabled;
 }

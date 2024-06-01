@@ -6,9 +6,8 @@
   imports = [
     ./laptop/laptop.nix
     ./laptop/touchpad.nix
-    ./virtualization/virtualization.nix
     ./acpid/acpid.nix
-    ./graphics/picom.nix
+    ./graphics/picom
     ./autorandr/autorandr.nix
     ./graphics/awesome
     ./graphics/xserver
@@ -18,11 +17,9 @@
     ./audio/pipewire.nix
     ./audio/pulseaudio.nix
     ./networking
-		./users
-		./nix_settings
-		./locale
-		./openssh
+    ./users
+    ./nix_settings
+    ./locale
+    ./openssh
   ];
-
-  acpid.enable = lib.mkDefault true;
 }

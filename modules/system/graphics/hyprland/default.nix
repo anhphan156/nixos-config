@@ -5,7 +5,11 @@
   inputs,
   user,
   ...
-}: {
+}: 
+let
+	cfg = config.cyanea.graphical;
+in
+{
   imports = [
     ./bind.nix
     ../waybar
@@ -14,15 +18,15 @@
   ];
 
   options = {
-    hyprland.enable = lib.mkEnableOption "Enable hyprland";
+    cyanea.graphical.hyprland.enable = lib.mkEnableOption "Enable hyprland";
   };
 
-  config = lib.mkIf (config.hyprland.enable && config.gui.enable) {
-    mako.enable = lib.mkForce true;
-    pyprland.enable = lib.mkForce true;
-    rofi.enable = lib.mkForce true;
-    pipewire.enable = lib.mkForce true;
-    eww.enable = lib.mkForce true;
+  config = lib.mkIf (cfg.hyprland.enable && cfg.gui.enable) {
+    cyanea.graphical.mako = lib.enabled;
+    cyanea.desktopApp.rofi = lib.enabled;
+    cyanea.system.pipewire = lib.enabled;
+		cyanea.graphical.hyprland.pyprland = lib.enabled;
+    cyanea.graphical.eww = lib.enabled;
 
     environment.systemPackages = with pkgs; [
       polkit

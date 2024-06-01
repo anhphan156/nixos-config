@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    pipewire.enable = lib.mkEnableOption "Enable Pipewire";
+    cyanea.system.pipewire.enable = lib.mkEnableOption "Enable Pipewire";
   };
 
-  config = lib.mkIf config.pipewire.enable {
+  config = lib.mkIf config.cyanea.system.pipewire.enable {
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

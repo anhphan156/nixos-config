@@ -4,10 +4,10 @@
   ...
 }: {
   options = {
-    laptop.enable = lib.mkEnableOption "enable laptop";
+    cyanea.system.laptop.enable = lib.mkEnableOption "enable laptop";
   };
 
-  config = lib.mkIf config.laptop.enable {
+  config = lib.mkIf config.cyanea.system.laptop.enable {
     services.auto-cpufreq.enable = true;
     services.auto-cpufreq.settings = {
       battery = {

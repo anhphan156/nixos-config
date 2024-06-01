@@ -44,8 +44,12 @@ with lib; {
 		};
 	};
 
-	tmux = enabled;
-	openssh = enabled;
+	cyanea = {
+		system = {
+			openssh = enabled;
+		};
+		terminal.tmux = enabled;
+	};
 
 	system.stateVersion = "24.05";
 }
