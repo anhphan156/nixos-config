@@ -1,10 +1,10 @@
 {
   disko.devices = {
+		nodev."/" = {
+			fsType = "tmpfs";
+			mountOptions = ["size=2G" "defaults" "mode=775"];
+		};
     disk = {
-			nodev."/" = {
-				fsType = "tmpfs";
-				mountOptions = [ "size=2G" "defaults" "mode=775" ];
-			};
       vdb = {
         type = "disk";
         device = "/dev/vda";
