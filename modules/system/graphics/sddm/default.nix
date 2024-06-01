@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  rootPath,
+  user,
   ...
 }: {
   config = lib.mkIf config.gui.enable {
@@ -12,7 +12,7 @@
     ];
     services.displayManager = {
       sddm.enable = true;
-      sddm.theme = "${import (rootPath + /packages/MarianArlt-sddm-sugar-dark) {inherit pkgs;}}";
+      sddm.theme = "${import (user.rootPath + /packages/MarianArlt-sddm-sugar-dark) {inherit pkgs;}}";
       sddm.wayland.enable = lib.mkIf config.hyprland.enable true;
       defaultSession =
         if config.awesome.enable

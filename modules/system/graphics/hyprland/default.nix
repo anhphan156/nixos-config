@@ -4,7 +4,6 @@
   config,
   inputs,
   user,
-  rootPath,
   ...
 }: {
   imports = [
@@ -36,8 +35,8 @@
       wl-clipboard
       wireplumber # streaming stuff
       swww
-      (import (rootPath + /packages/user_scripts/swww_triple_monitor.nix) {inherit pkgs;})
-      (import (rootPath + /packages/user_scripts/swww_single_monitor.nix) {inherit pkgs;})
+      (import (user.rootPath + /packages/user_scripts/swww_triple_monitor.nix) {inherit pkgs;})
+      (import (user.rootPath + /packages/user_scripts/swww_single_monitor.nix) {inherit pkgs;})
     ];
 
     programs.hyprland = {

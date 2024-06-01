@@ -11,15 +11,15 @@
       real_name = "tbd";
       git_name = "anhphan";
       git_email = "anh.phan156@protonmail.com";
+			rootPath = ./.;
     };
 
-    rootPath = ./.;
   in {
     nixosConfigurations = {
-      backlight = import ./hosts/backlight {inherit inputs user rootPath;};
-      omega = import ./hosts/omega {inherit inputs user rootPath;};
-      installer = import ./hosts/installer {inherit inputs user rootPath;};
-      vmtest = import ./hosts/vmtest {inherit inputs user rootPath;};
+      backlight = import ./hosts/backlight {inherit inputs user;};
+      omega = import ./hosts/omega {inherit inputs user;};
+      installer = import ./hosts/installer {inherit inputs user;};
+      vmtest = import ./hosts/vmtest {inherit inputs user;};
     };
   };
 

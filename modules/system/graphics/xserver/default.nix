@@ -1,5 +1,4 @@
 {
-  rootPath,
   pkgs,
   lib,
   user,
@@ -16,11 +15,14 @@
       xorg.xrandr
     ];
 
-		console.useXkbConfig = true;
+    console.useXkbConfig = true;
 
     services.xserver = {
       xkb.layout = "us";
-      xkb.variant = if config.dvorak.enable then "dvorak" else "";
+      xkb.variant =
+        if config.dvorak.enable
+        then "dvorak"
+        else "";
       enable = true;
       #videoDrivers = [ "nvidia" ];
 

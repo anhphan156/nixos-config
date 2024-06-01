@@ -17,7 +17,10 @@
     ./graphics/eww/default.nix
     ./audio/pipewire.nix
     ./audio/pulseaudio.nix
-		./networking
+    ./networking
+		./users
+		./nix_settings
+		./locale
   ];
 
   acpid.enable = lib.mkDefault true;

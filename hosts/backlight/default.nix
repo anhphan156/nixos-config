@@ -1,16 +1,15 @@
 {
   user,
   inputs,
-  rootPath,
   ...
 }:
 inputs.nixpkgs.lib.nixosSystem {
-  specialArgs = {inherit inputs user rootPath;};
+  specialArgs = {inherit inputs user;};
   system = "x86_64-linux";
   modules = [
-    (rootPath + /overlay)
-    (rootPath + /modules)
-    (rootPath + /packages)
+    (user.rootPath + /overlay)
+    (user.rootPath + /modules)
+    (user.rootPath + /packages)
     inputs.nixvim.nixosModules.nixvim
     inputs.home-manager.nixosModules.home-manager
 
@@ -31,29 +30,7 @@ inputs.nixpkgs.lib.nixosSystem {
       boot.loader.efi.canTouchEfiVariables = true;
       boot.loader.systemd-boot.configurationLimit = 10;
 
-      nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 1w";
-      };
-
-      nix.settings.auto-optimise-store = true;
-      nix.settings.experimental-features = ["nix-command" "flakes"];
-
       networking.hostName = "backspace"; # Define your hostname.
-
-      # Set your time zone.
-      time.timeZone = "America/Toronto";
-
-      # Select internationalisation properties.
-      i18n.defaultLocale = "en_CA.UTF-8";
-
-      users.users."${user.name}" = {
-        isNormalUser = true;
-        description = "backspace";
-        extraGroups = ["wheel"];
-        packages = with pkgs; [];
-      };
 
       isBacklight.enable = lib.mkForce true;
       gui.enable = lib.mkForce true;

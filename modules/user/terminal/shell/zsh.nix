@@ -32,11 +32,6 @@
           theme = "robbyrussell";
         };
 
-				envExtra = ''
-					export LC_ALL=en_CA.UTF-8
-					export LANG=en_CA.UTF-8
-				'';
-
         initExtra = lib.mkAfter ''
           GREEN='\033[0;32m'
           RED='\033[0;31m'

@@ -1,16 +1,15 @@
 {
   user,
   inputs,
-  rootPath,
   ...
 }:
 inputs.nixpkgs.lib.nixosSystem {
-  specialArgs = {inherit inputs user rootPath;};
+  specialArgs = {inherit inputs user;};
   system = "x86_64-linux";
   modules = [
-    (rootPath + /overlay)
-    (rootPath + /modules)
-    (rootPath + /packages)
+    (user.rootPath + /overlay)
+    (user.rootPath + /modules)
+    (user.rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
 
@@ -29,30 +28,7 @@ inputs.nixpkgs.lib.nixosSystem {
       boot.loader.efi.canTouchEfiVariables = true;
       boot.loader.systemd-boot.configurationLimit = 3;
 
-      nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 1w";
-      };
-
-      nix.settings.auto-optimise-store = true;
-      nix.settings.experimental-features = ["nix-command" "flakes"];
-
       networking.hostName = "omega"; # Define your hostname.
-
-      # Set your time zone.
-      time.timeZone = "America/Toronto";
-
-      # Select internationalisation properties.
-      i18n.defaultLocale = "en_CA.UTF-8";
-
-      # Define a user account. Don't forget to set a password with ‘passwd’.
-      users.users."${user.name}" = {
-        isNormalUser = true;
-        description = "tbd";
-        extraGroups = ["wheel"];
-        packages = with pkgs; [];
-      };
 
       isOmega.enable = lib.mkForce true;
       gui.enable = lib.mkForce true;
