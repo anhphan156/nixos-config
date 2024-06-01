@@ -21,6 +21,7 @@ inputs.nixpkgs.lib.nixosSystem {
     }: {
       imports = [
         ./disk-config.nix
+        ./hardware-configuration.nix
       ];
 
       boot.loader.systemd-boot.enable = true;
@@ -51,15 +52,14 @@ inputs.nixpkgs.lib.nixosSystem {
         bat
       ];
 
-      systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
-      services.openssh = {
-        extraConfig = "AcceptEnv LANG LANGUAGE LC_*";
-      };
+      services.openssh.enable = true;
+      services.openssh.settings.PermitRootLogin = "no";
+      services.openssh.settings.PasswordAuthentication = true;
 
       networking.wireless.enable = lib.mkForce false;
       tmux.enable = lib.mkForce true;
 
-			system.stateVersion = "24.05";
+      system.stateVersion = "24.05";
     })
   ];
 }
