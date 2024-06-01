@@ -27,6 +27,14 @@ inputs.nixpkgs.lib.nixosSystem {
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
 
+			boot.initrd.postDeviceCommands = lib.mkAfter ''
+				mkdir /btrfs_tmp
+				mount -o subvol=/root /dev/mapper/crypted /btrfs_tmp
+
+				btrfs subvolume create /btrfs_tmp/root
+				umount /btrfs_tmp
+			'';
+
       networking.hostName = "vmtest"; # Define your hostname.
 
       # Set your time zone.

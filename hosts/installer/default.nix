@@ -40,6 +40,8 @@ inputs.nixpkgs.lib.nixosSystem {
       nix.settings.experimental-features = ["nix-command" "flakes"];
 
       nixpkgs.hostPlatform = "x86_64-linux";
+			nixpkgs.config.allowUnfree = true;
+			hardware.enableAllFirmware = true;
 
       environment.systemPackages = with pkgs; [
         disko
@@ -47,7 +49,8 @@ inputs.nixpkgs.lib.nixosSystem {
         curl
         wget
         bat
-				inputs.alejandra.defaultPackage.${pkgs.system}
+        inputs.alejandra.defaultPackage.${pkgs.system}
+				nix-prefetch-git
       ];
 
       systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
