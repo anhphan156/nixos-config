@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  user,
   pkgs,
   ...
 }: {
@@ -10,8 +9,8 @@
   };
 
   config = lib.mkIf (config.cyanea.desktopApp.discord.enable && config.cyanea.graphical.gui.enable) {
-    home-manager.users."${user.name}".home.packages = with pkgs; [
+    home-manager = lib.install (with pkgs; [
       discord
-    ];
+    ]);
   };
 }

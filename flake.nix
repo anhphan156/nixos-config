@@ -1,11 +1,7 @@
 {
   description = "Nixos config flake";
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     user = {
       name = "backspace";
       real_name = "tbd";
@@ -14,10 +10,9 @@
       rootPath = ./.;
     };
 
-		lib = nixpkgs.lib.extend (import ./libs { inherit inputs; });
-
+    lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
   in {
-    nixosConfigurations = import ./hosts { inherit inputs lib user; };
+    nixosConfigurations = import ./hosts {inherit inputs lib user;};
   };
 
   inputs = {

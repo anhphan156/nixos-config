@@ -1,4 +1,3 @@
-{ inputs }:
-{
-	enable = inputs.nixpkgs.lib.mkForce true;
+{inputs}: {
+  enable = inputs.nixpkgs.lib.mkForce true;
 }

@@ -1,4 +1,6 @@
-{ inputs }:
-_: _: {
-	enabled = import ./enabled { inherit inputs; };
+{ inputs, user }: _: _: {
+  enabled = import ./enabled {inherit inputs;};
+	
+	# config.home-manager = install [ pkgs.<name> ];
+	install = packages : { users."${user.name}".home.packages = packages; };
 }
