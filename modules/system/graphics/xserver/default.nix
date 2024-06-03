@@ -4,11 +4,9 @@
   user,
   config,
   ...
-}: 
-let
-	cfg = config.cyanea.graphical;
-in
-{
+}: let
+  cfg = config.cyanea.graphical;
+in {
   options = {
     cyanea.graphical.xsv.enable = lib.mkEnableOption "Enable Xserver";
   };
@@ -30,7 +28,7 @@ in
       enable = true;
       #videoDrivers = [ "nvidia" ];
 
-      windowManager.awesome = lib.mkIf config.awesome.enable {
+      windowManager.awesome = lib.mkIf cfg.awesome.enable {
         enable = true;
         package = pkgs.awesome;
         luaModules = with pkgs.luaPackages; [

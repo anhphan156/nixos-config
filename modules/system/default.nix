@@ -21,5 +21,6 @@
     ./nix_settings
     ./locale
     ./openssh
+		./light
   ];
 }
