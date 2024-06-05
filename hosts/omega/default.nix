@@ -18,18 +18,21 @@ with lib; {
       firefox = enabled;
       googlechrome = enabled;
       keepassxc = enabled;
-			obsidian = enabled;
+      obsidian = enabled;
     };
+		system = {
+			pipewire = enabled;
+		};
     graphical = {
       gui = enabled;
       hyprland = enabled;
     };
-		terminal = {
-			tmux = enabled;
-		};
-		services = {
-			water_reminder = enabled;
-		};
+    terminal = {
+      tmux = enabled;
+    };
+    services = {
+      water_reminder = enabled;
+    };
     gaming = enabled;
     virtualization = enabled;
   };

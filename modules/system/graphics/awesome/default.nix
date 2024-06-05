@@ -3,10 +3,11 @@
   lib,
   user,
   inputs,
+	pkgs,
   ...
 }: let
   awesome_path = "${config.cyanea.user.dotfilesPath}/config/awesome";
-	cfg = config.cyanea.graphical;
+  cfg = config.cyanea.graphical;
 in {
   options = {
     cyanea.graphical.awesome.enable = lib.mkEnableOption "enable awesome_config";
@@ -16,6 +17,17 @@ in {
     environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
     ];
+
+    services.xserver = {
+      windowManager.awesome = lib.mkIf config.awesome.enable {
+        enable = true;
+        package = pkgs.awesome;
+        luaModules = with pkgs.luaPackages; [
+          luarocks
+          luadbi-mysql
+        ];
+      };
+		};
 
     home-manager.users."${user.name}" = {config, ...}: {
       home.file."${awesome_path}/themes/default/colors.lua".text = ''

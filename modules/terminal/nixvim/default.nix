@@ -30,7 +30,7 @@
 
       clipboard = {
         register = "unnamedplus";
-        providers.wl-copy.enable = true;
+        providers.wl-copy.enable = lib.mkIf config.cyanea.graphical.hyprland.enable true;
       };
 
       highlight = {

@@ -5,11 +5,9 @@
   inputs,
   user,
   ...
-}: 
-let
-	cfg = config.cyanea.graphical;
-in
-{
+}: let
+  cfg = config.cyanea.graphical;
+in {
   imports = [
     ./bind.nix
     ../waybar
@@ -24,8 +22,7 @@ in
   config = lib.mkIf (cfg.hyprland.enable && cfg.gui.enable) {
     cyanea.graphical.mako = lib.enabled;
     cyanea.desktopApp.rofi = lib.enabled;
-    cyanea.system.pipewire = lib.enabled;
-		cyanea.graphical.hyprland.pyprland = lib.enabled;
+    cyanea.graphical.hyprland.pyprland = lib.enabled;
     cyanea.graphical.eww = lib.enabled;
 
     environment.systemPackages = with pkgs; [
