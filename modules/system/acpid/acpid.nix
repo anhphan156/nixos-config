@@ -12,7 +12,7 @@
     services.acpid = {
       enable = true;
       handlers = {
-        ac-power = lib.mkIf config.laptop.enable {
+        ac-power = lib.mkIf config.cyanea.system.laptop.enable {
           action = ''
             p=$(echo $PATH | grep '/run/current-system/sw/bin')
             if [ -z $p ]; then
