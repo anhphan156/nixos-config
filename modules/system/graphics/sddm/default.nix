@@ -20,8 +20,8 @@ in {
         if cfg.awesome.enable
         then "none+awesome"
         else if cfg.xmonad.enable
-				then "xmonad" 
-				else "hyprland";
+        then "none+xmonad"
+        else "hyprland";
       autoLogin = {
         enable = true;
         user = "backspace";

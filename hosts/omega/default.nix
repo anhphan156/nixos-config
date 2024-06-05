@@ -20,9 +20,9 @@ with lib; {
       keepassxc = enabled;
       obsidian = enabled;
     };
-		system = {
-			pipewire = enabled;
-		};
+    system = {
+      pipewire = enabled;
+    };
     graphical = {
       gui = enabled;
       hyprland = enabled;
