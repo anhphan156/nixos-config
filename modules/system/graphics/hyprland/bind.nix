@@ -18,7 +18,6 @@
             "$mod, RETURN, exec, kitty"
             "$mod, W, killactive"
             "ALT, SPACE, execr, rofi -show run"
-            "SUPERSHIFT, 1, exec, [floating] nemo"
 
             # window control
             "$mod, F, togglefloating"
@@ -30,6 +29,9 @@
 
             # scratchpad
             "$mod, P, exec, pypr toggle kitty"
+            "SUPERSHIFT, 1, exec, pypr toggle nemo"
+            "SUPERSHIFT, 2, exec, pypr toggle obsidian"
+            "SUPERSHIFT, 9, exec, pypr toggle pavucontrol"
 
             # screenshots
             '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''

@@ -97,6 +97,7 @@ in {
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
+
             "float,title:(GLFW)"
             "animation slidefade 20%,title:(GLFW)"
           ];
