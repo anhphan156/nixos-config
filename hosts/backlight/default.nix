@@ -23,13 +23,11 @@ with lib; {
       acpid = enabled;
       autorandr = enabled;
       laptop = enabled;
-			light_control = enabled;
+      light_control = enabled;
     };
     graphical = {
       gui = enabled;
-      xsv = enabled;
       awesome = enabled;
-      picom = enabled;
     };
     services = {
       water_reminder = enabled;

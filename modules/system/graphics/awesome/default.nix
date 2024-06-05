@@ -14,6 +14,9 @@ in {
   };
 
   config = lib.mkIf (cfg.awesome.enable && cfg.gui.enable) {
+		cyanea.graphical.xsv = lib.enabled;
+		cyanea.graphical.picom = lib.enabled;
+
     environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
     ];

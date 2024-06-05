@@ -14,6 +14,7 @@
     ./graphics/sddm
     ./graphics/hyprland
     ./graphics/eww/default.nix
+		./graphics/xmonad
     ./audio/pipewire.nix
     ./audio/pulseaudio.nix
     ./networking
@@ -21,6 +22,6 @@
     ./nix_settings
     ./locale
     ./openssh
-		./light
+    ./light
   ];
 }

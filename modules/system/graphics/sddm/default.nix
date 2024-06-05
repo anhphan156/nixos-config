@@ -4,11 +4,9 @@
   pkgs,
   user,
   ...
-}: 
-let
-	cfg = config.cyanea.graphical;
-in
-{
+}: let
+  cfg = config.cyanea.graphical;
+in {
   config = lib.mkIf cfg.gui.enable {
     environment.systemPackages = with pkgs; [
       libsForQt5.qt5.qtgraphicaleffects
@@ -21,7 +19,9 @@ in
       defaultSession =
         if cfg.awesome.enable
         then "none+awesome"
-        else "hyprland";
+        else if cfg.xmonad.enable
+				then "xmonad" 
+				else "hyprland";
       autoLogin = {
         enable = true;
         user = "backspace";
