@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  options.system.hostname = lib.mkOption {
+  options.cyanea.system.hostname = lib.mkOption {
     description = "networking host name";
     type = lib.types.str;
     readOnly = true;
@@ -12,7 +12,7 @@
   };
 
   config = {
-    networking.hostName = config.system.hostname;
+    networking.hostName = config.cyanea.system.hostname;
     networking.networkmanager.enable = true;
     users.users."${user.name}" = {
       extraGroups = lib.mkAfter ["networkmanager"];
