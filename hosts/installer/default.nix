@@ -1,36 +1,37 @@
 #nix build .#nixosConfigurations.installer.config.system.build.isoImage
 {
-	pkgs,
-	modulesPath,
-	lib,
-	user,
-	inputs,
-	...
+  pkgs,
+  modulesPath,
+  lib,
+  user,
+  inputs,
+  ...
 }: {
-	imports = [
-		"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-	];
+  imports = [
+    "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+  ];
 
-	networking.hostName = "NixosInstaller"; # Define your hostname.
+  users.users."${user.name}".initialPassword = "123";
 
-	users.users."${user.name}".initialPassword = "123";
+  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs.config.allowUnfree = true;
+  hardware.enableAllFirmware = true;
 
-	nixpkgs.hostPlatform = "x86_64-linux";
-	nixpkgs.config.allowUnfree = true;
-	hardware.enableAllFirmware = true;
+  environment.systemPackages = with pkgs; [
+    disko
+    git
+    curl
+    wget
+    bat
+    inputs.alejandra.defaultPackage.${pkgs.system}
+    nix-prefetch-git
+  ];
 
-	environment.systemPackages = with pkgs; [
-		disko
-		git
-		curl
-		wget
-		bat
-		inputs.alejandra.defaultPackage.${pkgs.system}
-		nix-prefetch-git
-	];
+  systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
 
-	systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
-
-	networking.wireless.enable = lib.mkForce false;
-	cyanea.terminal.tmux = lib.enabled;
+  networking.wireless.enable = lib.mkForce false;
+	cyanea = {
+		terminal.tmux = lib.enabled;
+		system.hostname = "NixosIntallerISO";
+	};
 }

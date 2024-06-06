@@ -1,55 +1,53 @@
-{lib, user, ...}: 
+{
+  lib,
+  user,
+  ...
+}:
 with lib; {
-	imports = [
-		./disk-config.nix
-		./hardware-configuration.nix
-	];
+  imports = [
+    ./disk-config.nix
+    ./hardware-configuration.nix
+  ];
 
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
+  users.users."${user.name}".initialPassword = "123";
 
-	networking.hostName = "vmtest"; # Define your hostname.
+  fileSystems."/persistence".neededForBoot = true;
+  environment.persistence."/persistence" = {
+    hideMounts = true;
+    directories = [
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+      {
+        directory = "/var/lib/colord";
+        user = "colord";
+        group = "colord";
+        mode = "u=rwx,g=rx,o=";
+      }
+    ];
+    files = [
+      "/etc/machine-id"
+    ];
+    users."${user.name}" = {
+      directories = [
+        "dotfiles"
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
+      ];
+    };
+  };
 
-	users.users."${user.name}" = {
-		initialPassword = "123";
-	};
+  cyanea = {
+    system = {
+      openssh = enabled;
+			hostname = "vmtest";
+    };
+    terminal.tmux = enabled;
+  };
 
-	fileSystems."/persistence".neededForBoot = true;
-	environment.persistence."/persistence" = {
-		hideMounts = true;
-		directories = [
-			"/var/log"
-			"/var/lib/bluetooth"
-			"/var/lib/nixos"
-			"/var/lib/systemd/coredump"
-			"/etc/NetworkManager/system-connections"
-			{
-				directory = "/var/lib/colord";
-				user = "colord";
-				group = "colord";
-				mode = "u=rwx,g=rx,o=";
-			}
-		];
-		files = [
-			"/etc/machine-id"
-		];
-		users."${user.name}" = {
-			directories = [
-				"dotfiles"
-				{
-					directory = ".ssh";
-					mode = "0700";
-				}
-			];
-		};
-	};
-
-	cyanea = {
-		system = {
-			openssh = enabled;
-		};
-		terminal.tmux = enabled;
-	};
-
-	system.stateVersion = "24.05";
+  system.stateVersion = "24.05";
 }

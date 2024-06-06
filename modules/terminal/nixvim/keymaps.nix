@@ -25,7 +25,7 @@
           mode = "n";
         }
         {
-          action = ":Neotree toggle<CR>";
+          action = ":NvimTreeToggle<CR>";
           key = "<leader>t";
           options.silent = true;
           mode = "n";

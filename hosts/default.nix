@@ -1,48 +1,50 @@
 {
-	user,
-	lib,
-	inputs,
-	...
-}:
-let
-	commonModules = [
-		(user.rootPath + /overlay)
-		(user.rootPath + /modules)
-		(user.rootPath + /packages)
-		inputs.home-manager.nixosModules.home-manager
-		inputs.nixvim.nixosModules.nixvim
-	];
+  user,
+  lib,
+  inputs,
+  ...
+}: let
+  commonModules = [
+    (user.rootPath + /overlay)
+    (user.rootPath + /modules)
+    (user.rootPath + /packages)
+    inputs.home-manager.nixosModules.home-manager
+    inputs.nixvim.nixosModules.nixvim
+		inputs.xremap.nixosModules.default
+  ];
 in {
-	installer = inputs.nixpkgs.lib.nixosSystem {
-		specialArgs = {inherit inputs user lib;};
-		system = "x86_64-linux";
-		modules = [ 
-			(user.rootPath + /modules)
-			inputs.home-manager.nixosModules.home-manager
-			inputs.nixvim.nixosModules.nixvim
-			./installer
-		];
-	};
+  installer = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs user lib;};
+    system = "x86_64-linux";
+    modules = [
+      (user.rootPath + /modules)
+      inputs.home-manager.nixosModules.home-manager
+      inputs.nixvim.nixosModules.nixvim
+      ./installer
+    ];
+  };
 
-	vmtest = inputs.nixpkgs.lib.nixosSystem {
-		specialArgs = {inherit inputs user lib;};
-		system = "x86_64-linux";
-		modules = commonModules ++ [ 
-			inputs.disko.nixosModules.default
-			inputs.impermanence.nixosModules.impermanence
-			./vmtest 
-		];
-	};
+  vmtest = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs user lib;};
+    system = "x86_64-linux";
+    modules =
+      commonModules
+      ++ [
+        inputs.disko.nixosModules.default
+        inputs.impermanence.nixosModules.impermanence
+        ./vmtest
+      ];
+  };
 
-	backlight = inputs.nixpkgs.lib.nixosSystem {
-		specialArgs = {inherit inputs user lib;};
-		system = "x86_64-linux";
-		modules = commonModules ++ [ ./backlight ];
-	};
+  backlight = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs user lib;};
+    system = "x86_64-linux";
+    modules = commonModules ++ [./backlight];
+  };
 
-	omega = inputs.nixpkgs.lib.nixosSystem {
-		specialArgs = {inherit inputs user lib;};
-		system = "x86_64-linux";
-		modules = commonModules ++ [ ./omega ];
-	};
+  omega = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs user lib;};
+    system = "x86_64-linux";
+    modules = commonModules ++ [./omega];
+  };
 }

@@ -16,8 +16,6 @@ class = "nemo"
 size = "75% 60%"
 max_size = "1920px 100%"
 margin = 50
-unfocus = "hide"
-hysteresis = 0.1
 
 [scratchpads.obsidian]
 animation = "fromTop"

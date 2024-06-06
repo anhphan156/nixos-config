@@ -50,5 +50,7 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+
+		xremap.url = "github:xremap/nix-flake";
   };
 }

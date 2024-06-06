@@ -5,13 +5,6 @@ with lib; {
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-
-  networking.hostName = "backspace"; # Define your hostname.
-
   cyanea = {
     desktopApp = {
       vesktop = enabled;
@@ -24,6 +17,7 @@ with lib; {
       autorandr = enabled;
       laptop = enabled;
       light_control = enabled;
+			hostname = "backlight";
     };
     graphical = {
       gui = enabled;
