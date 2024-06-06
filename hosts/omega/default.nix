@@ -1,9 +1,5 @@
 {lib, ...}:
 with lib; {
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
   cyanea = {
     desktopApp = {
       vesktop = enabled;

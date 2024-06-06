@@ -4,10 +4,6 @@
   ...
 }:
 with lib; {
-  imports = [
-    ./disk-config.nix
-    ./hardware-configuration.nix
-  ];
 
   users.users."${user.name}".initialPassword = "123";
 
@@ -44,7 +40,7 @@ with lib; {
   cyanea = {
     system = {
       openssh = enabled;
-			hostname = "vmtest";
+      hostname = "vmtest";
     };
     terminal.tmux = enabled;
   };
