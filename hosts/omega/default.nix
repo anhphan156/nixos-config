@@ -10,6 +10,7 @@ with lib; {
     };
     system = {
       pipewire = enabled;
+			xremap = enabled;
     };
     graphical = {
       gui = enabled;

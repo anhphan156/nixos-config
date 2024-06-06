@@ -1,10 +1,5 @@
 {lib, ...}:
 with lib; {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   cyanea = {
     desktopApp = {
       vesktop = enabled;
@@ -13,11 +8,12 @@ with lib; {
       rofi = enabled;
     };
     system = {
+      hostname = "backlight";
       acpid = enabled;
       autorandr = enabled;
       laptop = enabled;
       light_control = enabled;
-			hostname = "backlight";
+			xremap = enabled;
     };
     graphical = {
       gui = enabled;

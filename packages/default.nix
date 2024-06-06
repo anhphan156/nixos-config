@@ -17,7 +17,6 @@
     cmake
     gnumake
     curl
-    gcc
     inputs.alejandra.defaultPackage.${pkgs.system}
   ];
 
@@ -59,8 +58,6 @@
       obs-studio
 
       ghc
-      valgrind
-      gdb
 
       (import ./user_scripts/search_docs.nix {inherit pkgs;})
       (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
