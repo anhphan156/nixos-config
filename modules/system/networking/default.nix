@@ -7,7 +7,6 @@
   options.cyanea.system.hostname = lib.mkOption {
     description = "networking host name";
     type = lib.types.str;
-    readOnly = true;
     default = "Cyanea";
   };
 
