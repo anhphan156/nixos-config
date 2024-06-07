@@ -10,7 +10,7 @@
     (user.rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
-    inputs.xremap.nixosModules.default
+		inputs.xremap.nixosModules.default
   ];
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
@@ -19,8 +19,8 @@ in {
     modules = [
       (user.rootPath + /modules)
       inputs.home-manager.nixosModules.home-manager
-			inputs.xremap.nixosModules.default
       inputs.nixvim.nixosModules.nixvim
+			inputs.xremap.nixosModules.default
       ./installer
     ];
   };

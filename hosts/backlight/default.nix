@@ -13,6 +13,7 @@ with lib; {
       autorandr = enabled;
       laptop = enabled;
       light_control = enabled;
+      xremap = enabled;
     };
     graphical = {
       gui = enabled;
