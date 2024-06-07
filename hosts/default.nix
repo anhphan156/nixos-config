@@ -19,6 +19,7 @@ in {
     modules = [
       (user.rootPath + /modules)
       inputs.home-manager.nixosModules.home-manager
+			inputs.xremap.nixosModules.default
       inputs.nixvim.nixosModules.nixvim
       ./installer
     ];
@@ -33,18 +34,20 @@ in {
         inputs.disko.nixosModules.default
         inputs.impermanence.nixosModules.impermanence
         ./vmtest
-				./vmtest/hardware-configuration.nix
-				./vmtest/disk-config.nix
+        ./vmtest/hardware-configuration.nix
+        ./vmtest/disk-config.nix
       ];
   };
 
   backlight = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs user lib;};
     system = "x86_64-linux";
-    modules = commonModules ++ [
-			./backlight
-			./backlight/hardware-configuration.nix
-		];
+    modules =
+      commonModules
+      ++ [
+        ./backlight
+        ./backlight/hardware-configuration.nix
+      ];
   };
 
   omega = inputs.nixpkgs.lib.nixosSystem {

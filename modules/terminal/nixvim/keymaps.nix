@@ -31,6 +31,7 @@
           options.silent = true;
           mode = "n";
         }
+				# telescope
         {
           action = "<cmd>Telescope current_buffer_fuzzy_find<cr>";
           key = "<leader>fr";
@@ -49,13 +50,32 @@
           options.silent = true;
           mode = "n";
         }
+				# running C code
+        {
+          action = "<cmd>! make clean<cr>";
+          key = "<leader>cl";
+          options.silent = true;
+          mode = "n";
+        }
+        {
+          action = "<cmd>! make<cr>";
+          key = "<leader>cc";
+          options.silent = true;
+          mode = "n";
+        }
+        {
+          action = "<cmd>! make run<cr>";
+          key = "<leader>cr";
+          options.silent = true;
+          mode = "n";
+        }
         {
           action = let
-						tmux = "${pkgs.tmux}/bin/tmux";
+            tmux = "${pkgs.tmux}/bin/tmux";
             new_window = pkgs.writeShellScriptBin "neww" ''
-							window=$(${tmux} new-window -PF "#D")
-							${tmux} send-keys -t $window " gdbx out $window" Enter
-						'';
+              window=$(${tmux} new-window -PF "#D")
+              ${tmux} send-keys -t $window " gdbx out $window" Enter
+            '';
           in "<cmd>!${new_window}/bin/neww<cr>";
           key = "<leader>d";
           options.silent = true;
