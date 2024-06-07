@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   config = lib.mkIf config.nixvim.enable {
@@ -45,6 +46,18 @@
         {
           action = "<cmd>Telescope live_grep<cr>";
           key = "<leader>fg";
+          options.silent = true;
+          mode = "n";
+        }
+        {
+          action = let
+						tmux = "${pkgs.tmux}/bin/tmux";
+            new_window = pkgs.writeShellScriptBin "neww" ''
+							window=$(${tmux} new-window -PF "#D")
+							${tmux} send-keys -t $window " gdbx out $window" Enter
+						'';
+          in "<cmd>!${new_window}/bin/neww<cr>";
+          key = "<leader>d";
           options.silent = true;
           mode = "n";
         }
