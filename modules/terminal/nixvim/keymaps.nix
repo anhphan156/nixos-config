@@ -31,7 +31,7 @@
           options.silent = true;
           mode = "n";
         }
-				# floaterm
+        # floaterm
         {
           action = ":FloatermToggle<CR>";
           key = "<leader>rt";
@@ -39,7 +39,7 @@
           mode = "n";
         }
 
-				# lspsaga
+        # lspsaga
         {
           action = ":Lspsaga peek_definition<CR>";
           key = "<leader>sd";
@@ -86,7 +86,7 @@
           mode = "n";
         }
         {
-          action = "<cmd>FloatermNew make run<cr>";
+          action = "<cmd>FloatermNew --autoclose=0 --width=0.7 --height=0.9 make run<cr>";
           key = "<leader>cr";
           options.silent = true;
           mode = "n";

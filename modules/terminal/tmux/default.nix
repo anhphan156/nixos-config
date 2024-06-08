@@ -14,6 +14,9 @@
       programs.tmux = {
         enable = true;
         prefix = "C-a";
+				# extraConfig = ''
+				# 	set -g status-position top
+				# '';
 
         plugins = with pkgs; [
           tmuxPlugins.nord

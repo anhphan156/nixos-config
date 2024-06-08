@@ -13,7 +13,7 @@
         gitsigns.enable = true;
         notify.enable = true;
         noice.enable = true;
-				floaterm.enable = true;
+        floaterm.enable = true;
 
         bufferline = {
           enable = true;
@@ -30,9 +30,9 @@
           theme = "evil";
         };
 
-				lspsaga = {
-					enable = true;
-				};
+        lspsaga = {
+          enable = true;
+        };
 
         lsp = {
           enable = true;
@@ -103,8 +103,9 @@
                   register = {cr = true;};
                 };
               };
-            };
-          };
+            }; # pairs
+						animate = { };
+          }; # modules
         };
 
         indent-blankline = {
