@@ -10,7 +10,7 @@
     (user.rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
-		inputs.xremap.nixosModules.default
+    inputs.xremap.nixosModules.default
   ];
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
@@ -20,7 +20,7 @@ in {
       (user.rootPath + /modules)
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
-			inputs.xremap.nixosModules.default
+      inputs.xremap.nixosModules.default
       ./installer
     ];
   };
@@ -45,6 +45,8 @@ in {
     modules =
       commonModules
       ++ [
+        inputs.disko.nixosModules.default
+        inputs.impermanence.nixosModules.impermanence
         ./backlight
         ./backlight/hardware-configuration.nix
       ];
