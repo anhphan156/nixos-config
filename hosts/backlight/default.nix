@@ -1,6 +1,7 @@
 {
   lib,
   user,
+	inputs,
   ...
 }:
 with lib; {
@@ -51,16 +52,20 @@ with lib; {
     files = [
       "/etc/machine-id"
     ];
-    users."${user.name}" = {
+  };
+	programs.fuse.userAllowOther = true;
+	home-manager.users."${user.name}" = {
+		imports = [ inputs.impermanence.nixosModules.home-manager.impermanence ];
+		home.persistence."/persistence/home/" = {
+			allowOther = true;
       directories = [
         "dotfiles"
-        {
-          directory = ".ssh";
-          mode = "0700";
-        }
+        "data"
+				".mozilla"
+				".ssh"
       ];
-    };
-  };
+		};
+	};
 
   users.users."${user.name}".initialPassword = "123";
 
