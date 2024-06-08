@@ -14,7 +14,10 @@ with lib; {
     };
     graphical = {
       gui = enabled;
-      hyprland = enabled;
+      hyprland = {
+				enable = mkForce true;
+				tripleMonitor = enabled;
+			};
     };
     terminal = {
       tmux = enabled;

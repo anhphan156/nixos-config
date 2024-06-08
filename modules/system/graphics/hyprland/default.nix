@@ -17,13 +17,30 @@ in {
 
   options = {
     cyanea.graphical.hyprland.enable = lib.mkEnableOption "Enable hyprland";
+    cyanea.graphical.hyprland.monitor = lib.mkOption {
+      default = [",preferred,auto,1"];
+      type = lib.types.listOf lib.types.str;
+      description = "List of monitors";
+    };
+    cyanea.graphical.hyprland.tripleMonitor.enable = lib.mkEnableOption "Enable hyprland triple monitor";
   };
 
   config = lib.mkIf (cfg.hyprland.enable && cfg.gui.enable) {
-    cyanea.graphical.mako = lib.enabled;
-    cyanea.desktopApp.rofi = lib.enabled;
-    cyanea.graphical.hyprland.pyprland = lib.enabled;
-    cyanea.graphical.eww = lib.enabled;
+    cyanea = {
+      desktopApp.rofi = lib.enabled;
+      graphical = {
+        eww = lib.enabled;
+        mako = lib.enabled;
+        hyprland = {
+          pyprland = lib.enabled;
+          monitor = lib.mkIf config.cyanea.graphical.hyprland.tripleMonitor.enable [
+            "HDMI-A-1,1920x1080,0x0,1"
+            "DP-1,1920x1080@144,1920x0,1,bitdepth,10"
+            "DP-3,3840x2160,3840x0,1.5"
+          ];
+        };
+      };
+    };
 
     environment.systemPackages = with pkgs; [
       polkit
@@ -89,11 +106,7 @@ in {
             sensitivity = "0.0";
           };
 
-          monitor = [
-            "HDMI-A-1,1920x1080,0x0,1"
-            "DP-1,1920x1080@144,1920x0,1,bitdepth,10"
-            "DP-3,3840x2160,3840x0,1.5"
-          ];
+          monitor = config.cyanea.graphical.hyprland.monitor;
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
