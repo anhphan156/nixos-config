@@ -61,6 +61,7 @@ user = {
 	editor_cmd = "",
 	file_browser = "",
 	music_player = "ncmpcpp",
+	weather_api_key = "123"
 }
 
 dpi = beautiful.xresources.apply_dpi

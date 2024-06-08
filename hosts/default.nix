@@ -49,6 +49,7 @@ in {
         inputs.impermanence.nixosModules.impermanence
         ./backlight
         ./backlight/hardware-configuration.nix
+				./backlight/disk-config.nix
       ];
   };
 

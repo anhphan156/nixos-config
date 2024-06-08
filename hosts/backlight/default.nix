@@ -1,4 +1,8 @@
-{lib, ...}:
+{
+  lib,
+  user,
+  ...
+}:
 with lib; {
   cyanea = {
     desktopApp = {
@@ -57,6 +61,8 @@ with lib; {
       ];
     };
   };
+
+  users.users."${user.name}".initialPassword = "123";
 
   system.stateVersion = "23.11";
 }
