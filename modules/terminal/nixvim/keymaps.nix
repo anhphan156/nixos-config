@@ -31,7 +31,29 @@
           options.silent = true;
           mode = "n";
         }
-				# telescope
+				# floaterm
+        {
+          action = ":FloatermToggle<CR>";
+          key = "<leader>rt";
+          options.silent = true;
+          mode = "n";
+        }
+
+				# lspsaga
+        {
+          action = ":Lspsaga peek_definition<CR>";
+          key = "<leader>sd";
+          options.silent = true;
+          mode = "n";
+        }
+        {
+          action = ":Lspsaga rename<CR>";
+          key = "<leader>sr";
+          options.silent = true;
+          mode = "n";
+        }
+
+        # telescope
         {
           action = "<cmd>Telescope current_buffer_fuzzy_find<cr>";
           key = "<leader>fr";
@@ -50,7 +72,7 @@
           options.silent = true;
           mode = "n";
         }
-				# running C code
+        # running C code
         {
           action = "<cmd>! make clean<cr>";
           key = "<leader>cl";
@@ -64,7 +86,7 @@
           mode = "n";
         }
         {
-          action = "<cmd>! make run<cr>";
+          action = "<cmd>FloatermNew make run<cr>";
           key = "<leader>cr";
           options.silent = true;
           mode = "n";

@@ -13,11 +13,12 @@
         gitsigns.enable = true;
         notify.enable = true;
         noice.enable = true;
+				floaterm.enable = true;
 
         bufferline = {
-					enable = true;
-					mode = "tabs";
-				};
+          enable = true;
+          mode = "tabs";
+        };
 
         presence-nvim = {
           enable = true;
@@ -28,6 +29,10 @@
           enable = true;
           theme = "evil";
         };
+
+				lspsaga = {
+					enable = true;
+				};
 
         lsp = {
           enable = true;
@@ -73,29 +78,12 @@
           };
         };
 
-        # transparent = {
-        #   enable = true;
-        #   settings.extra_groups = [
-        #     "NeoTreeNormal"
-        #     "NeoTreeNormalNC"
-        #   ];
-        # };
-
-        # neo-tree = {
-        #   enable = true;
-        #   enableGitStatus = true;
-        #   enableModifiedMarkers = true;
-        #   enableRefreshOnWrite = true;
-        #   closeIfLastWindow = true;
-        #   popupBorderStyle = "NC";
-        #   buffers.followCurrentFile.enabled = true;
-        # };
         nvim-tree = {
           enable = true;
           autoClose = true;
           autoReloadOnWrite = true;
           git.enable = true;
-					updateFocusedFile = lib.enabled;
+          updateFocusedFile = lib.enabled;
         };
 
         lualine = {
