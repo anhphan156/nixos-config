@@ -18,7 +18,7 @@
         name = "backspace";
         search = {
           force = true;
-					default = "duckduckgo";
+          default = "DuckDuckGo";
           engines = {
             "Nix Packages" = {
               urls = [
