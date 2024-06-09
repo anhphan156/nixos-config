@@ -14,8 +14,8 @@
       policies = {
         NoDefaultBookmarks = true;
       };
-      profiles.backspace = {
-        name = "backspace";
+      profiles."${user.name}" = {
+        name = user.name;
         search = {
           force = true;
           default = "DuckDuckGo";

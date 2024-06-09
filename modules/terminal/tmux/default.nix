@@ -14,9 +14,10 @@
       programs.tmux = {
         enable = true;
         prefix = "C-a";
-				# extraConfig = ''
-				# 	set -g status-position top
-				# '';
+        extraConfig = ''
+        	set -g default-terminal "screen-256color"
+					set -ga terminal-overrides ",*;Tc"
+        '';
 
         plugins = with pkgs; [
           tmuxPlugins.nord
