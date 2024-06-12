@@ -41,6 +41,18 @@
 
         # lspsaga
         {
+          action = ":Lspsaga hover_doc<CR>";
+          key = "<leader>sh";
+          options.silent = true;
+          mode = "n";
+        }
+        {
+          action = ":Lspsaga code_action<CR>";
+          key = "<leader>sa";
+          options.silent = true;
+          mode = "n";
+        }
+        {
           action = ":Lspsaga peek_definition<CR>";
           key = "<leader>sd";
           options.silent = true;

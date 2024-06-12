@@ -87,8 +87,27 @@
                 name = "buffer";
               }
             ];
-          };
-        };
+						formatting = {
+							expandable_indicator = true;
+							fields = [ "abbr" "kind" "menu" ];
+						};
+          }; # settings
+        }; # cmp
+
+				lspkind = {
+					enable = true;
+					mode = "symbol_text";
+					preset = "codicons";
+					cmp = {
+						enable = true;
+						after = ''
+							function(_, item)
+								item.menu = ""
+								return item
+							end
+						'';
+					};
+				};
 
         nvim-tree = {
           enable = true;
