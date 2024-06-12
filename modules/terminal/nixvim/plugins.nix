@@ -53,6 +53,16 @@
           enable = true;
           autoEnableSources = true;
           settings = {
+            window = {
+              completion = {
+                border = "rounded";
+                winhighlight = "FloatBorder:NormalFloat";
+              };
+              documentation = {
+                border = "rounded";
+                winhighlight = "FloatBorder:NormalFloat";
+              };
+            };
             mapping = {
               __raw = ''
                 cmp.mapping.preset.insert({
@@ -61,6 +71,8 @@
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'}),
+                    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'}),
                   })
               '';
             };
@@ -104,7 +116,7 @@
                 };
               };
             }; # pairs
-						animate = { };
+            animate = {};
           }; # modules
         };
 
@@ -123,6 +135,10 @@
 
       extraPlugins = with pkgs.vimPlugins; [
         nui-nvim
+        # {
+        # 	plugin = hex-nvim;
+        # 	config = ''lua require 'hex'.setup()'';
+        # }
       ];
     };
   };

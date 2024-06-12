@@ -26,6 +26,7 @@
         shiftwidth = 2;
         tabstop = 2;
         smartindent = true;
+        scl = "yes";
       };
 
       clipboard = {
@@ -38,6 +39,7 @@
         NvimTreeNormalNC.bg = "NONE";
         NvimTreeWinSeparator.bg = "NONE";
         NvimTreeWinSeparator.fg = "#000000";
+				NormalFloat.bg = "NONE"; #cmp menu no bg
       };
 
       autoCmd = [
