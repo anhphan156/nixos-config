@@ -15,9 +15,9 @@ with lib; {
     graphical = {
       gui = enabled;
       hyprland = {
-				enable = mkForce true;
-				tripleMonitor = enabled;
-			};
+        enable = mkForce true;
+        tripleMonitor = enabled;
+      };
     };
     terminal = {
       tmux = enabled;
@@ -25,6 +25,10 @@ with lib; {
     services = {
       water_reminder = enabled;
     };
+		dev = {
+			c = enabled;
+			avr = enabled;
+		};
     gaming = enabled;
     virtualization = enabled;
   };

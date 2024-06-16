@@ -13,7 +13,7 @@
     ./terminal
     ./homemanager
     ./virtualization
-		./programming
+    ./dev
   ];
 
   options = {

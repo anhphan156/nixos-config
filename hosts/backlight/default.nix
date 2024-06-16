@@ -29,6 +29,10 @@ with lib; {
     terminal = {
       tmux = enabled;
     };
+		dev = {
+			c = enabled;
+			avr = enabled;
+		};
     music = enabled;
   };
 
@@ -51,13 +55,13 @@ with lib; {
     files = [
       "/etc/machine-id"
     ];
-		users."${user.name}" = {
-			directories = [
+    users."${user.name}" = {
+      directories = [
         "dotfiles"
         "data"
         ".ssh"
-			];
-		};
+      ];
+    };
   };
 
   users.users."${user.name}".initialPassword = "123";
