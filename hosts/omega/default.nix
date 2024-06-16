@@ -25,10 +25,9 @@ with lib; {
     services = {
       water_reminder = enabled;
     };
-		dev = {
-			c = enabled;
-			avr = enabled;
-		};
+    dev = {
+      c = enabled;
+    };
     gaming = enabled;
     virtualization = enabled;
   };

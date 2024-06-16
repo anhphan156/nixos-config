@@ -13,6 +13,13 @@
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib user;};
+
+		templates = {
+			avr = {
+				path = ./templates/avr;
+				description = "Avr Project Template";
+			};
+		};
   };
 
   inputs = {
@@ -51,6 +58,6 @@
       url = "github:nix-community/impermanence";
     };
 
-		xremap.url = "github:xremap/nix-flake";
+    xremap.url = "github:xremap/nix-flake";
   };
 }

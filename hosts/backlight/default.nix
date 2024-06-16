@@ -29,10 +29,9 @@ with lib; {
     terminal = {
       tmux = enabled;
     };
-		dev = {
-			c = enabled;
-			avr = enabled;
-		};
+    dev = {
+      c = enabled;
+    };
     music = enabled;
   };
 
