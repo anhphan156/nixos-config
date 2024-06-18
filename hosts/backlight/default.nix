@@ -43,6 +43,7 @@ with lib; {
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
+      "/var/db/sudo/lectured"
       "/etc/NetworkManager/system-connections"
       {
         directory = "/var/lib/colord";
@@ -59,6 +60,7 @@ with lib; {
         "dotfiles"
         "data"
         ".ssh"
+        ".mozilla"
       ];
     };
   };
