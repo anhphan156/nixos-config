@@ -16,7 +16,10 @@ with lib; {
       acpid = enabled;
       autorandr = enabled;
       laptop = enabled;
-      light_control = enabled;
+      light_control = {
+				enable = true;
+				impermanence = enabled;
+			};
       xremap = enabled;
     };
     graphical = {

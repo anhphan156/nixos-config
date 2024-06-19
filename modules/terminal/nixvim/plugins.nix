@@ -44,6 +44,13 @@
             rust-analyzer.installRustc = true;
             rust-analyzer.installCargo = true;
           };
+					keymaps.lspBuf = {
+						K = "hover";
+						gD = "references";
+						gd = "definition";
+						gi = "implementation";
+						gy = "type_definition";
+					};
         };
         lsp-format = {
           enable = true;
@@ -87,27 +94,27 @@
                 name = "buffer";
               }
             ];
-						formatting = {
-							expandable_indicator = true;
-							fields = [ "abbr" "kind" "menu" ];
-						};
+            formatting = {
+              expandable_indicator = true;
+              fields = ["abbr" "kind" "menu"];
+            };
           }; # settings
         }; # cmp
 
-				lspkind = {
-					enable = true;
-					mode = "symbol_text";
-					preset = "codicons";
-					cmp = {
-						enable = true;
-						after = ''
-							function(_, item)
-								item.menu = ""
-								return item
-							end
-						'';
-					};
-				};
+        lspkind = {
+          enable = true;
+          mode = "symbol_text";
+          preset = "codicons";
+          cmp = {
+            enable = true;
+            after = ''
+              function(_, item)
+              	item.menu = ""
+              	return item
+              end
+            '';
+          };
+        };
 
         nvim-tree = {
           enable = true;
