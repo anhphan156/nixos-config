@@ -10,6 +10,7 @@ with lib; {
       firefox = enabled;
       keepassxc = enabled;
       rofi = enabled;
+      obsidian = enabled;
     };
     system = {
       hostname = "backlight";
@@ -17,9 +18,9 @@ with lib; {
       autorandr = enabled;
       laptop = enabled;
       light_control = {
-				enable = true;
-				impermanence = enabled;
-			};
+        enable = true;
+        impermanence = enabled;
+      };
       xremap = enabled;
     };
     graphical = {
@@ -36,6 +37,7 @@ with lib; {
       c = enabled;
     };
     music = enabled;
+		virtualization = enabled;
   };
 
   fileSystems."/persistence".neededForBoot = true;
@@ -43,6 +45,7 @@ with lib; {
     hideMounts = true;
     directories = [
       "/var/log"
+      "/var/lib/alsa"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
