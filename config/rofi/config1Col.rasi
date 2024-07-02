@@ -1,0 +1,112 @@
+configuration {
+	font: "AnkaCoder-r 15";
+	sort: false;
+	combi-display-format: "{mode} {text}";
+}
+
+* {
+		separatorcolor: rgba(0,0,0,0);
+}
+
+window {
+    background-color: #aabbcc01;
+		fullscreen: false;
+    border: 0;
+    border-color: @x14;
+    border-radius: 12px;
+    padding: 00;
+    width: 50%;
+    height: 560px;
+    children: [ vertbox ];
+}
+
+mainbox {
+    border: 0;
+    padding: 0;
+}
+
+vertbox {
+    orientation: vertical;
+    children: [ listview, inputbar ];
+}
+
+inputbar {
+		width: 25%;
+    margin: 0px 10px 10px 10px;
+		padding: 10px 10px 10px 10px;
+		background-color: rgba(50, 50, 50, 80%);
+		border-radius: 12px;
+		children: [ prompt, entry ];
+}
+
+mode-switcher{
+    orientation: vertical;
+    margin: 20px 10px;
+}
+
+textbox {
+    text-color: @xfg;
+}
+
+listview {
+    scrollbar: false;
+		background-color: rgba(50, 50, 50, 80%);
+		margin: 10px 10px;
+		border-radius: 12px;
+}
+
+entry {
+		margin: 0px 15px;
+    text-color: rgba(230, 230, 230, 100%);
+    placeholder: "There is no place like ~/";
+}
+
+element {
+    spacing: 0px;
+    margin: 10px;
+    orientation: horizontal;
+    children: [ element-text ];
+		border-radius: 24px;
+}
+element selected.normal {
+    background-color: @x9;
+    text-color:       rgba(30, 30, 30, 100%);
+}
+element normal.normal {
+    background-color: rgba (0,0,0,0%);
+    text-color:       @xfg;
+}
+
+element-text {
+    vertical-align:  0.5;
+    horizontal-align: 1.0;
+    padding: 12px 25px;
+}
+element normal.active {
+    background-color: rgba (0,0,0,0%);
+    text-color:       @x5;
+}
+element alternate.normal {
+    background-color: rgba (0,0,0,0%);
+    text-color:       @xfg;
+}
+
+element-icon {
+    /*size: 2.0em;*/
+}
+
+prompt {
+    spacing:    0;
+    border:     0;
+    text-color: @xfg;
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        " ss ";
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    text-color: inherit;
+}
+
+
+@import "colors.rasi"

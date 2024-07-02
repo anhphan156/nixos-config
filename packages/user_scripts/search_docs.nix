@@ -1,8 +1,8 @@
-{pkgs}:
+{ pkgs, user }:
 pkgs.writeShellScriptBin "search_docs" ''
   #!/usr/bin/env bash
 
-  arg=$(find ~ 2> /dev/null | ${pkgs.rofi-wayland}/bin/rofi -i -dmenu -p "Select a document:")
+  arg=$(find ~ 2> /dev/null | ${pkgs.rofi-wayland}/bin/rofi -i -dmenu -p "Select a document:" -config ${user.rootPath + /config/rofi/config1Col.rasi})
 
   filename=$(basename $arg)
   extension="''${filename##*.}"
