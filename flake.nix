@@ -14,12 +14,16 @@
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib user;};
 
-		templates = {
-			avr = {
-				path = ./templates/avr;
-				description = "Avr Project Template";
+    templates = {
+      avr = {
+        path = ./templates/avr;
+        description = "Avr Project Template";
+      };
+			arm = {
+        path = ./templates/arm;
+        description = "Arm Project Template";
 			};
-		};
+    };
   };
 
   inputs = {

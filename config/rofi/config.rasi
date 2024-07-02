@@ -1,21 +1,21 @@
 configuration {
-    modes: "window,drun,run";
+    modes: "ssh,window,drun,run";
     combi-modes: "window";
     font: "AnkaCoder-r 15";
 
     display-window: "";
     display-run: "♥";
-    display-ssh: "";
     display-drun: "";
     display-calc: "";
     display-combi: "";
     display-emoji: "";
+    display-ssh: "";
 
 
 
     terminal: "kitty";
 /*	ssh-client: "ssh";*/
-/*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
+		ssh-command: "{terminal} -- kitty +kitten ssh {host}";
 /*	run-command: "{cmd}";*/
 /*	run-list-command: "";*/
 /*	run-shell-command: "{terminal} -e {cmd}";*/
