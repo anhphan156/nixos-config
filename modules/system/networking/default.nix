@@ -4,6 +4,10 @@
   config,
   ...
 }: {
+	imports = [
+		./omega.nix
+	];
+
   options.cyanea.system.hostname = lib.mkOption {
     description = "networking host name";
     type = lib.types.str;
@@ -11,8 +15,10 @@
   };
 
   config = {
-    networking.hostName = config.cyanea.system.hostname;
-    networking.networkmanager.enable = true;
+    networking = {
+			networkmanager.enable = true;
+			hostName = config.cyanea.system.hostname;
+		};
     users.users."${user.name}" = {
       extraGroups = lib.mkAfter ["networkmanager"];
     };

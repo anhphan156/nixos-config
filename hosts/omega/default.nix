@@ -19,6 +19,9 @@ with lib; {
         tripleMonitor = enabled;
       };
     };
+		networking = {
+			ethernet = enabled;
+		};
     terminal = {
       tmux = enabled;
     };
