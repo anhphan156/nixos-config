@@ -19,14 +19,15 @@ with lib; {
         tripleMonitor = enabled;
       };
     };
-		networking = {
-			ethernet = enabled;
-		};
+    networking = {
+      ethernet = enabled;
+    };
     terminal = {
       tmux = enabled;
     };
     services = {
       water_reminder = enabled;
+			ratbagd = enabled;
     };
     dev = {
       c = enabled;

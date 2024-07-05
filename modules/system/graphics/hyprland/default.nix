@@ -34,8 +34,8 @@ in {
         hyprland = {
           pyprland = lib.enabled;
           monitor = lib.mkIf config.cyanea.graphical.hyprland.tripleMonitor.enable [
-            "DP-1,1920x1080@144,0x0,1,bitdepth,10"
-            "DP-3,3840x2160,1920x0,1.5"
+            "DP-1,3840x2160,1920x0,1.5"
+            "DP-3,1920x1080@144,0x0,1,bitdepth,10"
             "HDMI-A-1,1920x1080,5760x0,1"
           ];
         };

@@ -1,5 +1,6 @@
 {
-	imports = [
-		./water_reminder.nix
-	];
+  imports = [
+    ./water_reminder.nix
+		./ratbagd.nix
+  ];
 }

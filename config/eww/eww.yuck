@@ -1,5 +1,5 @@
 (defwindow bar
-	:monitor 1
+	:monitor 0
 	:exclusive true
 	:geometry 
 		(geometry 
