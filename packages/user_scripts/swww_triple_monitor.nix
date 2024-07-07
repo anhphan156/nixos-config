@@ -9,5 +9,5 @@ pkgs.writeShellScriptBin "swww_tm" ''
   convert -crop 50%x100% $random /tmp/output.png
 
   swww img -o "DP-1" --transition-type center /tmp/output-1.png
-  swww img -o "HDMI-A-1" --transition-type center /tmp/output-0.png
+  swww img -o "DP-3" --transition-type center /tmp/output-0.png
 ''
