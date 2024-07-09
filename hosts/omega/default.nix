@@ -27,10 +27,11 @@ with lib; {
     };
     services = {
       water_reminder = enabled;
-			ratbagd = enabled;
+      ratbagd = enabled;
     };
     dev = {
       c = enabled;
+			rust = enabled;
     };
     gaming = enabled;
     virtualization = enabled;

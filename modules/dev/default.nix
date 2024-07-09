@@ -1,6 +1,9 @@
 {
-	imports = [
-		./avr.nix
-		./c.nix
-	];
+  imports = [
+    ./avr.nix
+		./arm.nix
+    ./c.nix
+		./haskell.nix
+		./rust.nix
+  ];
 }
