@@ -27,14 +27,19 @@ in {
             plugin "curl"
         }
 
-        audio_output {
-            type        "pulse"
-            name        "My pulseaudio Device"
+        #audio_output {
+        #   type        "pulse"
+        #   name        "My Pulseaudio Device"
         #   device      "hw:0,0"    # optional
         #   mixer_type      "hardware"  # optional
         #   mixer_device    "default"   # optional
         #   mixer_control   "PCM"       # optional
         #   mixer_index "0"     # optional
+        #}
+
+        audio_output {
+            type        "pipewire"
+            name        "My Pipewire Device"
         }
 
         audio_output {

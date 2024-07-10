@@ -13,7 +13,7 @@
       enable = true;
       mpdMusicDir = "/home/backspace/data/Music";
       settings = {
-        "execute_on_song_change" = ''bash -c "awesome-client \"awesome.emit_signal('ncmpcpp::songchanged', '$(mpc --format "%title% by %artist%" current)'); awesome.emit_signal('music_player::set_title') \" "'';
+        "execute_on_song_change" = lib.mkIf config.cyanea.graphical.awesome.enable ''bash -c "awesome-client \"awesome.emit_signal('ncmpcpp::songchanged', '$(mpc --format "%title% by %artist%" current)'); awesome.emit_signal('music_player::set_title') \" "'';
         "autocenter_mode" = "yes";
         "allow_for_physical_item_deletion" = "no";
 

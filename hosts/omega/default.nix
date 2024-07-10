@@ -31,8 +31,9 @@ with lib; {
     };
     dev = {
       c = enabled;
-			rust = enabled;
+      rust = enabled;
     };
+		music = enabled;
     gaming = enabled;
     virtualization = enabled;
   };

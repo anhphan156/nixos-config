@@ -1,7 +1,8 @@
 {
   config,
   lib,
-	pkgs,
+  pkgs,
+	user,
   ...
 }: {
   options = {
@@ -17,8 +18,12 @@
       pulse.enable = true;
     };
 
-		environment.systemPackages = with pkgs; [
-			pavucontrol
-		];
+    users.users."${user.name}" = {
+      extraGroups = lib.mkAfter ["audio"];
+    };
+
+    environment.systemPackages = with pkgs; [
+      pavucontrol
+    ];
   };
 }
