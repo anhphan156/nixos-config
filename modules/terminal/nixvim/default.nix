@@ -3,11 +3,6 @@
   lib,
   ...
 }: {
-  # imports = [
-  #   ./keymaps.nix
-  #   ./plugins.nix
-  # ];
-
   options = {
     nixvim.enable = lib.mkOption {
       default = true;

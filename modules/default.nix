@@ -3,19 +3,6 @@
   user,
   ...
 }: {
-  # imports = [
-  #   ./user
-  #   ./system
-  #   ./services
-  #   ./applications
-  #   ./gaming
-  #   ./theming
-  #   ./terminal
-  #   ./homemanager
-  #   ./virtualization
-  #   ./dev
-  # ];
-
   options = {
     cyanea.graphical.gui.enable = lib.mkEnableOption "Enable GUI";
     cyanea.user = {

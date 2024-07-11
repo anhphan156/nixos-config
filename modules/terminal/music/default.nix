@@ -5,11 +5,6 @@
   lib,
   ...
 }: {
-  # imports = [
-  #   ./ncmpcpp.nix
-  #   ./mpd.nix
-  # ];
-
   options.cyanea.music.enable = lib.mkEnableOption "Enable mpd and ncmpcpp";
 
   config = lib.mkIf config.cyanea.music.enable {
