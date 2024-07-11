@@ -8,12 +8,12 @@
 }: let
   cfg = config.cyanea.graphical;
 in {
-  imports = [
-    ./bind.nix
-    ../waybar
-    ./pyprland
-    ../mako
-  ];
+  # imports = [
+  #   ./bind.nix
+  #   ../waybar
+  #   ./pyprland
+  #   ../mako
+  # ];
 
   options = {
     cyanea.graphical.hyprland.enable = lib.mkEnableOption "Enable hyprland";

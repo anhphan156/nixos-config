@@ -3,10 +3,10 @@
   lib,
   ...
 }: {
-  imports = [
-    ./keymaps.nix
-    ./plugins.nix
-  ];
+  # imports = [
+  #   ./keymaps.nix
+  #   ./plugins.nix
+  # ];
 
   options = {
     nixvim.enable = lib.mkOption {
@@ -39,7 +39,7 @@
         NvimTreeNormalNC.bg = "NONE";
         NvimTreeWinSeparator.bg = "NONE";
         NvimTreeWinSeparator.fg = "#000000";
-				NormalFloat.bg = "NONE"; #cmp menu no bg
+        NormalFloat.bg = "NONE"; #cmp menu no bg
       };
 
       autoCmd = [

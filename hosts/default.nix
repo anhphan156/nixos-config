@@ -4,14 +4,15 @@
   inputs,
   ...
 }: let
+
   commonModules = [
     (user.rootPath + /overlay)
-    (user.rootPath + /modules)
     (user.rootPath + /packages)
     inputs.home-manager.nixosModules.home-manager
     inputs.nixvim.nixosModules.nixvim
     inputs.xremap.nixosModules.default
-  ];
+  ] ++ 
+	  (lib.getNixFiles (user.rootPath + /modules));
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs user lib;};
@@ -49,7 +50,7 @@ in {
         inputs.impermanence.nixosModules.impermanence
         ./backlight
         ./backlight/hardware-configuration.nix
-				./backlight/disk-config.nix
+        ./backlight/disk-config.nix
       ];
   };
 

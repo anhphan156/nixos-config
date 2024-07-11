@@ -5,9 +5,9 @@
   user,
   ...
 }: {
-	imports = [
-		./udevRule.nix
-	];
+  # imports = [
+  #   ./udevRule.nix
+  # ];
   options.cyanea.system.light_control.enable = lib.mkEnableOption "Enable brightness control";
   config = lib.mkIf config.cyanea.system.light_control.enable {
     programs.light.enable = true;
