@@ -21,7 +21,8 @@
       then
         with pkgs; [
           (import (user.rootPath + /packages/user_scripts/kitty_spawn/spawn_ncmpcpp.nix) {inherit pkgs;})
-          (import (user.rootPath + /packages/user_scripts/music_retag.nix) {inherit pkgs;})
+          (import (user.rootPath + /packages/user_scripts/music/music_retag.nix) {inherit pkgs;})
+          (import (user.rootPath + /packages/user_scripts/music/yt-dlp_mp3.nix) {inherit pkgs;})
           mpc-cli
         ]
       else [];

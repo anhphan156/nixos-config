@@ -44,13 +44,13 @@
             rust-analyzer.installRustc = true;
             rust-analyzer.installCargo = true;
           };
-					keymaps.lspBuf = {
-						K = "hover";
-						gD = "references";
-						gd = "definition";
-						gi = "implementation";
-						gy = "type_definition";
-					};
+          keymaps.lspBuf = {
+            K = "hover";
+            gD = "references";
+            gd = "definition";
+            gi = "implementation";
+            gy = "type_definition";
+          };
         };
         lsp-format = {
           enable = true;
@@ -157,15 +157,42 @@
             debounce = 200;
           };
         };
-      };
 
-      extraPlugins = with pkgs.vimPlugins; [
-        nui-nvim
-        # {
-        # 	plugin = hex-nvim;
-        # 	config = ''lua require 'hex'.setup()'';
-        # }
-      ];
+				chatgpt = {
+					enable = true;
+					settings = {
+						show_line_numbers = true;
+					};
+				};
+
+      }; # plugins end
+
+      extraPlugins = with pkgs.vimPlugins;
+        [
+          nui-nvim
+          # {
+          # 	plugin = hex-nvim;
+          # 	config = ''lua require 'hex'.setup()'';
+          # }
+        ]
+        ++ (with pkgs; [
+          {
+            plugin = vimUtils.buildVimPlugin {
+              name = "leetcode";
+              src = fetchFromGitHub {
+                owner = "kawre";
+                repo = "leetcode.nvim";
+                rev = "02fb2c855658ad6b60e43671f6b040c812181a1d";
+                hash = "sha256-YoFRd9Uf+Yv4YM6/l7MVLMjfRqhroSS3RCmZvNowIAo=";
+              };
+            };
+            config =
+              /*
+              lua
+              */
+              ''lua require 'leetcode'.setup() '';
+          }
+        ]);
     };
   };
 }
