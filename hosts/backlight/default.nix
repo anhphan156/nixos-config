@@ -17,6 +17,7 @@ with lib; {
       acpid = enabled;
       autorandr = enabled;
       laptop = enabled;
+			pipewire = enabled;
       light_control = {
         enable = true;
         impermanence = enabled;
@@ -37,7 +38,7 @@ with lib; {
       c = enabled;
     };
     music = enabled;
-		virtualization = enabled;
+    virtualization = enabled;
   };
 
   fileSystems."/persistence".neededForBoot = true;
