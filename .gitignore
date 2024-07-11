@@ -36,3 +36,4 @@ config/ncmpcpp/error.log
 config/systemd/
 config/ghc/
 result
+playground.nix

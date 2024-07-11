@@ -14,7 +14,9 @@ in {
     ];
     services.displayManager = {
       sddm.enable = true;
-      sddm.theme = "${import (user.rootPath + /packages/MarianArlt-sddm-sugar-dark) {inherit pkgs;}}";
+			sddm.catppuccin.enable = false;
+			# sddm.catppuccin.assertQt6Sddm = false;
+      sddm.theme = lib.mkForce "${import (user.rootPath + /packages/MarianArlt-sddm-sugar-dark) {inherit pkgs;}}";
       sddm.wayland.enable = lib.mkIf cfg.hyprland.enable true;
       defaultSession =
         if cfg.awesome.enable

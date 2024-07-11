@@ -4,15 +4,16 @@
   inputs,
   ...
 }: let
-
-  commonModules = [
-    (user.rootPath + /overlay)
-    (user.rootPath + /packages)
-    inputs.home-manager.nixosModules.home-manager
-    inputs.nixvim.nixosModules.nixvim
-    inputs.xremap.nixosModules.default
-  ] ++ 
-	  (lib.getNixFiles (user.rootPath + /modules));
+  commonModules =
+    [
+      (user.rootPath + /overlay)
+      (user.rootPath + /packages)
+      inputs.home-manager.nixosModules.home-manager
+      inputs.nixvim.nixosModules.nixvim
+      inputs.xremap.nixosModules.default
+			inputs.catppuccin.nixosModules.catppuccin
+    ]
+    ++ (lib.getNixFiles (user.rootPath + /modules));
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs user lib;};

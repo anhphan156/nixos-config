@@ -19,10 +19,10 @@
         path = ./templates/avr;
         description = "Avr Project Template";
       };
-			arm = {
+      arm = {
         path = ./templates/arm;
         description = "Arm Project Template";
-			};
+      };
     };
   };
 
@@ -63,5 +63,7 @@
     };
 
     xremap.url = "github:xremap/nix-flake";
+
+		catppuccin.url = "github:catppuccin/nix";
   };
 }

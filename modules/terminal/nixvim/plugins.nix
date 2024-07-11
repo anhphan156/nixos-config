@@ -158,18 +158,24 @@
           };
         };
 
-				chatgpt = {
-					enable = true;
-					settings = {
-						show_line_numbers = true;
-					};
-				};
-
+        chatgpt = {
+          enable = false;
+          settings = {
+            show_line_numbers = true;
+						api_key_cmd = "echo -n <key-goes-here>";
+						extra_curl_params = [
+							"-H"
+							"Origin: https://example.com"
+						];
+          };
+        };
       }; # plugins end
 
       extraPlugins = with pkgs.vimPlugins;
         [
-          nui-nvim
+          {
+            plugin = nui-nvim;
+          }
           # {
           # 	plugin = hex-nvim;
           # 	config = ''lua require 'hex'.setup()'';
@@ -186,11 +192,7 @@
                 hash = "sha256-YoFRd9Uf+Yv4YM6/l7MVLMjfRqhroSS3RCmZvNowIAo=";
               };
             };
-            config =
-              /*
-              lua
-              */
-              ''lua require 'leetcode'.setup() '';
+            config = ''lua require 'leetcode'.setup() '';
           }
         ]);
     };
