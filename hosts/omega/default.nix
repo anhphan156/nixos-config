@@ -16,7 +16,11 @@ with lib; {
       gui = enabled;
       hyprland = {
         enable = mkForce true;
-        tripleMonitor = enabled;
+				monitor = [
+					"DP-1,3840x2160,1920x0,1.5"
+					"DP-3,1920x1080@144,0x0,1,bitdepth,10"
+					"HDMI-A-1,1920x1080,5760x0,1"
+				];
       };
     };
     networking = {
@@ -33,7 +37,7 @@ with lib; {
       c = enabled;
       rust = enabled;
     };
-		music = enabled;
+    music = enabled;
     gaming = enabled;
     virtualization = enabled;
   };
