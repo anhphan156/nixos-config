@@ -11,20 +11,18 @@
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
       inputs.xremap.nixosModules.default
-			inputs.catppuccin.nixosModules.catppuccin
-    ]
-    ++ (lib.getNixFiles (user.rootPath + /modules));
+      inputs.catppuccin.nixosModules.catppuccin
+    ] ++ (lib.getNixFiles (user.rootPath + /modules));
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs user lib;};
     system = "x86_64-linux";
     modules = [
-      (user.rootPath + /modules)
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
       inputs.xremap.nixosModules.default
       ./installer
-    ];
+    ] ++ (lib.getNixFiles (user.rootPath + /modules));
   };
 
   vmtest = inputs.nixpkgs.lib.nixosSystem {

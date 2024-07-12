@@ -2,8 +2,11 @@
 with lib; {
   cyanea = {
     desktopApp = {
+      firefox = {
+        enable = lib.mkForce true;
+        spacebar = enabled;
+      };
       vesktop = enabled;
-      firefox = enabled;
       googlechrome = enabled;
       keepassxc = enabled;
       obsidian = enabled;

@@ -7,5 +7,5 @@
   # config.home-manager = install [ pkgs.<name> ];
   install = packages: {users."${user.name}".home.packages = packages;};
 
-	getNixFiles = path : import ./imports { inherit path; };
+  getNixFiles = path: import ./getNixFiles {inherit path;};
 }
