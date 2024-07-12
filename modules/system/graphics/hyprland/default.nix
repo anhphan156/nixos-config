@@ -36,6 +36,8 @@ in {
       grim
       slurp
       wl-clipboard
+      cliphist
+			wtype
       wireplumber # streaming stuff
       swww
       (import (user.rootPath + /packages/user_scripts/swww_triple_monitor.nix) {inherit pkgs;})
@@ -63,6 +65,7 @@ in {
             "${autostart}/bin/start"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
             "eww daemon"
+            "wl-paste --watch cliphist store"
           ];
 
           general = {

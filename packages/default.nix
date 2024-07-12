@@ -52,9 +52,9 @@
       figlet
       acpid
       mpv
-			yt-dlp
+      yt-dlp
       cava
-			python3
+      python3
 
       blender
       obs-studio

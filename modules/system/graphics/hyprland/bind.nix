@@ -18,6 +18,8 @@
             "$mod, RETURN, exec, kitty"
             "$mod, W, killactive"
             "ALT, SPACE, execr, rofi -show run"
+            "$mod, C, execr, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+            "$mod, L, execr, cat ~/data/links.txt | rofi -dmenu | xargs wtype"
 
             # window control
             "$mod, F, togglefloating"
