@@ -37,7 +37,7 @@ in {
       slurp
       wl-clipboard
       cliphist
-			wtype
+      wtype
       wireplumber # streaming stuff
       swww
       (import (user.rootPath + /packages/user_scripts/swww_triple_monitor.nix) {inherit pkgs;})
@@ -74,8 +74,12 @@ in {
           };
 
           decoration = {
-            shadow_offset = "5 5";
-            "col.shadow" = "rgba(00000099)";
+						drop_shadow = "yes";
+						shadow_range = "300";
+						shadow_render_power = "4";
+            "col.shadow" = "rgba(1a1a1aaf)";
+            shadow_offset = "0 40";
+						shadow_scale = "0.9";
             rounding = "10";
             active_opacity = "0.75";
             inactive_opacity = "0.4";

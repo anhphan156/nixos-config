@@ -11,9 +11,13 @@
         fugitive.enable = true;
         telescope.enable = true;
         gitsigns.enable = true;
-        notify.enable = true;
         noice.enable = true;
         floaterm.enable = true;
+
+        notify = {
+					enable = true;
+					topDown = false;
+				};
 
         bufferline = {
           enable = true;
@@ -162,11 +166,11 @@
           enable = false;
           settings = {
             show_line_numbers = true;
-						api_key_cmd = "echo -n <key-goes-here>";
-						extra_curl_params = [
-							"-H"
-							"Origin: https://example.com"
-						];
+            api_key_cmd = "echo -n <key-goes-here>";
+            extra_curl_params = [
+              "-H"
+              "Origin: https://example.com"
+            ];
           };
         };
       }; # plugins end
