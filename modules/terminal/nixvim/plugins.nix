@@ -3,21 +3,21 @@
   lib,
   pkgs,
   ...
-}: {
-  config = lib.mkIf config.nixvim.enable {
+}: with lib; {
+  config = mkIf config.nixvim.enable {
     programs.nixvim = {
       plugins = {
-        treesitter.enable = true;
-        fugitive.enable = true;
-        telescope.enable = true;
-        gitsigns.enable = true;
-        noice.enable = true;
-        floaterm.enable = true;
+        treesitter = enabled;
+        fugitive = enabled;
+        telescope = enabled;
+        gitsigns = enabled;
+        noice = enabled;
+        floaterm = enabled;
 
         notify = {
-					enable = true;
-					topDown = false;
-				};
+          enable = true;
+          topDown = false;
+        };
 
         bufferline = {
           enable = true;
@@ -41,12 +41,15 @@
         lsp = {
           enable = true;
           servers = {
-            clangd.enable = true;
-            nixd.enable = true;
-            lua-ls.enable = true;
-            rust-analyzer.enable = true;
-            rust-analyzer.installRustc = true;
-            rust-analyzer.installCargo = true;
+            clangd = enabled;
+            nixd = enabled;
+            lua-ls = enabled;
+						jsonls = enabled;
+            rust-analyzer = {
+							enable = true;
+							installRustc = true;
+							installCargo = true;
+						};
           };
           keymaps.lspBuf = {
             K = "hover";

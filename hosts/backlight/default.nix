@@ -36,7 +36,7 @@ with lib; {
     };
     dev = {
       c = enabled;
-			rust = enabled;
+      rust = enabled;
     };
     music = enabled;
     virtualization = enabled;
@@ -69,6 +69,8 @@ with lib; {
         "data"
         ".ssh"
         ".mozilla"
+        ".rustup"
+				".cargo"
       ];
     };
   };

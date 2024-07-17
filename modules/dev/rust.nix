@@ -8,7 +8,8 @@
   config = lib.mkIf config.cyanea.dev.rust.enable {
     environment.systemPackages = with pkgs; [
       rustc
-			cargo
+      cargo
+			rustup
     ];
   };
 }
