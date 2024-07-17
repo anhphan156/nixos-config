@@ -17,7 +17,7 @@ with lib; {
       acpid = enabled;
       autorandr = enabled;
       laptop = enabled;
-			pipewire = enabled;
+      pipewire = enabled;
       light_control = {
         enable = true;
         impermanence = enabled;
@@ -36,6 +36,7 @@ with lib; {
     };
     dev = {
       c = enabled;
+			rust = enabled;
     };
     music = enabled;
     virtualization = enabled;

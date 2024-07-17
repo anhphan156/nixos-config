@@ -1,6 +1,6 @@
 {
   lib,
-	pkgs,
+  pkgs,
   config,
   user,
   inputs,
@@ -16,17 +16,17 @@ in {
 
   config = lib.mkIf (cfggui.enable && cfg.enable) {
     home-manager.users."${user.name}" = {
-      home.packages =
-        lib.mkIf cfg.spacebar.enable [
-					(pkgs.writeShellScriptBin "ffspacebar" ''
-						firefox -P spacebar
-					'')
-        ];
+      home.packages = lib.mkIf cfg.spacebar.enable [
+        (pkgs.writeShellScriptBin "ffspacebar" ''
+          firefox -P spacebar
+        '')
+      ];
 
       programs.firefox = {
         enable = true;
         policies = {
           NoDefaultBookmarks = true;
+					"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
         profiles.spacebar = lib.mkIf cfg.spacebar.enable {
           name = "spacebar";
@@ -38,20 +38,20 @@ in {
           extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
           ];
-					# containers = {
-					# 	education = {
-					# 		name = "education";
-					# 		id = 1;
-					# 		color = "blue";
-					# 		icon = "tree";
-					# 	};
-					# 	job = {
-					# 		name = "job";
-					# 		id = 2;
-					# 		color = "orange";
-					# 		icon = "briefcase";
-					# 	};
-					# };
+          # containers = {
+          # 	education = {
+          # 		name = "education";
+          # 		id = 1;
+          # 		color = "blue";
+          # 		icon = "tree";
+          # 	};
+          # 	job = {
+          # 		name = "job";
+          # 		id = 2;
+          # 		color = "orange";
+          # 		icon = "briefcase";
+          # 	};
+          # };
         };
         profiles."${user.name}" = {
           name = user.name;

@@ -59,6 +59,11 @@ awful.keyboard.append_global_keybindings({
 		awful.spawn.with_shell("rofi -show run -config ~/.config/rofi/configX.rasi")
 	end, { description = "open rofi", group = "launcher" }),
 
+	awful.key({ modkey }, "l", function()
+		awful.spawn.with_shell(
+			"cat ~/data/links.txt | rofi -dmenu -config ~/.config/rofi/config1Col.rasi | xargs xdotool type")
+	end, { description = "open rofi common links", group = "launcher" }),
+
 	--awful.key(
 	--{ modkey },            "r",
 	--function () awful.screen.focused().mypromptbox:run() end,
@@ -95,6 +100,15 @@ awful.keyboard.append_global_keybindings({
 			client.focus:raise()
 		end
 	end, { description = "go back", group = "client" }),
+
+	awful.key({ altkey }, "Tab", function()
+		-- awful.client.cycle(true, awful.screen.focused(), false)
+		awful.client.focus.byidx(1)
+		if client.focus then
+			client.focus:raise()
+		end
+	end, { description = "alt tab", group = "client" }),
+
 	awful.key({ modkey, "Control" }, "j", function()
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
