@@ -70,6 +70,7 @@ with lib; {
         ".ssh"
         ".mozilla"
         ".rustup"
+        ".cargo"
       ];
     };
   };
