@@ -98,7 +98,8 @@
           mode = "n";
         }
         {
-          action = "<cmd>FloatermNew --autoclose=0 --width=0.7 --height=0.9 make run<cr>";
+          # action = "<cmd>FloatermNew --autoclose=0 --width=0.7 --height=0.9 make run<cr>";
+          action = "<cmd>! tmux send-keys -t :.+1 \" make run\" Enter<CR>";
           key = "<leader>cr";
           options.silent = true;
           mode = "n";
