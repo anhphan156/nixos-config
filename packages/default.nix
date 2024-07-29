@@ -27,7 +27,7 @@
     };
 
     home.packages = with pkgs; [
-      cinnamon.nemo
+      nemo
       pureref
 
       cmatrix

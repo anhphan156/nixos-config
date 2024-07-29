@@ -22,6 +22,7 @@
         tabstop = 2;
         smartindent = true;
         scl = "yes";
+				scrolloff = 5;
       };
 
       clipboard = {
