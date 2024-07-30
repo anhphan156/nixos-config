@@ -9,8 +9,9 @@
     cyanea.dev.c = lib.enabled;
     environment.systemPackages = with pkgs; [
       avrdude
-			pkgsCross.avr.buildPackages.gcc
-			pkgsCross.avr.buildPackages.gdb
+      pkgsCross.avr.buildPackages.gcc
+      pkgsCross.avr.buildPackages.gdb
+      # pkgsCross.avr.avrlibc
     ];
   };
 }

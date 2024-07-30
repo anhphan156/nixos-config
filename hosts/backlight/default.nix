@@ -37,6 +37,7 @@ with lib; {
     dev = {
       c = enabled;
       rust = enabled;
+			avr = enabled;
     };
     music = enabled;
     virtualization = enabled;
