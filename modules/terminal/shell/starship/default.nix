@@ -5,20 +5,22 @@
 }: {
   home-manager.users."${user.name}" = {
     programs.starship = {
-      enable = false;
-      enableZshIntegration = false;
+      enable = true;
+      enableZshIntegration = true;
       settings = {
         add_newline = false;
         scan_timeout = 10;
-        right_format = lib.concatStrings [
-          "$c$rust$nix_shell$os"
-        ];
         format = lib.concatStrings [
-          "$character $directory$git_branch$git_status"
+          "╭───── $directory$os$c$rust$nix_shell"
+					"$line_break"
+					"╰──$character"
+        ];
+        right_format = lib.concatStrings [
+          "$git_branch$git_status"
         ];
         character = {
-          success_symbol = "[↪](bold green)";
-          error_symbol = "[↪](bold red)";
+          success_symbol = "[](bold white)";
+          error_symbol = "[](bold red)";
         };
         hostname = {
           ssh_only = false;
@@ -32,7 +34,14 @@
         };
         os = {
           disabled = false;
+					format = "[$symbol]($style)";
+					style = "bold white";
         };
+				git_branch = {
+					symbol = " ";
+					style = "bold purple";
+					format = "[$symbol$branch]($style)";
+				};
       };
     };
   };
