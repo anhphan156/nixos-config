@@ -14,6 +14,7 @@
     virtualisation.libvirtd.allowedBridges = [
       "virbr0"
     ];
+		virtualisation.spiceUSBRedirection = lib.enabled;
     programs.virt-manager.enable = true;
 
     users.users."${user.name}" = {

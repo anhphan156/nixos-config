@@ -116,7 +116,15 @@
           options.silent = true;
           mode = "n";
         }
-      ];
+        {
+          action = ''
+						:lua require'luasnip'.jump(1)<cr>
+					'';
+          key = "<C-L>";
+          options.silent = true;
+          mode = "n";
+        }
+      ]; #keymaps
     };
   };
 }

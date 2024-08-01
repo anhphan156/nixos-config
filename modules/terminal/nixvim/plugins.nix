@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: with lib; {
+}:
+with lib; {
   config = mkIf config.nixvim.enable {
     programs.nixvim = {
       plugins = {
@@ -44,12 +45,12 @@
             clangd = enabled;
             nixd = enabled;
             lua-ls = enabled;
-						jsonls = enabled;
+            jsonls = enabled;
             rust-analyzer = {
-							enable = true;
-							installRustc = true;
-							installCargo = true;
-						};
+              enable = true;
+              installRustc = true;
+              installCargo = true;
+            };
           };
           keymaps.lspBuf = {
             K = "hover";
@@ -63,6 +64,8 @@
           enable = true;
           lspServersToEnable = "all";
         };
+        cmp_luasnip = enabled;
+				cmp-nvim-lsp = enabled;
         cmp = {
           enable = true;
           autoEnableSources = true;
@@ -100,6 +103,9 @@
               {
                 name = "buffer";
               }
+              {
+                name = "luasnip";
+              }
             ];
             formatting = {
               expandable_indicator = true;
@@ -122,6 +128,13 @@
             '';
           };
         };
+
+        luasnip = {
+          enable = true;
+          fromLua = [
+            {paths = "${config.cyanea.user.dotfilesPath}/config/nvim/luasnip.lua";}
+          ];
+        }; #luasnip
 
         nvim-tree = {
           enable = true;
