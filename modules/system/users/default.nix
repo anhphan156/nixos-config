@@ -1,10 +1,6 @@
-{
-	user,
-	...
-}:
-{
-	users.users."${user.name}" = {
-		isNormalUser = true;
-		extraGroups = ["wheel"];
-	};
+{user, ...}: {
+  users.users."${user.name}" = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
+  };
 }
