@@ -15,19 +15,9 @@
     programs.nixvim = {
       enable = true;
 
-      opts = {
-        number = true;
-        relativenumber = true;
-        shiftwidth = 2;
-        tabstop = 2;
-        smartindent = true;
-        scl = "yes";
-				scrolloff = 5;
-      };
-
       clipboard = {
         register = "unnamedplus";
-        providers.wl-copy.enable = lib.mkIf config.cyanea.graphical.hyprland.enable true;
+        providers.wl-copy.enable = config.cyanea.graphical.hyprland.enable;
       };
 
       highlightOverride = {

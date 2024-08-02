@@ -1,0 +1,53 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  config = lib.mkIf config.nixvim.enable {
+    programs.nixvim = {
+      files = let 
+        c_maps.keymaps = [
+          {
+            action = "<cmd>! make clean<cr>";
+            key = "<leader>cl";
+            options.silent = true;
+            mode = "n";
+          }
+          {
+            action = "<cmd>! make<cr>";
+            key = "<leader>cc";
+            options.silent = true;
+            mode = "n";
+          }
+          {
+            # action = "<cmd>FloatermNew --autoclose=0 --width=0.7 --height=0.9 make run<cr>";
+            action = "<cmd>! tmux send-keys -t :.+1 \" make run\" Enter<CR>";
+            key = "<leader>cr";
+            options.silent = true;
+            mode = "n";
+          }
+          {
+            action = let
+              tmux = "${pkgs.tmux}/bin/tmux";
+              new_window = pkgs.writeShellScriptBin "neww" ''
+                window=$(${tmux} new-window -PF "#D")
+                ${tmux} send-keys -t $window " gdbx out $window" Enter
+              '';
+            in "<cmd>!${new_window}/bin/neww<cr>";
+            key = "<leader>d";
+            options.silent = true;
+            mode = "n";
+          }
+        ];
+      in {
+        "ftplugin/c.lua" = {
+          keymaps = c_maps.keymaps;
+        };
+        "ftplugin/cpp.lua" = {
+          keymaps = c_maps.keymaps;
+        };
+      };
+    };
+  };
+}
