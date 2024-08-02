@@ -28,6 +28,7 @@ with lib; {
     };
     networking = {
       ethernet = enabled;
+      wifi = enabled;
     };
     terminal = {
       tmux = enabled;
