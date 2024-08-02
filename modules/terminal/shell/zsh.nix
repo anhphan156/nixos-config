@@ -12,7 +12,7 @@
       programs.zsh = {
         enable = true;
         syntaxHighlighting = lib.enabled;
-				autocd = true;
+        autocd = true;
 
         history.path = "${config.xdg.dataHome}/zsh/zsh_history";
         sessionVariables = {
@@ -27,11 +27,10 @@
           "nvim" = " nvim";
           "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
         };
-        # oh-my-zsh = {
-        #   enable = true;
-        #   plugins = ["git" "z" "vi-mode"];
-        #   theme = "robbyrussell";
-        # };
+        oh-my-zsh = {
+          enable = true;
+          plugins = ["git" "z" "vi-mode"];
+        };
 
         initExtra = lib.mkAfter ''
           GREEN='\033[0;32m'
@@ -41,18 +40,18 @@
           printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
         '';
 
-				plugins = [
-					{
-						name = "z";
-						file = "zsh-z.plugin.zsh";
-						src = pkgs.fetchFromGitHub {
-							owner = "agkozak";
-							repo = "zsh-z";
-							rev = "afaf2965b41fdc6ca66066e09382726aa0b6aa04";
-							sha256 = "1s23azd9hk57dgya0xrqh16jq1qbmm0n70x32mxg8b29ynks6w8n";
-						};
-					}
-				];
+        # plugins = [
+        #   {
+        #     name = "z";
+        #     file = "zsh-z.plugin.zsh";
+        #     src = pkgs.fetchFromGitHub {
+        #       owner = "agkozak";
+        #       repo = "zsh-z";
+        #       rev = "afaf2965b41fdc6ca66066e09382726aa0b6aa04";
+        #       sha256 = "1s23azd9hk57dgya0xrqh16jq1qbmm0n70x32mxg8b29ynks6w8n";
+        #     };
+        #   }
+        # ];
       };
     })
   ];

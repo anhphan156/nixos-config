@@ -11,9 +11,9 @@
         add_newline = false;
         scan_timeout = 10;
         format = lib.concatStrings [
-          "╭───── $directory$os$c$rust$nix_shell"
-					"$line_break"
-					"╰──$character"
+          "╭───── $directory$c$rust$nix_shell$os"
+          "$line_break"
+          "╰──$character"
         ];
         right_format = lib.concatStrings [
           "$git_branch$git_status"
@@ -34,14 +34,14 @@
         };
         os = {
           disabled = false;
-					format = "[$symbol]($style)";
-					style = "bold white";
+          format = "[$symbol]($style)";
+          style = "bold white";
         };
-				git_branch = {
-					symbol = " ";
-					style = "bold purple";
-					format = "[$symbol$branch]($style)";
-				};
+        git_branch = {
+          symbol = " ";
+          style = "bold purple";
+          format = "[$symbol$branch]($style)";
+        };
       };
     };
   };

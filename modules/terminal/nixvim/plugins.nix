@@ -18,6 +18,7 @@ with lib; {
         notify = {
           enable = true;
           topDown = false;
+					timeout = 1000;
         };
 
         bufferline = {
@@ -65,7 +66,7 @@ with lib; {
           lspServersToEnable = "all";
         };
         cmp_luasnip = enabled;
-				cmp-nvim-lsp = enabled;
+        cmp-nvim-lsp = enabled;
         cmp = {
           enable = true;
           autoEnableSources = true;
