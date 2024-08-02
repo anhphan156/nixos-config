@@ -18,7 +18,7 @@ with lib; {
         notify = {
           enable = true;
           topDown = false;
-					timeout = 1000;
+          timeout = 1000;
         };
 
         bufferline = {
@@ -132,8 +132,12 @@ with lib; {
 
         luasnip = {
           enable = true;
+					extraConfig = {
+						enable_autosnippets = true;
+						store_selection_keys = "<Tab>";
+					};
           fromLua = [
-            {paths = "${config.cyanea.user.dotfilesPath}/config/nvim/luasnip.lua";}
+            { paths = "${config.cyanea.user.dotfilesPath}/config/nvim/snippets"; }
           ];
         }; #luasnip
 

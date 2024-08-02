@@ -117,12 +117,26 @@
           mode = "n";
         }
         {
-          action = ''
-						:lua require'luasnip'.jump(1)<cr>
-					'';
-          key = "<C-L>";
+          action.__raw = ''
+						function()
+							local ls = require("luasnip")
+							ls.jump(-1) 
+						end
+          '';
+          key = "<C-h>";
           options.silent = true;
-          mode = "n";
+          mode = "i";
+        }
+        {
+          action.__raw = ''
+						function()
+							local ls = require("luasnip")
+							ls.jump(1) 
+						end
+          '';
+          key = "<C-l>";
+          options.silent = true;
+          mode = "i";
         }
       ]; #keymaps
     };
