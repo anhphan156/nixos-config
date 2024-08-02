@@ -6,7 +6,7 @@
 }: {
   config = lib.mkIf config.nixvim.enable {
     programs.nixvim = {
-      keymaps = [
+      keymaps = lib.mkBefore [
         {
           action = "<esc>";
           key = "jk";
@@ -118,10 +118,10 @@
         }
         {
           action.__raw = ''
-						function()
-							local ls = require("luasnip")
-							ls.jump(-1) 
-						end
+            function()
+            	local ls = require("luasnip")
+            	ls.jump(-1)
+            end
           '';
           key = "<C-h>";
           options.silent = true;
@@ -129,10 +129,10 @@
         }
         {
           action.__raw = ''
-						function()
-							local ls = require("luasnip")
-							ls.jump(1) 
-						end
+            function()
+            	local ls = require("luasnip")
+            	ls.jump(1)
+            end
           '';
           key = "<C-l>";
           options.silent = true;

@@ -112,13 +112,13 @@ with lib; {
               expandable_indicator = true;
               fields = ["abbr" "kind" "menu"];
             };
-						snippet = {
-							expand = ''
-								function(args)
-									require('luasnip').lsp_expand(args.body)
-								end
-							'';
-						};
+            snippet = {
+              expand = ''
+                function(args)
+                	require('luasnip').lsp_expand(args.body)
+                end
+              '';
+            };
           }; # settings
         }; # cmp
 
@@ -139,12 +139,12 @@ with lib; {
 
         luasnip = {
           enable = true;
-					extraConfig = {
-						enable_autosnippets = true;
-						store_selection_keys = "<Tab>";
-					};
+          extraConfig = {
+            enable_autosnippets = true;
+            store_selection_keys = "<Tab>";
+          };
           fromLua = [
-            { paths = "${config.cyanea.user.dotfilesPath}/config/nvim/snippets"; }
+            {paths = "${config.cyanea.user.dotfilesPath}/config/nvim/snippets";}
           ];
         }; #luasnip
 
