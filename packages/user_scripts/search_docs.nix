@@ -1,4 +1,7 @@
-{ pkgs, user }:
+{
+  pkgs,
+  user,
+}:
 pkgs.writeShellScriptBin "search_docs" ''
   #!/usr/bin/env bash
 
@@ -12,7 +15,7 @@ pkgs.writeShellScriptBin "search_docs" ''
       program=${pkgs.evince}/bin/evince
   elif [[ $extension == "docx" ]]
   then
-      program=${pkgs.libreoffice}
+      program=${pkgs.libreoffice}/bin/libreoffice
   fi
 
   [[ $arg != "" ]] && $program $arg

@@ -28,6 +28,9 @@ with lib; {
       gui = enabled;
       awesome = enabled;
     };
+    networking = {
+      firewall = enabled;
+    };
     services = {
       water_reminder = enabled;
     };
@@ -37,7 +40,7 @@ with lib; {
     dev = {
       c = enabled;
       rust = enabled;
-			avr = enabled;
+      avr = enabled;
     };
     music = enabled;
     virtualization = enabled;
