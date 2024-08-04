@@ -6,15 +6,15 @@
   ...
 }: {
   options = {
-    cyanea.virtualization.enable = lib.mkEnableOption "enable virtualization";
+    cyanea.virtualization.libvirt.enable = lib.mkEnableOption "enable virtualization";
   };
 
-  config = lib.mkIf config.cyanea.virtualization.enable {
+  config = lib.mkIf config.cyanea.virtualization.libvirt.enable {
     virtualisation.libvirtd.enable = true;
     virtualisation.libvirtd.allowedBridges = [
       "virbr0"
     ];
-		virtualisation.spiceUSBRedirection = lib.enabled;
+    virtualisation.spiceUSBRedirection = lib.enabled;
     programs.virt-manager.enable = true;
 
     users.users."${user.name}" = {

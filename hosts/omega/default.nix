@@ -42,9 +42,12 @@ with lib; {
       c = enabled;
       rust = enabled;
     };
+    virtualization = {
+      libvirt = enabled;
+      docker = enabled;
+    };
     music = enabled;
     gaming = enabled;
-    virtualization = enabled;
   };
 
   system.stateVersion = "23.11";

@@ -42,8 +42,14 @@ with lib; {
       rust = enabled;
       avr = enabled;
     };
+    virtualization = {
+      libvirt = enabled;
+      docker = {
+        enable = true;
+        btrfs = true;
+      };
+    };
     music = enabled;
-    virtualization = enabled;
   };
 
   fileSystems."/persistence".neededForBoot = true;
