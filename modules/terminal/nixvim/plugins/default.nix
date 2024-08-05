@@ -203,8 +203,8 @@ with lib; {
         };
       }; # plugins end
 
-      extraPlugins = with pkgs.vimPlugins;
-        [
+      extraPlugins = 
+        mkBefore (with pkgs.vimPlugins; with pkgs; [
           {
             plugin = nui-nvim;
           }
@@ -212,8 +212,6 @@ with lib; {
           # 	plugin = hex-nvim;
           # 	config = ''lua require 'hex'.setup()'';
           # }
-        ]
-        ++ (with pkgs; [
           {
             plugin = vimUtils.buildVimPlugin {
               name = "leetcode";
