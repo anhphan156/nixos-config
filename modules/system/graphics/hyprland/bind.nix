@@ -18,8 +18,11 @@
             "$mod, RETURN, exec, kitty"
             "$mod, W, killactive"
             "ALT, SPACE, execr, rofi -show run"
+
+            # rofi
             "$mod, C, execr, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-            "$mod, L, execr, cat ~/data/links.txt | rofi -dmenu | xargs wtype"
+            "$mod, L, execr, cat ~/data/links.txt | rofi -i -dmenu | xargs wtype"
+            "$mod, T, execr, tmux ls | rofi -i -dmenu | awk -F: '{print $1}' | xargs -I {} kitty tmux attach -t {}"
 
             # window control
             "$mod, F, togglefloating"
