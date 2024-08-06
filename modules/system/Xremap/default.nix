@@ -8,11 +8,9 @@
   options.cyanea.system.xremap.enable = lib.mkEnableOption "Enable Xremap";
 
   config = 
-    {
-      services.xremap.enable = lib.mkForce config.cyanea.system.xremap.enable;
-    } //
     lib.mkIf config.cyanea.system.xremap.enable {
       services.xremap = {
+        enable = true;
         withWlroots = config.cyanea.graphical.hyprland.enable;
         userName = user.name;
         config = {
