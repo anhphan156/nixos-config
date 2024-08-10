@@ -66,20 +66,26 @@
 
         # telescope
         {
+          action = "<cmd>lua require'telescope.builtin'.lsp_document_symbols{}<cr>";
+          key = "<leader>fs";
+          options.silent = true;
+          mode = "n";
+        }
+        {
           action = "<cmd>lua require'telescope.builtin'.lsp_references{}<cr>";
-          key = "<leader>fd";
+          key = "<leader>fr";
           options.silent = true;
           mode = "n";
         }
         {
           action = "<cmd>lua require'telescope.builtin'.diagnostics{}<cr>";
-          key = "<leader>fe";
+          key = "<leader>fd";
           options.silent = true;
           mode = "n";
         }
         {
           action = "<cmd>Telescope current_buffer_fuzzy_find<cr>";
-          key = "<leader>fr";
+          key = "<leader>fb";
           options.silent = true;
           mode = "n";
         }

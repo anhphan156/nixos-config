@@ -12,14 +12,14 @@
 
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
 
-		system = "x86_64-linux";
-		pkgs = import nixpkgs { inherit system; };
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib user;};
 
     devShells."${system}".default = pkgs.mkShell {
-			shellHook = "exec zsh";
-		};
+      shellHook = "exec zsh";
+    };
 
     templates = {
       avr = {
@@ -57,7 +57,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
