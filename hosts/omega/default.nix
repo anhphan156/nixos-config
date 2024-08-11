@@ -1,6 +1,7 @@
 {lib, ...}:
 with lib; {
   cyanea = {
+    host.omega = true;
     desktopApp = {
       firefox = {
         enable = lib.mkForce true;

@@ -2,8 +2,15 @@
   user,
   lib,
   pkgs,
+  config,
   ...
-}: {
+}: let
+  hosts = config.cyanea.host;
+  inherit (pkgs.lib.attrsets) filterAttrs mapAttrs' nameValuePair;
+
+  rebuild-aliases = mapAttrs' (x: y: nameValuePair "rebuild-${x}" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}") (filterAttrs (x: y: y) hosts);
+
+in {
   programs.zsh.enable = true;
   users.users."${user.name}".shell = pkgs.zsh;
 
@@ -19,9 +26,7 @@
           "ZSHZ_DATA" = "${config.xdg.dataHome}/zsh/.z";
         };
 
-        shellAliases = {
-          "rebuild-backlight" = " sudo nixos-rebuild switch --flake ~/dotfiles#backlight";
-          "rebuild-omega" = " sudo nixos-rebuild switch --flake ~/dotfiles#omega";
+        shellAliases = rebuild-aliases // {
           "v" = " nvim";
           "vim" = " nvim";
           "nvim" = " nvim";

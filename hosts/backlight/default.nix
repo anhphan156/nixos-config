@@ -5,6 +5,7 @@
 }:
 with lib; {
   cyanea = {
+    host.backlight = true;
     desktopApp = {
       vesktop = enabled;
       firefox = enabled;

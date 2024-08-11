@@ -5,6 +5,10 @@
 }: {
   options = {
     cyanea.graphical.gui.enable = lib.mkEnableOption "Enable GUI";
+    cyanea.host = {
+      omega = lib.mkEnableOption "";
+      backlight = lib.mkEnableOption "";
+    };
     cyanea.user = {
       dotfilesPath = lib.mkOption {
         description = "Path to this project in string";
