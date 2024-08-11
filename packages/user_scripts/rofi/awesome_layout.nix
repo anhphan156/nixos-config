@@ -2,8 +2,8 @@
 pkgs.writeShellScriptBin "awesome_layout_switch" ''
   #!/usr/bin/env bash
 
-  layout=$(echo "floating
-  tile
+  layout=$(echo "tile
+  floating
   tile.left
   tile.bottom
   tile.top
