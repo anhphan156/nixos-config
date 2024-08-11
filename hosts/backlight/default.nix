@@ -34,6 +34,7 @@ with lib; {
     };
     services = {
       water_reminder = enabled;
+      bluetooth = enabled;
     };
     terminal = {
       tmux = enabled;
