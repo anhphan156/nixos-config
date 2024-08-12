@@ -4,6 +4,11 @@
   lib,
   ...
 }: {
+  imports = [
+    {
+      services.xremap.enable = lib.mkDefault false;
+    }
+  ];
 
   options.cyanea.system.xremap.enable = lib.mkEnableOption "Enable Xremap";
 

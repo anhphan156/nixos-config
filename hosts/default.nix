@@ -63,4 +63,14 @@ in {
         ./omega/hardware-configuration.nix
       ];
   };
+  wsl = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs user lib;};
+    system = "x86_64-linux";
+    modules =
+      commonModules
+      ++ [
+        inputs.nixos-wsl.nixosModules.default
+        ./wsl
+      ];
+  };
 }

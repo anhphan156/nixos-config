@@ -72,5 +72,7 @@
     xremap.url = "github:xremap/nix-flake";
 
     catppuccin.url = "github:catppuccin/nix";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 }
