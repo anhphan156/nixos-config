@@ -3,7 +3,9 @@
   user,
   ...
 }:
-with lib; {
+let
+  inherit (lib) enabled;
+in {
   cyanea = {
     host.backlight = true;
     desktopApp = {
@@ -35,6 +37,7 @@ with lib; {
     services = {
       water_reminder = enabled;
       bluetooth = enabled;
+      redshift = enabled;
     };
     terminal = {
       tmux = enabled;
