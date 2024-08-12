@@ -1,12 +1,8 @@
-{
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) enabled;
 in {
-  wsl.enable = true;
-  wsl.defaultUser = "backspace";
   cyanea = {
+    host.wsl = true;
     system = {
       bootloader.enable = false;
     };
@@ -18,6 +14,9 @@ in {
       rust = enabled;
     };
   };
+
+  wsl.enable = true;
+  wsl.defaultUser = "backspace";
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
