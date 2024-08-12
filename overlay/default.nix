@@ -24,10 +24,16 @@
       clockSupport = true;
     };
   };
+  overlay-cava = final: prev: {
+    cava = prev.cava.override {
+      withSDL2 = true;
+    };
+  };
 
   overlays = [
     overlay-awesome
     overlay-ncmpcpp
+    overlay-cava
   ];
 in {
   nixpkgs.overlays = overlays;

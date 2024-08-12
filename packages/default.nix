@@ -2,8 +2,23 @@
   user,
   inputs,
   pkgs,
+  config,
   ...
-}: {
+}: 
+let
+  guiPackages = if config.cyanea.graphical.gui.enable then with pkgs;  [
+      nemo
+      pureref
+      beeper
+      blender
+      obs-studio
+      (import ./user_scripts/rofi/search_docs.nix {inherit pkgs user;})
+      (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
+      (import ./user_scripts/rofi/dev_project.nix {inherit pkgs;})
+  ] else [];
+
+in {
+
   imports = [
     ./fonts
   ];
@@ -27,19 +42,18 @@
     };
 
     home.packages = with pkgs; [
-      nemo
-      pureref
+
+      xclip
+      maim
+      xdotool
 
       cmatrix
       bunnyfetch
       pamixer
       fzf
-      xclip
       bat
-      maim
       bc
       id3v2
-      xdotool
       nix-prefetch-git
       (ffmpeg.override {withXcb = true;})
       unzip
@@ -56,13 +70,7 @@
       cava
       python3
 
-      blender
-      obs-studio
-
-      (import ./user_scripts/search_docs.nix {inherit pkgs user;})
       (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
-      (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
-      (import ./user_scripts/rofi/dev_project.nix {inherit pkgs;})
-    ];
+    ] ++ guiPackages;
   };
 }
