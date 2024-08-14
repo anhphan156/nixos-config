@@ -8,8 +8,7 @@
   hosts = config.cyanea.host;
   inherit (pkgs.lib.attrsets) filterAttrs mapAttrs' nameValuePair;
 
-  rebuild-aliases = mapAttrs' (x: y: nameValuePair "rebuild-${x}" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}") (filterAttrs (x: y: y) hosts);
-
+  rebuild-aliases = mapAttrs' (x: y: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}") (filterAttrs (x: y: y) hosts);
 in {
   programs.zsh.enable = true;
   users.users."${user.name}".shell = pkgs.zsh;
@@ -26,12 +25,14 @@ in {
           "ZSHZ_DATA" = "${config.xdg.dataHome}/zsh/.z";
         };
 
-        shellAliases = rebuild-aliases // {
-          "v" = " nvim";
-          "vim" = " nvim";
-          "nvim" = " nvim";
-          "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
-        };
+        shellAliases =
+          rebuild-aliases
+          // {
+            "v" = " nvim";
+            "vim" = " nvim";
+            "nvim" = " nvim";
+            "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
+          };
         oh-my-zsh = {
           enable = true;
           plugins = ["git" "z" "vi-mode"];

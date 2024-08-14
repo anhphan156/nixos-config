@@ -4,21 +4,22 @@
   pkgs,
   config,
   ...
-}: 
-let
-  guiPackages = if config.cyanea.graphical.gui.enable then with pkgs;  [
-      nemo
-      pureref
-      beeper
-      blender
-      obs-studio
-      (import ./user_scripts/rofi/search_docs.nix {inherit pkgs user;})
-      (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
-      (import ./user_scripts/rofi/dev_project.nix {inherit pkgs;})
-  ] else [];
-
+}: let
+  guiPackages =
+    if config.cyanea.graphical.gui.enable
+    then
+      with pkgs; [
+        nemo
+        pureref
+        beeper
+        blender
+        obs-studio
+        (import ./user_scripts/rofi/search_docs.nix {inherit pkgs user;})
+        (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
+        (import ./user_scripts/rofi/dev_project.nix {inherit pkgs;})
+      ]
+    else [];
 in {
-
   imports = [
     ./fonts
   ];
@@ -41,36 +42,34 @@ in {
       allowUnfreePredicate = _: true;
     };
 
-    home.packages = with pkgs; [
+    home.packages = with pkgs;
+      [
+        cmatrix
+        bunnyfetch
+        pamixer
+        fzf
+        bat
+        bc
+        id3v2
+        nix-prefetch-git
+        (ffmpeg.override {withXcb = true;})
+        unzip
+        zip
+        fortune
+        jq
+        btop
+        lolcat
+        asciiquarium
+        cbonsai
+        figlet
+        acpid
+        mpv
+        yt-dlp
+        cava
+        python3
 
-      xclip
-      maim
-      xdotool
-
-      cmatrix
-      bunnyfetch
-      pamixer
-      fzf
-      bat
-      bc
-      id3v2
-      nix-prefetch-git
-      (ffmpeg.override {withXcb = true;})
-      unzip
-      fortune
-      jq
-      btop
-      lolcat
-      asciiquarium
-      cbonsai
-      figlet
-      acpid
-      mpv
-      yt-dlp
-      cava
-      python3
-
-      (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
-    ] ++ guiPackages;
+        (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
+      ]
+      ++ guiPackages;
   };
 }

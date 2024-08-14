@@ -30,6 +30,10 @@
         path = ./templates/arm;
         description = "Arm Project Template";
       };
+      dev = {
+        path = ./templates/dev;
+        description = "Dev Project Template";
+      };
     };
   };
 
