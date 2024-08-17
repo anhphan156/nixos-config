@@ -2,8 +2,7 @@
   lib,
   user,
   ...
-}:
-let
+}: let
   inherit (lib) enabled;
 in {
   cyanea = {
@@ -44,7 +43,6 @@ in {
     };
     dev = {
       c = enabled;
-      rust = enabled;
       avr = enabled;
     };
     virtualization = {
@@ -86,6 +84,8 @@ in {
         ".mozilla"
         ".rustup"
         ".cargo"
+        ".local/share/direnv"
+        ".local/share/zsh"
       ];
     };
   };

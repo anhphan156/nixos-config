@@ -6,7 +6,7 @@
 }: {
   config = lib.mkIf config.nixvim.enable {
     programs.nixvim = {
-      files = let 
+      files = let
         c_maps.keymaps = [
           {
             action = "<cmd>! make clean<cr>";
@@ -42,10 +42,10 @@
         ];
       in {
         "ftplugin/c.lua" = {
-          keymaps = c_maps.keymaps;
+          inherit (c_maps) keymaps;
         };
         "ftplugin/cpp.lua" = {
-          keymaps = c_maps.keymaps;
+          inherit (c_maps) keymaps;
         };
       };
     };
