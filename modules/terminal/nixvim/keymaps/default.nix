@@ -25,6 +25,12 @@
           mode = "n";
         }
         {
+          action = "<cmd>! tmux send-keys -t :.+1 C-c<CR>";
+          key = "<leader>cs";
+          options.silent = true;
+          mode = "n";
+        }
+        {
           action = ":NvimTreeToggle<CR>";
           key = "<leader>t";
           options.silent = true;

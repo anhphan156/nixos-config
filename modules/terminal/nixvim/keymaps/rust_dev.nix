@@ -16,7 +16,7 @@
               mode = "n";
             }
             {
-              action = "<cmd>! cargo build<cr>";
+              action = "<cmd>! tmux send-keys -t :.+1 \" cargo build\" Enter<CR>";
               key = "<leader>cc";
               options.silent = true;
               mode = "n";
