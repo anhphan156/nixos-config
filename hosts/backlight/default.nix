@@ -86,6 +86,7 @@ in {
         ".cargo"
         ".local/share/direnv"
         ".local/share/zsh"
+        ".cache"
       ];
     };
   };

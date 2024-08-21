@@ -52,7 +52,8 @@ in {
         bc
         id3v2
         nix-prefetch-git
-        (ffmpeg.override {withXcb = true;})
+        # (ffmpeg.override {withXcb = true;})
+        ffmpeg
         unzip
         zip
         fortune
