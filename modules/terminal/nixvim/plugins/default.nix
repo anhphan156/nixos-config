@@ -23,7 +23,7 @@ with lib; {
 
         bufferline = {
           enable = true;
-          mode = "tabs";
+          settings.options.mode = "tabs";
         };
 
         presence-nvim = {

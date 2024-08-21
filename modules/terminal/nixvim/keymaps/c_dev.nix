@@ -15,7 +15,8 @@
             mode = "n";
           }
           {
-            action = "<cmd>! make<cr>";
+            # action = "<cmd>! make<cr>";
+            action = "<cmd>! tmux send-keys -t :.+1 \" make\" Enter<CR>";
             key = "<leader>cc";
             options.silent = true;
             mode = "n";
