@@ -14,6 +14,7 @@ with lib; {
         gitsigns = enabled;
         noice = enabled;
         floaterm = enabled;
+        headlines = enabled;
 
         notify = {
           enable = true;

@@ -25,6 +25,7 @@
         }
         dap.configurations.cpp = { launch_gdb }
         dap.configurations.c = { launch_gdb }
+        dap.configurations.rust = { launch_gdb }
 
         dap.listeners.before.attach.dapui_config = function()
         	dapui.open()
