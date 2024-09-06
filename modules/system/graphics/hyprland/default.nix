@@ -74,12 +74,12 @@ in {
           };
 
           decoration = {
-						drop_shadow = "yes";
-						shadow_range = "300";
-						shadow_render_power = "4";
+            drop_shadow = "yes";
+            shadow_range = "300";
+            shadow_render_power = "4";
             "col.shadow" = "rgba(1a1a1aaf)";
             shadow_offset = "0 40";
-						shadow_scale = "0.9";
+            shadow_scale = "0.9";
             rounding = "10";
             active_opacity = "0.75";
             inactive_opacity = "0.4";
@@ -102,6 +102,7 @@ in {
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
+            "opacity 1.0 override 1.0 override,title:(GlslViewer)"
 
             "float,title:(GLFW)"
             "animation slidefade 20%,title:(GLFW)"

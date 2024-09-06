@@ -9,6 +9,7 @@
     if config.cyanea.graphical.gui.enable
     then
       with pkgs; [
+        glslviewer
         nemo
         pureref
         beeper
@@ -71,6 +72,7 @@ in {
 
         (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
         (import ./user_scripts/fzf/dev_project.nix {inherit pkgs;})
+        (import ./kabmat pkgs )
       ]
       ++ guiPackages;
   };
