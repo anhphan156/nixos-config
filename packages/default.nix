@@ -11,7 +11,8 @@
       with pkgs; [
         glslviewer
         nemo
-        pureref
+        evince
+        # pureref
         beeper
         blender
         obs-studio
@@ -72,7 +73,7 @@ in {
 
         (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
         (import ./user_scripts/fzf/dev_project.nix {inherit pkgs;})
-        (import ./kabmat pkgs )
+        (import ./kabmat pkgs)
       ]
       ++ guiPackages;
   };

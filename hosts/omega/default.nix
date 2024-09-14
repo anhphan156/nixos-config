@@ -41,7 +41,7 @@ with lib; {
     };
     dev = {
       c = enabled;
-      rust = enabled;
+      # rust = enabled;
     };
     virtualization = {
       libvirt = enabled;
