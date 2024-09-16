@@ -10,11 +10,25 @@
   };
 
   config = lib.mkIf config.cyanea.virtualization.libvirt.enable {
-    virtualisation.libvirtd.enable = true;
-    virtualisation.libvirtd.allowedBridges = [
-      "virbr0"
-    ];
-    virtualisation.spiceUSBRedirection = lib.enabled;
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        allowedBridges = [
+          "virbr0"
+        ];
+        qemu = {
+          swtpm.enable = true;
+          ovmf = {
+            enable = true;
+            packages= [
+              (pkgs.OVMF.override { secureBoot = true; tpmSupport = true; }).fd
+            ];
+          };
+        };
+      };
+      spiceUSBRedirection = lib.enabled;
+    };
+
     programs.virt-manager.enable = true;
 
     users.users."${user.name}" = {
