@@ -1,11 +1,7 @@
 {
   disko.devices = {
-		nodev."/" = {
-			fsType = "tmpfs";
-			mountOptions = ["size=2G" "defaults" "mode=775"];
-		};
     disk = {
-      vdb = {
+      main = {
         type = "disk";
         device = "/dev/vda";
         content = {
@@ -22,7 +18,7 @@
                   "defaults"
                 ];
               };
-            };
+            }; # ESP
             luks = {
               size = "100%";
               content = {
@@ -30,28 +26,15 @@
                 name = "crypted";
                 passwordFile = "/tmp/secret.key";
                 content = {
-                  type = "btrfs";
-                  extraArgs = ["-f"];
-                  subvolumes = {
-                    "/persistence" = {
-                      mountpoint = "/persistence";
-                      mountOptions = ["compress=zstd" "noatime"];
-                    };
-                    "/nix" = {
-                      mountpoint = "/nix";
-                      mountOptions = ["compress=zstd" "noatime"];
-                    };
-                    "/swap" = {
-                      mountpoint = "/.swapvol";
-                      swap.swapfile.size = "20M";
-                    };
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
-    };
-  };
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/";
+                }; # content
+              }; # content
+            }; # luks
+          }; # partitions
+        }; # content
+      }; # main
+    }; # disk
+  }; # disko.devices
 }
