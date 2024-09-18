@@ -47,24 +47,26 @@ local battery_box = wibox.widget({
 })
 
 awesome.connect_signal("daemon::battery", function(percentage)
+	if percentage == "" then percentage = "100" end
+
 	battery_arcchart.value = percentage
 	-- battery_text.text = percentage .. "%"
 
 	if tonumber(percentage) < 15 then
-        battery_arcchart.colors = { beautiful.battery_red_color }
+		battery_arcchart.colors = { beautiful.battery_red_color }
 		if low_warning then
 			naughty.notify({
 				title = "Alert",
 				text = "Battery is low",
-                timeout = 0
+				timeout = 0
 			})
-            low_warning = false
+			low_warning = false
 		end
 	elseif tonumber(percentage) < 50 then
-        battery_arcchart.colors = { beautiful.battery_yellow_color }
+		battery_arcchart.colors = { beautiful.battery_yellow_color }
 		low_warning = true
 	elseif tonumber(percentage) < 101 then
-        battery_arcchart.colors = { beautiful.battery_green_color }
+		battery_arcchart.colors = { beautiful.battery_green_color }
 		low_warning = true
 	end
 end)
@@ -74,7 +76,7 @@ awesome.connect_signal("acpi::plugged", function()
 		title = "ACPI Event",
 		text = "Laptop is charging",
 	})
-    is_plugged = true
+	is_plugged = true
 	battery_arcchart.bg = beautiful.battery_plugged_background_color
 end)
 
@@ -83,7 +85,7 @@ awesome.connect_signal("acpi::unplugged", function()
 		title = "ACPI Event",
 		text = "Laptop stopped charging",
 	})
-    is_plugged = false
+	is_plugged = false
 	battery_arcchart.bg = beautiful.battery_unplugged_background_color
 end)
 
