@@ -48,6 +48,9 @@
         "ftplugin/cpp.lua" = {
           inherit (c_maps) keymaps;
         };
+        "ftplugin/asm.lua" = {
+          inherit (c_maps) keymaps;
+        };
       };
     };
   };
