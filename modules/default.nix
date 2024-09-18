@@ -9,6 +9,7 @@
       omega = lib.mkEnableOption "";
       backlight = lib.mkEnableOption "";
       wsl = lib.mkEnableOption "";
+      vmtest = lib.mkEnableOption "";
     };
     cyanea.user = {
       dotfilesPath = lib.mkOption {

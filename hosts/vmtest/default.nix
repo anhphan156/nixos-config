@@ -7,6 +7,7 @@ let
 in {
 
   cyanea = {
+    host.vmtest = true;
     system = {
       openssh = enabled;
       hostname = "vmtest";

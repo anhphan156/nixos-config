@@ -25,6 +25,7 @@
     bat
     inputs.alejandra.defaultPackage.${pkgs.system}
     nix-prefetch-git
+    cmatrix
   ];
 
   fonts.packages = with pkgs; [
@@ -43,7 +44,7 @@
     };
     graphical = {
       gui = lib.enabled;
-      hyprland = lib.enabled;
+      awesome = lib.enabled;
     };
     terminal.tmux = lib.enabled;
     system = {
