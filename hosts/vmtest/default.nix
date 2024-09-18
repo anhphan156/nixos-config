@@ -3,8 +3,27 @@
   user,
   ...
 }:
-with lib; {
+let
+  inherit (lib) enabled;
+in {
 
+  cyanea = {
+    system = {
+      openssh = enabled;
+      hostname = "vmtest";
+    };
+    graphical = {
+      gui = enabled;
+      awesome = enabled;
+    };
+    dev = {
+      c = enabled;
+    };
+    tools = {
+      cybersec = enabled;
+    };
+    terminal.tmux = enabled;
+  };
   users.users."${user.name}".initialPassword = "123";
 
   fileSystems."/persistence".neededForBoot = true;
@@ -35,14 +54,6 @@ with lib; {
         }
       ];
     };
-  };
-
-  cyanea = {
-    system = {
-      openssh = enabled;
-      hostname = "vmtest";
-    };
-    terminal.tmux = enabled;
   };
 
   system.stateVersion = "24.05";

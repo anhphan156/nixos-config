@@ -47,6 +47,7 @@ in {
 
     home.packages = with pkgs;
       [
+        killall
         cmatrix
         bunnyfetch
         pamixer
