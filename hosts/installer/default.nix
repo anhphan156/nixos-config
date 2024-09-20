@@ -44,7 +44,7 @@
     };
     graphical = {
       gui = lib.enabled;
-      awesome = lib.enabled;
+      hyprland = lib.enabled;
     };
     terminal.tmux = lib.enabled;
     system = {
