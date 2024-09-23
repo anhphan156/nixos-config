@@ -63,6 +63,7 @@ with lib; {
 
         mini = {
           enable = true;
+          mockDevIcons = true;
           modules = {
             pairs = {
               mappings = {
@@ -75,6 +76,7 @@ with lib; {
               };
             }; # pairs
             animate = {};
+            icons = {};
           }; # modules
         };
 
