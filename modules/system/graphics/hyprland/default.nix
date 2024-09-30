@@ -104,6 +104,7 @@ in {
             "opacity 1.0 override 1.0 override,class:(firefox)"
             "opacity 1.0 override 1.0 override,class:(Google-chrome)"
             "opacity 1.0 override 1.0 override,class:(virt-manager)"
+            "opacity 1.0 override 1.0 override,class:(vesktop)"
             "opacity 1.0 override 1.0 override,title:(GlslViewer)"
 
             "float,title:(GLFW)"
