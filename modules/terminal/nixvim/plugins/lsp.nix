@@ -16,9 +16,9 @@ with lib; {
           servers = {
             clangd = enabled;
             nixd = enabled;
-            lua-ls = enabled;
+            lua_ls = enabled;
             # jsonls = enabled;
-            rust-analyzer = {
+            rust_analyzer = {
               enable = true;
               installRustc = true;
               installCargo = true;
