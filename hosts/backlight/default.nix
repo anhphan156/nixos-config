@@ -1,9 +1,10 @@
 {
   lib,
   user,
+  config,
   ...
 }: let
-  inherit (lib) enabled;
+  inherit (lib) enabled mkIf;
 in {
   cyanea = {
     host.backlight = true;
@@ -17,7 +18,7 @@ in {
     system = {
       hostname = "backlight";
       acpid = enabled;
-      autorandr = enabled;
+      # autorandr = enabled;
       laptop = enabled;
       pipewire = enabled;
       light_control = {
@@ -29,6 +30,7 @@ in {
     graphical = {
       gui = enabled;
       awesome = enabled;
+      sddm.autoLogin.enable = false;
     };
     networking = {
       firewall = enabled;
@@ -54,6 +56,26 @@ in {
     };
     music = enabled;
   };
+
+  services.xserver.xrandrHeads = mkIf (let
+    cfg = config.cyanea.graphical;
+  in
+    cfg.xsv.enable && cfg.gui.enable) [
+    {
+      output = "HDMI-1";
+      primary = false;
+      monitorConfig = ''
+        option "Disable" "true"
+      '';
+    }
+    {
+      output = "eDP-1";
+      primary = true;
+      monitorConfig = ''
+        option "PreferredMode" "1920x1080"
+      '';
+    }
+  ];
 
   fileSystems."/persistence".neededForBoot = true;
   environment.persistence."/persistence" = {
