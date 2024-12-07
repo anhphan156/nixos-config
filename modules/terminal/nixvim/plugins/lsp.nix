@@ -2,8 +2,9 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) enabled mkIf;
+in {
   config = mkIf config.nixvim.enable {
     programs.nixvim = {
       plugins = {
@@ -15,9 +16,15 @@ with lib; {
           enable = true;
           servers = {
             clangd = enabled;
-            nixd = enabled;
+            nixd = {
+              enable = true;
+              cmd = ["nixd"];
+              extraOptions = {
+                settings.nixd.formatting.command = ["alejandra"];
+              };
+            };
+            eslint = enabled;
             lua_ls = enabled;
-            # jsonls = enabled;
             rust_analyzer = {
               enable = true;
               installRustc = true;

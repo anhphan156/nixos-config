@@ -28,13 +28,13 @@
         NormalFloat.bg = "NONE"; #cmp menu no bg
       };
 
-      autoCmd = [
-        {
-          event = ["BufRead"];
-          pattern = ["*.nix"];
-          command = "%!alejandra -qq";
-        }
-      ];
+      # autoCmd = [
+      #   {
+      #     event = ["BufRead"];
+      #     pattern = ["*.nix"];
+      #     command = "%!alejandra -qq";
+      #   }
+      # ];
 
       colorschemes.tokyonight = {
         enable = true;

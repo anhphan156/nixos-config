@@ -3,11 +3,9 @@
   config,
   lib,
   ...
-}: 
-let
-	cfg = config.cyanea.graphical;
-in
-{
+}: let
+  cfg = config.cyanea.graphical;
+in {
   options = {
     cyanea.graphical.picom.enable = lib.mkEnableOption "Enable picom";
   };
@@ -58,7 +56,7 @@ in
         ];
 
         window-shader-fg-rule = [
-          "/home/backspace/dotfiles/config/picom/test.glsl:class_g = 'kittymusic'"
+          # "/home/backspace/dotfiles/config/picom/test.glsl:class_g = 'kittymusic'"
           "/home/backspace/dotfiles/config/picom/droplet.glsl:window_type = 'splash'"
         ];
 

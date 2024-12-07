@@ -37,6 +37,7 @@ in {
     gnumake
     curl
     inputs.alejandra.defaultPackage.${pkgs.system}
+    nixd
   ];
 
   home-manager.users."${user.name}" = {

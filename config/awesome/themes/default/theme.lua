@@ -67,11 +67,11 @@ theme.prev_icon = themes_path .. "default/icons/prev.png"
 theme.repeat_icon = themes_path .. "default/icons/repeat.png"
 theme.shuffle_icon = themes_path .. "default/icons/shuffle.png"
 
-theme.tag_icon_active = " "
-theme.tag_icon_inactive = "  "
+theme.tag_icon_active = " "
+theme.tag_icon_inactive = "  "
 
 --theme.dashboard_icon = themes_path .. "default/icons/dashboard.png"
-theme.dashboard_icon = ""
+theme.dashboard_icon = " 󰯊 "
 
 -- There are other variable sets
 -- overriding the default one when
