@@ -5,6 +5,8 @@
   config,
   ...
 }: let
+  inherit (pkgs) callPackage;
+
   guiPackages =
     if config.cyanea.graphical.gui.enable
     then
@@ -16,9 +18,9 @@
         beeper
         blender
         obs-studio
-        (import ./user_scripts/rofi/search_docs.nix {inherit pkgs user;})
-        (import ./user_scripts/kitty_spawn/spawn_tmux_code.nix {inherit pkgs;})
-        (import ./user_scripts/rofi/dev_project.nix {inherit pkgs;})
+        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = user.path.root;})
+        (callPackage ./user_scripts/kitty_spawn/spawn_tmux_code.nix {dotfilesPath = user.path.dotfiles;})
+        (callPackage ./user_scripts/rofi/dev_project.nix {basePath = user.path.dev;})
       ]
     else [];
 in {
@@ -74,9 +76,9 @@ in {
         cava
         python3
 
-        (import ./user_scripts/tmux_code_layout.nix {inherit pkgs;})
-        (import ./user_scripts/fzf/dev_project.nix {inherit pkgs;})
-        (import ./kabmat pkgs)
+        (callPackage ./user_scripts/tmux_code_layout.nix {})
+        (callPackage ./user_scripts/fzf/dev_project.nix {})
+        (callPackage ./kabmat {})
       ]
       ++ guiPackages;
   };

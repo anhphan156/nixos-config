@@ -40,8 +40,12 @@ in {
       wtype
       wireplumber # streaming stuff
       swww
-      (import (user.rootPath + /packages/user_scripts/swww_triple_monitor.nix) {inherit pkgs;})
-      (import (user.rootPath + /packages/user_scripts/swww_single_monitor.nix) {inherit pkgs;})
+      (pkgs.callPackage
+        (user.path.root + /packages/user_scripts/swww_triple_monitor.nix)
+        {wallpaperPath = "$HOME/data/Pictures/legacy/Wallpapers/showcase/";})
+      (pkgs.callPackage
+        (user.path.root + /packages/user_scripts/swww_single_monitor.nix)
+        {wallpaperPath = "$HOME/data/Pictures/legacy/Wallpapers/dual";})
     ];
 
     programs.hyprland = {

@@ -1,8 +1,12 @@
-{pkgs}:
-pkgs.writeShellScriptBin "dev_fzf" ''
+{
+  writeShellScriptBin,
+  basePath ? "~",
+  ...
+}:
+writeShellScriptBin "dev_fzf" ''
   #!/usr/bin/env bash
 
-  base=~/data/dev
+  base=${basePath}
   dir=$(ls $base | fzf --preview "ls $base/{}")
   if [ $? -eq 0 ]; then
   	cd $base/$dir

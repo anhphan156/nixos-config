@@ -1,27 +1,32 @@
-{pkgs}: let
-  tmux = "${pkgs.tmux}/bin/tmux";
-  gdb = "${pkgs.gdb}/bin/gdb";
+{
+  writeShellScriptBin,
+  tmux,
+  gdb,
+  ...
+}: let
+  tmux_bin = "${tmux}/bin/tmux";
+  gdb_bin = "${gdb}/bin/gdb";
 in
-  pkgs.writeShellScriptBin "gdbx" ''
-    #!/usr/bin/env bash
+  writeShellScriptBin "gdbx" ''
+      #!/usr/bin/env bash
 
-    reg="$(${tmux} split-pane -vPF "#D" -l 8 "tail -f /dev/null")"
-    ${tmux} last-pane
-    memory="$(${tmux} split-pane -hPF "#D" -l 90 "tail -f /dev/null")"
-    ${tmux} last-pane
-    asm="$(${tmux} split-pane -vPF "#D" -l 12 "tail -f /dev/null")"
-    ${tmux} last-pane
+      reg="$(${tmux_bin} split-pane -vPF "#D" -l 8 "tail -f /dev/null")"
+      ${tmux_bin} last-pane
+      memory="$(${tmux_bin} split-pane -hPF "#D" -l 90 "tail -f /dev/null")"
+      ${tmux_bin} last-pane
+      asm="$(${tmux_bin} split-pane -vPF "#D" -l 12 "tail -f /dev/null")"
+      ${tmux_bin} last-pane
 
-    memory_tty="$(${tmux} display-message -p -t "$memory" '#{pane_tty}')"
-    asm_tty="$(${tmux} display-message -p -t "$asm" '#{pane_tty}')"
-    reg_tty="$(${tmux} display-message -p -t "$reg" '#{pane_tty}')"
+      memory_tty="$(${tmux_bin} display-message -p -t "$memory" '#{pane_tty}')"
+      asm_tty="$(${tmux_bin} display-message -p -t "$asm" '#{pane_tty}')"
+      reg_tty="$(${tmux_bin} display-message -p -t "$reg" '#{pane_tty}')"
 
-    ${gdb} -ex "dashboard assembly -output $asm_tty" -ex "dashboard -output $memory_tty" -ex "dashboard registers -output $reg_tty" "$1"
-    ${tmux} kill-pane -t "$memory"
-    ${tmux} kill-pane -t "$asm"
-    ${tmux} kill-pane -t "$reg"
+      ${gdb_bin} -ex "dashboard assembly -output $asm_tty" -ex "dashboard -output $memory_tty" -ex "dashboard registers -output $reg_tty" "$1"
+      ${tmux_bin} kill-pane -t "$memory"
+      ${tmux_bin} kill-pane -t "$asm"
+      ${tmux_bin} kill-pane -t "$reg"
 
-		if [[ ! -z "$2" ]]; then
-			${tmux} kill-window -t "$2"
-		fi
+    if [[ ! -z "$2" ]]; then
+    	${tmux_bin} kill-window -t "$2"
+    fi
   ''

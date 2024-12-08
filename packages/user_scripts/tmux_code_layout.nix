@@ -1,5 +1,5 @@
-{pkgs}:
-pkgs.writeShellScriptBin "tmux_code" ''
+{writeShellScriptBin, ...}:
+writeShellScriptBin "tmux_code" ''
   #!/usr/bin/env bash
 
   SESSION_NAME="''${1:-Dot}"

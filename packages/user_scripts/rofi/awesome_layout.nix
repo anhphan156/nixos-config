@@ -1,5 +1,5 @@
-{pkgs}:
-pkgs.writeShellScriptBin "awesome_layout_switch" ''
+{writeShellScriptBin, ...}:
+writeShellScriptBin "awesome_layout_switch" ''
   #!/usr/bin/env bash
 
   layout=$(echo "tile

@@ -6,14 +6,14 @@
 }: let
   commonModules =
     [
-      (user.rootPath + /overlay)
-      (user.rootPath + /packages)
+      (user.path.root + /overlay)
+      (user.path.root + /packages)
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
       inputs.xremap.nixosModules.default
       inputs.catppuccin.nixosModules.catppuccin
     ]
-    ++ (lib.getNixFiles (user.rootPath + /modules));
+    ++ (lib.getNixFiles (user.path.root + /modules));
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs user lib;};
@@ -26,7 +26,7 @@ in {
         inputs.xremap.nixosModules.default
         ./installer
       ]
-      ++ (lib.getNixFiles (user.rootPath + /modules));
+      ++ (lib.getNixFiles (user.path.root + /modules));
   };
 
   vmtest = inputs.nixpkgs.lib.nixosSystem {

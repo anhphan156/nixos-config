@@ -16,7 +16,7 @@
         description = "Path to this project in string";
         type = lib.types.str;
         readOnly = true;
-        default = "/home/${user.name}/dotfiles";
+        default = user.path.dotfiles;
       };
     };
     cyanea.keyboards.dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";

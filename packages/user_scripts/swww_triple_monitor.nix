@@ -1,8 +1,12 @@
-{pkgs}:
-pkgs.writeShellScriptBin "swww_tm" ''
+{
+  writeShellScriptBin,
+  wallpaperPath,
+  ...
+}:
+writeShellScriptBin "swww_tm" ''
   #!/usr/bin/env bash
 
-  wallpapers=$HOME/data/Pictures/legacy/Wallpapers/dual
+  wallpapers=${wallpaperPath}
   random=$(ls $wallpapers | shuf | head -1)
   random=$wallpapers/$random
 

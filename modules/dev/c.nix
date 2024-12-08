@@ -11,7 +11,7 @@
       gcc
       gdb
       valgrind
-      (import (user.rootPath + /packages/user_scripts/gdb-tmux.nix) {inherit pkgs;})
+      (pkgs.callPackage (user.path.root + /packages/user_scripts/gdb-tmux.nix) {})
     ];
   };
 }

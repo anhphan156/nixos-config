@@ -12,14 +12,12 @@
     ncmpcpp = lib.enabled;
 
     home-manager.users."${user.name}".home.packages =
-      if config.ncmpcpp.enable
-      then
-        with pkgs; [
-          (import (user.rootPath + /packages/user_scripts/kitty_spawn/spawn_ncmpcpp.nix) {inherit pkgs;})
-          (import (user.rootPath + /packages/user_scripts/music/music_retag.nix) {inherit pkgs;})
-          (import (user.rootPath + /packages/user_scripts/music/yt-dlp_mp3.nix) {inherit pkgs;})
-          mpc-cli
-        ]
-      else [];
+      lib.mkIf config.ncmpcpp.enable
+      (with pkgs; [
+        (callPackage (user.path.root + /packages/user_scripts/kitty_spawn/spawn_ncmpcpp.nix) {})
+        (callPackage (user.path.root + /packages/user_scripts/music/music_retag.nix) {musicPath = user.path.music;})
+        (callPackage (user.path.root + /packages/user_scripts/music/yt-dlp_mp3.nix) {musicPath = user.path.music;})
+        mpc-cli
+      ]);
   };
 }

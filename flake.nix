@@ -2,12 +2,17 @@
   description = "Nixos config flake";
 
   outputs = {nixpkgs, ...} @ inputs: let
-    user = {
+    user = rec {
       name = "backspace";
       real_name = "tbd";
       git_name = "anhphan";
       git_email = "anh.phan156@protonmail.com";
-      rootPath = ./.;
+      path = {
+        root = ./.;
+        dev = "/home/${name}/data/dev";
+        dotfiles = "/home/${name}/dotfiles";
+        music = "/home/${name}/data/Music";
+      };
     };
 
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});

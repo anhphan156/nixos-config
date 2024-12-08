@@ -1,7 +1,11 @@
-{pkgs}:
-pkgs.writeShellScriptBin "dev" ''
+{
+  writeShellScriptBin,
+  basePath ? "~",
+  ...
+}:
+writeShellScriptBin "dev" ''
   #!/usr/bin/env bash
-  basepath=~/data/dev
+  basepath=${basePath}
   project=`ls $basepath | rofi -i -dmenu -p "Pick a Project"`
 
   if [ $? -eq 0 ]; then

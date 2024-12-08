@@ -19,7 +19,7 @@ in {
 
     environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
-      (import (user.rootPath + /packages/user_scripts/rofi/awesome_layout.nix) {inherit pkgs;})
+      (pkgs.callPackage (user.path.root + /packages/user_scripts/rofi/awesome_layout.nix) {})
       pkgs.xclip
       pkgs.maim
       pkgs.xdotool
