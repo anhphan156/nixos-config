@@ -2,13 +2,13 @@
 let
   inherit (builtins) concatMap readDir filter isAttrs attrValues toPath;
 
-  findNixFilesRec = dir:
-    builtins.mapAttrs
+  findNixFilesRec = dir: dir
+    |> readDir
+    |> builtins.mapAttrs
     (x: y:
       if y == "directory"
       then findNixFilesRec (toPath dir + "/" + x)
-      else (toPath dir + "/" + x))
-    (readDir dir);
+      else (toPath dir + "/" + x));
 
   nixFilesList = set: let
     valueList = attrValues set;

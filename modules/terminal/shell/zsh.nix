@@ -5,10 +5,11 @@
   config,
   ...
 }: let
-  hosts = config.cyanea.host;
   inherit (pkgs.lib.attrsets) filterAttrs mapAttrs' nameValuePair;
 
-  rebuild-aliases = mapAttrs' (x: y: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}") (filterAttrs (x: y: y) hosts);
+  rebuild-aliases = config.cyanea.host
+    |> filterAttrs (x: y: y)
+    |> mapAttrs' (x: y: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}");
 in {
   programs.zsh.enable = true;
   users.users."${user.name}".shell = pkgs.zsh;
