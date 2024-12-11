@@ -1,10 +1,11 @@
-{lib, ...}:
-with lib; {
+{lib, ...}: let
+  inherit (lib) enabled mkForce;
+in {
   cyanea = {
     host.omega = true;
     desktopApp = {
       firefox = {
-        enable = lib.mkForce true;
+        enable = mkForce true;
         spacebar = enabled;
       };
       vesktop = enabled;
@@ -24,6 +25,15 @@ with lib; {
           "DP-1,3840x2160,1920x0,1.5"
           "DP-3,1920x1080@144,0x0,1,bitdepth,10"
           "HDMI-A-1,1920x1080,5760x0,1"
+        ];
+        workspace = [
+          "1, monitor:DP-1"
+          "2, monitor:DP-1"
+          "3, monitor:DP-1"
+          "4, monitor:DP-3"
+          "5, monitor:DP-3"
+          "6, monitor:DP-3"
+          "7, monitor:HDMI-A-1"
         ];
       };
     };

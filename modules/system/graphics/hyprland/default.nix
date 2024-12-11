@@ -9,11 +9,18 @@
   cfg = config.cyanea.graphical;
 in {
   options = {
-    cyanea.graphical.hyprland.enable = lib.mkEnableOption "Enable hyprland";
-    cyanea.graphical.hyprland.monitor = lib.mkOption {
-      default = [",preferred,auto,1"];
-      type = lib.types.listOf lib.types.str;
-      description = "List of monitors";
+    cyanea.graphical.hyprland = {
+      enable = lib.mkEnableOption "Enable hyprland";
+      monitor = lib.mkOption {
+        default = [",preferred,auto,1"];
+        type = lib.types.listOf lib.types.str;
+        description = "List of monitors";
+      };
+      workspace = lib.mkOption {
+        default = [];
+        type = lib.types.listOf lib.types.str;
+        description = "List of workspace";
+      };
     };
   };
 
@@ -78,12 +85,12 @@ in {
           };
 
           decoration = {
-            drop_shadow = "yes";
-            shadow_range = "300";
-            shadow_render_power = "4";
-            "col.shadow" = "rgba(1a1a1aaf)";
-            shadow_offset = "0 40";
-            shadow_scale = "0.9";
+            # drop_shadow = "yes";
+            # shadow_range = "300";
+            # shadow_render_power = "4";
+            # "col.shadow" = "rgba(1a1a1aaf)";
+            # shadow_offset = "0 40";
+            # shadow_scale = "0.9";
             rounding = "10";
             active_opacity = "0.75";
             inactive_opacity = "0.4";
@@ -100,9 +107,14 @@ in {
           input = {
             #follow_mouse = "1";
             sensitivity = "0.0";
+            touchpad = lib.mkIf config.cyanea.system.laptop.enable {
+              natural_scroll = true;
+              middle_button_emulation = true;
+            };
           };
 
           monitor = config.cyanea.graphical.hyprland.monitor;
+          workspace = config.cyanea.graphical.hyprland.workspace;
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
@@ -120,16 +132,6 @@ in {
             "blur, ^(rofi)$"
             "ignorezero, ^(rofi)$"
             "dimaround, ^(rofi)$"
-          ];
-
-          workspace = [
-            "1, monitor:DP-1"
-            "2, monitor:DP-1"
-            "3, monitor:DP-1"
-            "4, monitor:DP-3"
-            "5, monitor:DP-3"
-            "6, monitor:DP-3"
-            "7, monitor:HDMI-A-1"
           ];
         };
       };

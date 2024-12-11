@@ -3,7 +3,11 @@
   config,
   lib,
   ...
-}: {
+}: let
+  workspace_list = config.cyanea.graphical.hyprland.workspace
+    |> builtins.length
+    |> builtins.genList (x: x + 1);
+in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${user.name}" = {config, ...}: let
       screenshotPath = "${config.home.homeDirectory}/data/Pictures/screenshots/$(date +'%s_grim.png')";
@@ -34,9 +38,6 @@
 
             # scratchpad
             "$mod, P, exec, pypr toggle kitty"
-            "SUPERSHIFT, 1, exec, pypr toggle nemo"
-            "SUPERSHIFT, 2, exec, pypr toggle obsidian"
-            "SUPERSHIFT, 9, exec, pypr toggle pavucontrol"
 
             # screenshots
             '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''
@@ -45,7 +46,8 @@
             #misc
             "SUPERSHIFT, W, exec, swww_sm"
           ]
-          ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") [1 2 3 4 5 6];
+          ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") workspace_list 
+          ++ map (x: "SUPERSHIFT, ${toString x}, movetoworkspacesilent, ${toString x}") workspace_list;
 
         bindm = [
           "$mod, mouse:272, movewindow"
@@ -55,6 +57,8 @@
         bindel = [
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86MonBrightnessUp, exec, xbacklight -inc 5"
+          ", XF86MonBrightnessDown, exec, xbacklight -dec 5"
         ];
         bindl = [
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

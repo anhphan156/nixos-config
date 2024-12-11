@@ -1,0 +1,24 @@
+(defwindow leftdock
+	:monitor 0
+	:exclusive false
+	:geometry 
+		(geometry 
+		  :x "0px"
+			:y "0px"
+			:width "10px"
+			:height "400px"
+			:anchor "left center"
+		)
+	:stacking "fg"
+	:reserve (struts :distance "20px" :side "left")
+	:windowtype "dock"
+	:wm-ignore false
+	(dock :text "haha"))
+
+(defwidget dock [?text]
+	(box :orientation "vertical"
+		text))
+(deflisten clients
+	:initial "whatever"
+	`hyprctl monitors | grep "active workspace"`)
+

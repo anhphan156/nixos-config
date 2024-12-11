@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  inherit (lib) enabled mkIf;
+  inherit (lib) enabled mkIf mkForce;
 in {
   cyanea = {
     host.backlight = true;
@@ -29,9 +29,17 @@ in {
     };
     graphical = {
       gui = enabled;
-      awesome = enabled;
-      sddm.autoLogin.enable = false;
-    };
+      # awesome = enabled;
+      hyprland = {
+        enable = mkForce true;
+        monitor = [
+          "eDP-1,1920x1080,0x0,1"
+          "HDMI-A-1, disable"
+        ];
+        workspace = [1 2 3 4] |> map (x: "${toString x}, monitor:eDP-1");
+      }; # hyprland
+      # sddm.autoLogin.enable = false;
+    }; # graphical
     networking = {
       firewall = enabled;
     };

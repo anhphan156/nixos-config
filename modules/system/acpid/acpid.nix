@@ -3,7 +3,10 @@
   config,
   lib,
   ...
-}: {
+}: let
+  laptop = config.cyanea.system.laptop;
+  awesome = config.cyanea.graphical.awesome;
+in {
   options = {
     cyanea.system.acpid.enable = lib.mkEnableOption "enable acpid";
   };
@@ -12,7 +15,7 @@
     services.acpid = {
       enable = true;
       handlers = {
-        ac-power = lib.mkIf config.cyanea.system.laptop.enable {
+        ac-power = lib.mkIf (laptop.enable && awesome.enable) {
           action = ''
             p=$(echo $PATH | grep '/run/current-system/sw/bin')
             if [ -z $p ]; then
@@ -30,7 +33,7 @@
           '';
           event = "ac_adapter/*";
         };
-        button-power = {
+        button-power = lib.mkIf (laptop.enable && awesome.enable) {
           action = ''
             p=$(echo $PATH | grep '/run/current-system/sw/bin')
             if [ -z $p ]; then
