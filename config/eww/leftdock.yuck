@@ -1,6 +1,6 @@
 (defwindow leftdock
 	:monitor 0
-	:exclusive false
+	:exclusive true
 	:geometry 
 		(geometry 
 		  :x "0px"
@@ -13,11 +13,44 @@
 	:reserve (struts :distance "20px" :side "left")
 	:windowtype "dock"
 	:wm-ignore false
-	(dock :text "haha"))
+	(dock
+		:icon_size "50"))
 
-(defwidget dock [?text]
-	(box :orientation "vertical"
-		text))
+(defvar revealdock "false")
+(defvar test "blue")
+
+(defwidget dock [icon_size]
+	(eventbox
+		:onhover "leftdockcheck"
+		:onhoverlost "eww update revealdock=false"
+		(box
+		:class "pr10"
+		(revealer
+			:transition "slideright"
+			:reveal revealdock
+			(box 
+				:orientation "v"
+				:class "dockbackground"
+				(box
+					:orientation "v"
+					:space-evenly "true"
+					:style "background-color:${test}"
+					(image 
+						:class "dockicons"
+						:path "/home/backspace/data/Icons/firefox.png"
+						:image-width icon_size))
+				(image 
+					:class "dockicons"
+					:path "/home/backspace/data/Icons/discord.png"
+					:image-width icon_size)
+				(image 
+					:path "/home/backspace/data/Icons/filemanager.png"
+					:image-width icon_size)
+				(image 
+					:path "/home/backspace/data/Icons/terminal_emulator.png"
+					:image-width icon_size)))))
+	)
+
 (deflisten clients
 	:initial "whatever"
 	`hyprctl monitors | grep "active workspace"`)

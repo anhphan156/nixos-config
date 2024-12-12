@@ -65,6 +65,10 @@ in {
         autostart = pkgs.pkgs.writeShellScriptBin "start" ''
           pypr &
 
+          eww daemon
+          eww open bar
+          eww open leftdock
+
           swww init &
           sleep 1
           swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
@@ -75,7 +79,6 @@ in {
           exec-once = [
             "${autostart}/bin/start"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-            "eww daemon"
             "wl-paste --watch cliphist store"
           ];
 

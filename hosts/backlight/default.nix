@@ -116,6 +116,7 @@ in {
         ".cargo"
         ".local/share/direnv"
         ".local/share/zsh"
+        ".config/vesktop"
         ".cache"
       ];
     };
