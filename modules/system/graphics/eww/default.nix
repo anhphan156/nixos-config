@@ -7,6 +7,7 @@
 }: let
   eww_path = "${config.cyanea.user.dotfilesPath}/config/eww";
 
+  # TODO make a c program to keep track of what window is open and closed with hyprland ipc and emits an output for (deflisten)
   leftdockscript = pkgs.writeShellScriptBin "leftdockcheck" ''
     #!/usr/bin/env bash
 
@@ -15,9 +16,9 @@
     hyprctl clients | grep "class: firefox"
 
     if [[ $? -eq 0 ]]; then
-      eww update test=blue
+      eww update icon1=true
     else
-      eww update test=red
+      eww update icon1=false
     fi
   '';
 in {

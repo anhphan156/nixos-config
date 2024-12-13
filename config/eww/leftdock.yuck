@@ -1,6 +1,6 @@
 (defwindow leftdock
 	:monitor 0
-	:exclusive true
+	:exclusive false
 	:geometry 
 		(geometry 
 		  :x "0px"
@@ -13,13 +13,16 @@
 	:reserve (struts :distance "20px" :side "left")
 	:windowtype "dock"
 	:wm-ignore false
-	(dock
-		:icon_size "50"))
+	(dock))
 
-(defvar revealdock "false")
-(defvar test "blue")
+(defvar revealdock "true")
+(defvar icon1 "false")
+(defvar icon2 "false")
+(defvar icon3 "false")
+(defvar icon4 "false")
+(defvar icon_base_path "/home/backspace/data/Icons/")
 
-(defwidget dock [icon_size]
+(defwidget dock []
 	(eventbox
 		:onhover "leftdockcheck"
 		:onhoverlost "eww update revealdock=false"
@@ -31,27 +34,34 @@
 			(box 
 				:orientation "v"
 				:class "dockbackground"
-				(box
-					:orientation "v"
-					:space-evenly "true"
-					:style "background-color:${test}"
-					(image 
-						:class "dockicons"
-						:path "/home/backspace/data/Icons/firefox.png"
-						:image-width icon_size))
-				(image 
-					:class "dockicons"
-					:path "/home/backspace/data/Icons/discord.png"
-					:image-width icon_size)
-				(image 
-					:path "/home/backspace/data/Icons/filemanager.png"
-					:image-width icon_size)
-				(image 
-					:path "/home/backspace/data/Icons/terminal_emulator.png"
-					:image-width icon_size)))))
-	)
+				(icon
+					:icon_path "${icon_base_path}firefox.png"
+					:icon_num icon1
+					:process_name "firefox")
+				(icon
+					:icon_path "${icon_base_path}discord.png"
+					:icon_num icon2
+					:process_name "discord")
+				(icon
+					:icon_path "${icon_base_path}filemanager.png"
+					:icon_num icon3
+					:process_name "nemo")
+				(icon
+					:icon_path "${icon_base_path}terminal_emulator.png"
+					:icon_num icon4
+					:process_name "kitty"))))))
 
-(deflisten clients
-	:initial "whatever"
-	`hyprctl monitors | grep "active workspace"`)
-
+(defwidget icon [icon_path icon_num process_name]
+	(box
+		:orientation "v"
+		:space-evenly "true"
+		(button
+			:onclick {icon_num ? "hyprctl dispatch focuswindow ${process_name}" : process_name}
+			(image 
+				:class "dockicons"
+				:path icon_path
+				:image-width 50))
+		(image
+			:image-height {icon_num ? 12 : 0}
+			:path "/home/backspace/data/Icons/ada.png"
+			:class "dockiconsindicator")))
