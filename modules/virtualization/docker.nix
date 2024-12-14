@@ -1,9 +1,9 @@
 {
-lib,
-config,
-user,
-...
-}:{
+  lib,
+  config,
+  user,
+  ...
+}: {
   options.cyanea.virtualization.docker = {
     enable = lib.mkEnableOption "Enable Docker";
     btrfs = lib.mkEnableOption "Enable Docker btrfs";

@@ -21,20 +21,11 @@ in {
       gui = enabled;
       hyprland = {
         enable = mkForce true;
-        monitor = [
-          "DP-1,3840x2160,1920x0,1.5"
-          "DP-3,1920x1080@144,0x0,1,bitdepth,10"
-          "HDMI-A-1,1920x1080,5760x0,1"
-        ];
-        workspace = [
-          "1, monitor:DP-1"
-          "2, monitor:DP-1"
-          "3, monitor:DP-1"
-          "4, monitor:DP-3"
-          "5, monitor:DP-3"
-          "6, monitor:DP-3"
-          "7, monitor:HDMI-A-1"
-        ];
+        monitor = {
+          monitorList = ["DP-1" "DP-3" "HDMI-A-1"];
+          resolutionList = ["3840x2160,1920x0,1.5" "1920x1080@144,0x0,1,bitdepth,10" "1920x1080,5760x0,1"];
+          workspaceList = [[1 2 3] [4 5 6] [7]];
+        };
       };
     };
     networking = {

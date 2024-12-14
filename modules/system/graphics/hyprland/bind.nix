@@ -4,9 +4,7 @@
   lib,
   ...
 }: let
-  workspace_list = config.cyanea.graphical.hyprland.workspace
-    |> builtins.length
-    |> builtins.genList (x: x + 1);
+  workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${user.name}" = {config, ...}: let
@@ -46,7 +44,7 @@ in {
             #misc
             "SUPERSHIFT, W, exec, swww_sm"
           ]
-          ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") workspace_list 
+          ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") workspace_list
           ++ map (x: "SUPERSHIFT, ${toString x}, movetoworkspacesilent, ${toString x}") workspace_list;
 
         bindm = [

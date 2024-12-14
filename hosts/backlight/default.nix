@@ -12,7 +12,6 @@ in {
       vesktop = enabled;
       firefox = enabled;
       keepassxc = enabled;
-      rofi = enabled;
       obsidian = enabled;
     };
     system = {
@@ -32,11 +31,11 @@ in {
       # awesome = enabled;
       hyprland = {
         enable = mkForce true;
-        monitor = [
-          "eDP-1,1920x1080,0x0,1"
-          "HDMI-A-1, disable"
-        ];
-        workspace = [1 2 3 4] |> map (x: "${toString x}, monitor:eDP-1");
+        monitor = {
+          monitorList = ["eDP-1" "HDMI-A-1"];
+          resolutionList = ["1920x1080,0x0,1" "disable"];
+          workspaceList = [[1 2 3 4]];
+        };
       }; # hyprland
       # sddm.autoLogin.enable = false;
     }; # graphical

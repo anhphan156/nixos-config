@@ -11,15 +11,26 @@ in {
   options = {
     cyanea.graphical.hyprland = {
       enable = lib.mkEnableOption "Enable hyprland";
-      monitor = lib.mkOption {
-        default = [",preferred,auto,1"];
-        type = lib.types.listOf lib.types.str;
-        description = "List of monitors";
-      };
-      workspace = lib.mkOption {
-        default = [];
-        type = lib.types.listOf lib.types.str;
-        description = "List of workspace";
+
+      monitor = let
+        inherit (lib) mkOption;
+        inherit (lib.types) listOf str int;
+      in {
+        monitorList = mkOption {
+          default = [];
+          type = listOf str;
+          description = "List of monitors";
+        };
+        resolutionList = mkOption {
+          default = [];
+          type = listOf str;
+          description = "List of resolution";
+        };
+        workspaceList = mkOption {
+          default = [[]];
+          type = listOf (listOf int);
+          description = "List of workspace";
+        };
       };
     };
   };
@@ -62,6 +73,9 @@ in {
 
     home-manager.users."${user.name}" = {
       wayland.windowManager.hyprland = let
+
+        inherit (cfg.hyprland.monitor) monitorList resolutionList workspaceList;
+
         autostart = pkgs.pkgs.writeShellScriptBin "start" ''
           pypr &
 
@@ -73,9 +87,15 @@ in {
           sleep 1
           swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
         '';
+
+        monitor = lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;
+        workspace = builtins.concatLists <| lib.lists.zipListsWith (x: y: y |> map (z: "${toString z},monitor:${x}")) monitorList workspaceList;
       in {
         enable = true;
         settings = {
+
+          inherit monitor workspace;
+
           exec-once = [
             "${autostart}/bin/start"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -115,9 +135,6 @@ in {
               middle_button_emulation = true;
             };
           };
-
-          monitor = config.cyanea.graphical.hyprland.monitor;
-          workspace = config.cyanea.graphical.hyprland.workspace;
 
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"

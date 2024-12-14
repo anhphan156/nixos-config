@@ -18,6 +18,7 @@
         beeper
         blender
         obs-studio
+        zoom-us
         (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = user.path.root;})
         (callPackage ./user_scripts/kitty_spawn/spawn_tmux_code.nix {dotfilesPath = user.path.dotfiles;})
         (callPackage ./user_scripts/rofi/dev_project.nix {basePath = user.path.dev;})

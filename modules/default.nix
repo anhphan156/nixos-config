@@ -5,11 +5,16 @@
 }: {
   options = {
     cyanea.graphical.gui.enable = lib.mkEnableOption "Enable GUI";
-    cyanea.host = {
-      omega = lib.mkEnableOption "";
-      backlight = lib.mkEnableOption "";
-      wsl = lib.mkEnableOption "";
-      vmtest = lib.mkEnableOption "";
+    cyanea.host = let
+      hostOption = lib.mkOption {
+        type = lib.types.uniq lib.types.bool;
+        default = false;
+      };
+    in {
+      omega = hostOption;
+      backlight = hostOption;
+      wsl = hostOption;
+      vmtest = hostOption;
     };
     cyanea.user = {
       dotfilesPath = lib.mkOption {
