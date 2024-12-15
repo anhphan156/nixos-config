@@ -2,6 +2,9 @@
   description = "Nixos config flake";
 
   outputs = {nixpkgs, ...} @ inputs: let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
+
     user = rec {
       name = "backspace";
       real_name = "tbd";
@@ -13,12 +16,10 @@
         dotfiles = "/home/${name}/dotfiles";
         music = "/home/${name}/data/Music";
       };
+      wallpapers = inputs.wallpapers.packages."${system}".default;
     };
 
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
-
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib user;};
 
@@ -83,5 +84,7 @@
     catppuccin.url = "github:catppuccin/nix";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
+    wallpapers.url = "github:anhphan156/Wallpapers";
   };
 }

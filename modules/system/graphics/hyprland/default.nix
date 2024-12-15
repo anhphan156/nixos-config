@@ -17,18 +17,18 @@ in {
         inherit (lib.types) listOf str int;
       in {
         monitorList = mkOption {
-          default = [];
+          default = [""];
           type = listOf str;
           description = "List of monitors";
         };
         resolutionList = mkOption {
-          default = [];
+          default = ["preferred,auto,1"];
           type = listOf str;
           description = "List of resolution";
         };
         workspaceList = mkOption {
-          default = [[]];
-          type = listOf (listOf int);
+          default = [[1 2 3] [4 5 6]];
+          type = listOf <| listOf int;
           description = "List of workspace";
         };
       };
@@ -58,12 +58,11 @@ in {
       wtype
       wireplumber # streaming stuff
       swww
-      (pkgs.callPackage
-        (user.path.root + /packages/user_scripts/swww_triple_monitor.nix)
-        {wallpaperPath = "$HOME/data/Pictures/legacy/Wallpapers/showcase/";})
-      (pkgs.callPackage
-        (user.path.root + /packages/user_scripts/swww_single_monitor.nix)
-        {wallpaperPath = "$HOME/data/Pictures/legacy/Wallpapers/dual";})
+
+      (pkgs.callPackage (user.path.root + /packages/user_scripts/swww_scripts.nix) {
+        wallpaperPath = "${user.wallpapers}";
+        inherit (cfg.hyprland.monitor) monitorList;
+      })
     ];
 
     programs.hyprland = {
@@ -85,10 +84,12 @@ in {
 
           swww init &
           sleep 1
-          swww img "${config.users.users.backspace.home}/dotfiles/config/kitty/firefly.jpg" &
+          swww img "${user.wallpapers}/single/firefly_zzz.jpg" &
         '';
 
+        # monitor = assert monitorList != []; lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;
         monitor = lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;
+
         workspace = builtins.concatLists <| lib.lists.zipListsWith (x: y: y |> map (z: "${toString z},monitor:${x}")) monitorList workspaceList;
       in {
         enable = true;
