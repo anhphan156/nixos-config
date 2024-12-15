@@ -18,7 +18,7 @@ This flake provides system configuration for my NixOS computers, which share man
 
 ## Hosts
 Desktop Hosts
-+ Impermance setup with root on tmpfs
++ Impermanence setup with root on tmpfs
 + Window manager: either Hyprland or AwesomeWM (up to my mood)
 
 Wsl Host

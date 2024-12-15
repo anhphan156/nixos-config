@@ -9,7 +9,7 @@
   rebuild-aliases = config.cyanea.host
     |> filterAttrs (_: y: y)
     |> (x: assert (x |> mapAttrsToList (k: _: k) |> builtins.length) <= 1; x)
-    |> mapAttrs' (x: _: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}");
+    |> mapAttrs' (x: _: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ${config.cyanea.dotfilesPath}#${x}");
 in {
   programs.zsh.enable = true;
   users.users."${lib.user.name}".shell = pkgs.zsh;
