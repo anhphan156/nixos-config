@@ -6,7 +6,6 @@
     path = {
       root = inputs.self.src;
       dev = "/home/${name}/data/dev";
-      dotfiles = "/home/${name}/dotfiles";
       music = "/home/${name}/data/Music";
     };
   };

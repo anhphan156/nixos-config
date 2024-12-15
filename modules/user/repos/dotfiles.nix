@@ -12,7 +12,7 @@
       ...
     }: {
       home.activation = let
-        path = "${config.home.homeDirectory}/dotfiles";
+        path = "${lib.user.root}";
         repo = "https://github.com/anhphan156/dotfiles";
       in {
         cloneDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
