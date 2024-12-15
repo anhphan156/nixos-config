@@ -1,9 +1,11 @@
 {
   description = "Nixos config flake";
 
-  outputs = {nixpkgs, ...} @ inputs: let
-    system = "x86_64-linux";
-
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     user = rec {
       name = "backspace";
       git_name = "anhphan";
@@ -17,8 +19,21 @@
     };
 
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
+
+    forAllSystems = lib.genAttrs lib.platforms.linux;
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib user;};
+
+    checks = forAllSystems (system: {
+      pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          alejandra = {
+            enable = true;
+          };
+        };
+      };
+    });
   };
 
   inputs = {
@@ -58,11 +73,9 @@
     };
 
     xremap.url = "github:xremap/nix-flake";
-
     catppuccin.url = "github:catppuccin/nix";
-
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
     wallpapers.url = "github:anhphan156/Wallpapers";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 }
