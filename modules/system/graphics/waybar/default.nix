@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  waybar_path = "${config.cyanea.user.dotfilesPath}/config/waybar/style.css";
+  waybar_path = "${config.cyanea.dotfilesPath}/config/waybar/style.css";
 in {
   options = {
     cyanea.graphical.waybar.enable = lib.mkEnableOption "Enable waybar";

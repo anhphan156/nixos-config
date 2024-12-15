@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  pyprland_path = "${config.cyanea.user.dotfilesPath}/config/hypr/pyprland.toml";
+  pyprland_path = "${config.cyanea.dotfilesPath}/config/hypr/pyprland.toml";
 in {
   options = {
     cyanea.graphical.hyprland.pyprland.enable = lib.mkEnableOption "Enable pyprland";
@@ -14,46 +14,46 @@ in {
     home-manager.users."${user.name}" = {config, ...}: {
       xdg.configFile = {
         #"hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink pyprland_path;
-				"hypr/pyprland.toml".text = ''
-					[pyprland]
-					plugins = ["scratchpads"]
+        "hypr/pyprland.toml".text = ''
+          [pyprland]
+          plugins = ["scratchpads"]
 
-					[scratchpads.kitty]
-					animation = "fromTop"
-					command = "kitty --class kitty-dropterm"
-					class = "kitty-dropterm"
-					size = "75% 60%"
-					max_size = "1920px 100%"
-					margin = 50
+          [scratchpads.kitty]
+          animation = "fromTop"
+          command = "kitty --class kitty-dropterm"
+          class = "kitty-dropterm"
+          size = "75% 60%"
+          max_size = "1920px 100%"
+          margin = 50
 
-					[scratchpads.nemo]
-					animation = "fromTop"
-					command = "nemo"
-					class = "nemo"
-					size = "75% 60%"
-					max_size = "1920px 100%"
-					margin = 50
+          [scratchpads.nemo]
+          animation = "fromTop"
+          command = "nemo"
+          class = "nemo"
+          size = "75% 60%"
+          max_size = "1920px 100%"
+          margin = 50
 
-					[scratchpads.obsidian]
-					animation = "fromTop"
-					command = "obsidian"
-					class = "obsidian"
-					size = "75% 60%"
-					max_size = "1920px 100%"
-					margin = 50
-					lazy = true
+          [scratchpads.obsidian]
+          animation = "fromTop"
+          command = "obsidian"
+          class = "obsidian"
+          size = "75% 60%"
+          max_size = "1920px 100%"
+          margin = 50
+          lazy = true
 
-					[scratchpads.pavucontrol]
-					animation = "fromRight"
-					command = "pavucontrol"
-					class = "pavucontrol"
-					size = "75% 60%"
-					max_size = "1920px 100%"
-					margin = 50
-					unfocus = "hide"
-					hysteresis = 0.1
-					lazy = true
-				'';
+          [scratchpads.pavucontrol]
+          animation = "fromRight"
+          command = "pavucontrol"
+          class = "pavucontrol"
+          size = "75% 60%"
+          max_size = "1920px 100%"
+          margin = 50
+          unfocus = "hide"
+          hysteresis = 0.1
+          lazy = true
+        '';
       };
     };
   };

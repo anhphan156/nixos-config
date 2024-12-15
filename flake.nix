@@ -3,7 +3,6 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
 
     user = rec {
       name = "backspace";
@@ -15,31 +14,11 @@
         dotfiles = "/home/${name}/dotfiles";
         music = "/home/${name}/data/Music";
       };
-      wallpapers = inputs.wallpapers.packages."${system}".default;
     };
 
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib user;};
-
-    devShells."${system}".default = pkgs.mkShell {
-      shellHook = "exec zsh";
-    };
-
-    templates = {
-      avr = {
-        path = ./templates/avr;
-        description = "Avr Project Template";
-      };
-      arm = {
-        path = ./templates/arm;
-        description = "Arm Project Template";
-      };
-      dev = {
-        path = ./templates/dev;
-        description = "Dev Project Template";
-      };
-    };
   };
 
   inputs = {

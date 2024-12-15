@@ -17,7 +17,7 @@
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
           logo = {
-            source = "${user.wallpapers}/fetch_logo/neofetch.jpg";
+            source = "${config.cyanea.wallpapers}/fetch_logo/neofetch.jpg";
             height = 18;
           };
           display = {

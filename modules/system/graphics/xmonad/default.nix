@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.cyanea.graphical;
-  xmonad_path = "${config.cyanea.user.dotfilesPath}/config/xmonad";
+  xmonad_path = "${config.cyanea.dotfilesPath}/config/xmonad";
 in {
   options.cyanea.graphical.xmonad.enable = lib.mkEnableOption "Enable Xmonad";
 

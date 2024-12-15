@@ -1,6 +1,8 @@
 {
   lib,
+  pkgs,
   user,
+  inputs,
   ...
 }: {
   options = {
@@ -16,14 +18,22 @@
       wsl = hostOption;
       vmtest = hostOption;
     };
-    cyanea.user = {
+    cyanea = {
       dotfilesPath = lib.mkOption {
         description = "Path to this project in string";
         type = lib.types.str;
         readOnly = true;
         default = user.path.dotfiles;
       };
+
+      wallpapers = lib.mkOption {
+        description = "Wallpapers";
+        type = lib.types.package;
+        readOnly = true;
+        default = inputs.wallpapers.packages."${pkgs.system}".default;
+      };
     };
+
     cyanea.keyboards.dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";
   };
 }

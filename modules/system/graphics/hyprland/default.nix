@@ -7,6 +7,11 @@
   ...
 }: let
   cfg = config.cyanea.graphical;
+
+  swww_scripts = pkgs.callPackage (user.path.root + /packages/user_scripts/swww_scripts.nix) {
+    inherit (config.cyanea) wallpapers;
+    inherit (cfg.hyprland.monitor) monitorList;
+  };
 in {
   options = {
     cyanea.graphical.hyprland = {
@@ -58,11 +63,7 @@ in {
       wtype
       wireplumber # streaming stuff
       swww
-
-      (pkgs.callPackage (user.path.root + /packages/user_scripts/swww_scripts.nix) {
-        inherit (user) wallpapers;
-        inherit (cfg.hyprland.monitor) monitorList;
-      })
+      swww_scripts
     ];
 
     programs.hyprland = {
@@ -84,7 +85,7 @@ in {
 
           swww init &
           sleep 1
-          swww img "${user.wallpapers}/single/touhou.png" &
+          ${swww_scripts}/bin/swww_sm
         '';
 
         # monitor = assert monitorList != []; lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;
