@@ -3,7 +3,6 @@
   pkgs,
   modulesPath,
   lib,
-  user,
   inputs,
   ...
 }: {
@@ -11,7 +10,7 @@
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
 
-  users.users."${user.name}".initialPassword = "123";
+  users.users."${lib.user.name}".initialPassword = "123";
 
   nixpkgs.hostPlatform = "x86_64-linux";
   nixpkgs.config.allowUnfree = true;

@@ -4,11 +4,12 @@
   config,
   ...
 }: let
-  inherit (pkgs.lib.attrsets) filterAttrs mapAttrs' nameValuePair;
+  inherit (pkgs.lib.attrsets) filterAttrs mapAttrs' mapAttrsToList nameValuePair;
 
   rebuild-aliases = config.cyanea.host
-    |> filterAttrs (x: y: y)
-    |> mapAttrs' (x: y: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}");
+    |> filterAttrs (_: y: y)
+    |> (x: assert (x |> mapAttrsToList (k: _: k) |> builtins.length) <= 1; x)
+    |> mapAttrs' (x: _: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}");
 in {
   programs.zsh.enable = true;
   users.users."${lib.user.name}".shell = pkgs.zsh;
