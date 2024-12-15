@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  user,
   inputs,
   ...
 }: let
@@ -15,7 +14,7 @@ in {
   };
 
   config = lib.mkIf (cfggui.enable && cfg.enable) {
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       home.packages = lib.mkIf cfg.spacebar.enable [
         (pkgs.writeShellScriptBin "ffspacebar" ''
           firefox -P spacebar
@@ -26,7 +25,7 @@ in {
         enable = true;
         policies = {
           NoDefaultBookmarks = true;
-					"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
         profiles.spacebar = lib.mkIf cfg.spacebar.enable {
           name = "spacebar";
@@ -53,8 +52,8 @@ in {
           # 	};
           # };
         };
-        profiles."${user.name}" = {
-          name = user.name;
+        profiles."${lib.user.name}" = {
+          name = lib.user.name;
           isDefault = true;
           search = {
             force = true;

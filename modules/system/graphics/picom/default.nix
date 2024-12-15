@@ -1,5 +1,4 @@
 {
-  user,
   config,
   lib,
   ...
@@ -11,7 +10,7 @@ in {
   };
 
   config = lib.mkIf (cfg.gui.enable && cfg.picom.enable) {
-    home-manager.users."${user.name}".services.picom = {
+    home-manager.users."${lib.user.name}".services.picom = {
       enable = true;
       backend = "glx";
 

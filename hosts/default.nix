@@ -1,22 +1,21 @@
 {
-  user,
   lib,
   inputs,
   ...
 }: let
   commonModules =
     [
-      (user.path.root + /overlay)
-      (user.path.root + /packages)
+      (lib.user.path.root + /overlay)
+      (lib.user.path.root + /packages)
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
       inputs.xremap.nixosModules.default
       inputs.catppuccin.nixosModules.catppuccin
     ]
-    ++ (lib.getNixFiles (user.path.root + /modules));
+    ++ (lib.getNixFiles (lib.user.path.root + /modules));
 in {
   installer = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs user lib;};
+    specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
       [
@@ -26,11 +25,11 @@ in {
         inputs.xremap.nixosModules.default
         ./installer
       ]
-      ++ (lib.getNixFiles (user.path.root + /modules));
+      ++ (lib.getNixFiles (lib.user.path.root + /modules));
   };
 
   vmtest = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs user lib;};
+    specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
       commonModules
@@ -44,7 +43,7 @@ in {
   };
 
   backlight = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs user lib;};
+    specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
       commonModules
@@ -58,7 +57,7 @@ in {
   };
 
   omega = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs user lib;};
+    specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
       commonModules
@@ -68,7 +67,7 @@ in {
       ];
   };
   wsl = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs user lib;};
+    specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
       commonModules

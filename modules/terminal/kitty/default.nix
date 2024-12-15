@@ -1,11 +1,10 @@
 {
-  user,
   lib,
   config,
   ...
 }: {
   config = lib.mkIf config.cyanea.graphical.gui.enable {
-    home-manager.users."${user.name}".programs.kitty = {
+    home-manager.users."${lib.user.name}".programs.kitty = {
       enable = true;
       settings = {
         font_family = "AnkaCoder-r";

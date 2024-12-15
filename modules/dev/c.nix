@@ -1,6 +1,5 @@
 {
   pkgs,
-  user,
   lib,
   config,
   ...
@@ -11,7 +10,7 @@
       gcc
       gdb
       valgrind
-      (pkgs.callPackage (user.path.root + /packages/user_scripts/gdb-tmux.nix) {})
+      (pkgs.callPackage (lib.user.path.root + /packages/user_scripts/gdb-tmux.nix) {})
     ];
   };
 }

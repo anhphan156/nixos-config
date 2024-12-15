@@ -1,6 +1,5 @@
 {
   config,
-  user,
   lib,
   ...
 }: let
@@ -11,7 +10,7 @@ in {
   };
 
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable && hyprland.pyprland.enable)) {
-    home-manager.users."${user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {config, ...}: {
       xdg.configFile = {
         #"hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink pyprland_path;
         "hypr/pyprland.toml".text = ''

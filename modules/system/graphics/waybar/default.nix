@@ -1,5 +1,4 @@
 {
-  user,
   lib,
   config,
   ...
@@ -11,7 +10,7 @@ in {
   };
 
   config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.graphical.hyprland.enable && config.cyanea.graphical.waybar.enable) {
-    home-manager.users."${user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {config, ...}: {
       programs.waybar = {
         enable = true;
         systemd.enable = true;

@@ -1,8 +1,8 @@
 {
-  user,
   inputs,
   pkgs,
   config,
+  lib,
   ...
 }: let
   inherit (pkgs) callPackage;
@@ -19,9 +19,9 @@
         blender
         obs-studio
         zoom-us
-        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = user.path.root;})
-        (callPackage ./user_scripts/kitty_spawn/spawn_tmux_code.nix {dotfilesPath = user.path.dotfiles;})
-        (callPackage ./user_scripts/rofi/dev_project.nix {basePath = user.path.dev;})
+        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = lib.user.path.root;})
+        (callPackage ./user_scripts/kitty_spawn/spawn_tmux_code.nix {dotfilesPath = lib.user.path.dotfiles;})
+        (callPackage ./user_scripts/rofi/dev_project.nix {basePath = lib.user.path.dev;})
       ]
     else [];
 in {
@@ -43,7 +43,7 @@ in {
     nixd
   ];
 
-  home-manager.users."${user.name}" = {
+  home-manager.users."${lib.user.name}" = {
     nixpkgs.config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;

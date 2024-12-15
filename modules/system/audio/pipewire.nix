@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-	user,
   ...
 }: {
   options = {
@@ -18,7 +17,7 @@
       pulse.enable = true;
     };
 
-    users.users."${user.name}" = {
+    users.users."${lib.user.name}" = {
       extraGroups = lib.mkAfter ["audio"];
     };
 

@@ -1,9 +1,7 @@
 {
   pkgs,
-  user,
   lib,
   config,
-  inputs,
   ...
 }: {
   config = lib.mkIf config.cyanea.graphical.gui.enable {
@@ -22,7 +20,7 @@
     #    gtk.iconTheme.package = pkgs.tokyonight-gtk-theme;
     #    gtk.iconTheme.name = "Tela-circle-Dark";
     #  };
-    home-manager.users."${user.name}" = lib.mkIf (config.cyanea.theme == "tokyonight") {
+    home-manager.users."${lib.user.name}" = lib.mkIf (config.cyanea.theme == "tokyonight") {
       gtk.enable = true;
 
       gtk.theme.package = pkgs.tokyonight-gtk-theme;

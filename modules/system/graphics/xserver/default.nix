@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  user,
   config,
   ...
 }: let
@@ -12,10 +11,10 @@ in {
   };
 
   config = lib.mkIf (cfg.xsv.enable && cfg.gui.enable) {
-    home-manager.users."${user.name}".home.packages = with pkgs; [
+    home-manager = lib.install (with pkgs; [
       arandr
       xorg.xrandr
-    ];
+    ]);
 
     console.useXkbConfig = true;
 

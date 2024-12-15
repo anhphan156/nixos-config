@@ -1,5 +1,4 @@
 {
-  user,
   config,
   lib,
   ...
@@ -16,7 +15,7 @@
     services.xremap = {
       enable = lib.mkForce true;
       withWlroots = config.cyanea.graphical.hyprland.enable;
-      userName = user.name;
+      userName = lib.user.name;
       config = {
         modmap = [
           {

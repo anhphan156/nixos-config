@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   pkgs,
   ...
 }: let
@@ -29,7 +28,7 @@ in {
       eww
       leftdockscript
     ];
-    home-manager.users."${user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {config, ...}: {
       # programs.eww = {
       #   enable = true;
       #   configDir = dotfilesPath + /config/eww;

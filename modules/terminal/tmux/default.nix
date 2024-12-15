@@ -1,5 +1,4 @@
 {
-  user,
   config,
   lib,
   pkgs,
@@ -10,13 +9,13 @@
   };
 
   config = lib.mkIf config.cyanea.terminal.tmux.enable {
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       programs.tmux = {
         enable = true;
         prefix = "C-a";
         extraConfig = ''
-        	set -g default-terminal "screen-256color"
-					set -ga terminal-overrides ",*;Tc"
+             	set -g default-terminal "screen-256color"
+          set -ga terminal-overrides ",*;Tc"
         '';
 
         plugins = with pkgs; [

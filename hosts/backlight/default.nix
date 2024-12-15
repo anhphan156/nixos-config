@@ -1,6 +1,5 @@
 {
   lib,
-  user,
   config,
   ...
 }: let
@@ -105,7 +104,7 @@ in {
     files = [
       "/etc/machine-id"
     ];
-    users."${user.name}" = {
+    users."${lib.user.name}" = {
       directories = [
         "dotfiles"
         "data"
@@ -121,7 +120,7 @@ in {
     };
   };
 
-  users.users."${user.name}".initialPassword = "123";
+  users.users."${lib.user.name}".initialPassword = "123";
 
   system.stateVersion = "23.11";
 }

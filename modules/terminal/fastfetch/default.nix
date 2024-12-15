@@ -1,11 +1,10 @@
 {
   config,
   lib,
-  user,
   ...
 }: {
   config = {
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       programs.zsh = {
         initExtra = lib.mkBefore ''
           fastfetch

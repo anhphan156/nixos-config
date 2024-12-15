@@ -1,6 +1,6 @@
 {
   pkgs,
-  user,
+  lib,
   ...
 }: let
   overlay-awesome = final: prev: {
@@ -37,5 +37,5 @@
   ];
 in {
   nixpkgs.overlays = overlays;
-  home-manager.users."${user.name}".nixpkgs.overlays = overlays;
+  home-manager.users."${lib.user.name}".nixpkgs.overlays = overlays;
 }

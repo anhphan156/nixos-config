@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  user,
   ...
 }: {
   options.cyanea.dev.rust.enable = lib.mkEnableOption "Enable rust dev tools";
@@ -10,9 +9,9 @@
     environment.systemPackages = with pkgs; [
       rustup
     ];
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       home.sessionPath = [
-        "/home/${user.name}/.cargo/bin"
+        "/home/${lib.user.name}/.cargo/bin"
       ];
     };
   };

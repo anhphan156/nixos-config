@@ -1,9 +1,5 @@
-{
-  user,
-  lib,
-  ...
-}: {
-  home-manager.users."${user.name}" = {
+{lib, ...}: {
+  home-manager.users."${lib.user.name}" = {
     programs.starship = {
       enable = true;
       enableZshIntegration = true;

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }: {
   options.cyanea.services.bluetooth.enable = lib.mkEnableOption "Enable Bluetooth";
@@ -10,7 +9,7 @@
     hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
     services.blueman.enable = true;
 
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       services.blueman-applet.enable = true;
     };
   };

@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  user,
   inputs,
   ...
 }: {
@@ -23,7 +22,7 @@
         description = "Path to this project in string";
         type = lib.types.str;
         readOnly = true;
-        default = user.path.dotfiles;
+        default = lib.user.path.dotfiles;
       };
 
       wallpapers = lib.mkOption {

@@ -1,5 +1,4 @@
 {
-  user,
   lib,
   pkgs,
   config,
@@ -12,9 +11,9 @@
     |> mapAttrs' (x: y: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ~/dotfiles#${x}");
 in {
   programs.zsh.enable = true;
-  users.users."${user.name}".shell = pkgs.zsh;
+  users.users."${lib.user.name}".shell = pkgs.zsh;
 
-  home-manager.users."${user.name}".imports = [
+  home-manager.users."${lib.user.name}".imports = [
     ({config, ...}: {
       programs.zsh = {
         enable = true;

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }: let
   mpd_path = "/home/backspace/.local/share/mpd";
@@ -11,7 +10,7 @@ in {
   };
 
   config = lib.mkIf config.mpd.enable {
-    home-manager.users."${user.name}".services.mpd = {
+    home-manager.users."${lib.user.name}".services.mpd = {
       enable = true;
       network.startWhenNeeded = true;
       musicDirectory = /home/backspace/data/Music;

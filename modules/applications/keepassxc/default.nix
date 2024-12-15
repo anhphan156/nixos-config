@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   pkgs,
   ...
 }: {
@@ -10,7 +9,7 @@
   };
 
   config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.desktopApp.keepassxc.enable) {
-    home-manager.users."${user.name}".home.packages = [
+    home-manager = lib.install [
       pkgs.keepassxc
     ];
   };

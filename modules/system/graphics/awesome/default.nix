@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   inputs,
   pkgs,
   ...
@@ -19,7 +18,7 @@ in {
 
     environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
-      (pkgs.callPackage (user.path.root + /packages/user_scripts/rofi/awesome_layout.nix) {})
+      (pkgs.callPackage (lib.user.path.root + /packages/user_scripts/rofi/awesome_layout.nix) {})
       pkgs.xclip
       pkgs.maim
       pkgs.xdotool
@@ -36,7 +35,7 @@ in {
       };
     };
 
-    home-manager.users."${user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {config, ...}: {
       home.file."${awesome_path}/themes/default/colors.lua".text = ''
         local colors = {}
         return colors

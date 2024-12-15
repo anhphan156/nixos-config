@@ -1,13 +1,12 @@
 {
   lib,
   config,
-  user,
   pkgs,
   ...
 }: {
   options.repo.dotfiles.enable = lib.mkEnableOption "Enable cloning dotfiles";
   config = lib.mkIf config.repo.dotfiles.enable {
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       config,
       lib,
       ...

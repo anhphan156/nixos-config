@@ -1,13 +1,9 @@
-{
-	user,
-	...
-}:
-{
-	home-manager.users."${user.name}" = {
-		programs.git = {
-			enable = true;
-			userName = user.git_name;
-			userEmail = user.git_email;
-		};
-	};
+{lib, ...}: {
+  home-manager.users."${lib.user.name}" = {
+    programs.git = {
+      enable = true;
+      userName = lib.user.git_name;
+      userEmail = lib.user.git_email;
+    };
+  };
 }

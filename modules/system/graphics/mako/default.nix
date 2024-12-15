@@ -1,12 +1,11 @@
 {
   config,
   lib,
-  user,
   ...
 }: {
   options.cyanea.graphical.mako.enable = lib.mkEnableOption "Enable Mako";
   config = lib.mkIf config.cyanea.graphical.mako.enable {
-    home-manager.users.${user.name} = {config, ...}: {
+    home-manager.users.${lib.user.name} = {config, ...}: {
       services.mako = {
         enable = true;
         anchor = "top-right";

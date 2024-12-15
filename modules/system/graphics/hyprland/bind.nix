@@ -1,5 +1,4 @@
 {
-  user,
   config,
   lib,
   ...
@@ -7,7 +6,7 @@
   workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
-    home-manager.users."${user.name}" = {config, ...}: let
+    home-manager.users."${lib.user.name}" = {config, ...}: let
       screenshotPath = "${config.home.homeDirectory}/data/Pictures/screenshots/$(date +'%s_grim.png')";
     in {
       wayland.windowManager.hyprland.settings = {

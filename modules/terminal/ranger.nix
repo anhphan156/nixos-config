@@ -1,5 +1,5 @@
-{user, ...}: {
-  home-manager.users."${user.name}".programs.ranger = {
+{lib, ...}: {
+  home-manager.users."${lib.user.name}".programs.ranger = {
     enable = true;
     extraConfig = ''
       set preview_images true

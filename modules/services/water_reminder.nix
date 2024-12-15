@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  user,
   ...
 }: {
   options.cyanea.services.water_reminder.enable = lib.mkEnableOption "Enable water reminder timer";
@@ -22,7 +21,7 @@
       '';
       serviceConfig = {
         Type = "oneshot";
-        User = "${user.name}";
+        User = "${lib.user.name}";
         Environment = "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus";
       };
     };

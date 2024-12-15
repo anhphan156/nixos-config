@@ -1,5 +1,4 @@
 {
-  user,
   lib,
   config,
   ...
@@ -15,7 +14,7 @@
       networkmanager.enable = true;
       hostName = config.cyanea.system.hostname;
     };
-    users.users."${user.name}" = {
+    users.users."${lib.user.name}" = {
       extraGroups = lib.mkAfter ["networkmanager"];
     };
   };

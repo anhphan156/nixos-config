@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  user,
   pkgs,
   ...
 }: {
@@ -20,8 +19,12 @@
           swtpm.enable = true;
           ovmf = {
             enable = true;
-            packages= [
-              (pkgs.OVMF.override { secureBoot = true; tpmSupport = true; }).fd
+            packages = [
+              (pkgs.OVMF.override {
+                secureBoot = true;
+                tpmSupport = true;
+              })
+              .fd
             ];
           };
         };
@@ -31,11 +34,11 @@
 
     programs.virt-manager.enable = true;
 
-    users.users."${user.name}" = {
+    users.users."${lib.user.name}" = {
       extraGroups = lib.mkAfter ["libvirtd"];
     };
 
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       home.pointerCursor = lib.mkIf config.cyanea.graphical.hyprland.enable {
         gtk.enable = true;
         package = pkgs.vanilla-dmz;

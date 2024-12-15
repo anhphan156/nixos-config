@@ -3,12 +3,11 @@
   lib,
   config,
   inputs,
-  user,
   ...
 }: let
   cfg = config.cyanea.graphical;
 
-  swww_scripts = pkgs.callPackage (user.path.root + /packages/user_scripts/swww_scripts.nix) {
+  swww_scripts = pkgs.callPackage (lib.user.path.root + /packages/user_scripts/swww_scripts.nix) {
     inherit (config.cyanea) wallpapers;
     inherit (cfg.hyprland.monitor) monitorList;
   };
@@ -71,7 +70,7 @@ in {
       package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     };
 
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       wayland.windowManager.hyprland = let
 
         inherit (cfg.hyprland.monitor) monitorList resolutionList workspaceList;

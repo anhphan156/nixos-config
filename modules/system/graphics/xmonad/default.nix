@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  user,
-  pkgs,
   ...
 }: let
   cfg = config.cyanea.graphical;
@@ -20,7 +18,7 @@ in {
       enableContribAndExtras = true;
       #config = user.rootPath + /config/xmonad/xmonad.hs;
     };
-    home-manager.users."${user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {config, ...}: {
       xdg.configFile."xmonad/".source = config.lib.file.mkOutOfStoreSymlink xmonad_path;
     };
   };

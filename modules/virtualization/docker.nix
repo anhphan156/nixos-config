@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  user,
   ...
 }: {
   options.cyanea.virtualization.docker = {
@@ -17,7 +16,7 @@
         data-root = "/home/backspace/data/docker";
       };
     };
-    users.users."${user.name}" = {
+    users.users."${lib.user.name}" = {
       extraGroups = lib.mkAfter ["docker"];
     };
   };

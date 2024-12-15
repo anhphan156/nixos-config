@@ -1,8 +1,8 @@
 {
-config,
-lib,
-pkgs,
-...
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
   options = {
     cyanea.tools.cybersec.enable = lib.mkEnableOption "";

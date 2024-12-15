@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  user,
   ...
 }: {
   options = {
@@ -9,7 +8,7 @@
   };
 
   config = lib.mkIf config.ncmpcpp.enable {
-    home-manager.users."${user.name}".programs.ncmpcpp = {
+    home-manager.users."${lib.user.name}".programs.ncmpcpp = {
       enable = true;
       mpdMusicDir = "/home/backspace/data/Music";
       settings = {

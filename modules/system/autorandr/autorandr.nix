@@ -1,13 +1,12 @@
 {
-  user,
   config,
   lib,
   ...
 }: {
-	options.cyanea.system.autorandr.enable = lib.mkEnableOption "Enable autorandr";
+  options.cyanea.system.autorandr.enable = lib.mkEnableOption "Enable autorandr";
 
   config = lib.mkIf config.cyanea.system.autorandr.enable {
-    home-manager.users."${user.name}" = {
+    home-manager.users."${lib.user.name}" = {
       services.autorandr.enable = true;
       programs.autorandr = {
         enable = true;

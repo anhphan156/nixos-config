@@ -1,5 +1,4 @@
 {
-  user,
   lib,
   config,
   ...
@@ -12,7 +11,7 @@ in {
   };
 
   config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.desktopApp.rofi.enable) {
-    home-manager.users."${user.name}".imports = [
+    home-manager.users."${lib.user.name}".imports = [
       ({
         config,
         lib,

@@ -1,28 +1,14 @@
 {
   description = "Nixos config flake";
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    user = rec {
-      name = "backspace";
-      git_name = "anhphan";
-      git_email = "anh.phan156@protonmail.com";
-      path = {
-        root = ./.;
-        dev = "/home/${name}/data/dev";
-        dotfiles = "/home/${name}/dotfiles";
-        music = "/home/${name}/data/Music";
-      };
-    };
-
-    lib = nixpkgs.lib.extend (import ./libs {inherit inputs user;});
+  outputs = {nixpkgs, ...} @ inputs: let
+    lib = nixpkgs.lib.extend (import ./libs {inherit inputs;});
 
     forAllSystems = lib.genAttrs lib.platforms.linux;
   in {
-    nixosConfigurations = import ./hosts {inherit inputs lib user;};
+    src = ./.;
+
+    nixosConfigurations = import ./hosts {inherit inputs lib;};
 
     checks = forAllSystems (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {

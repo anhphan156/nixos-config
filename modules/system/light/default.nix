@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  user,
   ...
 }: {
   options.cyanea.system.light_control.enable = lib.mkEnableOption "Enable brightness control";
@@ -12,7 +11,7 @@
       brightnessctl
       acpilight
     ];
-    users.users."${user.name}" = {
+    users.users."${lib.user.name}" = {
       extraGroups = lib.mkAfter ["video"];
     };
   };
