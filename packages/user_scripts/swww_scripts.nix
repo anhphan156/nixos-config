@@ -1,6 +1,6 @@
 {
   writeShellScript,
-  wallpaperPath,
+  wallpapers,
   monitorList,
   lib,
   stdenv,
@@ -13,7 +13,7 @@
   single_monitor = writeShellScript sm_bin ''
     #!/usr/bin/env bash
 
-    wallpapers=${wallpaperPath}/single
+    wallpapers=${wallpapers}/single
     random=$(ls $wallpapers | shuf | head -1)
     random=$wallpapers/$random
 
@@ -23,7 +23,7 @@
   dual_monitor = writeShellScript dm_bin ''
     #!/usr/bin/env bash
 
-    wallpapers=${wallpaperPath}/dual
+    wallpapers=${wallpapers}/dual
     random=$(ls $wallpapers | shuf | head -1)
     random=$wallpapers/$random
 

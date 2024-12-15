@@ -37,7 +37,7 @@ in {
           workspaceList = [[1 2 3 4]];
         };
       }; # hyprland
-      # sddm.autoLogin.enable = false;
+      sddm.autoLogin.enable = false;
     }; # graphical
     networking = {
       firewall = enabled;

@@ -7,7 +7,6 @@
 
     user = rec {
       name = "backspace";
-      real_name = "tbd";
       git_name = "anhphan";
       git_email = "anh.phan156@protonmail.com";
       path = {

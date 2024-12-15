@@ -60,7 +60,7 @@ in {
       swww
 
       (pkgs.callPackage (user.path.root + /packages/user_scripts/swww_scripts.nix) {
-        wallpaperPath = "${user.wallpapers}";
+        inherit (user) wallpapers;
         inherit (cfg.hyprland.monitor) monitorList;
       })
     ];
@@ -84,7 +84,7 @@ in {
 
           swww init &
           sleep 1
-          swww img "${user.wallpapers}/single/firefly_zzz.jpg" &
+          swww img "${user.wallpapers}/single/touhou.png" &
         '';
 
         # monitor = assert monitorList != []; lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;

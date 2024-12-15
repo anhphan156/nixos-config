@@ -1267,11 +1267,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1734219356,
-        "narHash": "sha256-1D0Jn/y4rIaUDlqtVS6Cm+48wSHsNgdMUN7+9Q6XraQ=",
+        "lastModified": 1734223742,
+        "narHash": "sha256-vp3wSbCVU/4y5W+YI6H9PSix3WD7XbcIyesmB7W0ZWo=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "c351af103f7a5a4228ab9f31bc1e3646c1987a98",
+        "rev": "58d2a5ac9cc4ff987e6edb77f2b55d1dec05ce50",
         "type": "github"
       },
       "original": {
@@ -1490,11 +1490,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1734221615,
-        "narHash": "sha256-dDUSjzpWxkupbrBLjnbpbyPZr+Hg6kkSmL3gSFHt0Lc=",
+        "lastModified": 1734228532,
+        "narHash": "sha256-nPnn2kmeUv4ogfds0Kyjo5b3eVmvZJMOiupBB5YKH+I=",
         "owner": "anhphan156",
         "repo": "Wallpapers",
-        "rev": "f039cc35ba3ac5aa9956eaf09c96318daa3a43cb",
+        "rev": "0e95c20408983bd74bf03e763b208f59229067f4",
         "type": "github"
       },
       "original": {
