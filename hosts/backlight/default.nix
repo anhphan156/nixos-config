@@ -106,7 +106,6 @@ in {
     ];
     users."${lib.user.name}" = {
       directories = [
-        "dotfiles"
         "data"
         ".ssh"
         ".mozilla"
