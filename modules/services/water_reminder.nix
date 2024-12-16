@@ -17,7 +17,7 @@
     };
     systemd.services."water-reminder" = {
       script = ''
-        ${pkgs.libnotify}/bin/notify-send "Reminder" "Drink yo watah" -t 30000 --icon="/home/backspace/dotfiles/config/awesome/themes/default/icons/rain.png"
+        ${pkgs.libnotify}/bin/notify-send "Reminder" "Drink yo watah" -t 30000 --icon="${config.cyanea.wallpapers}/icons/rain.png"
       '';
       serviceConfig = {
         Type = "oneshot";
