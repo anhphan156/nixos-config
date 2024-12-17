@@ -11,7 +11,7 @@ writeShellScriptBin "dotfiles" ''
   true
 
   if [ ! -e "${dotfilesPath}" ]; then
-    ${libnotify}/bin/notify-send "Dotfiles" "Cloning repo" --icon"${wallpapers}/icons/downloads_04.png"
+    ${libnotify}/bin/notify-send "Dotfiles" "Cloning repo" --icon "${wallpapers}/icons/downloads_04.png"
     git clone git@github.com:anhphan156/dotfiles.git ${dotfilesPath}
   fi
 

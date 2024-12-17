@@ -7,7 +7,7 @@
       root = inputs.self.src;
       dev = "/home/${name}/data/dev";
       music = "/home/${name}/data/Music";
-      dot = "/home/${name}/dotfiles";
+      dot = "/persistence/home/${name}/dotfiles";
     };
   };
 in {
