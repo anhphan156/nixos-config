@@ -3,11 +3,12 @@
     name = "backspace";
     git_name = "anhphan";
     git_email = "anh.phan156@protonmail.com";
+    dev_mode = true;
     path = {
       root = inputs.self.src;
       dev = "/home/${name}/data/dev";
       music = "/home/${name}/data/Music";
-      dot = "/persistence/home/${name}/dotfiles";
+      dot = "/home/${name}/dotfiles";
     };
   };
 in {
