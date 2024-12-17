@@ -51,6 +51,7 @@ in {
     };
     dev = {
       c = enabled;
+      haskell = enabled;
       avr = enabled;
     };
     virtualization = {

@@ -16,6 +16,7 @@ writeShellScriptBin "dotfiles" ''
   fi
 
   if [ $? -eq 0 ]; then
+    ${libnotify}/bin/notify-send "Dotfiles" "Done cloning" -t 5000 --icon "${wallpapers}/icons/downloads_04.png"
     kitty --working-directory=${dotfilesPath} tmux_code
   else
     ${libnotify}/bin/notify-send "Dotfiles" "Cloning failed" --icon"${wallpapers}/icons/downloads_04.png"
