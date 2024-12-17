@@ -3,9 +3,8 @@
     name = "backspace";
     git_name = "anhphan";
     git_email = "anh.phan156@protonmail.com";
-    path = rec {
-      # root = inputs.self.src;
-      root = dot;
+    path = {
+      root = inputs.self.src;
       dev = "/home/${name}/data/dev";
       music = "/home/${name}/data/Music";
       dot = "/home/${name}/dotfiles";
