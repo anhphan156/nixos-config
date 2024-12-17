@@ -1,2 +1,2 @@
-(include "leftdock.yuck")
-(include "topbar.yuck")
+(include "./widgets/leftdock.yuck")
+(include "./widgets/topbar.yuck")

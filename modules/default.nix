@@ -22,10 +22,8 @@
         description = "Path to this project in string";
         type = lib.types.path;
         readOnly = true;
-        default =
-          if lib.user.dev_mode
-          then lib.user.path.dot
-          else lib.user.path.root;
+        default = lib.user.path.root;
+        # default = lib.user.path.dot;
       };
 
       wallpapers = lib.mkOption {

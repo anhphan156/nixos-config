@@ -1,9 +1,8 @@
 {inputs}: _: _: let
   user = rec {
     name = "backspace";
-    git_name = "anhphan";
+    git_name = name;
     git_email = "anh.phan156@protonmail.com";
-    dev_mode = true;
     path = {
       root = inputs.self.src;
       dev = "/home/${name}/data/dev";

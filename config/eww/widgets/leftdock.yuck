@@ -15,7 +15,7 @@
 	:wm-ignore false
 	(dock))
 
-(defvar revealdock "false")
+(defvar revealdock "true")
 (defvar icon1 "false")
 (defvar icon2 "false")
 (defvar icon3 "false")
