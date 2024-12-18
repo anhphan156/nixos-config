@@ -20,7 +20,6 @@
 (defvar icon2 "false")
 (defvar icon3 "false")
 (defvar icon4 "false")
-(defvar icon_base_path "/home/backspace/data/Icons")
 
 (defwidget dock []
 	(eventbox
