@@ -1,3 +1,0 @@
-(include "./variables/iconspath.yuck")
-(include "./widgets/leftdock.yuck")
-(include "./widgets/topbar.yuck")

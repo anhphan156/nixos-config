@@ -24,6 +24,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    lua-pam.url = "github:anhphan156/lua-pam";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    impermanence.url = "github:nix-community/impermanence";
+    xremap.url = "github:xremap/nix-flake";
+    catppuccin.url = "github:catppuccin/nix";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    wallpapers.url = "github:anhphan156/Wallpapers";
+    eww-config.url = "github:anhphan156/eww-config";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -34,10 +43,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    lua-pam.url = "github:anhphan156/lua-pam";
-
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
@@ -53,15 +58,5 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
-
-    xremap.url = "github:xremap/nix-flake";
-    catppuccin.url = "github:catppuccin/nix";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    wallpapers.url = "github:anhphan156/Wallpapers";
-    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 }

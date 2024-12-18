@@ -2,11 +2,9 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
-  eww_path = "${config.cyanea.dotfilesPath}/config/eww";
-  wallpapers_path = config.cyanea.wallpapers;
-
   # TODO make a c program to keep track of what window is open and closed with hyprland ipc and emits an output for (deflisten)
   leftdockscript = pkgs.writeShellScriptBin "leftdockcheck" ''
     #!/usr/bin/env bash
@@ -29,16 +27,13 @@ in {
       eww
       leftdockscript
     ];
-    home-manager.users."${lib.user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {
       # programs.eww = {
       #   enable = true;
       #   configDir = dotfilesPath + /config/eww;
       # };
-      home.file."${eww_path}/variables/iconspath.yuck".text = ''
-        (defvar icon_base_path "${wallpapers_path}/icons")
-      '';
       xdg.configFile = {
-        "eww/".source = config.lib.file.mkOutOfStoreSymlink eww_path;
+        "eww/".source = inputs.eww-config.packages.${pkgs.system}.default;
       };
     };
   };
