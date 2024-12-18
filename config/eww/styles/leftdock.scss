@@ -5,14 +5,21 @@
   margin-left: -25px;
 }
 
-.dockicons{
-  margin-bottom: -25px;
-}
 
-.dockicons:hover{
-  margin-bottom: 0px;
-}
+.zoom {
+  & .dockicons{
+    margin-bottom: -25px;
+    transition: .2s;
+  }
 
-.dockiconsindicator{
-  margin: 0px 0px 10px 0px;
+  & .dockiconsindicator{
+    margin: 0px 0px 10px 0px;
+    transition: .2s;
+  }
+
+  &:hover {
+    & .dockicons, & .dockiconsindicator {
+      margin-right: -20px;
+    }
+  }
 }
