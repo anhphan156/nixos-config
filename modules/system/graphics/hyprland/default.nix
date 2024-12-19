@@ -6,11 +6,6 @@
   ...
 }: let
   cfg = config.cyanea.graphical;
-
-  swww_scripts = pkgs.callPackage (lib.user.path.root + /packages/user_scripts/swww_scripts.nix) {
-    inherit (config.cyanea) wallpapers;
-    inherit (cfg.hyprland.monitor) monitorList;
-  };
 in {
   options = {
     cyanea.graphical.hyprland = {
@@ -27,22 +22,6 @@ in {
         hyprland.pyprland = lib.enabled;
       };
     };
-
-    environment.systemPackages = with pkgs; [
-      polkit
-      xdg-desktop-portal-hyprland
-      xwayland
-      libnotify
-      pyprland
-      grim
-      slurp
-      wl-clipboard
-      cliphist
-      wtype
-      wireplumber # streaming stuff
-      swww
-      swww_scripts
-    ];
 
     programs.hyprland = {
       enable = true;
