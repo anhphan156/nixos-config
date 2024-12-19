@@ -2,17 +2,14 @@
   config,
   lib,
   ...
-}: let
-  pyprland_path = "${config.cyanea.dotfilesPath}/config/hypr/pyprland.toml";
-in {
+}: {
   options = {
     cyanea.graphical.hyprland.pyprland.enable = lib.mkEnableOption "Enable pyprland";
   };
 
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable && hyprland.pyprland.enable)) {
-    home-manager.users."${lib.user.name}" = {config, ...}: {
+    home-manager.users."${lib.user.name}" = {
       xdg.configFile = {
-        #"hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink pyprland_path;
         "hypr/pyprland.toml".text = ''
           [pyprland]
           plugins = ["scratchpads"]

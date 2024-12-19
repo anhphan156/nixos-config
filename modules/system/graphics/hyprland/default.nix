@@ -15,27 +15,6 @@ in {
   options = {
     cyanea.graphical.hyprland = {
       enable = lib.mkEnableOption "Enable hyprland";
-
-      monitor = let
-        inherit (lib) mkOption;
-        inherit (lib.types) listOf str int;
-      in {
-        monitorList = mkOption {
-          default = [""];
-          type = listOf str;
-          description = "List of monitors";
-        };
-        resolutionList = mkOption {
-          default = ["preferred,auto,1"];
-          type = listOf str;
-          description = "List of resolution";
-        };
-        workspaceList = mkOption {
-          default = [[1 2 3] [4 5 6]];
-          type = listOf <| listOf int;
-          description = "List of workspace";
-        };
-      };
     };
   };
 
@@ -71,38 +50,9 @@ in {
     };
 
     home-manager.users."${lib.user.name}" = {
-      wayland.windowManager.hyprland = let
-
-        inherit (cfg.hyprland.monitor) monitorList resolutionList workspaceList;
-
-        autostart = pkgs.pkgs.writeShellScriptBin "start" ''
-          pypr &
-
-          eww daemon
-          eww open bar
-          eww open leftdock
-
-          swww init &
-          sleep 1
-          ${swww_scripts}/bin/swww_sm
-        '';
-
-        # monitor = assert monitorList != []; lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;
-        monitor = lib.lists.zipListsWith (x: y: "${x},${y}") monitorList resolutionList;
-
-        workspace = builtins.concatLists <| lib.lists.zipListsWith (x: y: y |> map (z: "${toString z},monitor:${x}")) monitorList workspaceList;
-      in {
+      wayland.windowManager.hyprland = {
         enable = true;
         settings = {
-
-          inherit monitor workspace;
-
-          exec-once = [
-            "${autostart}/bin/start"
-            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-            "wl-paste --watch cliphist store"
-          ];
-
           general = {
             border_size = "3";
             "col.active_border" = "rgb(ce3454) rgb(82d5ff) 45deg";
