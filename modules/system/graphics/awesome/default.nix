@@ -15,6 +15,7 @@ in {
   config = lib.mkIf (cfg.awesome.enable && cfg.gui.enable) {
     cyanea.graphical.xsv = lib.enabled;
     cyanea.graphical.picom = lib.enabled;
+    cyanea.desktopApp.rofi = lib.enabled;
 
     environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
@@ -36,10 +37,10 @@ in {
     };
 
     home-manager.users."${lib.user.name}" = {config, ...}: {
-      home.file."${awesome_path}/themes/default/colors.lua".text = ''
-        local colors = {}
-        return colors
-      '';
+      # home.file."${awesome_path}/themes/default/colors.lua".text = ''
+      #   local colors = {}
+      #   return colors
+      # '';
       xdg.configFile = {
         "awesome/".source = config.lib.file.mkOutOfStoreSymlink awesome_path;
       };

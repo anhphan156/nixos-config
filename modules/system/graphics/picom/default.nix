@@ -56,7 +56,7 @@ in {
 
         window-shader-fg-rule = [
           # "/home/backspace/dotfiles/config/picom/test.glsl:class_g = 'kittymusic'"
-          "/home/backspace/dotfiles/config/picom/droplet.glsl:window_type = 'splash'"
+          "${config.cyanea.dotfilesPath}/share/picom/droplet.glsl:window_type = 'splash'"
         ];
 
         fading = true;
