@@ -66,6 +66,10 @@ in {
             };
           };
 
+          gestures = {
+            workspace_swipe = true;
+          };
+
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
             "opacity 1.0 override 1.0 override,class:(Google-chrome)"

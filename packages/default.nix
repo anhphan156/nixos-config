@@ -19,7 +19,7 @@
         blender
         obs-studio
         zoom-us
-        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = lib.user.path.root;})
+        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = inputs.src;})
         (callPackage ./user_scripts/kitty_spawn/spawn_dotfiles.nix {
           dotfilesPath = lib.user.path.dot;
           inherit (config.cyanea) wallpapers;

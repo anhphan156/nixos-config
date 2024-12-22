@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   lib,
   ...
 }: let
@@ -20,7 +21,7 @@ in {
       wtype
       wireplumber # streaming stuff
       swww
-      (pkgs.callPackage (lib.user.path.root + /packages/user_scripts/swww_scripts.nix) {
+      (pkgs.callPackage (inputs.src + /packages/user_scripts/swww_scripts.nix) {
         inherit (config.cyanea) wallpapers;
         inherit (cfg.hyprland.monitor) monitorList;
       })

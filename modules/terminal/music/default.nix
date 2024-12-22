@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   lib,
   ...
 }: {
@@ -13,9 +14,9 @@
     home-manager.users."${lib.user.name}".home.packages =
       lib.mkIf config.ncmpcpp.enable
       (with pkgs; [
-        (callPackage (lib.user.path.root + /packages/user_scripts/kitty_spawn/spawn_ncmpcpp.nix) {})
-        (callPackage (lib.user.path.root + /packages/user_scripts/music/music_retag.nix) {musicPath = lib.user.path.music;})
-        (callPackage (lib.user.path.root + /packages/user_scripts/music/yt-dlp_mp3.nix) {musicPath = lib.user.path.music;})
+        (callPackage (inputs.src + /packages/user_scripts/kitty_spawn/spawn_ncmpcpp.nix) {})
+        (callPackage (inputs.src + /packages/user_scripts/music/music_retag.nix) {musicPath = lib.user.path.music;})
+        (callPackage (inputs.src + /packages/user_scripts/music/yt-dlp_mp3.nix) {musicPath = lib.user.path.music;})
         mpc-cli
       ]);
   };

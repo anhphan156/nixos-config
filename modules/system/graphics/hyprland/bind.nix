@@ -32,6 +32,7 @@ in {
             # alt tab
             "ALT, TAB, cyclenext"
             "ALT, TAB, bringactivetotop"
+            "$mod, TAB, focuscurrentorlast"
 
             # scratchpad
             "$mod, P, exec, pypr toggle kitty"

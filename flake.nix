@@ -1,14 +1,14 @@
 {
   description = "Nixos config flake";
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {nixpkgs, ...} @ flake-inputs: let
+    inputs = flake-inputs // {src = ./.;};
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs;});
-
     forAllSystems = lib.genAttrs lib.platforms.linux;
   in {
-    src = ./.;
-
-    nixosConfigurations = import ./hosts {inherit inputs lib;};
+    nixosConfigurations = import ./hosts {
+      inherit inputs lib;
+    };
 
     checks = forAllSystems (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {

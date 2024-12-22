@@ -1,12 +1,13 @@
 {
   pkgs,
+  inputs,
   lib,
   config,
   ...
 }: let
   cfg = config.cyanea.graphical;
 
-  swww_scripts = pkgs.callPackage (lib.user.path.root + /packages/user_scripts/swww_scripts.nix) {
+  swww_scripts = pkgs.callPackage (inputs.src + /packages/user_scripts/swww_scripts.nix) {
     inherit (config.cyanea) wallpapers;
     inherit (cfg.hyprland.monitor) monitorList;
   };

@@ -1,4 +1,4 @@
-<h1 align="center">Dotfiles</h1>
+# Dotfiles
 
 This flake provides system configuration for my NixOS computers, which share many common services and features.
 

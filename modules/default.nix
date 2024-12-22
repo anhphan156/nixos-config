@@ -22,7 +22,7 @@
         description = "Path to this project in string";
         type = lib.types.path;
         readOnly = true;
-        default = lib.user.path.root;
+        default = inputs.src;
         # default = lib.user.path.dot;
       };
 
