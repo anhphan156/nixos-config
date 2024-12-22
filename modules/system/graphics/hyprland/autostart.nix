@@ -15,10 +15,6 @@
   autostart = pkgs.writeShellScriptBin "start" ''
     pypr &
 
-    eww daemon
-    eww open bar
-    eww open leftdock
-
     swww init &
     sleep 1
     ${swww_scripts}/bin/swww_sm
@@ -28,6 +24,7 @@ in {
     home-manager.users."${lib.user.name}".wayland.windowManager.hyprland = {
       settings = {
         exec-once = [
+          "${inputs.dotfiles.packages.${pkgs.system}.eww-scripts}/bin/ewwinit"
           "${autostart}/bin/start"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "wl-paste --watch cliphist store"

@@ -188,11 +188,11 @@
         "wallpapers": "wallpapers"
       },
       "locked": {
-        "lastModified": 1734831872,
-        "narHash": "sha256-Ektz/Z4rm62C3Iut8ZzVEAu9M2K6uOnrbpukH6FsuPU=",
+        "lastModified": 1734843461,
+        "narHash": "sha256-wU9Yys+VWxyeBiEDv7aeqqqVYLsZkWuQWUODTv9ojZQ=",
         "owner": "anhphan156",
         "repo": "dotfiles",
-        "rev": "b25d9fdeb693c29a98462941a2fffe4695820712",
+        "rev": "757f276daf51ea076b70cdce2417260a29c7083f",
         "type": "github"
       },
       "original": {

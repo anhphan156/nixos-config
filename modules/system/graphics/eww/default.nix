@@ -11,7 +11,7 @@
     home-manager.users."${lib.user.name}" = {
       home.packages = with pkgs; [
         eww
-        inputs.dotfiles.packages.${pkgs.system}.default
+        inputs.dotfiles.packages.${pkgs.system}.eww-scripts
       ];
 
       xdg.configFile = {
