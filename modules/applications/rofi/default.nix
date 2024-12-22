@@ -4,7 +4,7 @@
   ...
 }: let
   isHyprland = config.cyanea.graphical.hyprland.enable;
-  rofi_path = "${config.cyanea.dotfilesPath}/config/rofi";
+  rofi_path = "${config.cyanea.dotfilesPath}/share/rofi";
 in {
   options = {
     cyanea.desktopApp.rofi.enable = lib.mkEnableOption "Enable Rofi";
