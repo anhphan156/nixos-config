@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.cyanea.graphical;
-  xmonad_path = "${config.cyanea.dotfilesPath}/config/xmonad";
+  xmonad_path = "${config.cyanea.dotfilesPath}/share/xmonad";
 in {
   options.cyanea.graphical.xmonad.enable = lib.mkEnableOption "Enable Xmonad";
 
@@ -20,6 +20,7 @@ in {
     };
     home-manager.users."${lib.user.name}" = {config, ...}: {
       xdg.configFile."xmonad/".source = config.lib.file.mkOutOfStoreSymlink xmonad_path;
+      # xdg.configFile."xmonad/".source = xmonad_path;
     };
   };
 }

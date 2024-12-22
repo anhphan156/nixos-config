@@ -31,7 +31,7 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     wallpapers.url = "github:anhphan156/Wallpapers";
-    eww-config.url = "github:anhphan156/eww-config";
+    dotfiles.url = "github:anhphan156/dotfiles";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
     home-manager = {

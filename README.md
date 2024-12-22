@@ -1,4 +1,4 @@
-# Dotfiles
+# NixOS Config
 
 This flake provides system configuration for my NixOS computers, which share many common services and features.
 

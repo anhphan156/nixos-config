@@ -6,7 +6,7 @@
     path = {
       dev = "/home/${name}/data/dev";
       music = "/home/${name}/data/Music";
-      dot = "/home/${name}/data/dotfiles";
+      nixconf = "/home/${name}/data/dev/nixos-config";
     };
   };
 in {

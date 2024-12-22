@@ -20,10 +20,9 @@
     cyanea = {
       dotfilesPath = lib.mkOption {
         description = "Path to this project in string";
-        type = lib.types.path;
+        type = lib.types.package;
         readOnly = true;
-        default = inputs.src;
-        # default = lib.user.path.dot;
+        default = inputs.dotfiles.packages.${pkgs.system}.default;
       };
 
       wallpapers = lib.mkOption {
