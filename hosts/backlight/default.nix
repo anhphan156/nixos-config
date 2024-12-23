@@ -61,7 +61,10 @@ in {
         btrfs = true;
       };
     };
-    music = enabled;
+    music = {
+      enable = true;
+      rpc = enabled;
+    };
   };
 
   services.xserver.xrandrHeads = mkIf (let

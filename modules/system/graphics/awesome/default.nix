@@ -37,10 +37,6 @@ in {
     };
 
     home-manager.users."${lib.user.name}" = {config, ...}: {
-      # home.file."${awesome_path}/themes/default/colors.lua".text = ''
-      #   local colors = {}
-      #   return colors
-      # '';
       xdg.configFile = {
         "awesome/".source = config.lib.file.mkOutOfStoreSymlink awesome_path;
       };

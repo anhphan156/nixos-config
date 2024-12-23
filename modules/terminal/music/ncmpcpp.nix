@@ -10,7 +10,7 @@
   config = lib.mkIf config.ncmpcpp.enable {
     home-manager.users."${lib.user.name}".programs.ncmpcpp = {
       enable = true;
-      mpdMusicDir = "/home/backspace/data/Music";
+      mpdMusicDir = lib.user.path.music;
       settings = {
         "execute_on_song_change" = lib.mkIf config.cyanea.graphical.awesome.enable ''bash -c "awesome-client \"awesome.emit_signal('ncmpcpp::songchanged', '$(mpc --format "%title% by %artist%" current)'); awesome.emit_signal('music_player::set_title') \" "'';
         "autocenter_mode" = "yes";
