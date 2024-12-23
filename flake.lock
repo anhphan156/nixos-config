@@ -188,11 +188,11 @@
         "wallpapers": "wallpapers"
       },
       "locked": {
-        "lastModified": 1734843461,
-        "narHash": "sha256-wU9Yys+VWxyeBiEDv7aeqqqVYLsZkWuQWUODTv9ojZQ=",
+        "lastModified": 1734917932,
+        "narHash": "sha256-S1zlfb7FBDOwnsaELaLM4Q5NRWuXNMTWvAocSVbM51g=",
         "owner": "anhphan156",
         "repo": "dotfiles",
-        "rev": "757f276daf51ea076b70cdce2417260a29c7083f",
+        "rev": "5cde17fefb4411927df0bb1e448db6e53014d2c9",
         "type": "github"
       },
       "original": {
@@ -1106,11 +1106,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1734424634,
-        "narHash": "sha256-cHar1vqHOOyC7f1+tVycPoWTfKIaqkoe1Q6TnKzuti4=",
+        "lastModified": 1734649271,
+        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d3c42f187194c26d9f0309a8ecc469d6c878ce33",
+        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
         "type": "github"
       },
       "original": {
@@ -1633,11 +1633,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1734512843,
-        "narHash": "sha256-m1J/bNlG1eLDsUG8uq6ukW9wE7ccKIZxnXlqNO7VKDE=",
+        "lastModified": 1734914538,
+        "narHash": "sha256-zQEY71xaJBAC8wV4GiV8LVHl0KsdQ3KypLqUl5Hh31Q=",
         "owner": "anhphan156",
         "repo": "Wallpapers",
-        "rev": "1e37630d5abb1080b7af5255a3d5ec8b85ae9215",
+        "rev": "49f8d1726de898e801c45d5210e488a5364871ae",
         "type": "github"
       },
       "original": {

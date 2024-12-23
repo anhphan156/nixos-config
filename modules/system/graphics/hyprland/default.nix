@@ -70,6 +70,10 @@ in {
             workspace_swipe = true;
           };
 
+          workspace = [
+            "1, border:0, rounding:0, gapsin:0, gapsout:0"
+          ];
+
           windowrulev2 = [
             "opacity 1.0 override 1.0 override,class:(firefox)"
             "opacity 1.0 override 1.0 override,class:(Google-chrome)"
@@ -86,6 +90,8 @@ in {
             "blur, ^(rofi)$"
             "ignorezero, ^(rofi)$"
             "dimaround, ^(rofi)$"
+
+            "blur,^(ewwblur)$"
           ];
         };
       };

@@ -22,7 +22,7 @@ in {
     ];
     services.displayManager = {
       sddm.enable = true;
-      sddm.catppuccin.enable = false;
+      # sddm.catppuccin.enable = false;
       # sddm.catppuccin.assertQt6Sddm = false;
       sddm.theme = lib.mkForce "${pkgs.callPackage (inputs.src + /packages/MarianArlt-sddm-sugar-dark) {inherit (config.cyanea) wallpapers;}}";
       sddm.wayland.enable = lib.mkIf cfg.hyprland.enable true;
