@@ -1,39 +1,44 @@
 {
-  writeShellScript,
-  stdenv,
-  pkgs,
+  writeShellApplication,
+  symlinkJoin,
+  sudo,
+  libnotify,
   lib,
   wallpapers,
   ...
 }: let
-  acPower = writeShellScript "ac-power" ''
-    vals=($1)
-    case ''${vals[3]} in
-      00000000)
-        ${pkgs.sudo}/bin/sudo -u ${lib.user.name} XDG_RUNTIME_DIR="/run/user/$(id -u ${lib.user.name})" ${pkgs.libnotify}/bin/notify-send "ACPI Events" "Laptop is not charging" -t 3000 --icon=${wallpapers}/icons/accubattery.png
-        ;;
-      00000001)
-        ${pkgs.sudo}/bin/sudo -u ${lib.user.name} XDG_RUNTIME_DIR="/run/user/$(id -u ${lib.user.name})" ${pkgs.libnotify}/bin/notify-send "Woohoo" "Laptop is charging" -t 3000 --icon=${wallpapers}/icons/accubattery.png
-        ;;
-    esac
-  '';
-
-  buttonPower = writeShellScript "button-power" ''
-    vals=($1)
-    case ''${vals[1]} in
-      PBTN)
-        ${pkgs.sudo}/bin/sudo -u ${lib.user.name} XDG_RUNTIME_DIR="/run/user/$(id -u ${lib.user.name})" ${pkgs.libnotify}/bin/notify-send "haha" "hehe"
-        ;;
-    esac
-  '';
-in
-  stdenv.mkDerivation {
-    pname = "Hyprland ACPI Scripts";
-    version = "1.0.0";
-    src = ./.;
-    installPhase = ''
-      mkdir -p $out/bin
-      cp ${buttonPower} $out/bin/button-power
-      cp ${acPower} $out/bin/ac-power
+  acPower = writeShellApplication {
+    name = "ac-power";
+    runtimeInputs = [sudo libnotify];
+    text = ''
+      # shellcheck disable=SC2206
+      vals=($1)
+      case ''${vals[3]} in
+        00000000)
+          sudo -u ${lib.user.name} XDG_RUNTIME_DIR="/run/user/$(id -u ${lib.user.name})" notify-send "ACPI Events" "Laptop is not charging" -t 3000 --icon=${wallpapers}/icons/accubattery.png
+          ;;
+        00000001)
+          sudo -u ${lib.user.name} XDG_RUNTIME_DIR="/run/user/$(id -u ${lib.user.name})" notify-send "Woohoo" "Laptop is charging" -t 3000 --icon=${wallpapers}/icons/accubattery.png
+          ;;
+      esac
     '';
+  };
+
+  buttonPower = writeShellApplication {
+    name = "button-power";
+    runtimeInputs = [sudo libnotify];
+    text = ''
+      # shellcheck disable=SC2206
+      vals=($1)
+      case ''${vals[1]} in
+        PBTN)
+          sudo -u ${lib.user.name} XDG_RUNTIME_DIR="/run/user/$(id -u ${lib.user.name})" notify-send "haha" "hehe"
+          ;;
+      esac
+    '';
+  };
+in
+  symlinkJoin {
+    name = "Hyprland ACPI Scripts";
+    paths = [acPower buttonPower];
   }
