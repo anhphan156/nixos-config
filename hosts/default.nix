@@ -5,7 +5,7 @@
 }: let
   commonModules =
     [
-      (inputs.src + /overlay)
+      (inputs.src + /overlays)
       (inputs.src + /packages)
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim

@@ -4,8 +4,8 @@
   pkgs,
   ...
 }: {
-  options.cyanea.system.light_control.enable = lib.mkEnableOption "Enable brightness control";
-  config = lib.mkIf config.cyanea.system.light_control.enable {
+  options.cyanea.system.lightControl.enable = lib.mkEnableOption "Enable brightness control";
+  config = lib.mkIf config.cyanea.system.lightControl.enable {
     programs.light.enable = true;
     environment.systemPackages = with pkgs; [
       brightnessctl

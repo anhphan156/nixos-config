@@ -4,9 +4,9 @@
   lib,
   ...
 }: {
-  options.cyanea.services.water_reminder.enable = lib.mkEnableOption "Enable water reminder timer";
+  options.cyanea.services.waterReminder.enable = lib.mkEnableOption "Enable water reminder timer";
 
-  config = lib.mkIf config.cyanea.services.water_reminder.enable {
+  config = lib.mkIf config.cyanea.services.waterReminder.enable {
     systemd.timers."water-reminder" = {
       wantedBy = ["timers.target"];
       timerConfig = {

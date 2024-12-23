@@ -19,7 +19,7 @@ in {
       # autorandr = enabled;
       laptop = enabled;
       pipewire = enabled;
-      light_control = {
+      lightControl = {
         enable = true;
         impermanence = enabled;
       };
@@ -42,7 +42,7 @@ in {
       firewall = enabled;
     };
     services = {
-      water_reminder = enabled;
+      waterReminder = enabled;
       bluetooth = enabled;
       redshift = enabled;
     };
