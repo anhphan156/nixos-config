@@ -2,10 +2,19 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }: let
   laptop = config.cyanea.system.laptop;
   awesome = config.cyanea.graphical.awesome;
+
+  hyprlandScripts = pkgs.callPackage (inputs.src + /packages/user_scripts/acpi/hyprland_scripts.nix) {inherit lib;};
+  awesomeScripts = pkgs.callPackage (inputs.src + /packages/user_scripts/acpi/awesome_scripts.nix) {inherit lib;};
+
+  scripts =
+    if awesome.enable
+    then awesomeScripts
+    else hyprlandScripts;
 in {
   options = {
     cyanea.system.acpid.enable = lib.mkEnableOption "enable acpid";
@@ -15,37 +24,12 @@ in {
     services.acpid = {
       enable = true;
       handlers = {
-        ac-power = lib.mkIf (laptop.enable && awesome.enable) {
-          action = ''
-            p=$(echo $PATH | grep '/run/current-system/sw/bin')
-            if [ -z $p ]; then
-                PATH=$PATH:/run/current-system/sw/bin
-            fi
-            vals=($1)
-            case ''${vals[3]} in
-                00000000)
-                    ${pkgs.sudo}/bin/sudo -u backspace XDG_RUNTIME_DIR="/run/user/$(id -u backspace)" ${pkgs.awesome}/bin/awesome-client "awesome.emit_signal('acpi::unplugged')"
-                    ;;
-                00000001)
-                    ${pkgs.sudo}/bin/sudo -u backspace XDG_RUNTIME_DIR="/run/user/$(id -u backspace)" ${pkgs.awesome}/bin/awesome-client "awesome.emit_signal('acpi::plugged')"
-                    ;;
-            esac
-          '';
+        ac-power = lib.mkIf laptop.enable {
+          action = "${scripts}/bin/ac-power \"$1\"";
           event = "ac_adapter/*";
         };
-        button-power = lib.mkIf (laptop.enable && awesome.enable) {
-          action = ''
-            p=$(echo $PATH | grep '/run/current-system/sw/bin')
-            if [ -z $p ]; then
-                PATH=$PATH:/run/current-system/sw/bin
-            fi
-            vals=($1)
-            case ''${vals[1]} in
-                PBTN)
-                    ${pkgs.sudo}/bin/sudo -u backspace XDG_RUNTIME_DIR="/run/user/$(id -u backspace)" ${pkgs.awesome}/bin/awesome-client "awesome.emit_signal('acpi::power_button')"
-                    ;;
-            esac
-          '';
+        button-power = lib.mkIf laptop.enable {
+          action = "${scripts}/bin/button-power \"$1\"";
           event = "button/power.*";
         };
       };

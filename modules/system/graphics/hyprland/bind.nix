@@ -27,7 +27,7 @@ in {
             "$mod, C, execr, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
             "$mod, L, execr, cat ~/data/links.txt | rofi -i -dmenu | xargs wtype"
             "$mod, T, execr, tmux ls | rofi -i -dmenu | awk -F: '{print $1}' | xargs -I {} kitty tmux attach -t {}"
-            "$mod, K, execr, ${keepassrofi}"
+            "$mod, K, execr, ${keepassrofi}/bin/keepassrofi"
 
             # window control
             "$mod, F, togglefloating"

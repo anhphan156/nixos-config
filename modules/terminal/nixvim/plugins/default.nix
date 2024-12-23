@@ -8,13 +8,20 @@ with lib; {
   config = mkIf config.nixvim.enable {
     programs.nixvim = {
       plugins = {
-        treesitter = enabled;
         fugitive = enabled;
         telescope = enabled;
         gitsigns = enabled;
         noice = enabled;
         floaterm = enabled;
         headlines = enabled;
+        otter = enabled;
+
+        treesitter = {
+          enable = true;
+          settings = {
+            highlight.enable = true;
+          };
+        };
 
         notify = {
           enable = true;
