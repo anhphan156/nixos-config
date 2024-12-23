@@ -18,14 +18,10 @@ in {
     specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
-      [
-        inputs.home-manager.nixosModules.home-manager
-        inputs.nixvim.nixosModules.nixvim
-        inputs.catppuccin.nixosModules.catppuccin
-        inputs.xremap.nixosModules.default
+      commonModules
+      ++ [
         ./installer
-      ]
-      ++ (lib.getNixFiles (inputs.src + /modules));
+      ];
   };
 
   vmtest = inputs.nixpkgs.lib.nixosSystem {
