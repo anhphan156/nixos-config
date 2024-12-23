@@ -15,7 +15,7 @@
       ];
 
       xdg.configFile = {
-        "eww/".source = "${config.cyanea.dotfilesPath}/share/eww";
+        "eww/".source = "${pkgs.myDotfiles}/share/eww";
       };
     };
   };

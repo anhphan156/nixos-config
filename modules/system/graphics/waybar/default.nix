@@ -1,9 +1,10 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
-  waybar_path = "${config.cyanea.dotfilesPath}/share/waybar/style.css";
+  waybar_path = "${pkgs.myDotfiles}/share/waybar/style.css";
 in {
   options = {
     cyanea.graphical.waybar.enable = lib.mkEnableOption "Enable waybar";

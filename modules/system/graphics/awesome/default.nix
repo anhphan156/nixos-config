@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  awesome_path = "${config.cyanea.dotfilesPath}/share/awesome";
+  awesome_path = "${pkgs.myDotfiles}/share/awesome";
   cfg = config.cyanea.graphical;
 in {
   options = {

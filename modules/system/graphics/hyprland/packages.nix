@@ -22,7 +22,6 @@ in {
       wireplumber # streaming stuff
       swww
       (pkgs.callPackage (inputs.src + /packages/user_scripts/swww_scripts.nix) {
-        inherit (config.cyanea) wallpapers;
         inherit (cfg.hyprland.monitor) monitorList;
       })
     ];

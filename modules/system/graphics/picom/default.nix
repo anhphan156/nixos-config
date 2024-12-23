@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.cyanea.graphical;
@@ -56,7 +57,7 @@ in {
 
         window-shader-fg-rule = [
           # "/home/backspace/dotfiles/config/picom/test.glsl:class_g = 'kittymusic'"
-          "${config.cyanea.dotfilesPath}/share/picom/droplet.glsl:window_type = 'splash'"
+          "${pkgs.myDotfiles}/share/picom/droplet.glsl:window_type = 'splash'"
         ];
 
         fading = true;

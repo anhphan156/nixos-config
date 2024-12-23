@@ -1,5 +1,5 @@
 {
-  config,
+  pkgs,
   lib,
   ...
 }: {
@@ -16,7 +16,7 @@
         settings = {
           "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
           logo = {
-            source = "${config.cyanea.wallpapers}/fetch_logo/neofetch.jpg";
+            source = "${pkgs.wallpapers}/fetch_logo/neofetch.jpg";
             height = 18;
           };
           display = {

@@ -1,9 +1,12 @@
 {
   config,
+  inputs,
   lib,
+  pkgs,
   ...
 }: let
   workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
+  keepassrofi = pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/keepassxc.nix) {};
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${lib.user.name}" = {config, ...}: let
@@ -24,6 +27,7 @@ in {
             "$mod, C, execr, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
             "$mod, L, execr, cat ~/data/links.txt | rofi -i -dmenu | xargs wtype"
             "$mod, T, execr, tmux ls | rofi -i -dmenu | awk -F: '{print $1}' | xargs -I {} kitty tmux attach -t {}"
+            "$mod, K, execr, ${keepassrofi}"
 
             # window control
             "$mod, F, togglefloating"

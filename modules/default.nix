@@ -18,19 +18,12 @@
       vmtest = hostOption;
     };
     cyanea = {
-      dotfilesPath = lib.mkOption {
-        description = "Path to this project in string";
-        type = lib.types.package;
-        readOnly = true;
-        default = inputs.dotfiles.packages.${pkgs.system}.default;
-      };
-
-      wallpapers = lib.mkOption {
-        description = "Wallpapers";
-        type = lib.types.package;
-        readOnly = true;
-        default = inputs.wallpapers.packages."${pkgs.system}".default;
-      };
+      # dotfilesPath = lib.mkOption {
+      #   description = "Path to this project in string";
+      #   type = lib.types.package;
+      #   readOnly = true;
+      #   default = inputs.dotfiles.packages.${pkgs.system}.default;
+      # };
     };
 
     cyanea.keyboards.dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";

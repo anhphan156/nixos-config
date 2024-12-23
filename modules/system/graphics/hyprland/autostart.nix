@@ -8,7 +8,6 @@
   cfg = config.cyanea.graphical;
 
   swww_scripts = pkgs.callPackage (inputs.src + /packages/user_scripts/swww_scripts.nix) {
-    inherit (config.cyanea) wallpapers;
     inherit (cfg.hyprland.monitor) monitorList;
   };
 
@@ -27,7 +26,7 @@ in {
           "${inputs.dotfiles.packages.${pkgs.system}.eww-scripts}/bin/ewwinit"
           "${autostart}/bin/start"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-          "wl-paste --watch cliphist store"
+          # "wl-paste --watch cliphist store"
         ];
       };
     };

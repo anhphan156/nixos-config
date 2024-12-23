@@ -44,7 +44,7 @@ with lib; {
             store_selection_keys = "<Tab>";
           };
           fromLua = [
-            {paths = "${config.cyanea.dotfilesPath}/share/nvim/snippets";}
+            {paths = "${pkgs.myDotfiles}/share/nvim/snippets";}
           ];
         }; #luasnip
 
