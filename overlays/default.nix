@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }: let
   overlays = [
@@ -9,6 +10,11 @@
       wallpapers = inputs.wallpapers.packages.${pkgs.system}.default;
 
       myDotfiles = inputs.dotfiles.packages.${pkgs.system}.default;
+
+      rofi =
+        if config.cyanea.graphical.hyprland.enable
+        then prev.rofi-wayland
+        else prev.rofi;
 
       ncmpcpp = prev.ncmpcpp.override {
         visualizerSupport = true;

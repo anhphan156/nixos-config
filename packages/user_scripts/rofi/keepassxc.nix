@@ -3,10 +3,15 @@
   myDotfiles,
   wallpapers,
   writeShellApplication,
+  rofi,
+  libnotify,
+  keepassxc,
   ...
 }:
 writeShellApplication {
   name = "keepassrofi";
+
+  runtimeInputs = [rofi libnotify keepassxc];
 
   text = ''
     path=${dbpath}

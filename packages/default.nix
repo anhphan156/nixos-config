@@ -6,23 +6,6 @@
   ...
 }: let
   inherit (pkgs) callPackage;
-
-  guiPackages =
-    if config.cyanea.graphical.gui.enable
-    then
-      with pkgs; [
-        glslviewer
-        nemo
-        evince
-        # pureref
-        beeper
-        blender
-        obs-studio
-        zoom-us
-        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = inputs.src;})
-        (callPackage ./user_scripts/rofi/dev_project.nix {basePath = lib.user.path.dev;})
-      ]
-    else [];
 in {
   imports = [
     ./fonts
@@ -80,6 +63,20 @@ in {
         (callPackage ./user_scripts/fzf/dev_project.nix {})
         (callPackage ./kabmat {})
       ]
-      ++ guiPackages;
+      ++ (lib.optionals (config.cyanea.graphical.gui.enable) [
+        glslviewer
+        nemo
+        evince
+        # pureref
+        beeper
+        blender
+        obs-studio
+        zoom-us
+        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = inputs.src;})
+        (callPackage ./user_scripts/rofi/dev_project.nix {
+          basePath = lib.user.path.dev;
+          tmux_code = callPackage ./user_scripts/tmux_code_layout.nix {};
+        })
+      ]);
   };
 }

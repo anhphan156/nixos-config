@@ -22,16 +22,8 @@
     curl
     wget
     bat
-    inputs.alejandra.defaultPackage.${pkgs.system}
     nix-prefetch-git
     cmatrix
-  ];
-
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCode"];})
-    ankacoder
-    material-icons
-    texlivePackages.typicons
   ];
 
   systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];

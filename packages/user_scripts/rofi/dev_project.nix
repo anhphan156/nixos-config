@@ -1,14 +1,21 @@
 {
-  writeShellScriptBin,
+  writeShellApplication,
+  rofi,
+  kitty,
+  tmux_code,
   basePath ? "~",
   ...
 }:
-writeShellScriptBin "dev" ''
-  #!/usr/bin/env bash
-  basepath=${basePath}
-  project=`ls $basepath | rofi -i -dmenu -p "Pick a Project"`
+writeShellApplication {
+  name = "dev";
+  runtimeInputs = [rofi kitty tmux_code];
+  text = ''
+    #!/usr/bin/env bash
+    basepath=${basePath}
 
-  if [ $? -eq 0 ]; then
-    kitty --working-directory=$basepath/$project tmux_code $project
-  fi
-''
+    # shellcheck disable=SC2012
+    if project=$(ls $basepath | rofi -i -dmenu -p "Pick a Project"); then
+      kitty --working-directory=$basepath/"$project" tmux_code "$project"
+    fi
+  '';
+}
