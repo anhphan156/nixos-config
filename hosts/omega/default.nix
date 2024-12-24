@@ -37,7 +37,7 @@ in {
       tmux = enabled;
     };
     services = {
-      water_reminder = enabled;
+      waterReminder = enabled;
       ratbagd = enabled;
     };
     dev = {

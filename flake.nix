@@ -4,7 +4,7 @@
   outputs = {nixpkgs, ...} @ flake-inputs: let
     inputs = flake-inputs // {src = ./.;};
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs;});
-    forAllSystems = lib.genAttrs lib.platforms.linux;
+    forAllSystems = lib.genAttrs ["x86_64-linux"];
   in {
     nixosConfigurations = import ./hosts {
       inherit inputs lib;

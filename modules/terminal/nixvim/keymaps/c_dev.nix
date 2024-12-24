@@ -30,10 +30,9 @@
           }
           {
             action = let
-              tmux = "${pkgs.tmux}/bin/tmux";
               new_window = pkgs.writeShellScriptBin "neww" ''
-                window=$(${tmux} new-window -PF "#D")
-                ${tmux} send-keys -t $window " gdbx out $window" Enter
+                window=$(${lib.getExe pkgs.tmux} new-window -PF "#D")
+                ${lib.getExe pkgs.tmux} send-keys -t $window " gdbx out $window" Enter
               '';
             in "<cmd>!${new_window}/bin/neww<cr>";
             key = "<leader>d";

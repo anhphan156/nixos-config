@@ -24,7 +24,7 @@ in {
       settings = {
         exec-once = [
           "${inputs.dotfiles.packages.${pkgs.system}.eww-scripts}/bin/ewwinit"
-          "${autostart}/bin/start"
+          "${lib.getExe autostart}"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           # "wl-paste --watch cliphist store"
         ];
