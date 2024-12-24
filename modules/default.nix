@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: {
+{lib, ...}: {
   options = {
     cyanea.graphical.gui.enable = lib.mkEnableOption "Enable GUI";
     cyanea.host = let

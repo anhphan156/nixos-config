@@ -1,9 +1,9 @@
 {
   dbpath ? "~/data/Security/Passwords2.kdbx",
-  myDotfiles,
   wallpapers,
   writeShellApplication,
   rofi,
+  rofiConfig,
   libnotify,
   keepassxc,
   ...
@@ -20,7 +20,7 @@ writeShellApplication {
       exit 1
     fi
 
-    if dbpass=$(rofi -dmenu -password -p "Password" -config ${myDotfiles}/share/rofi/configPromptOnly.rasi); then
+    if dbpass=$(rofi -dmenu -password -p "Password" -config ${rofiConfig}); then
       if entry=$(echo "$dbpass" | keepassxc-cli ls $path | rofi -dmenu -p "Clip"); then
         echo "$dbpass" | keepassxc-cli clip $path "$entry"
         notify-send "Keepassxc" "Clipboard cleared" -t 3000 --icon="${wallpapers}/icons/keepassdx.png"

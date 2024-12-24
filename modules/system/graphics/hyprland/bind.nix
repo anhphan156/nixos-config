@@ -6,7 +6,10 @@
   ...
 }: let
   workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
-  keepassrofi = pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/keepassxc.nix) {};
+
+  keepassrofi = pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/keepassxc.nix) {
+    rofiConfig = config.dotfiles.rofiPrompt;
+  };
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${lib.user.name}" = {config, ...}: let

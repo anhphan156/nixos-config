@@ -11,6 +11,7 @@
       inputs.nixvim.nixosModules.nixvim
       inputs.xremap.nixosModules.default
       inputs.catppuccin.nixosModules.catppuccin
+      inputs.dotfiles.nixosModules.default
     ]
     ++ (lib.getNixFiles (inputs.src + /modules));
 in {

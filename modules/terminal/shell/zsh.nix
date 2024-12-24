@@ -10,6 +10,8 @@
     |> filterAttrs (_: y: y)
     |> (x: assert (x |> mapAttrsToList (k: _: k) |> builtins.length) <= 1; x)
     |> mapAttrs' (x: _: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ${lib.user.path.nixconf}#${x}");
+
+  rofi = " rofi -config ${config.cyanea.desktopApp.rofi.defaultConfig}";
 in {
   programs.zsh.enable = true;
   users.users."${lib.user.name}".shell = pkgs.zsh;
@@ -33,6 +35,7 @@ in {
             "vim" = " nvim";
             "nvim" = " nvim";
             "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
+            inherit rofi;
           };
         oh-my-zsh = {
           enable = true;

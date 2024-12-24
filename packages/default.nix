@@ -72,10 +72,14 @@ in {
         blender
         obs-studio
         zoom-us
-        (callPackage ./user_scripts/rofi/search_docs.nix {rootPath = inputs.src;})
+        (callPackage ./user_scripts/rofi/search_docs.nix {
+          rootPath = inputs.src;
+          rofiConfig = config.dotfiles.rofiOne;
+        })
         (callPackage ./user_scripts/rofi/dev_project.nix {
           basePath = lib.user.path.dev;
           tmux_code = callPackage ./user_scripts/tmux_code_layout.nix {};
+          rofiConfig = config.cyanea.desktopApp.rofi.defaultConfig;
         })
       ]);
   };

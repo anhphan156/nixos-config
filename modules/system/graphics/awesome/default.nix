@@ -19,7 +19,9 @@ in {
 
     environment.systemPackages = [
       inputs.lua-pam.packages."x86_64-linux".default
-      (pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/awesome_layout.nix) {})
+      (pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/awesome_layout.nix) {
+        rofiConfig = config.dotfiles.rofiX;
+      })
       pkgs.xclip
       pkgs.maim
       pkgs.xdotool

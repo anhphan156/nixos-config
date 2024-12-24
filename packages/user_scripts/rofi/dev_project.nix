@@ -1,6 +1,7 @@
 {
   writeShellApplication,
   rofi,
+  rofiConfig,
   kitty,
   tmux_code,
   basePath ? "~",
@@ -14,7 +15,7 @@ writeShellApplication {
     basepath=${basePath}
 
     # shellcheck disable=SC2012
-    if project=$(ls $basepath | rofi -i -dmenu -p "Pick a Project"); then
+    if project=$(ls $basepath | rofi -i -dmenu -p "Pick a Project" -config ${rofiConfig}); then
       kitty --working-directory=$basepath/"$project" tmux_code "$project"
     fi
   '';
