@@ -2,7 +2,7 @@
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
-      mountOptions = ["size=2G" "defaults" "mode=775"];
+      mountOptions = ["size=5G" "defaults" "mode=775"];
     };
     disk = {
       vdb = {

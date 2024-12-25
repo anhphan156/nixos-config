@@ -115,6 +115,7 @@ in {
         ".mozilla"
         ".rustup"
         ".cargo"
+        ".stack"
         ".local/share/direnv"
         ".local/share/zsh"
         ".config/vesktop"

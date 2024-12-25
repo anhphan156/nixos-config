@@ -17,6 +17,7 @@
   hardware.enableAllFirmware = true;
 
   environment.systemPackages = with pkgs; [
+    arch-install-scripts
     disko
     git
     curl
