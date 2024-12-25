@@ -22,6 +22,7 @@ in {
       commonModules
       ++ [
         ./installer
+        ./installer/pacman.nix
       ];
   };
 

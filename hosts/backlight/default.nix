@@ -96,6 +96,7 @@ in {
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
+      "/var/lib/libvirt"
       "/var/db/sudo/lectured"
       "/etc/NetworkManager/system-connections"
       {
