@@ -26,6 +26,11 @@
           '';
         };
       };
+
+      # Download the archlinux-keyring package from archlinux website
+      # untar, then
+      # sudo pacman-key --init
+      # sudo pacman-key --populate archlinux --populate-from ./usr/share/pacman/keyrings/
       "pacman.conf" = {
         enable = true;
         text = ''
@@ -33,18 +38,16 @@
           ParallelDownloads = 5
           Architecture = auto
           HoldPkg = pacman glibc
-          SigLevel = Never
+          SigLevel = Required DatabaseOptional
+          LocalFileSigLevel = Optional
           Color
-          Checkspace
+          CheckSpace
 
           [core]
-          #SigLevel = PackageRequired
           Include = /etc/pacman.d/mirrorlist
           [extra]
-          #SigLevel = PackageRequired
           Include = /etc/pacman.d/mirrorlist
           [community]
-          #SigLevel = PackageRequired
           Include = /etc/pacman.d/mirrorlist
         '';
       };
