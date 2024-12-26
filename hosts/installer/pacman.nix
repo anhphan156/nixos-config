@@ -32,11 +32,19 @@
           [options]
           ParallelDownloads = 5
           Architecture = auto
+          HoldPkg = pacman glibc
+          SigLevel = Never
+          Color
+          Checkspace
+
           [core]
+          #SigLevel = PackageRequired
           Include = /etc/pacman.d/mirrorlist
           [extra]
+          #SigLevel = PackageRequired
           Include = /etc/pacman.d/mirrorlist
           [community]
+          #SigLevel = PackageRequired
           Include = /etc/pacman.d/mirrorlist
         '';
       };
