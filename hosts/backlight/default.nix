@@ -65,6 +65,11 @@ in {
       enable = true;
       rpc = enabled;
     };
+
+    gaming = {
+      enable = true;
+      nvidia.enable = true;
+    };
   };
 
   services.xserver.xrandrHeads = mkIf (let
@@ -117,6 +122,9 @@ in {
         ".rustup"
         ".cargo"
         ".stack"
+        ".steam"
+        ".local/share/Steam"
+        ".local/share/Sandbox Interactive GmbH"
         ".local/share/direnv"
         ".local/share/zsh"
         ".config/vesktop"
