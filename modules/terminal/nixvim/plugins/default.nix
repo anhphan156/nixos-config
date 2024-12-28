@@ -121,18 +121,18 @@ with lib; {
           # 	plugin = hex-nvim;
           # 	config = ''lua require 'hex'.setup()'';
           # }
-          {
-            plugin = vimUtils.buildVimPlugin {
-              name = "leetcode";
-              src = fetchFromGitHub {
-                owner = "kawre";
-                repo = "leetcode.nvim";
-                rev = "02fb2c855658ad6b60e43671f6b040c812181a1d";
-                hash = "sha256-YoFRd9Uf+Yv4YM6/l7MVLMjfRqhroSS3RCmZvNowIAo=";
-              };
-            };
-            config = ''lua require 'leetcode'.setup() '';
-          }
+          # {
+          #   plugin = vimUtils.buildVimPlugin {
+          #     name = "leetcode";
+          #     src = fetchFromGitHub {
+          #       owner = "kawre";
+          #       repo = "leetcode.nvim";
+          #       rev = "02fb2c855658ad6b60e43671f6b040c812181a1d";
+          #       hash = "sha256-YoFRd9Uf+Yv4YM6/l7MVLMjfRqhroSS3RCmZvNowIAo=";
+          #     };
+          #   };
+          #   config = ''lua require 'leetcode'.setup() '';
+          # }
         ]);
     };
   };
