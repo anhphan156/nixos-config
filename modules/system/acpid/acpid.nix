@@ -6,15 +6,7 @@
   ...
 }: let
   laptop = config.cyanea.system.laptop;
-  awesome = config.cyanea.graphical.awesome;
-
-  hyprlandScripts = pkgs.callPackage (inputs.src + /packages/user_scripts/acpi/hyprland_scripts.nix) {inherit lib;};
-  awesomeScripts = pkgs.callPackage (inputs.src + /packages/user_scripts/acpi/awesome_scripts.nix) {inherit lib;};
-
-  scripts =
-    if awesome.enable
-    then awesomeScripts
-    else hyprlandScripts;
+  scripts = pkgs.callPackage (inputs.src + /packages/user_scripts/acpi/acpi_scripts.nix) {inherit lib;};
 in {
   options = {
     cyanea.system.acpid.enable = lib.mkEnableOption "enable acpid";

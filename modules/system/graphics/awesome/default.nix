@@ -18,7 +18,7 @@ in {
     cyanea.desktopApp.rofi = lib.enabled;
 
     environment.systemPackages = [
-      inputs.lua-pam.packages."x86_64-linux".default
+      inputs.lua-pam.packages.${pkgs.system}.default
       (pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/awesome_layout.nix) {
         rofiConfig = config.dotfiles.rofiX;
       })

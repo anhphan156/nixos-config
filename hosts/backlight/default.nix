@@ -27,7 +27,7 @@ in {
     };
     graphical = {
       gui = enabled;
-      # awesome = enabled;
+      awesome = enabled;
       hyprland = {
         enable = mkForce true;
         monitor = {
@@ -66,10 +66,10 @@ in {
       rpc = enabled;
     };
 
-    gaming = {
-      enable = true;
-      nvidia.enable = true;
-    };
+    # gaming = {
+    #   enable = true;
+    #   nvidia.enable = true;
+    # };
   };
 
   services.xserver.xrandrHeads = mkIf (let
