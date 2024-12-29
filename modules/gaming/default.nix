@@ -7,6 +7,10 @@
   options = {
     cyanea.gaming = {
       enable = lib.mkEnableOption "Enable gaming";
+      gamescopeMonitor = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+      };
       nvidia.enable = lib.mkEnableOption "Enable gaming";
     };
   };
@@ -31,9 +35,16 @@
       };
     };
 
-    programs.steam.enable = true;
-    programs.steam.gamescopeSession.enable = true;
-    programs.gamemode.enable = true;
+    programs = {
+      steam = {
+        enable = true;
+        gamescopeSession = {
+          enable = true;
+          args = config.cyanea.gaming.gamescopeMonitor;
+        };
+      };
+      gamemode.enable = true;
+    };
 
     environment.systemPackages = [pkgs.mangohud];
   };

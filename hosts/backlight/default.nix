@@ -36,7 +36,10 @@ in {
           workspaceList = [[1 2 3 4]];
         };
       }; # hyprland
-      sddm.autoLogin.enable = false;
+      sddm = {
+        autoLogin.enable = false;
+        defaultSession = "hyprland";
+      }; # sddm
     }; # graphical
     networking = {
       firewall = enabled;
@@ -65,11 +68,15 @@ in {
       enable = true;
       rpc = enabled;
     };
-
-    # gaming = {
-    #   enable = true;
-    #   nvidia.enable = true;
-    # };
+    gaming = {
+      enable = true;
+      gamescopeMonitor = [
+        "-O eDP-1"
+        "-W 1920"
+        "-H 1080"
+      ];
+      nvidia.enable = true;
+    };
   };
 
   services.xserver.xrandrHeads = mkIf (let
@@ -125,6 +132,7 @@ in {
         ".steam"
         ".local/share/Steam"
         ".local/share/Sandbox Interactive GmbH"
+        ".config/unity3d/Sandbox Interactive GmbH"
         ".local/share/direnv"
         ".local/share/zsh"
         ".config/vesktop"
