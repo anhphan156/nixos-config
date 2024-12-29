@@ -19,10 +19,13 @@ This flake provides system configuration for my NixOS computers, which share man
 ## Hosts
 Desktop Hosts
 + Impermanence setup with root on tmpfs
-+ Window manager: either Hyprland or AwesomeWM (up to my mood)
++ Window manager: either Hyprland or AwesomeWM
 
 Wsl Host
 + NixOS right in my Windows PC so I can use Nixvim on Windows
+
+Installer ISO
++ An ISO that includes many tools to install a new operating system such as pacstrap, mkfs, disko, nixos-install, wget, git, etc
 
 For more details, please have a look at [hosts](./hosts).
 
