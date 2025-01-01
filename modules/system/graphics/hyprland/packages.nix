@@ -22,7 +22,7 @@ in {
       wireplumber # streaming stuff
       swww
       (pkgs.callPackage (inputs.self + /packages/user_scripts/swww_scripts.nix) {
-        inherit (cfg.hyprland.monitor) monitorList;
+        inherit (cfg.hyprland.monitor) monitorList resolutionList;
       })
     ];
   };

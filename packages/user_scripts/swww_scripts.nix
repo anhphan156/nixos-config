@@ -2,11 +2,18 @@
   writeShellApplication,
   wallpapers,
   monitorList,
+  resolutionList,
   lib,
   symlinkJoin,
   swww,
   ...
 }: let
+  inherit (lib.lists) foldl singleton;
+  inherit (lib.strings) concatMapStringsSep;
+  inherit (builtins) elemAt head;
+
+  activeMonitorList = foldl (acc: xs: if ("disable" != elemAt xs 1) then acc ++ (xs |> head |> singleton) else acc) [] <| lib.lists.zipListsWith (x: y: [ x y ]) monitorList resolutionList;
+
   single_monitor = writeShellApplication {
     name = "swww_sm";
     runtimeInputs = [swww];
@@ -16,7 +23,7 @@
       random=$(ls $wallpapers | shuf | head -1)
       random=$wallpapers/$random
 
-      ${lib.strings.concatMapStringsSep "\n" (x: "swww img -o \"${x}\" --transition-type center \"$random\"") monitorList}
+      ${concatMapStringsSep "\n" (x: "swww img -o \"${x}\" --transition-type center \"$random\"") activeMonitorList}
     '';
   };
 

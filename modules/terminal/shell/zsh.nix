@@ -6,7 +6,7 @@
 }: let
   inherit (pkgs.lib.attrsets) filterAttrs mapAttrs' mapAttrsToList nameValuePair;
 
-  rebuild-aliases = config.cyanea.host
+  rebuildAliases = config.cyanea.host
     |> filterAttrs (_: y: y)
     |> (x: assert (x |> mapAttrsToList (k: _: k) |> builtins.length) <= 1; x)
     |> mapAttrs' (x: _: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ${lib.user.path.nixconf}#${x}");
@@ -29,7 +29,7 @@ in {
         };
 
         shellAliases =
-          rebuild-aliases
+          rebuildAliases
           // {
             "v" = " nvim";
             "vim" = " nvim";
