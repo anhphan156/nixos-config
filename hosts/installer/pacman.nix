@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   environment = {
     systemPackages = with pkgs; [
       arch-install-scripts
-      pacman
+      (callPackage (inputs.self + /packages/user_scripts/pacmankey) {})
     ];
 
     etc = {
@@ -13,7 +17,7 @@
           version = "1.0.0";
           src = pkgs.fetchurl {
             url = "https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4";
-            sha256 = "sha256-ukdIFhmmtg+a5inbygwfbSYJ8IZCt29nQ7IYWryQeU4=";
+            sha256 = "sha256-6q3QsWzVnaUy3/IX+453XSPwtWcP6PlJ2xtgAq0HAsE=";
           };
           unpackPhase = ''
             cp --no-preserve=mode $src text.txt
@@ -27,10 +31,6 @@
         };
       };
 
-      # Download the archlinux-keyring package from archlinux website
-      # untar, then
-      # sudo pacman-key --init
-      # sudo pacman-key --populate archlinux --populate-from ./usr/share/pacman/keyrings/
       "pacman.conf" = {
         enable = true;
         text = ''

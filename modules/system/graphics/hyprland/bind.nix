@@ -7,7 +7,7 @@
 }: let
   workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
 
-  keepassrofi = pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/keepassxc.nix) {
+  keepassrofi = pkgs.callPackage (inputs.self + /packages/user_scripts/rofi/keepassxc.nix) {
     rofiConfig = config.dotfiles.rofiPrompt;
   };
 in {

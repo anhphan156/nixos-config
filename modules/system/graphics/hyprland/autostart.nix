@@ -7,7 +7,7 @@
 }: let
   cfg = config.cyanea.graphical;
 
-  swww_scripts = pkgs.callPackage (inputs.src + /packages/user_scripts/swww_scripts.nix) {
+  swww_scripts = pkgs.callPackage (inputs.self + /packages/user_scripts/swww_scripts.nix) {
     inherit (cfg.hyprland.monitor) monitorList;
   };
 

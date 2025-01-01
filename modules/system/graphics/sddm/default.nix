@@ -32,7 +32,7 @@ in {
     ];
     services.displayManager = {
       sddm.enable = true;
-      sddm.theme = lib.mkForce "${pkgs.callPackage (inputs.src + /packages/MarianArlt-sddm-sugar-dark) {}}";
+      sddm.theme = lib.mkForce "${pkgs.callPackage (inputs.self + /packages/MarianArlt-sddm-sugar-dark) {}}";
       sddm.wayland.enable = lib.mkIf cfg.hyprland.enable true;
       inherit (cfg.sddm) defaultSession;
       autoLogin = {

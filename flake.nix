@@ -1,8 +1,7 @@
 {
   description = "Nixos config flake";
 
-  outputs = {nixpkgs, ...} @ flake-inputs: let
-    inputs = flake-inputs // {src = ./.;};
+  outputs = {nixpkgs, ...} @ inputs: let
     lib = nixpkgs.lib.extend (import ./libs {inherit inputs;});
     forAllSystems = lib.genAttrs ["x86_64-linux"];
   in {

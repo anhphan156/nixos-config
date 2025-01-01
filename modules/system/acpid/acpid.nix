@@ -6,7 +6,7 @@
   ...
 }: let
   laptop = config.cyanea.system.laptop;
-  scripts = pkgs.callPackage (inputs.src + /packages/user_scripts/acpi/acpi_scripts.nix) {inherit lib;};
+  scripts = pkgs.callPackage (inputs.self + /packages/user_scripts/acpi/acpi_scripts.nix) {inherit lib;};
 in {
   options = {
     cyanea.system.acpid.enable = lib.mkEnableOption "enable acpid";

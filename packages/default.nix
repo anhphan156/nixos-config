@@ -73,7 +73,6 @@ in {
         obs-studio
         zoom-us
         (callPackage ./user_scripts/rofi/search_docs.nix {
-          rootPath = inputs.src;
           rofiConfig = config.dotfiles.rofiOne;
         })
         (callPackage ./user_scripts/rofi/dev_project.nix {

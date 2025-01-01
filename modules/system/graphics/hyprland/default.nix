@@ -59,6 +59,7 @@ in {
 
           input = {
             #follow_mouse = "1";
+            # sensitivity = "-0.9";
             sensitivity = "0.0";
             touchpad = lib.mkIf config.cyanea.system.laptop.enable {
               natural_scroll = true;

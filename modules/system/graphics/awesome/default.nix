@@ -19,7 +19,7 @@ in {
 
     environment.systemPackages = [
       inputs.lua-pam.packages.${pkgs.system}.default
-      (pkgs.callPackage (inputs.src + /packages/user_scripts/rofi/awesome_layout.nix) {
+      (pkgs.callPackage (inputs.self + /packages/user_scripts/rofi/awesome_layout.nix) {
         rofiConfig = config.dotfiles.rofiX;
       })
       pkgs.xclip

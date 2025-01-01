@@ -11,7 +11,7 @@
       gcc
       gdb
       valgrind
-      (pkgs.callPackage (inputs.src + /packages/user_scripts/gdb-tmux.nix) {})
+      (pkgs.callPackage (inputs.self + /packages/user_scripts/gdb-tmux.nix) {})
     ];
   };
 }
