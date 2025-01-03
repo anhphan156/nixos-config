@@ -64,6 +64,7 @@ in {
         (callPackage ./kabmat {})
       ]
       ++ (lib.optionals (config.cyanea.graphical.gui.enable) [
+        anki
         glslviewer
         nemo
         evince

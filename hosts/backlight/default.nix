@@ -135,6 +135,7 @@ in {
         ".config/unity3d/Sandbox Interactive GmbH"
         ".local/share/direnv"
         ".local/share/zsh"
+        ".local/share/Anki2"
         ".config/vesktop"
         ".cache"
       ];
