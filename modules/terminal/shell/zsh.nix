@@ -13,56 +13,62 @@
 
   rofi = " rofi -config ${config.cyanea.desktopApp.rofi.defaultConfig}";
 in {
-  programs.zsh.enable = true;
-  users.users."${lib.user.name}".shell = pkgs.zsh;
+  options.cyanea.shell.zsh = {
+    enable = lib.mkEnableOption "";
+  };
 
-  home-manager.users."${lib.user.name}".imports = [
-    ({config, ...}: {
-      programs.zsh = {
-        enable = true;
-        syntaxHighlighting = lib.enabled;
-        autocd = true;
+  config = lib.mkIf config.cyanea.shell.zsh.enable {
+    programs.zsh.enable = true;
+    users.users."${lib.user.name}".shell = pkgs.zsh;
 
-        history.path = "${config.xdg.dataHome}/zsh/zsh_history";
-        sessionVariables = {
-          "ZSHZ_DATA" = "${config.xdg.dataHome}/zsh/.z";
-        };
-
-        shellAliases =
-          rebuildAliases
-          // {
-            "v" = " nvim";
-            "vim" = " nvim";
-            "nvim" = " nvim";
-            "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
-            inherit rofi;
-          };
-        oh-my-zsh = {
+    home-manager.users."${lib.user.name}".imports = [
+      ({config, ...}: {
+        programs.zsh = {
           enable = true;
-          plugins = ["git" "z" "vi-mode"];
+          syntaxHighlighting = lib.enabled;
+          autocd = true;
+
+          history.path = "${config.xdg.dataHome}/zsh/zsh_history";
+          sessionVariables = {
+            "ZSHZ_DATA" = "${config.xdg.dataHome}/zsh/.z";
+          };
+
+          shellAliases =
+            rebuildAliases
+            // {
+              "v" = " nvim";
+              "vim" = " nvim";
+              "nvim" = " nvim";
+              "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
+              inherit rofi;
+            };
+          oh-my-zsh = {
+            enable = true;
+            plugins = ["git" "z" "vi-mode"];
+          };
+
+          initExtra = lib.mkAfter ''
+            GREEN='\033[0;32m'
+            RED='\033[0;31m'
+            MAGENTA='\033[0;35m'
+            NC='\033[0m'
+            printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
+          '';
+
+          # plugins = [
+          #   {
+          #     name = "z";
+          #     file = "zsh-z.plugin.zsh";
+          #     src = pkgs.fetchFromGitHub {
+          #       owner = "agkozak";
+          #       repo = "zsh-z";
+          #       rev = "afaf2965b41fdc6ca66066e09382726aa0b6aa04";
+          #       sha256 = "1s23azd9hk57dgya0xrqh16jq1qbmm0n70x32mxg8b29ynks6w8n";
+          #     };
+          #   }
+          # ];
         };
-
-        initExtra = lib.mkAfter ''
-          GREEN='\033[0;32m'
-          RED='\033[0;31m'
-          MAGENTA='\033[0;35m'
-          NC='\033[0m'
-          printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
-        '';
-
-        # plugins = [
-        #   {
-        #     name = "z";
-        #     file = "zsh-z.plugin.zsh";
-        #     src = pkgs.fetchFromGitHub {
-        #       owner = "agkozak";
-        #       repo = "zsh-z";
-        #       rev = "afaf2965b41fdc6ca66066e09382726aa0b6aa04";
-        #       sha256 = "1s23azd9hk57dgya0xrqh16jq1qbmm0n70x32mxg8b29ynks6w8n";
-        #     };
-        #   }
-        # ];
-      };
-    })
-  ];
+      })
+    ];
+  };
 }

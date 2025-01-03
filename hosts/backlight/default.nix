@@ -52,6 +52,10 @@ in {
     terminal = {
       tmux = enabled;
     };
+    shell = {
+      zsh = enabled;
+      # xonsh = enabled;
+    };
     dev = {
       c = enabled;
       haskell = enabled;
