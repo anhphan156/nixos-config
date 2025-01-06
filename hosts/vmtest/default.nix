@@ -5,7 +5,6 @@ in {
     host.vmtest = true;
     desktopApp = {
       firefox = enabled;
-      rofi = enabled;
     };
     system = {
       openssh = enabled;

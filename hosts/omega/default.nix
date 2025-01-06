@@ -49,7 +49,10 @@ in {
       docker = enabled;
     };
     music = enabled;
-    gaming = enabled;
+    gaming = {
+      enable = true;
+      driver = ["amdgpu"];
+    };
   };
 
   system.stateVersion = "23.11";

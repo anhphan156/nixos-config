@@ -7,16 +7,6 @@
   options = {
     cyanea.desktopApp.rofi = {
       enable = lib.mkEnableOption "Enable Rofi";
-
-      defaultConfig = lib.mkOption {
-        description = "Default config for rofi";
-        readOnly = true;
-        type = lib.types.path;
-        default =
-          if config.cyanea.graphical.hyprland.enable
-          then config.dotfiles.rofiWayland
-          else config.dotfiles.rofiX;
-      };
     };
   };
 

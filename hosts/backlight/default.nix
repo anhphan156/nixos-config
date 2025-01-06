@@ -54,7 +54,7 @@ in {
     };
     shell = {
       zsh = enabled;
-      # xonsh = enabled;
+      xonsh = enabled;
     };
     dev = {
       c = enabled;
@@ -80,6 +80,7 @@ in {
         "-H 1080"
       ];
       nvidia.enable = true;
+      driver = ["nvidia"];
     };
   };
 

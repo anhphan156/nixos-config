@@ -12,11 +12,15 @@
         default = [];
       };
       nvidia.enable = lib.mkEnableOption "Enable gaming";
+      driver = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+      };
     };
   };
 
   config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.gaming.enable) {
-    services.xserver.videoDrivers = ["amdgpu" "nvidia"];
+    services.xserver.videoDrivers = config.cyanea.gaming.driver;
 
     hardware.nvidia = lib.mkIf config.cyanea.gaming.nvidia.enable {
       modesetting.enable = true;

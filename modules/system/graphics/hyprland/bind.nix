@@ -8,7 +8,7 @@
   workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
 
   keepassrofi = pkgs.callPackage (inputs.self + /packages/user_scripts/rofi/keepassxc.nix) {
-    rofiConfig = config.dotfiles.rofiPrompt;
+    rofiConfig = config.dotfiles.rofi.prompt;
   };
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {

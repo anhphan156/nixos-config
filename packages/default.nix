@@ -23,6 +23,7 @@ in {
     curl
     inputs.alejandra.defaultPackage.${pkgs.system}
     nixd
+    file
   ];
 
   home-manager.users."${lib.user.name}" = {
@@ -74,12 +75,12 @@ in {
         obs-studio
         zoom-us
         (callPackage ./user_scripts/rofi/search_docs.nix {
-          rofiConfig = config.dotfiles.rofiOne;
+          rofiConfig = config.dotfiles.rofi.oneColumn;
         })
         (callPackage ./user_scripts/rofi/dev_project.nix {
           basePath = lib.user.path.dev;
           tmux_code = callPackage ./user_scripts/tmux_code_layout.nix {};
-          rofiConfig = config.cyanea.desktopApp.rofi.defaultConfig;
+          rofiConfig = config.dotfiles.rofi.default;
         })
       ]);
   };
