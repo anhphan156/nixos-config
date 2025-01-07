@@ -10,6 +10,8 @@
   keepassrofi = pkgs.callPackage (inputs.self + /packages/user_scripts/rofi/keepassxc.nix) {
     rofiConfig = config.dotfiles.rofi.prompt;
   };
+
+  ss_clipboard = pkgs.callPackage (inputs.self + /packages/user_scripts/screenshots/ss_clipboard.nix) {};
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${lib.user.name}" = {config, ...}: let
@@ -46,7 +48,7 @@ in {
 
             # screenshots
             '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''
-            "SUPERSHIFT, S, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+            "SUPERSHIFT, S, exec, ${lib.getExe ss_clipboard}"
 
             #misc
             "SUPERSHIFT, W, exec, swww_sm"
