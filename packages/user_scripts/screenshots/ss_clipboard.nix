@@ -26,20 +26,20 @@ writeShellApplication {
     fg="/tmp/$random_name-fg.png"
     out="/tmp/$random_name-output.png"
 
-    margin=${builtins.toString margin}
-    radius=${builtins.toString radius}
+    m=${builtins.toString margin}
+    r=${builtins.toString radius}
 
     grim -g "$region" -t png "$fg"
 
-    magick -size "$((w))x$((h))" xc:"#ffffff66" \
-    	-fill "$fg" \
-    	-draw "roundrectangle $margin,$margin $((w-margin)),$((h-margin)) $radius,$radius" \
-    	"$out"
+    magick -size "$((w+m*2))x$((h+m*2))" xc:none \
+      -fill plasma:#abcdef-#ef9889 -draw "roundrectangle 0,0 $((w+m*2)),$((h+m*2)) $r,$r" \
+      -fill "$fg" -draw "roundrectangle $((m+2)),$((m+2)) $((w+m-2)),$((h+m-2)) $r,$r" \
+      "$out"
 
     wl-copy -t image/png < "$out"
 
     notify-send "Screenshot" "Screenshot is available in the clipboard" -t 3000 --icon=${wallpapers}/icons/camera_04.png
 
-    rm "$fg" "$out"
+    # rm "$fg" "$out"
   '';
 }
