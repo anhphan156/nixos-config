@@ -2,6 +2,7 @@
   stdenv,
   fetchFromGitHub,
   formats,
+  theme ? "hyprland_kath",
   ...
 }:
 stdenv.mkDerivation
@@ -18,7 +19,7 @@ stdenv.mkDerivation
   installPhase = let
     desktopMeta = (formats.ini {}).generate "metadata.desktop" {
       SddmGreeterTheme = {
-        ConfigFile = "Themes/pixel_sakura.conf";
+        ConfigFile = "Themes/${theme}.conf";
         QtVersion = 6;
       };
     };

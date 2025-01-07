@@ -77,6 +77,9 @@ in {
         (callPackage ./user_scripts/rofi/search_docs.nix {
           rofiConfig = config.dotfiles.rofi.oneColumn;
         })
+        (callPackage ./user_scripts/screenshots/text_clipboard.nix {
+          rofiConfig = config.dotfiles.rofi.prompt;
+        })
         (callPackage ./user_scripts/rofi/dev_project.nix {
           basePath = lib.user.path.dev;
           tmux_code = callPackage ./user_scripts/tmux_code_layout.nix {};
