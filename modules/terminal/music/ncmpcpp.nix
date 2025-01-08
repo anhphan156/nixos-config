@@ -1,6 +1,8 @@
 {
   config,
+  inputs,
   lib,
+  pkgs,
   ...
 }: {
   options = {
@@ -12,7 +14,7 @@
       enable = true;
       mpdMusicDir = lib.user.path.music;
       settings = {
-        "execute_on_song_change" = lib.mkIf config.cyanea.graphical.awesome.enable ''bash -c "awesome-client \"awesome.emit_signal('ncmpcpp::songchanged', '$(mpc --format "%title% by %artist%" current)'); awesome.emit_signal('music_player::set_title') \" "'';
+        "execute_on_song_change" = "${lib.getExe <| pkgs.callPackage (inputs.self + /packages/user_scripts/media/song_change.nix) {}}";
         "autocenter_mode" = "yes";
         "allow_for_physical_item_deletion" = "no";
 

@@ -11,7 +11,7 @@
     rofiConfig = config.dotfiles.rofi.prompt;
   };
 
-  ss_clipboard = pkgs.callPackage (inputs.self + /packages/user_scripts/screenshots/ss_clipboard.nix) {};
+  ss_clipboard = pkgs.callPackage (inputs.self + /packages/user_scripts/media/ss_clipboard.nix) {};
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${lib.user.name}" = {config, ...}: let

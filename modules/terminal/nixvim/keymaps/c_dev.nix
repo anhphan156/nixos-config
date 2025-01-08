@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  config = lib.mkIf config.nixvim.enable {
+  config = lib.mkIf (config.nixvim.enable && config.cyanea.dev.c.enable) {
     programs.nixvim = {
       files = let
         c_maps.keymaps = [
@@ -34,7 +34,7 @@
                 window=$(${lib.getExe pkgs.tmux} new-window -PF "#D")
                 ${lib.getExe pkgs.tmux} send-keys -t $window " gdbx out $window" Enter
               '';
-            in "<cmd>!${new_window}/bin/neww<cr>";
+            in "<cmd>!${lib.getExe new_window}<cr>";
             key = "<leader>d";
             options.silent = true;
             mode = "n";

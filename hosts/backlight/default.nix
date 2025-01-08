@@ -141,6 +141,7 @@ in {
         ".local/share/direnv"
         ".local/share/zsh"
         ".local/share/Anki2"
+        ".local/share/mpd"
         ".config/vesktop"
         ".cache"
       ];

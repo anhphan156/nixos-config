@@ -15,7 +15,8 @@ writeShellApplication {
     # todo: use wc to get word count and use it to calculate font size and break threshold
     text_raw=$(rofi -dmenu -p "Enter text" -config ${rofiConfig})
 
-    text=$(echo "$text_raw" | fold -s -w 13 | sed 's/^\ \(.*\)/\1/g')
+    # text=$(echo "$text_raw" | fold -s -w 13 | sed 's/^\ \(.*\)/\1/g')
+    text=$(echo "$text_raw" | fold -s -w 13)
     sign=${wallpapers}/templates/sign.png
     coord="255,100"
 

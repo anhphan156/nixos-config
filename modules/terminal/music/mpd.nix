@@ -2,9 +2,7 @@
   config,
   lib,
   ...
-}: let
-  mpd_path = "/home/${lib.user.name}/.local/share/mpd";
-in {
+}: {
   options = {
     mpd.enable = lib.mkEnableOption "Enable mpd";
     cyanea.music.rpc.enable = lib.mkEnableOption "enable mpd rpc";
@@ -19,10 +17,10 @@ in {
         extraConfig = ''
           bind_to_address		"any"
 
-          playlist_directory		"${mpd_path}/playlists"
-          db_file			"${mpd_path}/database"
-          log_file			"${mpd_path}/log"
-          pid_file			"${mpd_path}/pid"
+          playlist_directory		"${lib.user.path.mpd}/playlists"
+          db_file			"${lib.user.path.mpd}/database"
+          log_file			"${lib.user.path.mpd}/log"
+          pid_file			"${lib.user.path.mpd}/pid"
 
           input {
               plugin "curl"

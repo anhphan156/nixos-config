@@ -40,6 +40,6 @@ writeShellApplication {
 
     notify-send "Screenshot" "Screenshot is available in the clipboard" -t 3000 --icon=${wallpapers}/icons/camera_04.png
 
-    # rm "$fg" "$out"
+    rm "$fg" "$out"
   '';
 }

@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (pkgs) callPackage;
+  cfgGui = config.cyanea.graphical.gui.enable;
 in {
   imports = [
     ./fonts
@@ -59,12 +60,18 @@ in {
         yt-dlp
         cava
         python3
+        entr
 
-        (callPackage ./user_scripts/tmux_code_layout.nix {})
-        (callPackage ./user_scripts/fzf/dev_project.nix {})
+        (callPackage ./user_scripts/dev/tmux_code_layout.nix {})
+        (callPackage ./user_scripts/dev/dev_project.nix {
+          guiEnabled = cfgGui;
+          basePath = lib.user.path.dev;
+          tmux_code = callPackage ./user_scripts/dev/tmux_code_layout.nix {};
+          rofiConfig = config.dotfiles.rofi.default;
+        })
         (callPackage ./kabmat {})
       ]
-      ++ (lib.optionals (config.cyanea.graphical.gui.enable) [
+      ++ (lib.optionals cfgGui [
         anki
         glslviewer
         nemo
@@ -77,13 +84,8 @@ in {
         (callPackage ./user_scripts/rofi/search_docs.nix {
           rofiConfig = config.dotfiles.rofi.oneColumn;
         })
-        (callPackage ./user_scripts/screenshots/text_clipboard.nix {
+        (callPackage ./user_scripts/rofi/text_clipboard.nix {
           rofiConfig = config.dotfiles.rofi.prompt;
-        })
-        (callPackage ./user_scripts/rofi/dev_project.nix {
-          basePath = lib.user.path.dev;
-          tmux_code = callPackage ./user_scripts/tmux_code_layout.nix {};
-          rofiConfig = config.dotfiles.rofi.default;
         })
       ]);
   };
