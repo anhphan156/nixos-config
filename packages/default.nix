@@ -85,7 +85,8 @@ in {
           rofiConfig = config.dotfiles.rofi.oneColumn;
         })
         (callPackage ./user_scripts/rofi/text_clipboard.nix {
-          rofiConfig = config.dotfiles.rofi.prompt;
+          rofiPromptConfig = config.dotfiles.rofi.prompt;
+          rofiImgConfig = config.dotfiles.rofi.image;
         })
       ]);
   };
