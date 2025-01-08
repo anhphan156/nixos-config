@@ -14,7 +14,11 @@
   rofi = " rofi -config ${config.dotfiles.rofi.default}";
 in {
   options.cyanea.shell.zsh = {
-    enable = lib.mkEnableOption "";
+    enable = lib.mkOption {
+      description = "Enable zsh";
+      type = lib.types.bool;
+      default = true;
+    };
   };
 
   config = lib.mkIf config.cyanea.shell.zsh.enable {

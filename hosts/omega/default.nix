@@ -40,6 +40,9 @@ in {
       waterReminder = enabled;
       ratbagd = enabled;
     };
+    shell = {
+      xonsh = enabled;
+    };
     dev = {
       c = enabled;
       # rust = enabled;

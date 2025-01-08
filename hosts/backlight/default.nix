@@ -53,7 +53,6 @@ in {
       tmux = enabled;
     };
     shell = {
-      zsh = enabled;
       xonsh = enabled;
     };
     dev = {
