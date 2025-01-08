@@ -18,17 +18,21 @@ writeShellApplication {
 
     path=${wallpapers}/templates
     # shellcheck disable=SC2012
-    sign="$(ls "$path" | while read -r img; do
+    sign=$(ls "$path" | while read -r img; do
       echo -en "''${img%.*}\0icon\x1f$path/$img\n";
-    done | rofi -dmenu -p "Pick a template" -config ${rofiImgConfig}).png"
+    done | rofi -dmenu -p "Pick a template" -config ${rofiImgConfig})
 
-    text=$(echo "$text_raw" | fold -s -w 13)
-    img="$path/$sign"
+    # filename: emote_id_rotation_x_y_break_fontsize.png
     rotation=$(echo "$sign" | awk -F '_' '{print $3}')
-    coord="$(echo "$sign" | awk -F '_' '{print $4}'),$(echo "''${sign%.*}" | awk -F '_' '{print $5}')"
-    out="/tmp/$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 20).png"
+    coord="$(echo "$sign" | awk -F '_' '{print $4}'),$(echo "$sign" | awk -F '_' '{print $5}')"
+    break=$(echo "$sign" | awk -F '_' '{print $6}')
+    fontsize=$(echo "$sign" | awk -F '_' '{print $7}')
 
-    magick "$img" -fill black -stroke black -font Anka/Coder-Regular -pointsize 28 -draw "rotate $rotation text $coord '$text'" "$out"
+    text=$(echo "$text_raw" | fold -s -w "$break")
+    out="/tmp/$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 20).png"
+    img="$path/$sign.png"
+
+    magick "$img" -fill black -stroke black -font Anka/Coder-Regular -pointsize "$fontsize" -draw "rotate $rotation text $coord '$text'" "$out"
     wl-copy -t image/png < "$out"
     notify-send "Screenshot" "Image is available in the clipboard" -t 3000 --icon=${wallpapers}/icons/camera_04.png
     rm "$out"

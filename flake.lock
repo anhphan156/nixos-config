@@ -1913,11 +1913,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1736300480,
-        "narHash": "sha256-dsZPGsn/Xi1fz3kUv2t5RwKlq3Ui8Ov0qNJRQ79PbrI=",
+        "lastModified": 1736310491,
+        "narHash": "sha256-kawbJIfii/ahsHl+dKGGQMS5h0H6zsyLMEBiS9AQVnU=",
         "owner": "anhphan156",
         "repo": "Wallpapers",
-        "rev": "fa3a83123eec8c994111e516bb561683129c93f3",
+        "rev": "96e9f7a86c2bb7249f6bd89102c686b817354d2b",
         "type": "github"
       },
       "original": {
