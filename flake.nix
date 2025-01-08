@@ -57,5 +57,15 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    archlinux-keyring = {
+      url = "https://archlinux.org/packages/core/any/archlinux-keyring/download/";
+      flake = false;
+    };
+
+    archlinux-mirrorlist = {
+      url = "https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4";
+      flake = false;
+    };
   };
 }

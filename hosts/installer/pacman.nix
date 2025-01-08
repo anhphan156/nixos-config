@@ -6,7 +6,7 @@
   environment = {
     systemPackages = with pkgs; [
       arch-install-scripts
-      (callPackage (inputs.self + /packages/user_scripts/pacmankey) {})
+      (callPackage (inputs.self + /packages/user_scripts/pacmankey) {src = inputs.archlinux-keyring;})
     ];
 
     etc = {
@@ -15,10 +15,8 @@
         source = pkgs.stdenv.mkDerivation {
           pname = "mirrorlist";
           version = "1.0.0";
-          src = pkgs.fetchurl {
-            url = "https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4";
-            sha256 = "sha256-6q3QsWzVnaUy3/IX+453XSPwtWcP6PlJ2xtgAq0HAsE=";
-          };
+          src = inputs.archlinux-mirrorlist;
+
           unpackPhase = ''
             cp --no-preserve=mode $src text.txt
           '';
