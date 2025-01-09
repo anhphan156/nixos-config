@@ -11,12 +11,11 @@
     rofiConfig = config.dotfiles.rofi.prompt;
   };
 
-  ss_clipboard = pkgs.callPackage (inputs.self + /packages/user_scripts/media/ss_clipboard.nix) {};
+  screenshots = pkgs.callPackage (inputs.self + /packages/user_scripts/media/screenshots.nix) {};
+  screenshotPath = "${lib.user.path.screenshot}/$(date +'%s_grim.png')";
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
-    home-manager.users."${lib.user.name}" = {config, ...}: let
-      screenshotPath = "${config.home.homeDirectory}/data/Pictures/screenshots/$(date +'%s_grim.png')";
-    in {
+    home-manager.users."${lib.user.name}" = {
       wayland.windowManager.hyprland.settings = {
         "$mod" = "SUPER";
         # mod: SUPER SUPERSHIFT CTRL_SHIFT
@@ -48,7 +47,7 @@ in {
 
             # screenshots
             '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''
-            "SUPERSHIFT, S, exec, ${lib.getExe ss_clipboard}"
+            "SUPERSHIFT, S, exec, ${lib.getExe screenshots}"
 
             #misc
             "SUPERSHIFT, W, exec, swww_sm"

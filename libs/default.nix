@@ -6,6 +6,7 @@
     path = {
       dev = "/home/${name}/data/dev";
       music = "/home/${name}/data/Music";
+      screenshot = "/home/${name}/data/Pictures/screenshots";
       mpd = "/home/${name}/.local/share/mpd";
       nixconf = "/home/${name}/data/dev/nixos-config";
     };

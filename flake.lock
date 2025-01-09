@@ -1867,11 +1867,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1736310491,
-        "narHash": "sha256-kawbJIfii/ahsHl+dKGGQMS5h0H6zsyLMEBiS9AQVnU=",
+        "lastModified": 1736397875,
+        "narHash": "sha256-x1UgW97MyxrQaQZckJfuU8r8Dr7th5QtvNwE2ZXOuCc=",
         "owner": "anhphan156",
         "repo": "Wallpapers",
-        "rev": "96e9f7a86c2bb7249f6bd89102c686b817354d2b",
+        "rev": "45642a55fde1061321a96df5530c70b3bfc1fe5b",
         "type": "github"
       },
       "original": {
