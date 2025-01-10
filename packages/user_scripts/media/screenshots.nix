@@ -15,7 +15,7 @@ writeShellApplication {
   name = "BorderedScreenshot";
   runtimeInputs = [grim slurp wl-clipboard gawk imagemagick libnotify];
   text = ''
-    fn=$(echo -e "regular\nborder\ntwosoyjak" | rofi -dmenu -p "Enter a style")
+    fn=$(echo -e "regular\nborder\ntwosoyjak\ntwosoyjakscaled" | rofi -dmenu -p "Enter a style")
     region=$(slurp -d)
 
     dimension=$(echo "$region" | awk '{print $2}')
@@ -54,6 +54,22 @@ writeShellApplication {
           "$fg" -composite \
           "${wallpapers}/stickers/twosoyjaklumine.png" -geometry "+0+$((h-750))" -composite \
           "${wallpapers}/stickers/twosoyjakyae.png" -geometry "+$((w-500))+$((h-750))" -composite \
+          "$out"
+
+        copy "$out"
+        rm "$fg" "$out"
+    }
+
+    twosoyjakscaled() {
+        grim -g "$region" -t png "$fg"
+
+        sticker_w=$((800*w/1920))
+        sticker_h=$((750*sticker_w/500))
+
+        magick -size "$((w))x$((h))" xc:none \
+          "$fg" -composite \
+          \( "${wallpapers}/stickers/twosoyjaklumine.png" -scale "$((sticker_w))x$((sticker_h))" \) -geometry "+0+$((h-sticker_h))" -composite \
+          \( "${wallpapers}/stickers/twosoyjakyae.png" -scale "$((sticker_w))x$((sticker_h))" \) -geometry "+$((w-sticker_w))+$((h-sticker_h))" -composite \
           "$out"
 
         copy "$out"
