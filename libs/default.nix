@@ -9,6 +9,7 @@
       screenshot = "/home/${name}/data/Pictures/screenshots";
       mpd = "/home/${name}/.local/share/mpd";
       nixconf = "/home/${name}/data/dev/nixos-config";
+      docker = "/home/${name}/data/docker";
     };
   };
 in {

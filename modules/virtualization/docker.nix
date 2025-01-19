@@ -13,7 +13,7 @@
       enable = true;
       storageDriver = lib.mkIf config.cyanea.virtualization.docker.btrfs "btrfs";
       daemon.settings = {
-        data-root = "/home/backspace/data/docker";
+        data-root = lib.user.path.docker;
       };
     };
     users.users."${lib.user.name}" = {
