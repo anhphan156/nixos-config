@@ -33,6 +33,11 @@
     dotfiles.url = "github:anhphan156/dotfiles";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
+    nvim-config = {
+      url = "github:anhphan156/nvim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

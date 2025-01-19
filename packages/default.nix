@@ -25,6 +25,7 @@ in {
     inputs.alejandra.defaultPackage.${pkgs.system}
     nixd
     file
+    neovim
   ];
 
   home-manager.users."${lib.user.name}" = {

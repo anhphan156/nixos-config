@@ -5,7 +5,7 @@
 }: {
   options = {
     nixvim.enable = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
       description = "Enable Nixvim";
     };

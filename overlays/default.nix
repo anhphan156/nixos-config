@@ -6,6 +6,7 @@
   ...
 }: let
   overlays = [
+    inputs.nvim-config.overlays.default
     (final: prev: {
       wallpapers = inputs.wallpapers.packages.${pkgs.system}.default;
 
