@@ -23,9 +23,9 @@ in {
     gnumake
     curl
     inputs.alejandra.defaultPackage.${pkgs.system}
-    nixd
     file
     neovim
+    cachix
   ];
 
   home-manager.users."${lib.user.name}" = {

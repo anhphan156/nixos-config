@@ -48,12 +48,17 @@ in {
       waterReminder = enabled;
       bluetooth = enabled;
       redshift = enabled;
+      ollama = {
+        enable = true;
+        acceleration = "cuda";
+      };
     };
     terminal = {
       tmux = enabled;
     };
     shell = {
       xonsh = enabled;
+      shell-gpt = enabled;
     };
     dev = {
       c = enabled;
@@ -136,12 +141,13 @@ in {
         ".steam"
         ".local/share/Steam"
         ".local/share/Sandbox Interactive GmbH"
-        ".config/unity3d/Sandbox Interactive GmbH"
         ".local/share/direnv"
         ".local/share/zsh"
         ".local/share/Anki2"
         ".local/share/mpd"
+        ".local/share/nvim-custom"
         ".config/vesktop"
+        ".config/unity3d/Sandbox Interactive GmbH"
         ".cache"
       ];
     };

@@ -1,11 +1,12 @@
 {
   writeShellApplication,
   tmux,
+  neovim,
   ...
 }:
 writeShellApplication {
   name = "tmux_code";
-  runtimeInputs = [tmux];
+  runtimeInputs = [tmux neovim];
   text = ''
     set +o errexit
     SESSION_NAME="''${1:-Dot}"
