@@ -51,6 +51,7 @@ in {
       ollama = {
         enable = true;
         acceleration = "cuda";
+        startupModel = "llama3.2:1b";
       };
     };
     terminal = {
@@ -118,6 +119,7 @@ in {
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/libvirt"
+      "/var/lib/private/ollama"
       "/var/db/sudo/lectured"
       "/etc/NetworkManager/system-connections"
       {

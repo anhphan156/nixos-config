@@ -13,6 +13,24 @@
       (pkgs.callPackage (inputs.self + /packages/shell-gpt) {})
     ];
     home-manager.users."${lib.user.name}" = {
+      programs.zsh = {
+        initExtra = lib.mkBefore ''
+          # Shell-GPT integration ZSH v0.2
+          _sgpt_zsh() {
+          if [[ -n "$BUFFER" ]]; then
+              _sgpt_prev_cmd=$BUFFER
+              BUFFER+="⌛"
+              zle -I && zle redisplay
+              BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd" --no-interaction)
+              zle end-of-line
+          fi
+          }
+          zle -N _sgpt_zsh
+          bindkey ^l _sgpt_zsh
+          # Shell-GPT integration ZSH v0.2
+        '';
+      };
+
       xdg.configFile = {
         "shell_gpt/.sgptrc".source = let
           iniFile = (pkgs.formats.ini {}).generate ".sgptrc" {
@@ -22,7 +40,7 @@
               CHAT_CACHE_LENGTH = "100";
               CACHE_LENGTH = "100";
               REQUEST_TIMEOUT = "60";
-              DEFAULT_MODEL = "ollama/llama3.2:1b";
+              DEFAULT_MODEL = "ollama/${config.cyanea.services.ollama.startupModel}";
               DEFAULT_COLOR = "magenta";
               ROLE_STORAGE_PATH = "/home/${lib.user.name}/.config/shell_gpt/roles";
               DEFAULT_EXECUTE_SHELL_CMD = "false";
