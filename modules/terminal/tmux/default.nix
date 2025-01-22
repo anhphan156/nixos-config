@@ -14,8 +14,10 @@
         enable = true;
         prefix = "C-a";
         extraConfig = ''
-             	set -g default-terminal "screen-256color"
-          set -ga terminal-overrides ",*;Tc"
+          set-option -g default-terminal "tmux-256color"
+          set-option -ga update-environment TERM
+          set-option -ga update-environment TERM_PROGRAM
+          set-option -g allow-passthrough on
         '';
 
         plugins = with pkgs; [

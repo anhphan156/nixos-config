@@ -30,7 +30,7 @@ in {
             # rofi
             "$mod, C, execr, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
             "$mod, L, execr, cat ~/data/links.txt | rofi -i -dmenu | xargs wtype"
-            "$mod, T, execr, tmux ls | rofi -i -dmenu | awk -F: '{print $1}' | xargs -I {} kitty tmux attach -t {}"
+            "$mod, T, execr, tmux ls | rofi -i -dmenu -p \"Session\" | awk -F: '{print $1}' | xargs -I {} kitty tmux attach -t {}"
             "$mod, K, execr, ${lib.getExe keepassrofi}"
 
             # window control
