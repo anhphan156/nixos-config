@@ -4,37 +4,61 @@
   imagemagick,
   libnotify,
   rofi,
+  formats,
   rofiPromptConfig,
   rofiImgConfig,
   wallpapers,
+  symlinkJoin,
   ...
-}:
-writeShellApplication {
+}: let
   name = "TextImage";
-  runtimeInputs = [wl-clipboard imagemagick libnotify rofi];
-  text = ''
-    # todo: use wc to get word count and use it to calculate font size and break threshold
-    text_raw=$(rofi -dmenu -p "Enter text" -config ${rofiPromptConfig})
 
-    path=${wallpapers}/templates
-    # shellcheck disable=SC2012
-    sign=$(ls "$path" | while read -r img; do
-      echo -en "''${img%.*}\0icon\x1f$path/$img\n";
-    done | rofi -dmenu -p "Pick a template" -config ${rofiImgConfig})
+  script = writeShellApplication {
+    inherit name;
+    runtimeInputs = [wl-clipboard imagemagick libnotify rofi];
+    text = ''
+      # todo: use wc to get word count and use it to calculate font size and break threshold
+      text_raw=$(rofi -dmenu -p "Enter text" -config ${rofiPromptConfig})
 
-    # filename: emote_id_rotation_x_y_break_fontsize.png
-    rotation=$(echo "$sign" | awk -F '_' '{print $3}')
-    coord="$(echo "$sign" | awk -F '_' '{print $4}'),$(echo "$sign" | awk -F '_' '{print $5}')"
-    break=$(echo "$sign" | awk -F '_' '{print $6}')
-    fontsize=$(echo "$sign" | awk -F '_' '{print $7}')
+      path=${wallpapers}/templates
+      # shellcheck disable=SC2012
+      sign=$(ls "$path" | while read -r img; do
+        echo -en "''${img%.*}\0icon\x1f$path/$img\n";
+      done | rofi -dmenu -p "Pick a template" -config ${rofiImgConfig})
 
-    text=$(echo "$text_raw" | fold -s -w "$break")
-    out="/tmp/$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 20).png"
-    img="$path/$sign.png"
+      # filename: emote_id_rotation_x_y_break_fontsize.png
+      rotation=$(echo "$sign" | awk -F '_' '{print $3}')
+      coord="$(echo "$sign" | awk -F '_' '{print $4}'),$(echo "$sign" | awk -F '_' '{print $5}')"
+      break=$(echo "$sign" | awk -F '_' '{print $6}')
+      fontsize=$(echo "$sign" | awk -F '_' '{print $7}')
 
-    magick "$img" -fill black -stroke black -font Anka/Coder-Regular -pointsize "$fontsize" -draw "rotate $rotation text $coord '$text'" "$out"
-    wl-copy -t image/png < "$out"
-    notify-send "Screenshot" "Image is available in the clipboard" -t 3000 --icon=${wallpapers}/icons/camera_04.png
-    rm "$out"
-  '';
-}
+      text=$(echo "$text_raw" | fold -s -w "$break")
+      out="/tmp/$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 20).png"
+      img="$path/$sign.png"
+
+      magick "$img" -fill black -stroke black -font Anka/Coder-Regular -pointsize "$fontsize" -draw "rotate $rotation text $coord '$text'" "$out"
+      wl-copy -t image/png < "$out"
+      notify-send "Screenshot" "Image is available in the clipboard" -t 3000 --icon=${wallpapers}/icons/camera_04.png
+      rm "$out"
+    '';
+  };
+
+  desktopEntry = (formats.ini {}).generate "dev.desktop" {
+    "Desktop Entry" = {
+      Type = "Application";
+      Name = name;
+      Icon = "";
+      Terminal = false;
+      Categories = "";
+      Exec = "${script}/bin/${name}";
+    };
+  };
+in
+  symlinkJoin {
+    inherit name;
+    paths = [script];
+    postBuild = ''
+      mkdir -p $out/share/applications/
+      ln -s ${desktopEntry} $out/share/applications/${name}.desktop
+    '';
+  }

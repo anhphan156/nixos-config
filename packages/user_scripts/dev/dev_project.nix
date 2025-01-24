@@ -7,6 +7,7 @@
   basePath ? "~",
   symlinkJoin,
   fzf,
+  formats,
   guiEnabled ? false,
   lib,
   ...
@@ -25,6 +26,18 @@
     '';
   };
 
+  guiDesktopEntry = Exec:
+    (formats.ini {}).generate "dev.desktop" {
+      "Desktop Entry" = {
+        Type = "Application";
+        Name = "Dev";
+        Icon = "";
+        Terminal = false;
+        Categories = "";
+        inherit Exec;
+      };
+    };
+
   tui = writeShellApplication {
     name = "devtui";
     runtimeInputs = [fzf tmux_code];
@@ -41,4 +54,8 @@ in
   symlinkJoin {
     name = "spawn_projects";
     paths = [tui] ++ lib.optionals guiEnabled [gui];
+    postBuild = lib.optionals guiEnabled ''
+      mkdir -p $out/share/applications
+      ln -s ${guiDesktopEntry "${gui}/bin/dev"} $out/share/applications/dev.desktop
+    '';
   }
