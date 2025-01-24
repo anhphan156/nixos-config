@@ -44,6 +44,8 @@ in {
               "vim" = " nvim";
               "nvim" = " nvim";
               "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
+              "exit" = " exit";
+              "oil" = " nvim +Oil";
               inherit rofi;
             };
           oh-my-zsh = {

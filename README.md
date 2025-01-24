@@ -12,7 +12,7 @@ This flake provides system configuration for my NixOS computers, which share man
 |[Wayland Window Manager](./modules/system/graphics/hyprland/default.nix)|[Hyprland](https://hyprland.org/)         |
 |[Shell](./modules/terminal/shell/zsh.nix)                               |[Zsh](https://www.zsh.org/)               |
 |[Shell Prompt](./modules/terminal/shell/starship/default.nix)           |[Starship](https://starship.rs/)          |
-|[Text Editor](./modules/terminal/nixvim/default.nix)                    |[Neovim](https://neovim.io/)              |
+|[Text Editor](https://github.com/anhphan156/nvim-config)                |[Neovim](https://neovim.io/)              |
 |[Terminal Emulator](./modules/terminal/kitty/default.nix)               |[Kitty](https://sw.kovidgoyal.net/kitty/) |
 |[Launcher](./modules/applications/rofi/default.nix)                     |[Rofi](https://github.com/davatorium/rofi)|
 
