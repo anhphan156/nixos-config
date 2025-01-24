@@ -24,7 +24,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     lua-pam.url = "github:anhphan156/lua-pam";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     impermanence.url = "github:nix-community/impermanence";
     xremap.url = "github:xremap/nix-flake";
     catppuccin.url = "github:catppuccin/nix";

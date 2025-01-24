@@ -49,7 +49,7 @@ in {
       bluetooth = enabled;
       redshift = enabled;
       ollama = {
-        enable = true;
+        enable = false;
         acceleration = "cuda";
         startupModel = "llama3.2:1b";
       };

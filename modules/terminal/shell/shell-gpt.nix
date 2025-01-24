@@ -8,7 +8,7 @@
   options.cyanea.shell.shell-gpt = {
     enable = lib.mkEnableOption "";
   };
-  config = lib.mkIf config.cyanea.shell.shell-gpt.enable {
+  config = lib.mkIf (config.cyanea.shell.shell-gpt.enable && config.cyanea.services.ollama.enable) {
     environment.systemPackages = [
       (pkgs.callPackage (inputs.self + /packages/shell-gpt) {})
     ];
