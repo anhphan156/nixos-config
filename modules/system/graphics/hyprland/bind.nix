@@ -13,6 +13,10 @@
 
   screenshots = pkgs.callPackage (inputs.self + /packages/user_scripts/media/screenshots.nix) {};
   screenshotPath = "${lib.user.path.screenshot}/$(date +'%s_grim.png')";
+
+  swww_scripts = pkgs.callPackage (inputs.self + /packages/user_scripts/media/swww_scripts.nix) {
+    inherit (config.cyanea.graphical.hyprland.monitor) monitorList resolutionList;
+  };
 in {
   config = lib.mkIf (with config.cyanea.graphical; (gui.enable && hyprland.enable)) {
     home-manager.users."${lib.user.name}" = {
@@ -46,11 +50,11 @@ in {
             "$mod, P, exec, pypr toggle kitty"
 
             # screenshots
-            '', Print, exec, grim -g "$(slurp -d)" ${screenshotPath}''
+            '', Print, exec, grim ${screenshotPath}''
             "SUPERSHIFT, S, exec, ${lib.getExe screenshots}"
 
             #misc
-            "SUPERSHIFT, W, exec, swww_sm"
+            "SUPERSHIFT, W, exec, ${swww_scripts}/bin/swww_sm"
           ]
           ++ map (x: "$mod, ${toString x}, workspace, ${toString x}") workspace_list
           ++ map (x: "SUPERSHIFT, ${toString x}, movetoworkspacesilent, ${toString x}") workspace_list;

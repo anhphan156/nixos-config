@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   inputs,
   config,
@@ -7,10 +6,10 @@
 }: let
   overlays = [
     inputs.nvim-config.overlays.default
-    (final: prev: {
-      wallpapers = inputs.wallpapers.packages.${pkgs.system}.default;
+    (_: prev: {
+      wallpapers = inputs.wallpapers.packages.${prev.system}.default;
 
-      myDotfiles = inputs.dotfiles.packages.${pkgs.system}.default;
+      myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
 
       rofi =
         if config.cyanea.graphical.hyprland.enable
@@ -28,7 +27,7 @@
 
       awesome = prev.awesome.overrideAttrs (oa: {
         version = "14g9kp2x17fsx81lxfgl2gizwjwmfpsfqi5vdwv5iwa35v11dljn";
-        src = pkgs.fetchFromGitHub {
+        src = prev.fetchFromGitHub {
           owner = "awesomeWM";
           repo = "awesome";
           rev = "8b1f8958b46b3e75618bc822d512bb4d449a89aa";
