@@ -15,7 +15,6 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    # (vim_configurable.override { guiSupport = "gtk3"; })
     vim
     wget
     git

@@ -3,6 +3,7 @@
   pkgs,
   modulesPath,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -17,13 +18,11 @@
 
   environment.systemPackages = with pkgs; [
     disko
-    git
-    curl
-    wget
-    bat
-    nix-prefetch-git
-    cmatrix
   ];
+
+  home-manager.users.${lib.user.name} = {
+    home.file."disko-repo".source = inputs.disko;
+  };
 
   systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
 
@@ -35,6 +34,10 @@
     graphical = {
       gui = lib.enabled;
       hyprland = lib.enabled;
+      awesome = lib.enabled;
+    };
+    shell = {
+      xonsh = lib.enabled;
     };
     terminal.tmux = lib.enabled;
     system = {
