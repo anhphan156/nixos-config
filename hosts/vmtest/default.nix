@@ -11,8 +11,8 @@ in {
       hostname = "vmtest";
     };
     graphical = {
-      gui = enabled;
-      awesome = enabled;
+      # gui = enabled;
+      # awesome = enabled;
       picom.enable = lib.mkOverride 49 false;
       sddm.autoLogin.enable = false;
     };

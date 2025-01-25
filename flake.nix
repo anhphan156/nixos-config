@@ -14,7 +14,7 @@
     };
 
     homeConfigurations = {
-      default = self.nixosConfigurations.backlight.config.home-manager.users.${lib.user.name}.home;
+      default = self.nixosConfigurations.vmtest.config.home-manager.users.${lib.user.name}.home;
     };
 
     checks = forAllSystems (system: {
