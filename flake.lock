@@ -74,7 +74,7 @@
     "archlinux-mirrorlist": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-dnkrcv0MV6iQwIdkOxVpoZHDOkyFagbSkM7Wyg/RujY=",
+        "narHash": "sha256-PCMXshjGT8boD13oWcBQ2qZyZ9mXIOZD1tlPrH271sM=",
         "type": "file",
         "url": "https://archlinux.org/mirrorlist/?country=US&ip_version=4&protocol=http"
       },
@@ -181,11 +181,11 @@
         "wallpapers": "wallpapers"
       },
       "locked": {
-        "lastModified": 1736305825,
-        "narHash": "sha256-H0X3RY7a9FbamJDP+y+ZpRg2uKlnZBgHWyEsG6HBxYY=",
+        "lastModified": 1737766317,
+        "narHash": "sha256-EKlsZE1kIFuXOKYPdFTZcgLYRnmthSkZCwKHjyuHXPo=",
         "owner": "anhphan156",
         "repo": "dotfiles",
-        "rev": "9cf60bfe309d0206a3309c13f7dd7546ed58d254",
+        "rev": "ecba0dee65e79f107cec6adafe39e5a0e20266ad",
         "type": "github"
       },
       "original": {
@@ -225,11 +225,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1737691403,
-        "narHash": "sha256-BbKVl6egEGgbXKvEORCyp4oeWylRaIRk9dwmPwug4TE=",
+        "lastModified": 1737765090,
+        "narHash": "sha256-MPOsQAAjeh3KT1zjaoQbYZrYDZM3+m8Q7vcfeAwp5rE=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "5dd96a6afdec898f90a80f73e1c08370681ede5b",
+        "rev": "5c8d7b3f055f8fef157f7c9913b15806ee4520cc",
         "type": "gitlab"
       },
       "original": {
@@ -634,11 +634,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737704314,
-        "narHash": "sha256-zta8jvOQ2wRCZmiwFEnS5iCulWAh8e+fLUlQxrgOBjM=",
+        "lastModified": 1737762889,
+        "narHash": "sha256-5HGG09bh/Yx0JA8wtBMAzt0HMCL1bYZ93x4IqzVExio=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a0428685572b134f6594e7d7f5db5e1febbab2d7",
+        "rev": "daf04c5950b676f47a794300657f1d3d14c1a120",
         "type": "github"
       },
       "original": {

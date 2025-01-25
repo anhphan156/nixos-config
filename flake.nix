@@ -14,7 +14,7 @@
         src = ./.;
         hooks = {
           alejandra = {
-            enable = true;
+            enable = false;
           };
         };
       };

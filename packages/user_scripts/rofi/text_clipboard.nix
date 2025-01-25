@@ -1,6 +1,6 @@
 {
   writeShellApplication,
-  createDesktopEntry,
+  wrapDesktopItem,
   wl-clipboard,
   imagemagick,
   libnotify,
@@ -10,7 +10,7 @@
   wallpapers,
   ...
 }:
-createDesktopEntry <| writeShellApplication {
+wrapDesktopItem {} <| writeShellApplication {
   name = "Text_Image";
   runtimeInputs = [wl-clipboard imagemagick libnotify rofi];
   text = ''
@@ -39,12 +39,4 @@ createDesktopEntry <| writeShellApplication {
   '';
 
   excludeShellChecks = ["SC2012"];
-
-  passthru = {
-    Type = "Application";
-    Name = "Text Image";
-    Icon = "";
-    Terminal = false;
-    Categories = "";
-  };
 }

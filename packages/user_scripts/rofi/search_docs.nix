@@ -1,13 +1,15 @@
 {
   writeShellApplication,
-  createDesktopEntry,
+  wrapDesktopItem,
   rofi,
   rofiConfig,
   evince,
   libreoffice,
   ...
 }:
-createDesktopEntry <| writeShellApplication {
+wrapDesktopItem {
+  categories = [ "Office" ];
+} <| writeShellApplication {
   name = "Search_Documents";
   runtimeInputs = [rofi evince libreoffice];
   text = ''
