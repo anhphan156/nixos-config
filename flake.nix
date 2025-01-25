@@ -1,12 +1,20 @@
 {
   description = "Nixos config flake";
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {
+    nixpkgs,
+    self,
+    ...
+  } @ inputs: let
     lib = nixpkgs.lib.extend (import ./libs inputs);
     forAllSystems = lib.genAttrs ["x86_64-linux"];
   in {
     nixosConfigurations = import ./hosts {
       inherit inputs lib;
+    };
+
+    homeConfigurations = {
+      default = self.nixosConfigurations.backlight.config.home-manager.users.${lib.user.name}.home;
     };
 
     checks = forAllSystems (system: {
