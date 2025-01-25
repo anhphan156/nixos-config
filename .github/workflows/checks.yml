@@ -14,7 +14,7 @@ jobs:
       uses: cachix/install-nix-action@v27
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
-        extra_nix_config: "experimental-features: [\"flakes\" \"nix-command\" \"pipe-operators\"]"
+        extra_nix_config: "experimental-features: nix-command flakes pipe-operators"
 
     - name: Build Project
       run: nix flake check
