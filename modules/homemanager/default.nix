@@ -37,18 +37,7 @@
       #    "/home/backspace/dotfiles/bin/"
       #];
 
-      systemd.user.targets.tray = {
-        Unit = {
-          Description = "Home Manager System Tray";
-          Requires = ["graphical-session-pre.target"];
-        };
-      };
-
-      services.pasystray.enable = true;
-      services.network-manager-applet.enable = true;
-
       programs.home-manager.enable = true;
-      programs.ripgrep.enable = true;
     }
   ];
 }
