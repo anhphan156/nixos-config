@@ -1,9 +1,9 @@
-name: Check
+name: Checks
 
 on: [push]
 
 jobs:
-  build:
+  checks:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
         extra_nix_config:
-          experimental-features: "flakes nix-command pipe-operators"
+          experimental-features: flakes nix-command pipe-operators
 
     - name: Build Project
       run: nix flake check
