@@ -3,6 +3,8 @@
   inputs,
   ...
 }: let
+  pkgs = import inputs.nixpkgs {system = "x86_64-linux";} // {inherit lib;};
+
   commonModules =
     [
       (inputs.self + /overlays)
@@ -40,8 +42,8 @@ in {
       ];
   };
 
-  backlight = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs lib;};
+  backlight = pkgs.lib.nixosSystem {
+    specialArgs = {inherit inputs;};
     system = "x86_64-linux";
     modules =
       commonModules

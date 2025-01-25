@@ -19,11 +19,11 @@
       #!/usr/bin/env bash
       basepath=${basePath}
 
-      # shellcheck disable=SC2012
       if project=$(ls $basepath | rofi -i -dmenu -p "Pick a Project" -config ${rofiConfig}); then
         kitty --working-directory=$basepath/"$project" tmux_code "$project"
       fi
     '';
+    excludeShellChecks = ["SC2012"];
   };
 
   guiDesktopEntry = Exec:
@@ -43,12 +43,12 @@
     runtimeInputs = [fzf tmux_code];
     text = ''
       base=${basePath}
-      # shellcheck disable=SC2012
       if dir=$(ls $base | fzf --preview "ls $base/{}"); then
       	cd $base/"$dir"
       	tmux_code "$dir"
       fi
     '';
+    excludeShellChecks = ["SC2012"];
   };
 in
   symlinkJoin {

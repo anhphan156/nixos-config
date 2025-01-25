@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   outputs = {nixpkgs, ...} @ inputs: let
-    lib = nixpkgs.lib.extend (import ./libs {inherit inputs;});
+    lib = nixpkgs.lib.extend (import ./libs inputs);
     forAllSystems = lib.genAttrs ["x86_64-linux"];
   in {
     nixosConfigurations = import ./hosts {

@@ -1,4 +1,4 @@
-{inputs}: _: _: let
+inputs: _: _: let
   user = rec {
     name = "backspace";
     git_name = name;
@@ -18,8 +18,6 @@ in {
   enabled = {
     enable = inputs.nixpkgs.lib.mkForce true;
   };
-
   install = packages: {users."${user.name}".home.packages = packages;};
-
-  getNixFiles = path: import ./getNixFiles {inherit path;};
+  getNixFiles = import ./getNixFiles;
 }

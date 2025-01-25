@@ -19,12 +19,13 @@
     runtimeInputs = [swww];
     text = ''
       wallpapers=${wallpapers}/single
-      # shellcheck disable=SC2012
       random=$(ls $wallpapers | shuf | head -1)
       random=$wallpapers/$random
 
       ${concatMapStringsSep "\n" (x: "swww img -o \"${x}\" --transition-type center \"$random\"") activeMonitorList}
     '';
+
+    excludeShellChecks = ["SC2012"];
   };
 
   dual_monitor = writeShellApplication {
@@ -32,7 +33,6 @@
     runtimeInputs = [swww];
     text = ''
       wallpapers=${wallpapers}/dual
-      # shellcheck disable=SC2012
       random=$(ls $wallpapers | shuf | head -1)
       random=$wallpapers/$random
 
@@ -41,6 +41,8 @@
       swww img -o "DP-1" --transition-type center /tmp/output-1.png
       swww img -o "DP-3" --transition-type center /tmp/output-0.png
     '';
+
+    excludeShellChecks = ["SC2012"];
   };
 in
   symlinkJoin {

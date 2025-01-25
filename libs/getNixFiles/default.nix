@@ -1,4 +1,4 @@
-{ path }: 
+path:
 let
   inherit (builtins) concatMap readDir filter isAttrs attrValues toPath;
 
@@ -15,4 +15,4 @@ let
   in
     concatMap nixFilesList (filter isAttrs valueList) ++ (filter (x: !isAttrs x) valueList);
 
-in nixFilesList (findNixFilesRec path)
+in nixFilesList <| findNixFilesRec path

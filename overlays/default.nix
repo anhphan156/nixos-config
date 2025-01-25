@@ -38,6 +38,25 @@
           patchShebangs tests/examples/_postprocess.lua
         '';
       });
+
+      createDesktopEntry = derivation: let
+        name = prev.lib.getName derivation;
+        desktopEntry = (prev.formats.ini {}).generate "${name}.desktop" {
+          "Desktop Entry" =
+            derivation.passthru
+            // {
+              Exec = "${derivation}/bin/${name}";
+            };
+        };
+      in
+        prev.symlinkJoin {
+          inherit name;
+          paths = [derivation];
+          postBuild = ''
+            mkdir -p $out/share/applications
+            ln -s ${desktopEntry} "$out/share/applications/${name}.desktop"
+          '';
+        };
     })
   ];
 in {

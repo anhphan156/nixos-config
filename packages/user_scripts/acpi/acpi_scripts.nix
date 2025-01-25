@@ -16,7 +16,6 @@
     text = ''
       session=$(loginctl list-sessions | awk '$4 == "seat0" {print $1}' | xargs loginctl show-session | grep Desktop | cut -d'=' -f2)
 
-      # shellcheck disable=SC2206
       vals=($1)
       case ''${vals[3]} in
         00000000)
@@ -36,6 +35,8 @@
           ;;
       esac
     '';
+
+    excludeShellChecks = ["SC2206"];
   };
 
   buttonPower = writeShellApplication {
@@ -44,7 +45,6 @@
     text = ''
       session=$(loginctl list-sessions | awk '$4 == "seat0" {print $1}' | xargs loginctl show-session | grep Desktop | cut -d'=' -f2)
 
-      # shellcheck disable=SC2206
       vals=($1)
       case ''${vals[1]} in
         PBTN)
@@ -56,6 +56,7 @@
           ;;
       esac
     '';
+    excludeShellChecks = ["SC2206"];
   };
 in
   symlinkJoin {

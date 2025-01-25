@@ -1,16 +1,16 @@
 {
   writeShellApplication,
+  createDesktopEntry,
   rofi,
   rofiConfig,
   evince,
   libreoffice,
   ...
 }:
-writeShellApplication {
-  name = "search_docs";
+createDesktopEntry <| writeShellApplication {
+  name = "Search_Documents";
   runtimeInputs = [rofi evince libreoffice];
   text = ''
-    #!/usr/bin/env bash
     set +o pipefail
 
     arg=$(find ~ 2> /dev/null | rofi -i -dmenu -p "Select a document:" -config ${rofiConfig})
@@ -28,4 +28,12 @@ writeShellApplication {
 
     [[ "$arg" != "" ]] && $program "$arg"
   '';
+
+  passthru = {
+    Type = "Application";
+    Name = "Search Documents";
+    Icon = "";
+    Terminal = false;
+    Categories = "";
+  };
 }
