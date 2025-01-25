@@ -17,7 +17,7 @@
     ]
     ++ (lib.getNixFiles (inputs.self + /modules));
 in {
-  installer = inputs.nixpkgs.lib.nixosSystem {
+  installer = pkgs.lib.nixosSystem {
     specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
@@ -28,7 +28,7 @@ in {
       ];
   };
 
-  vmtest = inputs.nixpkgs.lib.nixosSystem {
+  vmtest = pkgs.lib.nixosSystem {
     specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
@@ -56,7 +56,7 @@ in {
       ];
   };
 
-  omega = inputs.nixpkgs.lib.nixosSystem {
+  omega = pkgs.lib.nixosSystem {
     specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =
@@ -66,7 +66,7 @@ in {
         ./omega/hardware-configuration.nix
       ];
   };
-  wsl = inputs.nixpkgs.lib.nixosSystem {
+  wsl = pkgs.lib.nixosSystem {
     specialArgs = {inherit inputs lib;};
     system = "x86_64-linux";
     modules =

@@ -54,7 +54,7 @@ in
   symlinkJoin {
     name = "spawn_projects";
     paths = [tui] ++ lib.optionals guiEnabled [gui];
-    postBuild = lib.optionals guiEnabled ''
+    postBuild = lib.strings.optionalString guiEnabled ''
       mkdir -p $out/share/applications
       ln -s ${guiDesktopEntry "${gui}/bin/dev"} $out/share/applications/dev.desktop
     '';
