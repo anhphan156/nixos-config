@@ -47,11 +47,12 @@ pkgs.testers.runNixOSTest {
         which disko
         ls ~/disko-repo/example
 
-        pacman-key-init
+        which pacstrap
       '';
     };
   in ''
     machine.wait_for_unit("default.target")
     machine.succeed("su -- ${lib.user.name} -c '${lib.getExe script}'")
+    machine.succeed("pacman-key-init")
   '';
 }

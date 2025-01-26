@@ -16,8 +16,8 @@ writeShellApplication {
 
     if [[ $session == "none+awesome" ]]; then
       awesome-client "awesome.emit_signal('ncmpcpp::songchanged', '$title'); awesome.emit_signal('music_player::set_title')"
-    else
-      notify-send "New Sone Playing" "$title" -t 3000 --icon=${wallpapers}/icons/pi_music_player.png
     fi
+
+    notify-send "New Song Playing" "$title" -t 3000 --icon=${wallpapers}/icons/pi_music_player.png
   '';
 }
