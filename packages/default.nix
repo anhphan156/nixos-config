@@ -19,10 +19,10 @@ in {
     cmake
     gnumake
     curl
-    inputs.alejandra.defaultPackage.${pkgs.system}
     file
     neovim
     cachix
+    alejandra
   ];
 
   home-manager.users."${lib.user.name}" = {
