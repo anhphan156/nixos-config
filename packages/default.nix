@@ -12,8 +12,6 @@ in {
     ./fonts
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -28,9 +26,12 @@ in {
   ];
 
   home-manager.users."${lib.user.name}" = {
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
+    nixpkgs = {
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+      inherit (pkgs) overlays;
     };
 
     home.packages = with pkgs;
