@@ -17,7 +17,27 @@
       default = self.nixosConfigurations.vmtest.config.home-manager.users.${lib.user.name}.home;
     };
 
-    checks = forAllSystems (system: {
+    checks = forAllSystems (system: let
+      testArgs = {
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.nvim-config.overlays.default
+            (import ./overlays/wrapDesktopItem.nix)
+            (import ./overlays/awesome.nix)
+            (import ./overlays/misc.nix)
+            (_: prev: {
+              wallpapers = inputs.wallpapers.packages.${prev.system}.default;
+              myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
+            })
+          ];
+          config.allowUnfree = true;
+        };
+        inherit inputs lib;
+      };
+    in {
+      live-usb-test = import ./tests/liveusb.nix testArgs;
+
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {

@@ -3,11 +3,30 @@
   inputs,
   ...
 }: let
-  pkgs = import inputs.nixpkgs {system = "x86_64-linux";} // {inherit lib;};
+  pkgs =
+    import inputs.nixpkgs {
+      system = "x86_64-linux";
+      config = {
+        allowUnfree = true;
+      };
+      overlays = [
+        inputs.nvim-config.overlays.default
+
+        (import (inputs.self + /overlays/wrapDesktopItem.nix))
+        (import (inputs.self + /overlays/awesome.nix))
+        (import (inputs.self + /overlays/misc.nix))
+
+        (_: prev: {
+          wallpapers = inputs.wallpapers.packages.${prev.system}.default;
+          myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
+          rofi = prev.rofi-wayland;
+        })
+      ];
+    }
+    // {inherit lib;};
 
   commonModules =
     [
-      (inputs.self + /overlays)
       (inputs.self + /packages)
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
@@ -18,7 +37,8 @@
     ++ (lib.getNixFiles (inputs.self + /modules));
 in {
   installer = pkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs lib;};
+    inherit pkgs;
+    specialArgs = {inherit inputs;};
     system = "x86_64-linux";
     modules =
       commonModules
@@ -29,7 +49,8 @@ in {
   };
 
   vmtest = pkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs lib;};
+    inherit pkgs;
+    specialArgs = {inherit inputs;};
     system = "x86_64-linux";
     modules =
       commonModules
@@ -43,6 +64,7 @@ in {
   };
 
   backlight = pkgs.lib.nixosSystem {
+    inherit pkgs;
     specialArgs = {inherit inputs;};
     system = "x86_64-linux";
     modules =
@@ -57,7 +79,8 @@ in {
   };
 
   omega = pkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs lib;};
+    inherit pkgs;
+    specialArgs = {inherit inputs;};
     system = "x86_64-linux";
     modules =
       commonModules
@@ -67,7 +90,8 @@ in {
       ];
   };
   wsl = pkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs lib;};
+    inherit pkgs;
+    specialArgs = {inherit inputs;};
     system = "x86_64-linux";
     modules =
       commonModules

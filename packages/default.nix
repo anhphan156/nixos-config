@@ -12,10 +12,7 @@ in {
     ./fonts
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
-    # (vim_configurable.override { guiSupport = "gtk3"; })
     vim
     wget
     git
@@ -29,9 +26,12 @@ in {
   ];
 
   home-manager.users."${lib.user.name}" = {
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
+    nixpkgs = {
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+      inherit (pkgs) overlays;
     };
 
     home.packages = with pkgs;
