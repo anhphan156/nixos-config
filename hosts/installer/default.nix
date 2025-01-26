@@ -2,6 +2,7 @@
 {
   modulesPath,
   lib,
+  inputs,
   ...
 }: {
   imports = [
