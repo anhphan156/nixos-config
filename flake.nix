@@ -56,9 +56,17 @@
     xremap.url = "github:xremap/nix-flake";
     catppuccin.url = "github:catppuccin/nix";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    wallpapers.url = "github:anhphan156/Wallpapers";
-    dotfiles.url = "github:anhphan156/dotfiles";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
+    wallpapers = {
+      url = "github:anhphan156/Wallpapers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dotfiles = {
+      url = "github:anhphan156/dotfiles";
+      inputs.wallpapers.follows = "wallpapers";
+    };
 
     nvim-config = {
       url = "github:anhphan156/nvim-config";

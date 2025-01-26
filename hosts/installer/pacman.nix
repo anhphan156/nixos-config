@@ -18,10 +18,10 @@
           src = inputs.archlinux-mirrorlist;
 
           unpackPhase = ''
-            cp --no-preserve=mode $src text.txt
+            cat $src > mirrorlist
           '';
           patchPhase = ''
-            sed 's/^.\(.*\)/\1/' text.txt > mirrorlist
+            sed -i 's/^.\(.*\)/\1/' mirrorlist
           '';
           installPhase = ''
             cat mirrorlist > $out
