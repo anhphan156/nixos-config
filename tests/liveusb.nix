@@ -40,8 +40,18 @@ pkgs.testers.runNixOSTest {
     }; # machines
   }; # nodes
 
-  testScript = ''
+  testScript = let
+    script = pkgs.writeShellApplication {
+      name = "TestScript";
+      text = ''
+        which disko
+        ls ~/disko-repo/example
+
+        pacman-key-init
+      '';
+    };
+  in ''
     machine.wait_for_unit("default.target")
-    machine.succeed("su -- backspace -c 'which disko'")
+    machine.succeed("su -- ${lib.user.name} -c '${lib.getExe script}'")
   '';
 }

@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   users.users."${lib.user.name}".initialPassword = "123";
@@ -11,6 +12,9 @@
   environment.systemPackages = with pkgs; [
     disko
   ];
+  home-manager.users.${lib.user.name} = {
+    home.file."disko-repo".source = inputs.disko;
+  };
 
   systemd.services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
 
