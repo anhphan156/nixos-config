@@ -40,7 +40,7 @@ in
           --replace "ConfigFile=Themes/astronaut.conf" "ConfigFile=Themes/${theme}.conf"
 
         install -dm755 "$out/share/fonts"
-        cp -r ./Fonts "$out/share/fonts"
+        cp -r ./Fonts/* "$out/share/fonts"
       ''
       + (lib.optionalString (lib.isAttrs userTheme) ''
         cp ${(formats.ini {}).generate "astronautUserTheme" userTheme} $themedir/Themes/${theme}.conf.user

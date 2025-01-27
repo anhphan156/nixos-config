@@ -11,7 +11,6 @@
     |> (x: assert (x |> mapAttrsToList (k: _: k) |> builtins.length) <= 1; x)
     |> mapAttrs' (x: _: nameValuePair "rebuild" " sudo nixos-rebuild switch --flake ${lib.user.path.nixconf}#${x}");
 
-  rofi = " rofi -config ${config.dotfiles.rofi.default}";
 in {
   options.cyanea.shell.zsh = {
     enable = lib.mkOption {
@@ -46,7 +45,7 @@ in {
               "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
               "exit" = " exit";
               "oil" = " nvim +Oil";
-              inherit rofi;
+              "leet" = " nvim +Leet";
             };
           oh-my-zsh = {
             enable = true;

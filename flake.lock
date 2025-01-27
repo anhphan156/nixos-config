@@ -161,11 +161,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737931240,
-        "narHash": "sha256-0Ixq2CLZglBvI71XKBfoVL+cemqzqoGqIhk5+nnnGaw=",
+        "lastModified": 1737967734,
+        "narHash": "sha256-KTfxIuqwz737XNm2y6c6nKUGAHQUlPdRfQ+TMluUAtc=",
         "owner": "anhphan156",
         "repo": "dotfiles",
-        "rev": "61b5e0224c0a4abcd0f13bbf920b5605e412d31a",
+        "rev": "73c99ddd894d1b961affa02511f43e0591cf7b0b",
         "type": "github"
       },
       "original": {
