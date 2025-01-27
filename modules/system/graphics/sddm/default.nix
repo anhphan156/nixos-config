@@ -6,6 +6,7 @@
   ...
 }: let
   cfg = config.cyanea.graphical;
+  randomBg = "/tmp/random.jpg";
 in {
   options.cyanea.graphical.sddm = {
     autoLogin.enable = lib.mkOption {
@@ -26,18 +27,39 @@ in {
   };
 
   config = lib.mkIf cfg.gui.enable {
-    # environment.systemPackages = with pkgs; [
-    #   libsForQt5.qt5.qtgraphicaleffects
-    #   libsForQt5.qt5.qtquickcontrols2
-    # ];
+    systemd.services."sddm-random-background" = {
+      script = ''
+        base="${pkgs.wallpapers}/single"
+        background=$(ls "$base" | shuf | head -1)
+        cp $base/$background ${randomBg}
+      '';
+      before = ["display-manager.target"];
+      after = ["network.target"];
+      wantedBy = ["display-manager.target" "multi-user.target"];
+      serviceConfig = {
+        Type = "oneshot";
+      };
+    };
+
+    environment.systemPackages = [
+      (pkgs.callPackage (inputs.self + /packages/sddm-astronaut-theme) {
+        userTheme = {
+          General = {
+            HeaderText = "There is no place like ~/";
+            Background = randomBg;
+          };
+        };
+      })
+    ];
     services.displayManager = {
       sddm.enable = true;
       sddm.package = pkgs.kdePackages.sddm;
-      # sddm.theme = lib.mkForce "${pkgs.callPackage (inputs.self + /packages/MarianArlt-sddm-sugar-dark) {}}"; # this theme probably uses sddm qt5 instead of qt6, so change sddm.package to an appropriate package
-      sddm.theme = lib.mkForce "${pkgs.callPackage (inputs.self + /packages/sddm-astronaut-theme) {}}";
-      sddm.wayland.enable = lib.mkIf cfg.hyprland.enable true;
+      sddm.theme = "sddm-astronaut-theme";
+      sddm.wayland.enable = cfg.hyprland.enable;
       sddm.extraPackages = with pkgs; [
         kdePackages.qtmultimedia
+        kdePackages.qtsvg
+        kdePackages.qtvirtualkeyboard
       ];
       inherit (cfg.sddm) defaultSession;
       autoLogin = {

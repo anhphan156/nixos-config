@@ -1463,11 +1463,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737929961,
-        "narHash": "sha256-cZIhJtjzPjArtnDY+JP36P74CFSc5KlbZqJ8mjnbaNk=",
+        "lastModified": 1737947569,
+        "narHash": "sha256-uatgiPzYZEvZWl5R7aylsuVVJSttO7zuAkFPGRsZbs0=",
         "owner": "anhphan156",
         "repo": "Wallpapers",
-        "rev": "7e2a3d1574f80f04706b813a68406d389f19acd5",
+        "rev": "a8bbc2b1cabe9ba5006ff9143d64b2371200f9db",
         "type": "github"
       },
       "original": {

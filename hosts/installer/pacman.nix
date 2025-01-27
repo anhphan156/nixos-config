@@ -14,7 +14,7 @@
         enable = true;
         source = pkgs.stdenv.mkDerivation {
           pname = "mirrorlist";
-          version = "1.0.0";
+          version = "us-latest";
           src = inputs.archlinux-mirrorlist;
 
           unpackPhase = ''

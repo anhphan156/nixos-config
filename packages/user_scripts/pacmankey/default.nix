@@ -9,7 +9,7 @@
 }: let
   archlinux-keyring = stdenv.mkDerivation {
     pname = "archlinux-keyring";
-    version = "1.0.0";
+    version = "latest";
     inherit src;
 
     nativeBuildInputs = [zstd];
