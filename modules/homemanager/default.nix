@@ -1,4 +1,5 @@
 {lib, ...}: {
+  home-manager.useGlobalPkgs = true;
   home-manager.users."${lib.user.name}".imports = [
     {
       home.username = lib.user.name;
