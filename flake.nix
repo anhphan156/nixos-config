@@ -59,10 +59,15 @@
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
-          alejandra = {
-            enable = false;
-          };
+          alejandra.enable = false;
         };
+      };
+    });
+
+    devShells = forAllSystems (system: {
+      default = pkgs.mkShell {
+        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
     });
   };

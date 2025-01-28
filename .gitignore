@@ -38,3 +38,5 @@ config/ghc/
 result
 playground.nix
 config/eww/variables/
+.envrc
+.direnv
