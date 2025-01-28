@@ -7,7 +7,9 @@
     ...
   } @ inputs: let
     lib = nixpkgs.lib.extend (import ./libs inputs);
+
     forAllSystems = lib.genAttrs ["x86_64-linux"];
+    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (k: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
 
     pkgs =
       import inputs.nixpkgs {
@@ -39,10 +41,9 @@
           inputs.disko.nixosModules.default
           inputs.impermanence.nixosModules.impermanence
           inputs.nixos-wsl.nixosModules.default
+          (pkgs.path + /nixos/modules/installer/cd-dvd/installation-cd-minimal.nix)
         ]
         ++ (lib.getNixFiles ./modules);
-
-      forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (k: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
 
     in lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
         inherit pkgs;
@@ -51,14 +52,11 @@
         modules = commonModules ++ (lib.getNixFiles "${self}/hosts/${host}");
     });
 
-    homeConfigurations = {
-      default = self.nixosConfigurations.omega.config.home-manager.users.${lib.user.name}.home;
-    };
+    homeConfigurations = lib.genAttrs forAllHosts 
+      (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
-    checks = forAllSystems (system: let
-      testArgs = {inherit inputs lib pkgs;};
-    in {
-      live-usb-test = import ./tests/liveusb.nix testArgs;
+    checks = forAllSystems (system: {
+      live-usb-test = import ./tests/liveusb.nix {inherit inputs lib pkgs;};
 
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
