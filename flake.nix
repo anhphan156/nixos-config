@@ -8,33 +8,55 @@
   } @ inputs: let
     lib = nixpkgs.lib.extend (import ./libs inputs);
     forAllSystems = lib.genAttrs ["x86_64-linux"];
-  in {
-    nixosConfigurations = import ./hosts {
-      inherit inputs lib;
-    };
 
-    homeConfigurations = {
-      default = self.nixosConfigurations.vmtest.config.home-manager.users.${lib.user.name}.home;
-    };
-
-    checks = forAllSystems (system: let
-      testArgs = {
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
+    pkgs =
+      import inputs.nixpkgs {
+        system = "x86_64-linux";
+        config = {
+          allowUnfree = true;
+        };
+        overlays =
+          [
             inputs.nvim-config.overlays.default
-            (import ./overlays/wrapDesktopItem.nix)
-            (import ./overlays/awesome.nix)
-            (import ./overlays/misc.nix)
             (_: prev: {
               wallpapers = inputs.wallpapers.packages.${prev.system}.default;
               myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
             })
-          ];
-          config.allowUnfree = true;
-        };
-        inherit inputs lib;
-      };
+          ]
+          ++ (./overlays |> lib.getNixFiles |> map import);
+      }
+      // {inherit lib;};
+  in {
+    nixosConfigurations = let
+      commonModules =
+        [
+          ./packages
+          inputs.home-manager.nixosModules.home-manager
+          inputs.nixvim.nixosModules.nixvim
+          inputs.xremap.nixosModules.default
+          inputs.catppuccin.nixosModules.catppuccin
+          inputs.dotfiles.nixosModules.default
+          inputs.disko.nixosModules.default
+          inputs.impermanence.nixosModules.impermanence
+          inputs.nixos-wsl.nixosModules.default
+        ]
+        ++ (lib.getNixFiles ./modules);
+
+      forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (k: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
+
+    in lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
+        inherit pkgs;
+        inherit (pkgs) system;
+        specialArgs = {inherit inputs;};
+        modules = commonModules ++ (lib.getNixFiles "${self}/hosts/${host}");
+    });
+
+    homeConfigurations = {
+      default = self.nixosConfigurations.omega.config.home-manager.users.${lib.user.name}.home;
+    };
+
+    checks = forAllSystems (system: let
+      testArgs = {inherit inputs lib pkgs;};
     in {
       live-usb-test = import ./tests/liveusb.nix testArgs;
 

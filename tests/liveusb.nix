@@ -31,7 +31,7 @@ pkgs.testers.runNixOSTest {
         myModules =
           [
             (inputs.self + /packages)
-            (inputs.self + /hosts/installer)
+            (inputs.self + /hosts/liveusb)
           ]
           ++ (lib.getNixFiles (inputs.self + /modules));
       in

@@ -7,4 +7,6 @@ _: prev: {
   cava = prev.cava.override {
     withSDL2 = true;
   };
+
+  rofi = prev.rofi-wayland;
 }
