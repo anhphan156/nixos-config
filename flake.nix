@@ -9,7 +9,7 @@
     lib = nixpkgs.lib.extend (import ./libs inputs);
 
     forAllSystems = lib.genAttrs ["x86_64-linux"];
-    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (k: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
+    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
 
     pkgs =
       import inputs.nixpkgs {
@@ -29,28 +29,26 @@
       }
       // {inherit lib;};
   in {
-    nixosConfigurations = let
-      commonModules =
-        [
-          ./packages
-          inputs.home-manager.nixosModules.home-manager
-          inputs.nixvim.nixosModules.nixvim
-          inputs.xremap.nixosModules.default
-          inputs.catppuccin.nixosModules.catppuccin
-          inputs.dotfiles.nixosModules.default
-          inputs.disko.nixosModules.default
-          inputs.impermanence.nixosModules.impermanence
-          inputs.nixos-wsl.nixosModules.default
-          (pkgs.path + /nixos/modules/installer/cd-dvd/installation-cd-minimal.nix)
-        ]
-        ++ (lib.getNixFiles ./modules);
-
-    in lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
-        inherit pkgs;
-        inherit (pkgs) system;
-        specialArgs = {inherit inputs;};
-        modules = commonModules ++ (lib.getNixFiles "${self}/hosts/${host}");
-    });
+    nixosConfigurations = 
+      lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
+          inherit pkgs;
+          inherit (pkgs) system;
+          specialArgs = {inherit inputs;};
+          modules = 
+            (lib.getNixFiles "${self}/hosts/${host}")
+            ++ (lib.getNixFiles ./modules)
+            ++ [
+              ./packages
+              inputs.home-manager.nixosModules.home-manager
+              inputs.nixvim.nixosModules.nixvim
+              inputs.xremap.nixosModules.default
+              inputs.catppuccin.nixosModules.catppuccin
+              inputs.dotfiles.nixosModules.default
+              inputs.disko.nixosModules.default
+              inputs.impermanence.nixosModules.impermanence
+              inputs.nixos-wsl.nixosModules.default
+            ];
+      });
 
     homeConfigurations = lib.genAttrs forAllHosts 
       (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
