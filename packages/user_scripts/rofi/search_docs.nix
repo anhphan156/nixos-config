@@ -5,6 +5,7 @@
   rofiConfig,
   evince,
   libreoffice,
+  location ? "~",
   ...
 }:
 wrapDesktopItem {
@@ -15,7 +16,7 @@ wrapDesktopItem {
   text = ''
     set +o pipefail
 
-    arg=$(find ~ 2> /dev/null | rofi -i -dmenu -p "Select a document:" -config ${rofiConfig})
+    arg=$(find ${location} -type f -name "*.pdf" -o -name "*.docx" 2> /dev/null | rofi -i -dmenu -p "Select a document:" -config ${rofiConfig})
 
     filename=$(basename "$arg")
     extension="''${filename##*.}"

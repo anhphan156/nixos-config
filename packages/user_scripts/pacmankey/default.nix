@@ -1,5 +1,5 @@
 {
-  stdenv,
+  stdenvNoCC,
   writeShellApplication,
   pacman,
   sudo,
@@ -7,7 +7,7 @@
   zstd,
   ...
 }: let
-  archlinux-keyring = stdenv.mkDerivation {
+  archlinux-keyring = stdenvNoCC.mkDerivation {
     pname = "archlinux-keyring";
     version = "latest";
     inherit src;

@@ -12,7 +12,7 @@
     etc = {
       "pacman.d/mirrorlist" = {
         enable = true;
-        source = pkgs.stdenv.mkDerivation {
+        source = pkgs.stdenvNoCC.mkDerivation {
           pname = "mirrorlist";
           version = "us-latest";
           src = inputs.archlinux-mirrorlist;

@@ -1,10 +1,10 @@
 {
-  stdenv,
+  stdenvNoCC,
   fetchFromGitHub,
   wallpapers,
   ...
 }:
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   name = "sddm-theme";
   src = fetchFromGitHub {
     owner = "MarianArlt";

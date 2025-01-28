@@ -11,7 +11,7 @@
   };
 
   config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.desktopApp.rofi.enable) {
-    dotfiles.rofi.default.background = "${pkgs.wallpapers}/single/firefly_zzz.jpg";
+    dotfiles.rofi.background = "${pkgs.wallpapers}/single/firefly_zzz.jpg";
     home-manager.users."${lib.user.name}" = {
       home.packages = [pkgs.rofi-wayland];
       xdg.configFile."rofi/".source = config.dotfiles.rofi.config;

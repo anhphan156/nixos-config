@@ -59,7 +59,7 @@ in {
         guiEnabled = cfgGui;
         basePath = lib.user.path.dev;
         tmux_code = callPackage ./user_scripts/dev/tmux_code_layout.nix {};
-        rofiConfig = config.dotfiles.rofi.default.path;
+        rofiConfig = config.dotfiles.rofi.default;
       })
       (callPackage ./kabmat {})
     ]
