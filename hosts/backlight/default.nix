@@ -14,6 +14,7 @@ in {
       obsidian = enabled;
     };
     system = {
+      bootloader.plymouth = enabled;
       hostname = "backlight";
       acpid = enabled;
       # autorandr = enabled;
