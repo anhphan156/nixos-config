@@ -31,8 +31,7 @@ pkgs.testers.runNixOSTest {
         myModules =
           [
             (inputs.self + /packages)
-            (inputs.self + /hosts/installer/configuration.nix)
-            (inputs.self + /hosts/installer/pacman.nix)
+            (inputs.self + /hosts/installer)
           ]
           ++ (lib.getNixFiles (inputs.self + /modules));
       in

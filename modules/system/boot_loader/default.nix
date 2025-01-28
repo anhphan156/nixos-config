@@ -26,7 +26,7 @@ in {
       loader.efi.canTouchEfiVariables = true;
       loader.systemd-boot.configurationLimit = config.cyanea.system.bootloader.confLim;
 
-      consoleLogLevel = 0;
+      consoleLogLevel = lib.mkDefault 0;
       kernelParams = lib.optionals cfg.plymouth.enable [
         "quite"
         "splash"

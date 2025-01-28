@@ -36,7 +36,7 @@
     ]
     ++ (lib.getNixFiles (inputs.self + /modules));
 in {
-  installer = pkgs.lib.nixosSystem {
+  liveusb = pkgs.lib.nixosSystem {
     inherit pkgs;
     specialArgs = {inherit inputs;};
     system = "x86_64-linux";
@@ -44,7 +44,12 @@ in {
       commonModules
       ++ [
         ./installer
-        ./installer/pacman.nix
+        (pkgs.path + /nixos/modules/installer/cd-dvd/installation-cd-minimal.nix)
+        # ({modulesPath, ...}: {
+        #   imports = [
+        #     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+        #   ];
+        # })
       ];
   };
 
