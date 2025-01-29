@@ -19,13 +19,13 @@
         };
         overlays =
           [
-            inputs.nvim-config.overlays.default
+            inputs.nvim-config.overlays.${system}
             (_: prev: {
               wallpapers = inputs.wallpapers.packages.${prev.system}.default;
               myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
             })
           ]
-          ++ (./overlays |> lib.getNixFiles |> map import);
+          ++ (map import <| lib.getNixFiles ./overlays);
       }
       // {inherit lib;};
   in {
