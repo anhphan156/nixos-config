@@ -11,9 +11,9 @@
     forAllSystems = lib.genAttrs ["x86_64-linux"];
     forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
 
-    pkgs =
+    pkgsFor = system:
       import inputs.nixpkgs {
-        system = "x86_64-linux";
+        inherit system;
         config = {
           allowUnfree = true;
         };
@@ -29,8 +29,9 @@
       }
       // {inherit lib;};
   in {
-    nixosConfigurations = 
-      lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
+    nixosConfigurations = let
+      pkgs = pkgsFor "x86_64-linux";
+    in lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
           inherit pkgs;
           inherit (pkgs) system;
           specialArgs = {inherit inputs;};
@@ -54,7 +55,10 @@
       (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
-      live-usb-test = import ./tests/liveusb.nix {inherit inputs lib pkgs;};
+      live-usb-test = import ./tests/liveusb.nix {
+        inherit inputs lib;
+        pkgs = pkgsFor system;
+      };
 
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
@@ -65,7 +69,7 @@
     });
 
     devShells = forAllSystems (system: {
-      default = pkgs.mkShell {
+      default = (pkgsFor system).mkShell {
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
