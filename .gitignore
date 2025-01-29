@@ -40,3 +40,4 @@ playground.nix
 config/eww/variables/
 .envrc
 .direnv
+.pre-commit-config.yaml
