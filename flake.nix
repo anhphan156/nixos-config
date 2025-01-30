@@ -6,7 +6,7 @@
     self,
     ...
   } @ inputs: let
-    lib = nixpkgs.lib.extend (import ./libs inputs);
+    lib = nixpkgs.lib.extend <| import ./libs;
 
     forAllSystems = lib.genAttrs ["x86_64-linux"];
     forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k) |> lib.genAttrs;
