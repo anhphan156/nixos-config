@@ -1287,11 +1287,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738229372,
-        "narHash": "sha256-WxRgZaE36iFPUOXo8UOD275tdu2JWG2GfYMUHuiDENA=",
+        "lastModified": 1738269058,
+        "narHash": "sha256-xXpCpfZz+BmJk+FHbL/nQSjDFYukYBDNrn7snAvLSj0=",
         "owner": "anhphan156",
         "repo": "nvim-config",
-        "rev": "14d5032f7c3fd1cac63447a5e80ecf4aad5ff21a",
+        "rev": "b80c4cb6341d0a2e23ac3f7aa5dd1824510e8093",
         "type": "github"
       },
       "original": {
@@ -1463,11 +1463,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738025878,
-        "narHash": "sha256-QAG/18fAPhzurKds9eQH9tU72DltLsTaaHV4OQN2SV8=",
+        "lastModified": 1738206176,
+        "narHash": "sha256-Dj4jcDyKAkgeC5r4Ip8RxTh3QV0BDprSxiH2k9HMkTA=",
         "owner": "anhphan156",
         "repo": "Wallpapers",
-        "rev": "42999fbbb55846522c0cf0b9a23dbb04369f76c0",
+        "rev": "24d5d3b4bfeb30194de4d6b642a59c52982279f0",
         "type": "github"
       },
       "original": {
