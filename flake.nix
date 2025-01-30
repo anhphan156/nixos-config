@@ -9,7 +9,7 @@
     lib = nixpkgs.lib.extend (import ./libs inputs);
 
     forAllSystems = lib.genAttrs ["x86_64-linux"];
-    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k);
+    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k) |> lib.genAttrs;
 
     pkgsFor = system:
       import inputs.nixpkgs {
@@ -19,7 +19,7 @@
         };
         overlays =
           [
-            inputs.nvim-config.overlays.${system}
+            inputs.nvim-config.overlays.default
             (_: prev: {
               wallpapers = inputs.wallpapers.packages.${prev.system}.default;
               myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
@@ -31,28 +31,27 @@
   in {
     nixosConfigurations = let
       pkgs = pkgsFor "x86_64-linux";
-    in lib.genAttrs forAllHosts (host: pkgs.lib.nixosSystem {
-          inherit pkgs;
-          inherit (pkgs) system;
-          specialArgs = {inherit inputs;};
-          modules = 
-            (lib.getNixFiles "${self}/hosts/${host}")
-            ++ (lib.getNixFiles ./modules)
-            ++ [
-              ./packages
-              inputs.home-manager.nixosModules.home-manager
-              inputs.nixvim.nixosModules.nixvim
-              inputs.xremap.nixosModules.default
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.dotfiles.nixosModules.default
-              inputs.disko.nixosModules.default
-              inputs.impermanence.nixosModules.impermanence
-              inputs.nixos-wsl.nixosModules.default
-            ];
+    in forAllHosts (host: pkgs.lib.nixosSystem {
+      inherit pkgs;
+      inherit (pkgs) system;
+      specialArgs = {inherit inputs;};
+      modules = 
+        (lib.getNixFiles "${self}/hosts/${host}")
+        ++ (lib.getNixFiles ./modules)
+        ++ [
+          ./packages
+          inputs.home-manager.nixosModules.home-manager
+          inputs.nixvim.nixosModules.nixvim
+          inputs.xremap.nixosModules.default
+          inputs.catppuccin.nixosModules.catppuccin
+          inputs.dotfiles.nixosModules.default
+          inputs.disko.nixosModules.default
+          inputs.impermanence.nixosModules.impermanence
+          inputs.nixos-wsl.nixosModules.default
+        ];
       });
 
-    homeConfigurations = lib.genAttrs forAllHosts 
-      (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
+    homeConfigurations = forAllHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
       live-usb-test = import ./tests/liveusb.nix {
