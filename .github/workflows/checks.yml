@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Delete huge unnecessary tools folder
+    - name: Delete huge unnecessary tools directory
       run: rm -rf /opt/hostedtoolcache
 
     - name: Checkout Code
@@ -27,5 +27,5 @@ jobs:
     - name: Update pacman keyring
       run: nix flake update archlinux-keyring
 
-    - name: Build Project
+    - name: Nix flake check
       run: nix flake check
