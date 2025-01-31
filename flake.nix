@@ -91,6 +91,7 @@
 
     dotfiles = {
       url = "github:anhphan156/dotfiles";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.wallpapers.follows = "wallpapers";
     };
 
