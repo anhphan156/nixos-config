@@ -20,6 +20,8 @@
       enable = true;
       inherit (config.cyanea.services.ollama) acceleration;
       loadModels = [config.cyanea.services.ollama.startupModel];
+
+      # rocmOverrideGfx = lib.mkIf (config.cyanea.services.ollama.acceleration == "rocm") "10.1.2";
     };
   };
 }

@@ -43,15 +43,15 @@ in {
     services = {
       waterReminder = enabled;
       ratbagd = enabled;
-      ollama = {
-        enable = true;
-        acceleration = "rocm";
-        startupModel = "deepseek-r1:7b";
-      };
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "rocm";
+      #   startupModel = "deepseek-r1:7b";
+      # };
     };
     shell = {
       xonsh = enabled;
-      shell-gpt = enabled;
+      # shell-gpt = enabled;
     };
     dev = {
       c = enabled;
