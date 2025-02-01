@@ -43,15 +43,9 @@ in {
     services = {
       waterReminder = enabled;
       ratbagd = enabled;
-      # ollama = {
-      #   enable = true;
-      #   acceleration = "rocm";
-      #   startupModel = "deepseek-r1:7b";
-      # };
     };
     shell = {
       xonsh = enabled;
-      # shell-gpt = enabled;
     };
     dev = {
       c = enabled;
@@ -68,7 +62,7 @@ in {
     gaming = {
       enable = true;
       gamescopeMonitor = [
-        "-O DP-1"
+        "-O DP-3"
         "-W 1920"
         "-H 1080"
       ];

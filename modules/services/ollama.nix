@@ -9,6 +9,11 @@
       description = "acceleration";
       type = lib.types.str;
     };
+    rocmOverrideGfx = lib.mkOption {
+      description = "rocmOverrideGfx";
+      type = lib.types.str;
+      default = "";
+    };
     startupModel = lib.mkOption {
       description = "Startup Model";
       type = lib.types.str;
@@ -18,10 +23,8 @@
   config = lib.mkIf config.cyanea.services.ollama.enable {
     services.ollama = {
       enable = true;
-      inherit (config.cyanea.services.ollama) acceleration;
+      inherit (config.cyanea.services.ollama) acceleration rocmOverrideGfx;
       loadModels = [config.cyanea.services.ollama.startupModel];
-
-      # rocmOverrideGfx = lib.mkIf (config.cyanea.services.ollama.acceleration == "rocm") "10.1.2";
     };
   };
 }
