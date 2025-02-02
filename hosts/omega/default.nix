@@ -22,15 +22,23 @@ in {
       hyprland = {
         enable = mkForce true;
         monitor = {
-          monitorList = ["DP-3" "DP-1" "HDMI-A-1"];
+          monitorList = [
+            "DP-3"
+            "DP-1"
+            "HDMI-A-1"
+          ];
           resolutionList = [
+            "3840x2160,-2560x0,1.5"
             "1920x1080@144,0x0,1,bitdepth,10"
-            "3840x2160,1920x0,1.5"
             "1920x1080,5760x0,1"
           ];
           workspaceList = [[4 5 6] [1 2 3] [7]];
         };
       };
+      sddm = {
+        autoLogin.enable = false;
+        defaultSession = "hyprland";
+      }; # sddm
     };
     networking = {
       ethernet = enabled;
@@ -43,6 +51,12 @@ in {
     services = {
       waterReminder = enabled;
       ratbagd = enabled;
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "rocm";
+      #   startupModel = "deepseek-r1:7b";
+      #   rocmOverrideGfx = "10.3.0";
+      # };
     };
     shell = {
       xonsh = enabled;
@@ -62,7 +76,7 @@ in {
     gaming = {
       enable = true;
       gamescopeMonitor = [
-        "-O DP-3"
+        "-O DP-1"
         "-W 1920"
         "-H 1080"
       ];
