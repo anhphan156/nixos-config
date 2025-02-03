@@ -1,5 +1,5 @@
 {modulesPath, ...}: {
   imports = [
-    "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+    "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
   ];
 }

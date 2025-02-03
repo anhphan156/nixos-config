@@ -27,12 +27,16 @@ in {
             "DP-1"
             "HDMI-A-1"
           ];
-          resolutionList = [
-            "3840x2160,-2560x0,1.5"
-            "1920x1080@144,0x0,1,bitdepth,10"
-            "1920x1080,5760x0,1"
+          resolutionList = let
+            width_1 = 3840;
+            width_2 = 1920;
+            scale_1 = 1.5;
+            offset_1 = -1 * width_1 / scale_1;
+          in [
+            "${toString width_1}x2160,${toString offset_1}x0,${toString scale_1}"
+            "${toString width_2}x1080@144,0x0,1,bitdepth,10"
           ];
-          workspaceList = [[4 5 6] [1 2 3] [7]];
+          workspaceList = [[4 5 6] [1 2 3]];
         };
       };
       sddm = {
