@@ -51,12 +51,9 @@
         ];
       });
 
-    darwinConfigurations = let 
-      system = "x86_64-darwin";
-      # pkgs = pkgsFor system;
-    in {
+    darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
-        inherit system;
+      system = "x86_64-darwin";
         modules = [
           ./hosts/macbook
         ];
