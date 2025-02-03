@@ -51,6 +51,14 @@
         ];
       });
 
+    darwinConfigurations = {
+      default = inputs.nix-darwin.lib.darwinSystem {
+        modules = [
+          ./hosts/macbook
+        ];
+      };
+    };
+
     homeConfigurations = forAllHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
@@ -83,6 +91,10 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wallpapers = {
       url = "github:anhphan156/Wallpapers";
