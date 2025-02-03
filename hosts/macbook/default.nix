@@ -3,4 +3,6 @@
   environment.systemPackages = with pkgs; [
     neovim
   ];
+
+  system.stateVersion = 6;
 }
