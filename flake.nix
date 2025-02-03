@@ -56,7 +56,7 @@
       # pkgs = pkgsFor system;
     in {
       default = inputs.nix-darwin.lib.darwinSystem {
-        # inherit system;
+        inherit system;
         modules = [
           ./hosts/macbook
         ];
