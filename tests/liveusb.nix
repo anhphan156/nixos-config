@@ -47,6 +47,8 @@ pkgs.testers.runNixOSTest {
         ls ~/disko-repo/example
 
         which pacstrap
+
+        fc-list | grep -i anka
       '';
     };
   in ''

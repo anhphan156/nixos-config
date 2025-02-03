@@ -84,13 +84,5 @@ in {
     };
   };
 
-  nixpkgs.overlays = [
-    (_: prev: {
-      myDotfiles = prev.myDotfiles.override {
-        topBarWidth = "135%";
-      };
-    })
-  ];
-
   system.stateVersion = "23.11";
 }
