@@ -1,5 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   nixpkgs.hostPlatform = "x86_64-darwin";
+  nixpkgs.overlays = [
+    inputs.nvim-config.overlays.default
+  ];
   environment.systemPackages = with pkgs; [
     neovim
   ];

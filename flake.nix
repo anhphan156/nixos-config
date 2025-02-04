@@ -53,6 +53,7 @@
 
     darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
+      specialArgs = {inherit inputs;};
       system = "x86_64-darwin";
         modules = [
           ./hosts/macbook
