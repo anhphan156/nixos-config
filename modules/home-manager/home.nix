@@ -1,4 +1,12 @@
-{lib, ...}: {
+{
+  lib,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.dotfiles.nixosModules.default
+  ];
+
   home.username = lib.user.name;
   home.homeDirectory = "/home/${lib.user.name}";
 

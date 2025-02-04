@@ -2,15 +2,10 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }: let
-  evaluated = lib.evalModules {
-    specialArgs = {inherit pkgs;};
-    modules = [
-      inputs.dotfiles.nixosModules.default
-    ];
-  };
-  rofiCfg = evaluated.config.dotfiles.rofi;
+  rofiCfg = config.dotfiles.rofi;
 in {
   home.packages = with pkgs; [
     anki
