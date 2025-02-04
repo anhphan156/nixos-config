@@ -9,7 +9,7 @@
     lib = nixpkgs.lib.extend <| import ./libs;
 
     forAllSystems = lib.genAttrs ["x86_64-linux"];
-    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k) |> lib.genAttrs;
+    forAllLinuxHosts = ./hosts/linux |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k) |> lib.genAttrs;
 
     pkgsFor = system:
       import inputs.nixpkgs {
@@ -31,12 +31,12 @@
   in {
     nixosConfigurations = let
       pkgs = pkgsFor "x86_64-linux";
-    in forAllHosts (host: pkgs.lib.nixosSystem {
+    in forAllLinuxHosts (host: pkgs.lib.nixosSystem {
       inherit pkgs;
       inherit (pkgs) system;
       specialArgs = {inherit inputs;};
       modules = 
-        (lib.getNixFiles "${self}/hosts/${host}")
+        (lib.getNixFiles "${self}/hosts/linux/${host}")
         ++ (lib.getNixFiles ./modules)
         ++ [
           ./packages
@@ -51,7 +51,17 @@
         ];
       });
 
-    homeConfigurations = forAllHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
+    darwinConfigurations = {
+      default = inputs.nix-darwin.lib.darwinSystem {
+      specialArgs = {inherit inputs;};
+      system = "x86_64-darwin";
+        modules = [
+          ./hosts/darwin/macbook
+        ];
+      };
+    };
+
+    homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
       live-usb-test = import ./tests/liveusb.nix {
@@ -83,6 +93,10 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wallpapers = {
       url = "github:anhphan156/Wallpapers";
