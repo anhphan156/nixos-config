@@ -37,7 +37,7 @@
       specialArgs = {inherit inputs;};
       modules = 
         (lib.getNixFiles "${self}/hosts/linux/${host}")
-        ++ (lib.getNixFiles ./modules)
+        ++ (lib.getNixFiles ./modules/nixos)
         ++ [
           ./packages
           inputs.home-manager.nixosModules.home-manager
@@ -53,8 +53,8 @@
 
     darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
-      specialArgs = {inherit inputs;};
-      system = "x86_64-darwin";
+        specialArgs = {inherit inputs;};
+        system = "x86_64-darwin";
         modules = [
           ./hosts/darwin/macbook
         ];
