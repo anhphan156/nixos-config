@@ -1,14 +1,7 @@
-{
-  lib,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.dotfiles.nixosModules.default
   ];
-
-  home.username = lib.user.name;
-  home.homeDirectory = "/home/${lib.user.name}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

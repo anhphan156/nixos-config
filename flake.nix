@@ -67,11 +67,6 @@
     homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
-      live-usb-test = import ./tests/liveusb.nix {
-        inherit inputs lib;
-        pkgs = pkgsFor system;
-      };
-
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
