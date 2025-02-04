@@ -9,7 +9,7 @@
     lib = nixpkgs.lib.extend <| import ./libs;
 
     forAllSystems = lib.genAttrs ["x86_64-linux"];
-    forAllHosts = ./hosts |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k) |> lib.genAttrs;
+    forAllLinuxHosts = ./hosts/linux |> builtins.readDir |> lib.filterAttrs (_: v: v == "directory") |> lib.mapAttrsToList (k: _: k) |> lib.genAttrs;
 
     pkgsFor = system:
       import inputs.nixpkgs {
@@ -31,12 +31,12 @@
   in {
     nixosConfigurations = let
       pkgs = pkgsFor "x86_64-linux";
-    in forAllHosts (host: pkgs.lib.nixosSystem {
+    in forAllLinuxHosts (host: pkgs.lib.nixosSystem {
       inherit pkgs;
       inherit (pkgs) system;
       specialArgs = {inherit inputs;};
       modules = 
-        (lib.getNixFiles "${self}/hosts/${host}")
+        (lib.getNixFiles "${self}/hosts/linux/${host}")
         ++ (lib.getNixFiles ./modules)
         ++ [
           ./packages
@@ -56,12 +56,12 @@
       specialArgs = {inherit inputs;};
       system = "x86_64-darwin";
         modules = [
-          ./hosts/macbook
+          ./hosts/darwin/macbook
         ];
       };
     };
 
-    homeConfigurations = forAllHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
+    homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
       live-usb-test = import ./tests/liveusb.nix {
