@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  callPackage' = path: config: pkgs.callPackage "${inputs.self}/packages/${path}" config;
-in {
+}: {
   home.packages = with pkgs; [
     killall
     cmatrix
@@ -33,7 +31,7 @@ in {
     python3
     entr
 
-    (callPackage' "user_scripts/dev/tmux_code_layout.nix" {})
-    (callPackage' "kabmat" {})
+    (callPackage "${inputs.self}/packages/user_scripts/dev/tmux_code_layout.nix" {})
+    (callPackage "${inputs.self}/packages/kabmat" {})
   ];
 }

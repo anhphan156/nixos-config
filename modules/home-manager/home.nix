@@ -1,19 +1,4 @@
-{
-  lib,
-  inputs,
-  ...
-}: {
-  imports = [
-    ./packages/console.nix
-    ./packages/gui.nix
-  ];
-
-  nixpkgs.overlays = [
-    (_: prev: {
-      callPackage' = path: config: prev.callPackage "${inputs.self}/packages/${path}" config;
-    })
-  ];
-
+{lib, ...}: {
   home.username = lib.user.name;
   home.homeDirectory = "/home/${lib.user.name}";
 

@@ -29,11 +29,9 @@ pkgs.testers.runNixOSTest {
         ];
 
         myModules =
-          [
-            (inputs.self + /packages)
-            (inputs.self + /hosts/linux/liveusb)
-          ]
-          ++ (lib.getNixFiles (inputs.self + /modules));
+          lib.singleton (inputs.self + /hosts/linux/liveusb)
+          ++ (lib.getNixFiles (inputs.self + /modules/nixos))
+          ++ (lib.getNixFiles (inputs.self + /modules/common));
       in
         map overrideLib myModules ++ otherModules;
     }; # machines

@@ -37,9 +37,9 @@
       specialArgs = {inherit inputs;};
       modules = 
         (lib.getNixFiles "${self}/hosts/linux/${host}")
+        ++ (lib.getNixFiles ./modules/common)
         ++ (lib.getNixFiles ./modules/nixos)
         ++ [
-          ./packages
           inputs.home-manager.nixosModules.home-manager
           inputs.nixvim.nixosModules.nixvim
           inputs.xremap.nixosModules.default
@@ -55,9 +55,12 @@
       default = inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs;};
         system = "x86_64-darwin";
-        modules = [
-          ./hosts/darwin/macbook
-        ];
+        modules = 
+          (lib.getNixFiles ./modules/common)
+          ++ (lib.getNixFiles ./modules/darwin)
+          ++ [
+            ./hosts/darwin/macbook
+          ];
       };
     };
 
