@@ -17,17 +17,17 @@ in {
     blender
     obs-studio
     zoom-us
-    (callPackage "${inputs.self}/packages/user_scripts/rofi/search_docs.nix" {
+    (callPackage "${inputs.self}/packages/scripts/rofi/search_docs.nix" {
       rofiConfig = rofiCfg.oneColumn;
     })
-    (callPackage "${inputs.self}/packages/user_scripts/rofi/text_clipboard.nix" {
+    (callPackage "${inputs.self}/packages/scripts/rofi/text_clipboard.nix" {
       rofiPromptConfig = rofiCfg.prompt;
       rofiImgConfig = rofiCfg.image;
     })
-    (callPackage "${inputs.self}/packages/user_scripts/dev/dev_project.nix" {
+    (callPackage "${inputs.self}/packages/scripts/dev/dev_project.nix" {
       guiEnabled = true;
       basePath = lib.user.path.dev;
-      tmux_code = callPackage "${inputs.self}/packages/user_scripts/dev/tmux_code_layout.nix" {};
+      tmux_code = callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {};
       rofiConfig = rofiCfg.default;
     })
   ];

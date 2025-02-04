@@ -31,7 +31,7 @@
     python3
     entr
 
-    (callPackage "${inputs.self}/packages/user_scripts/dev/tmux_code_layout.nix" {})
+    (callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {})
     (callPackage "${inputs.self}/packages/kabmat" {})
   ];
 }

@@ -14,7 +14,7 @@
       enable = true;
       mpdMusicDir = lib.user.path.music;
       settings = {
-        "execute_on_song_change" = "${lib.getExe <| pkgs.callPackage (inputs.self + /packages/user_scripts/media/song_change.nix) {}}";
+        "execute_on_song_change" = "${lib.getExe <| pkgs.callPackage (inputs.self + /packages/scripts/media/song_change.nix) {}}";
         "autocenter_mode" = "yes";
         "allow_for_physical_item_deletion" = "no";
 

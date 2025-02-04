@@ -7,14 +7,14 @@
 }: let
   workspace_list = builtins.concatLists config.cyanea.graphical.hyprland.monitor.workspaceList;
 
-  keepassrofi = pkgs.callPackage (inputs.self + /packages/user_scripts/rofi/keepassxc.nix) {
+  keepassrofi = pkgs.callPackage (inputs.self + /packages/scripts/rofi/keepassxc.nix) {
     rofiConfig = config.dotfiles.rofi.prompt;
   };
 
-  screenshots = pkgs.callPackage (inputs.self + /packages/user_scripts/media/screenshots.nix) {};
+  screenshots = pkgs.callPackage (inputs.self + /packages/scripts/media/screenshots.nix) {};
   screenshotPath = "${lib.user.path.screenshot}/$(date +'%s_grim.png')";
 
-  swww_scripts = pkgs.callPackage (inputs.self + /packages/user_scripts/media/swww_scripts.nix) {
+  swww_scripts = pkgs.callPackage (inputs.self + /packages/scripts/media/swww_scripts.nix) {
     inherit (config.cyanea.graphical.hyprland.monitor) monitorList resolutionList;
   };
 in {
