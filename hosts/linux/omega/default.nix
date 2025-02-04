@@ -88,5 +88,13 @@ in {
     };
   };
 
+  nixpkgs.overlays = [
+    (_: prev: {
+      myDotfiles = prev.myDotfiles.override {
+        dockPosition = "right center";
+      };
+    })
+  ];
+
   system.stateVersion = "23.11";
 }
