@@ -37,20 +37,6 @@ in {
           extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
           ];
-          # containers = {
-          # 	education = {
-          # 		name = "education";
-          # 		id = 1;
-          # 		color = "blue";
-          # 		icon = "tree";
-          # 	};
-          # 	job = {
-          # 		name = "job";
-          # 		id = 2;
-          # 		color = "orange";
-          # 		icon = "briefcase";
-          # 	};
-          # };
         };
         profiles."${lib.user.name}" = {
           name = lib.user.name;
@@ -148,32 +134,7 @@ in {
           extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
           ];
-          #bookmarks = [
-          #    {
-          #        name = "Nix Packages";
-          #        tags = ["nix"];
-          #        keyword = "nixpkgs";
-          #        url = "https://search.nixos.org/packages";
-          #    }
-          #    {
-          #        name = "NixOS Options";
-          #        tags = ["nix"];
-          #        keyword = "nixosoptions";
-          #        url = "https://search.nixos.org/options";
-          #    }
-          #    {
-          #        name = "HomeManager Options";
-          #        tags = ["home-manager"];
-          #        keyword = "home-manager";
-          #        url = "https://home-manager-options.extranix.com/";
-          #    }
-          #    #{
-          #    #    name = "";
-          #    #    tags = [""];
-          #    #    keyword = "";
-          #    #    url = "";
-          #    #}
-          #];
+          settings.extensions.autoDisableScopes = 0;
         };
       };
     };

@@ -8,10 +8,7 @@ in {
         enable = mkForce true;
         spacebar = enabled;
       };
-      vesktop = enabled;
       googlechrome = enabled;
-      keepassxc = enabled;
-      obsidian = enabled;
     };
     system = {
       pipewire = enabled;

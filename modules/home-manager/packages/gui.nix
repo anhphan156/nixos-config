@@ -17,6 +17,9 @@ in {
     blender
     obs-studio
     zoom-us
+    vesktop
+    obsidian
+    keepassxc
     (callPackage "${inputs.self}/packages/scripts/rofi/search_docs.nix" {
       rofiConfig = rofiCfg.oneColumn;
     })

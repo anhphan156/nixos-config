@@ -8,10 +8,7 @@ in {
   cyanea = {
     host.backlight = true;
     desktopApp = {
-      vesktop = enabled;
       firefox = enabled;
-      keepassxc = enabled;
-      obsidian = enabled;
     };
     system = {
       bootloader.plymouth = enabled;
