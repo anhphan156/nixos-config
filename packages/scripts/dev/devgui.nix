@@ -9,7 +9,7 @@
   ...
 }:
 wrapDesktopItem { } <| writeShellApplication {
-  name = "dev";
+  name = "Dev";
   runtimeInputs = [rofi kitty tmux_code];
   text = ''
     #!/usr/bin/env bash

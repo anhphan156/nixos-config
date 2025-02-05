@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  inputs,
   ...
 }: {
   options = {
@@ -11,10 +11,6 @@
   };
 
   config = lib.mkIf (config.cyanea.graphical.gui.enable && config.cyanea.desktopApp.rofi.enable) {
-    dotfiles.rofi.background = "${pkgs.wallpapers}/single/firefly_zzz.jpg";
-    home-manager.users."${lib.user.name}" = {
-      home.packages = [pkgs.rofi-wayland];
-      xdg.configFile."rofi/".source = config.dotfiles.rofi.config;
-    };
+    home-manager.users."${lib.user.name}" = import "${inputs.self}/modules/home-manager/dotfiles/rofi";
   };
 }
