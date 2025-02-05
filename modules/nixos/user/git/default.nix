@@ -1,9 +1,7 @@
-{lib, ...}: {
-  home-manager.users."${lib.user.name}" = {
-    programs.git = {
-      enable = true;
-      userName = lib.user.git_name;
-      userEmail = lib.user.git_email;
-    };
-  };
+{
+  lib,
+  inputs,
+  ...
+}: {
+  home-manager.users."${lib.user.name}" = import "${inputs.self}/modules/home-manager/git";
 }

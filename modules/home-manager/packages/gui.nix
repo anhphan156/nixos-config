@@ -24,8 +24,7 @@ in {
       rofiPromptConfig = rofiCfg.prompt;
       rofiImgConfig = rofiCfg.image;
     })
-    (callPackage "${inputs.self}/packages/scripts/dev/dev_project.nix" {
-      guiEnabled = true;
+    (callPackage "${inputs.self}/packages/scripts/dev/devgui.nix" {
       basePath = lib.user.path.dev;
       tmux_code = callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {};
       rofiConfig = rofiCfg.default;
