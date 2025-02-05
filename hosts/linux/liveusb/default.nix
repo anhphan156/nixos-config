@@ -13,7 +13,7 @@
     systemPackages = with pkgs; [
       disko
       arch-install-scripts
-      (callPackage (inputs.self + /packages/user_scripts/pacmankey) {src = inputs.archlinux-keyring;})
+      (callPackage (inputs.self + /packages/scripts/pacmankey) {src = inputs.archlinux-keyring;})
     ];
 
     etc = {

@@ -37,9 +37,9 @@
       specialArgs = {inherit inputs;};
       modules = 
         (lib.getNixFiles "${self}/hosts/linux/${host}")
-        ++ (lib.getNixFiles ./modules)
+        ++ (lib.getNixFiles ./modules/common)
+        ++ (lib.getNixFiles ./modules/nixos)
         ++ [
-          ./packages
           inputs.home-manager.nixosModules.home-manager
           inputs.nixvim.nixosModules.nixvim
           inputs.xremap.nixosModules.default
@@ -53,22 +53,20 @@
 
     darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
-      specialArgs = {inherit inputs;};
-      system = "x86_64-darwin";
-        modules = [
-          ./hosts/darwin/macbook
-        ];
+        specialArgs = {inherit inputs;};
+        system = "x86_64-darwin";
+        modules = 
+          (lib.getNixFiles ./modules/common)
+          ++ (lib.getNixFiles ./modules/darwin)
+          ++ [
+            ./hosts/darwin/macbook
+          ];
       };
     };
 
     homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
 
     checks = forAllSystems (system: {
-      live-usb-test = import ./tests/liveusb.nix {
-        inherit inputs lib;
-        pkgs = pkgsFor system;
-      };
-
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
