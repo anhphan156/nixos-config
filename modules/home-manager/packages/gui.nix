@@ -14,7 +14,7 @@ in {
     evince
     # pureref
     beeper
-    blender
+    # blender
     obs-studio
     zoom-us
     vesktop
