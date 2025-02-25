@@ -6,21 +6,14 @@
         type = lib.types.uniq lib.types.bool;
         default = false;
       };
-    in {
-      omega = hostOption;
-      backlight = hostOption;
-      wsl = hostOption;
-      vmtest = hostOption;
-    };
-    cyanea = {
-      # dotfilesPath = lib.mkOption {
-      #   description = "Path to this project in string";
-      #   type = lib.types.package;
-      #   readOnly = true;
-      #   default = inputs.dotfiles.packages.${pkgs.system}.default;
-      # };
-    };
+    in
+      lib.genAttrs [
+        "omega"
+        "backlight"
+        "wsl"
+        "vmtest"
+      ] (_: hostOption);
 
-    cyanea.keyboards.dvorak.enable = lib.mkEnableOption "Enable xserver dvorak";
+    cyanea.keyboards.dvorak.enable = lib.mkEnableOption "Enable dvorak";
   };
 }
