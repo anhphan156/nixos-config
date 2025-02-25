@@ -34,7 +34,7 @@ in {
             force = true;
             default = "DuckDuckGo";
           };
-          extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+          extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
           ];
         };
@@ -131,7 +131,7 @@ in {
               };
             };
           };
-          extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+          extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
           ];
           settings.extensions.autoDisableScopes = 0;

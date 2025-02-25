@@ -5,7 +5,6 @@
   pkgs,
   ...
 }: let
-  awesome_path = "${pkgs.myDotfiles}/share/awesome";
   cfg = config.cyanea.graphical;
 in {
   options = {
@@ -38,10 +37,6 @@ in {
       };
     };
 
-    home-manager.users."${lib.user.name}" = {config, ...}: {
-      xdg.configFile = {
-        "awesome/".source = config.lib.file.mkOutOfStoreSymlink awesome_path;
-      };
-    };
+    home-manager.users."${lib.user.name}" = import "${inputs.self}/modules/home-manager/dotfiles/awesomewm";
   };
 }
