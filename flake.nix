@@ -53,12 +53,13 @@
 
     darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs lib;};
         system = "x86_64-darwin";
         modules = 
           (lib.getNixFiles ./modules/common)
           ++ (lib.getNixFiles ./modules/darwin)
           ++ [
+            inputs.home-manager.darwinModules.home-manager
             ./hosts/darwin/macbook
           ];
       };
