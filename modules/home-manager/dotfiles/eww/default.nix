@@ -1,11 +1,7 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     eww
-    inputs.dotfiles.packages.${pkgs.system}.eww-scripts
+    myEwwScripts
   ];
 
   xdg.configFile = {

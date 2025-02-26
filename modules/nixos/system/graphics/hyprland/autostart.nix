@@ -23,7 +23,7 @@ in {
     home-manager.users."${lib.user.name}".wayland.windowManager.hyprland = {
       settings = {
         exec-once = [
-          "${inputs.dotfiles.packages.${pkgs.system}.eww-scripts}/bin/ewwinit"
+          "${pkgs.myEwwScripts}/bin/ewwinit"
           "${lib.getExe autostart}"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           # "wl-paste --watch cliphist store"

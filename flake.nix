@@ -20,10 +20,8 @@
         overlays =
           [
             inputs.nvim-config.overlays.default
-            (_: prev: {
-              wallpapers = inputs.wallpapers.packages.${prev.system}.default;
-              myDotfiles = inputs.dotfiles.packages.${prev.system}.default;
-            })
+            inputs.wallpapers.overlays.default
+            inputs.dotfiles.overlays.default
           ]
           ++ (map import <| lib.getNixFiles ./overlays);
       }
@@ -92,20 +90,16 @@
     catppuccin.url = "github:catppuccin/nix";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    wallpapers.url = "github:anhphan156/Wallpapers";
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    wallpapers = {
-      url = "github:anhphan156/Wallpapers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dotfiles = {
       url = "github:anhphan156/dotfiles";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.wallpapers.follows = "wallpapers";
     };
 
     nvim-config = {
