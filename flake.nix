@@ -52,7 +52,7 @@
       });
 
     darwinConfigurations = {
-      system = inputs.nix-darwin.lib.darwinSystem {
+      default = inputs.nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs lib;};
         system = "x86_64-darwin";
         modules = 
