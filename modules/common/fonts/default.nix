@@ -7,6 +7,6 @@
       texlivePackages.typicons
     ];
 
-    enableDefaultPackages = true;
+    # enableDefaultPackages = true;
   };
 }

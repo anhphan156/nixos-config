@@ -59,6 +59,7 @@
           (lib.getNixFiles ./modules/common)
           ++ (lib.getNixFiles ./modules/darwin)
           ++ [
+            inputs.home-manager.darwinModules.home-manager
             ./hosts/darwin/macbook
           ];
       };
