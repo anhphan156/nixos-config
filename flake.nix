@@ -53,13 +53,39 @@
 
     darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs lib;};
+        specialArgs = inputs
+          // {
+              lib = inputs.nix-darwin.lib.extend (_: prev: {
+                user = rec {
+                  name = "anhphan";
+                  git_name = name;
+                  git_email = "anh.phan156@protonmail.com";
+                  path = {
+                    dev = "/home/${name}/data/dev";
+                    music = "/home/${name}/data/Music";
+                    screenshot = "/home/${name}/data/Pictures/screenshots";
+                    mpd = "/home/${name}/.local/share/mpd";
+                    nixconf = "/home/${name}/data/dev/nixos-config";
+                    docker = "/home/${name}/data/docker";
+                  };
+                };
+              });
+            };
         system = "x86_64-darwin";
         modules = 
           (lib.getNixFiles ./modules/common)
           ++ (lib.getNixFiles ./modules/darwin)
           ++ [
             inputs.home-manager.darwinModules.home-manager
+            {
+              home = {
+                username = lib.user.name;
+                homeDirectory = "/Users/${lib.user.name}";
+                stateVersion = "25.05";
+              };
+
+              programs.home-manager.enable = true;
+            }
             ./hosts/darwin/macbook
           ];
       };
