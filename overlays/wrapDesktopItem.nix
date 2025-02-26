@@ -5,7 +5,7 @@ _: prev: {
       |> prev.lib.strings.stringToCharacters
       |> prev.lib.concatMapStringsSep "" (x: if x == "_" then " " else x);
     desktopItem =
-      prev.makeDesktopItem ({
+      prev.makeDesktopItem <| {
         inherit name desktopName;
         genericName = "Scripts";
         noDisplay = false;
@@ -28,8 +28,7 @@ _: prev: {
         startupWMClass = name;
         prefersNonDefaultGPU = false;
         # extraConfig.X-SomeExtension = "somevalue";
-      }
-      // desktopItemArgs);
+      } // desktopItemArgs;
   in
     prev.symlinkJoin {
       inherit name;
