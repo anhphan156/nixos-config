@@ -11,7 +11,7 @@ in {
       firefox = enabled;
     };
     system = {
-      bootloader.plymouth = enabled;
+      # bootloader.plymouth = enabled;
       hostname = "backlight";
       acpid = enabled;
       # autorandr = enabled;

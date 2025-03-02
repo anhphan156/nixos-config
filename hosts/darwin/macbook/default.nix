@@ -15,7 +15,6 @@
   };
 
   home-manager.users.${lib.user.name} = {
-    home.username = lib.mkForce lib.user.name;
     home.homeDirectory = lib.mkForce "/Users/${lib.user.name}";
   };
 
