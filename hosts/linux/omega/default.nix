@@ -8,6 +8,7 @@ in {
         enable = mkForce true;
         spacebar = enabled;
       };
+      librewolf = enabled;
       googlechrome = enabled;
     };
     system = {
