@@ -69,7 +69,6 @@
             inputs.home-manager.darwinModules.home-manager
             ./hosts/darwin/macbook
             ./modules/common/nix_settings
-            ./modules/common/home-manager
           ];
       };
     };
