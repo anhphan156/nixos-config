@@ -50,16 +50,6 @@
       });
 
     darwinConfigurations = {
-      minimal = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs lib;};
-        system = "x86_64-darwin";
-        modules = 
-           (lib.getNixFiles ./modules/darwin)
-           ++ [
-            inputs.home-manager.darwinModules.home-manager
-            ./hosts/darwin/macbook
-          ];
-      };
       default = inputs.nix-darwin.lib.darwinSystem rec {
         system = "x86_64-darwin";
         pkgs = pkgsFor system;
