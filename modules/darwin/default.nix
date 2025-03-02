@@ -5,5 +5,8 @@
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
-  nix.settings.auto-optimise-store = lib.mkForce false;
+  nix.settings = {
+    auto-optimise-store = lib.mkForce false;
+    trusted-users = [lib.user.name];
+  };
 }
