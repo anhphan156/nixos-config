@@ -46,18 +46,18 @@ in {
       waterReminder = enabled;
       bluetooth = enabled;
       redshift = enabled;
-      ollama = {
-        enable = true;
-        acceleration = "cuda";
-        startupModel = "llama3.2:1b";
-      };
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "cuda";
+      #   startupModel = "llama3.2:1b";
+      # };
     };
     terminal = {
       tmux = enabled;
     };
     shell = {
       xonsh = enabled;
-      shell-gpt = enabled;
+      # shell-gpt = enabled;
     };
     dev = {
       c = enabled;
