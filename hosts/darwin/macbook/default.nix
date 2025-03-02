@@ -3,6 +3,8 @@
   lib,
   ...
 }: {
+  cyanea.graphical.gui = lib.enabled;
+
   environment.systemPackages = with pkgs; [
     neovim
     cmatrix
