@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -14,6 +15,9 @@
   };
 
   home-manager.users.${lib.user.name} = {
+    imports = [
+      "${inputs.self}/modules/home-manager/dotfiles/kitty"
+    ];
     home.homeDirectory = lib.mkForce "/Users/${lib.user.name}";
   };
 
