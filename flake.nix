@@ -64,11 +64,12 @@
         specialArgs = {inherit inputs lib;};
         system = "x86_64-darwin";
         modules = 
-          (lib.getNixFiles ./modules/common)
-          ++ (lib.getNixFiles ./modules/darwin)
+          (lib.getNixFiles ./modules/darwin)
           ++ [
             inputs.home-manager.darwinModules.home-manager
             ./hosts/darwin/macbook
+            ./modules/common/nix_settings
+            ./modules/common/home-manager
           ];
       };
     };

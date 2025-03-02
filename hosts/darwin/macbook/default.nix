@@ -5,9 +5,10 @@
   ...
 }: {
   nixpkgs.hostPlatform = "x86_64-darwin";
-  # nixpkgs.overlays = [
-  #   inputs.nvim-config.overlays.default
-  # ];
+  nixpkgs.overlays = [
+    inputs.nvim-config.overlays.default
+  ];
+  environment.systemPackages = with pkgs; [neovim];
 
   users.users.${lib.user.name} = {
     home = "/Users/${lib.user.name}";
