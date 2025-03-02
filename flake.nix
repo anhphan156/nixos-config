@@ -50,9 +50,7 @@
       });
 
     darwinConfigurations = {
-      default = let 
-        darwinLib = inputs.nix-darwin.lib.extend <| import ./libs; 
-      in darwinLib.darwinSystem rec {
+      default = inputs.nix-darwin.lib.darwinSystem rec {
         system = "x86_64-darwin";
         pkgs = pkgsFor system;
         specialArgs = {inherit inputs;};
