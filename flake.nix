@@ -60,11 +60,13 @@
             ./hosts/darwin/macbook
           ];
       };
-      default = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs lib;};
+      default = inputs.nix-darwin.lib.darwinSystem rec {
         system = "x86_64-darwin";
+        pkgs = pkgsFor system;
+        specialArgs = {inherit inputs lib;};
         modules = 
           (lib.getNixFiles ./modules/darwin)
+          ++ (lib.getNixFiles ./modules/common)
           ++ [
             inputs.home-manager.darwinModules.home-manager
             ./hosts/darwin/macbook
