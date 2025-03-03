@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  inputs,
+  ...
+}: let
   inherit (lib) enabled;
 in {
   cyanea = {
@@ -14,6 +18,8 @@ in {
       rust = enabled;
     };
   };
+
+  home-manager.users."${lib.user.name}" = import "${inputs.self}/modules/home-manager/dotfiles/kitty";
 
   wsl.enable = true;
   wsl.defaultUser = lib.user.name;

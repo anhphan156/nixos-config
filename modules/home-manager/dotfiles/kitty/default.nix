@@ -1,6 +1,7 @@
 {
   programs.kitty = {
     enable = true;
+    shellIntegration.mode = "no-cursor";
     settings = {
       font_family = "AnkaCoder-r";
       italic_font = "AnkaCoder-i";
