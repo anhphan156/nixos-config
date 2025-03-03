@@ -1,5 +1,5 @@
 {
-  keyboard = {
+  defaults.keyboard = {
     enableKeyMapping = true;
 
     remapCapsLockToControl = true;
