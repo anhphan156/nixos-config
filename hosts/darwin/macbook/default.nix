@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     cmatrix
+    cowsay
   ];
 
   users.users.${lib.user.name} = {
