@@ -11,6 +11,7 @@
       gcc
       gdb
       valgrind
+      man-pages
       (pkgs.callPackage (inputs.self + /packages/scripts/dev/gdb-tmux.nix) {})
     ];
   };

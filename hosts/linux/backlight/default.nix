@@ -9,6 +9,7 @@ in {
     host.backlight = true;
     desktopApp = {
       firefox = enabled;
+      librewolf = enabled;
     };
     system = {
       # bootloader.plymouth = enabled;
