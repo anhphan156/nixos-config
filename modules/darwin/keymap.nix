@@ -1,5 +1,5 @@
 {
-  defaults.keyboard = {
+  system.defaults.keyboard = {
     enableKeyMapping = true;
 
     remapCapsLockToControl = true;
