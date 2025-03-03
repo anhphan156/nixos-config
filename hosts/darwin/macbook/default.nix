@@ -3,7 +3,12 @@
   lib,
   ...
 }: {
-  cyanea.graphical.gui = lib.enabled;
+  cyanea = {
+    desktopApp = {
+      librewolf = lib.enabled;
+    };
+    graphical.gui = lib.enabled;
+  };
 
   environment.systemPackages = with pkgs; [
     neovim
