@@ -39,6 +39,7 @@ in {
 
             # window control
             "$mod, F, togglefloating"
+            "SUPERSHIFT, F, pseudo"
             "$mod, M, fullscreen, 1"
 
             # alt tab

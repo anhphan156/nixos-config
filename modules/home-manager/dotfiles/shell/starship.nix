@@ -6,16 +6,21 @@
       add_newline = false;
       scan_timeout = 10;
       format = lib.concatStrings [
-        "╭───── $directory$c$rust$nix_shell$os"
+        "[➜](bold green) $directory$c$rust$nix_shell$os"
         "$line_break"
-        "╰──$character"
+        "$character"
       ];
+      # format = lib.concatStrings [
+      #   "╭───── $directory$c$rust$nix_shell$os"
+      #   "$line_break"
+      #   "╰──$character"
+      # ];
       right_format = lib.concatStrings [
         "$git_branch$git_status"
       ];
       character = {
-        success_symbol = "[](bold white)";
-        error_symbol = "[](bold red)";
+        success_symbol = "[↪](bold white)";
+        error_symbol = "[↪](bold red)";
       };
       hostname = {
         ssh_only = false;

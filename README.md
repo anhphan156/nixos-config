@@ -2,6 +2,10 @@
 
 This flake provides system configuration for my NixOS computers, which share many common services and features.
 
+## Screenshots
+
+![desktop](https://i.imgur.com/0WEGVkj.png)
+
 ## Features
 
 |Config                                                                  |                                          |
