@@ -41,6 +41,7 @@ in {
             "$mod, F, togglefloating"
             "SUPERSHIFT, F, pseudo"
             "$mod, M, fullscreen, 1"
+            "SUPERSHIFT, M, fullscreen, 0"
 
             # alt tab
             "ALT, TAB, cyclenext"
