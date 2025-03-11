@@ -3,8 +3,13 @@
   pkgs,
   lib,
   inputs,
+  modulesPath,
   ...
 }: {
+  imports = [
+    "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
+  ];
+
   users.users."${lib.user.name}".initialPassword = "123";
 
   hardware.enableAllFirmware = true;
@@ -81,6 +86,7 @@
   networking.wireless.enable = lib.mkForce false;
   cyanea = {
     desktopApp = {
+      librewolf = lib.enabled;
       firefox = lib.enabled;
     };
     graphical = {
@@ -88,6 +94,9 @@
       hyprland = lib.enabled;
     };
     terminal.tmux = lib.enabled;
+    shell = {
+      xonsh = lib.enabled;
+    };
     system = {
       hostname = "NixosIntallerISO";
       xremap = lib.enabled;
