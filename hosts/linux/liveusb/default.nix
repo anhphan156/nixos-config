@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  config,
   inputs,
   modulesPath,
   ...
@@ -12,6 +13,10 @@
 
   users.users."${lib.user.name}".initialPassword = "123";
 
+  # boot.kernelModules = ["brcmfmac"];
+  boot.kernelModules = ["wl"];
+  boot.blacklistedKernelModules = ["b43" "bcma"];
+  boot.extraModulePackages = with config.boot.kernelPackages; [broadcom_sta];
   hardware.enableAllFirmware = true;
 
   environment = {
