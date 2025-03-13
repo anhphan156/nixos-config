@@ -32,6 +32,7 @@
     python3
     entr
     tree
+    man-pages
 
     (callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {})
     (callPackage "${inputs.self}/packages/kabmat" {})

@@ -19,9 +19,6 @@ in {
     shell = {
       xonsh = enabled;
     };
-    dev = {
-      c = enabled;
-    };
     tools = {
       cybersec = enabled;
     };

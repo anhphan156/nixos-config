@@ -60,11 +60,6 @@ in {
       xonsh = enabled;
       # shell-gpt = enabled;
     };
-    dev = {
-      c = enabled;
-      haskell = enabled;
-      avr = enabled;
-    };
     virtualization = {
       libvirt = enabled;
       docker = {

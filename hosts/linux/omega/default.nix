@@ -63,10 +63,6 @@ in {
     shell = {
       xonsh = enabled;
     };
-    dev = {
-      c = enabled;
-      # rust = enabled;
-    };
     virtualization = {
       libvirt = enabled;
       docker = enabled;

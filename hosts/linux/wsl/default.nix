@@ -13,10 +13,6 @@ in {
     terminal = {
       tmux = enabled;
     };
-    dev = {
-      c = enabled;
-      rust = enabled;
-    };
   };
 
   home-manager.users."${lib.user.name}" = import "${inputs.self}/modules/home-manager/dotfiles/kitty";
