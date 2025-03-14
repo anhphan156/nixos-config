@@ -80,6 +80,7 @@ in {
             "opacity 1.0 override 1.0 override,class:(vesktop)"
             "opacity 1.0 override 1.0 override,class:(discord)"
             "opacity 1.0 override 1.0 override,class:(steam)"
+            "opacity 1.0 override 1.0 override,class:(evince)"
             "opacity 1.0 override 1.0 override,title:(GlslViewer)"
 
             "float,title:(GLFW)"
