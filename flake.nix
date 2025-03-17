@@ -27,9 +27,9 @@
       }
       // {inherit lib;};
   in {
-    nixosConfigurations = let
+    nixosConfigurations = forAllLinuxHosts (host: let 
       pkgs = pkgsFor "x86_64-linux";
-    in forAllLinuxHosts (host: pkgs.lib.nixosSystem {
+    in pkgs.lib.nixosSystem {
       inherit pkgs;
       inherit (pkgs) system;
       specialArgs = {inherit inputs;};
@@ -64,7 +64,16 @@
       };
     };
 
-    homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home);
+    homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home) 
+    // {
+      gentoo = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor "x86_64-linux";
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/home-manager/gentoo
+        ];
+      };
+    };
 
     checks = forAllSystems (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
