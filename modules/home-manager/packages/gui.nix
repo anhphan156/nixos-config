@@ -18,6 +18,7 @@ in {
     obs-studio
     zoom-us
     discord
+    vesktop
     obsidian
     keepassxc
     (callPackage "${inputs.self}/packages/scripts/rofi/search_docs.nix" {

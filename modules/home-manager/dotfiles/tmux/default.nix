@@ -10,8 +10,9 @@
       set-option -g allow-passthrough on
     '';
 
-    plugins = with pkgs; [
-      tmuxPlugins.nord
+    plugins = with pkgs.tmuxPlugins; [
+      nord
+      vim-tmux-navigator
     ];
   };
 }
