@@ -32,7 +32,7 @@ in {
           id = 1;
           search = {
             force = true;
-            default = "DuckDuckGo";
+            default = "ddg";
           };
           extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
             ublock-origin
@@ -43,7 +43,7 @@ in {
           isDefault = true;
           search = {
             force = true;
-            default = "DuckDuckGo";
+            default = "ddg";
             engines = {
               "Nix Packages" = {
                 urls = [
