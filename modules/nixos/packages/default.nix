@@ -18,6 +18,17 @@ in {
     neovim
     cachix
     alejandra
+    (let
+      base = pkgs.appimageTools.defaultFhsEnvArgs;
+    in
+      buildFHSEnv (base
+        // {
+          name = "fhs";
+          inherit (base) targetPkgs;
+          profile = "export FHS=1";
+          runScript = "bash";
+          extraOutputsToInstall = ["dev"];
+        }))
   ];
 
   home-manager.users.${lib.user.name}.imports =
