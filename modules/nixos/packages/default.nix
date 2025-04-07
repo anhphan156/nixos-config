@@ -26,7 +26,7 @@ in {
           name = "fhs";
           inherit (base) targetPkgs;
           profile = "export FHS=1";
-          runScript = "bash";
+          runScript = "zsh";
           extraOutputsToInstall = ["dev"];
         }))
   ];
