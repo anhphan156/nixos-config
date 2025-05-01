@@ -4,7 +4,7 @@
   ...
 }: {
   programs.zsh = {
-    initExtra = lib.mkBefore ''
+    initContent = lib.mkBefore ''
       fastfetch
     '';
   };

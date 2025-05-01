@@ -24,7 +24,6 @@ in {
       buildFHSEnv (base
         // {
           name = "fhs";
-          inherit (base) targetPkgs;
           profile = "export FHS=1";
           runScript = "zsh";
           extraOutputsToInstall = ["dev"];

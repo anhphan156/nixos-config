@@ -28,7 +28,7 @@
       plugins = ["git" "z" "vi-mode"];
     };
 
-    initExtra = lib.mkAfter ''
+    initContent = lib.mkAfter ''
       GREEN='\033[0;32m'
       RED='\033[0;31m'
       MAGENTA='\033[0;35m'

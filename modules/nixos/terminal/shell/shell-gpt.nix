@@ -14,7 +14,7 @@
     ];
     home-manager.users."${lib.user.name}" = {
       programs.zsh = {
-        initExtra = lib.mkBefore ''
+        initContent = lib.mkBefore ''
           # Shell-GPT integration ZSH v0.2
           _sgpt_zsh() {
           if [[ -n "$BUFFER" ]]; then
