@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) enabled mkForce;
 in {
   cyanea = {
@@ -88,6 +92,10 @@ in {
         dockPosition = "right center";
       };
     })
+  ];
+
+  environment.systemPackages = with pkgs; [
+    prismlauncher
   ];
 
   system.stateVersion = "23.11";
