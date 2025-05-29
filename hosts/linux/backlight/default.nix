@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   inherit (lib) enabled mkIf mkForce;
@@ -150,6 +151,21 @@ in {
   };
 
   users.users."${lib.user.name}".initialPassword = "123";
+
+  environment.systemPackages =
+    builtins.map (game:
+      pkgs.wrapDesktopItem {categories = ["Game"];} (pkgs.buildFHSEnv
+        <| pkgs.appimageTools.defaultFhsEnvArgs
+        // {
+          name = game;
+          runScript = "/home/${lib.user.name}/data/Games/${game}/${game}.sh";
+        }))
+    [
+      "Eternum"
+      "TheHeadmaster"
+      "Ripples"
+      "HaremHotel"
+    ];
 
   system.stateVersion = "23.11";
 }
