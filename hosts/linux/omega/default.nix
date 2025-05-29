@@ -18,6 +18,7 @@ in {
     system = {
       pipewire = enabled;
       xremap = enabled;
+      pluggableDevices.sdcard = enabled;
     };
     graphical = {
       gui = enabled;
