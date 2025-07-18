@@ -37,17 +37,18 @@
 
   home.packages = with pkgs; [
     neovim
-    librewolf
+    # librewolf
     discord
+    keepassxc
     (callPackage "${inputs.self}/packages/scripts/rofi/text_clipboard.nix" {
       rofiPromptConfig = config.dotfiles.rofi.prompt;
       rofiImgConfig = config.dotfiles.rofi.image;
     })
-    (callPackage "${inputs.self}/packages/scripts/dev/devgui.nix" {
-      basePath = lib.user.path.dev;
-      tmux_code = callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {};
-      rofiConfig = config.dotfiles.rofi.default;
-    })
+    # (callPackage "${inputs.self}/packages/scripts/dev/devgui.nix" {
+    #   basePath = lib.user.path.dev;
+    #   tmux_code = callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {};
+    #   rofiConfig = config.dotfiles.rofi.default;
+    # })
     (callPackage "${inputs.self}/packages/scripts/rofi/search_docs.nix" {
       rofiConfig = config.dotfiles.rofi.oneColumn;
     })
