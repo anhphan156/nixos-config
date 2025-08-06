@@ -16,7 +16,7 @@
     "${inputs.self}/modules/home-manager/dotfiles/shell/starship.nix"
   ];
 
-  programs.fastfetch.settings.logo = lib.mkForce "${pkgs.wallpapers}/fetch_logo/sw.png";
+  programs.fastfetch.settings.logo = lib.mkForce "${pkgs.wallpapers}/fetch_logo/galaxy.png";
 
   programs.zsh.shellAliases = {
     "sv" = "sudo /home/${lib.user.name}/.nix-profile/bin/nvim";

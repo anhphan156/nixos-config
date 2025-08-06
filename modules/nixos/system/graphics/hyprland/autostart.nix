@@ -14,7 +14,7 @@
   autostart = pkgs.writeShellScriptBin "start" ''
     pypr &
 
-    swww init &
+    swww-daemon &
     sleep 1
     ${swww_scripts}/bin/swww_sm
   '';
