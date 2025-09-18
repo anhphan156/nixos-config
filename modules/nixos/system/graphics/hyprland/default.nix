@@ -64,9 +64,9 @@ in {
             };
           };
 
-          gestures = {
-            workspace_swipe = true;
-          };
+          # gestures = {
+          #   workspace_swipe = true;
+          # };
 
           dwindle = {
             pseudotile = true;

@@ -16,7 +16,7 @@
       imports = [
         "${inputs.self}/modules/home-manager/dotfiles/rofi"
       ];
-      home.packages = [pkgs.rofi-wayland];
+      home.packages = [pkgs.rofi];
     };
   };
 }

@@ -21,6 +21,7 @@ in {
     vesktop
     obsidian
     keepassxc
+    baobab
     (callPackage "${inputs.self}/packages/scripts/rofi/search_docs.nix" {
       rofiConfig = rofiCfg.oneColumn;
     })

@@ -8,5 +8,5 @@ _: prev: {
     withSDL2 = true;
   };
 
-  rofi = prev.rofi-wayland;
+  # rofi = prev.rofi-wayland;
 }
