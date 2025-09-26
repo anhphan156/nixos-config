@@ -1,6 +1,9 @@
 {lib, ...}: {
   programs.git = {
     enable = true;
+
+    lfs = lib.enabled;
+
     userName = lib.user.git_name;
     userEmail = lib.user.git_email;
 
