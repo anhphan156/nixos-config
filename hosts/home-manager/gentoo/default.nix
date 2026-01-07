@@ -42,7 +42,9 @@
       rofiImgConfig = config.dotfiles.rofi.image;
     })
     (callPackage "${inputs.self}/packages/scripts/media/screenshots.nix" {
-      slurp = inputs.image-slurp.packages.${pkgs.system}.default;
+      slurp = pkgs.slurp.overrideAttrs {
+        src = inputs.image-slurp;
+      };
     })
     # (callPackage "${inputs.self}/packages/scripts/dev/devgui.nix" {
     #   basePath = lib.user.path.dev;
