@@ -36,12 +36,13 @@
 
   home.packages = with pkgs; [
     neovim
-    # librewolf
-    # discord
     keepassxc
     (callPackage "${inputs.self}/packages/scripts/rofi/text_clipboard.nix" {
       rofiPromptConfig = config.dotfiles.rofi.prompt;
       rofiImgConfig = config.dotfiles.rofi.image;
+    })
+    (callPackage "${inputs.self}/packages/scripts/media/screenshots.nix" {
+      slurp = inputs.image-slurp.packages.${pkgs.system}.default;
     })
     # (callPackage "${inputs.self}/packages/scripts/dev/devgui.nix" {
     #   basePath = lib.user.path.dev;
