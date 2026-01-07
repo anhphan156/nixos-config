@@ -27,26 +27,27 @@
       }
       // {inherit lib;};
   in {
-    nixosConfigurations = forAllLinuxHosts (host: let 
+    nixosConfigurations = forAllLinuxHosts (host: let
       pkgs = pkgsFor "x86_64-linux";
-    in pkgs.lib.nixosSystem {
-      inherit pkgs;
-      inherit (pkgs) system;
-      specialArgs = {inherit inputs;};
-      modules = 
-        (lib.getNixFiles "${self}/hosts/linux/${host}")
-        ++ (lib.getNixFiles ./modules/common)
-        ++ (lib.getNixFiles ./modules/nixos)
-        ++ [
-          inputs.home-manager.nixosModules.home-manager
-          inputs.nixvim.nixosModules.nixvim
-          inputs.xremap.nixosModules.default
-          inputs.catppuccin.nixosModules.catppuccin
-          inputs.dotfiles.nixosModules.default
-          inputs.disko.nixosModules.default
-          inputs.impermanence.nixosModules.impermanence
-          inputs.nixos-wsl.nixosModules.default
-        ];
+    in
+      pkgs.lib.nixosSystem {
+        inherit pkgs;
+        inherit (pkgs) system;
+        specialArgs = {inherit inputs;};
+        modules =
+          (lib.getNixFiles "${self}/hosts/linux/${host}")
+          ++ (lib.getNixFiles ./modules/common)
+          ++ (lib.getNixFiles ./modules/nixos)
+          ++ [
+            inputs.home-manager.nixosModules.home-manager
+            inputs.nixvim.nixosModules.nixvim
+            inputs.xremap.nixosModules.default
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.dotfiles.nixosModules.default
+            inputs.disko.nixosModules.default
+            inputs.impermanence.nixosModules.impermanence
+            inputs.nixos-wsl.nixosModules.default
+          ];
       });
 
     darwinConfigurations = {
@@ -54,7 +55,7 @@
         system = "x86_64-darwin";
         pkgs = pkgsFor system;
         specialArgs = {inherit inputs;};
-        modules = 
+        modules =
           (lib.getNixFiles ./modules/darwin)
           ++ (lib.getNixFiles ./modules/common)
           ++ [
@@ -64,16 +65,17 @@
       };
     };
 
-    homeConfigurations = forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home) 
-    // {
-      gentoo = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor "x86_64-linux";
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/home-manager/gentoo
-        ];
+    homeConfigurations =
+      forAllLinuxHosts (host: self.nixosConfigurations.${host}.config.home-manager.users.${lib.user.name}.home)
+      // {
+        gentoo = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsFor "x86_64-linux";
+          extraSpecialArgs = {inherit inputs;};
+          modules = [
+            ./hosts/home-manager/gentoo
+          ];
+        };
       };
-    };
 
     checks = forAllSystems (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
@@ -101,6 +103,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     wallpapers.url = "github:anhphan156/Wallpapers";
+    image-slurp.url = "github:anhphan156/slurp";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";

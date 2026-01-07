@@ -27,8 +27,8 @@ in {
       };
     };
 
-    services.logind.extraConfig = ''
-      HandlePowerKey=ignore
-    '';
+    # services.logind.extraConfig = ''
+    #   HandlePowerKey=ignore
+    # '';
   };
 }
