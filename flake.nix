@@ -103,7 +103,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     wallpapers.url = "github:anhphan156/Wallpapers";
-    image-slurp.url = "github:anhphan156/slurp";
+    image-slurp.url = "github:anhphan156/slurp/DrawRectImage";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
