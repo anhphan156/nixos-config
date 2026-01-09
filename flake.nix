@@ -103,7 +103,9 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     wallpapers.url = "github:anhphan156/Wallpapers";
-    image-slurp.url = "github:anhphan156/slurp/DrawRectImage";
+    mscreenshot = {
+      url = "git+https://github.com/anhphan156/mscreenshot";
+    };
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -140,10 +142,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    archlinux-keyring = {
-      url = "https://archlinux.org/packages/core/any/archlinux-keyring/download/";
-      flake = false;
-    };
+    # archlinux-keyring = {
+    #   url = "https://archlinux.org/packages/core/any/archlinux-keyring/download/";
+    #   flake = false;
+    # };
 
     archlinux-mirrorlist = {
       url = "https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4";

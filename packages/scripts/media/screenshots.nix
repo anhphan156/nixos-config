@@ -1,4 +1,5 @@
 {
+  lib,
   writeShellApplication,
   grim,
   slurp,
@@ -7,33 +8,59 @@
   imagemagick,
   libnotify,
   wallpapers,
+  formats,
+  mscreenshot,
   margin ? 10,
   radius ? 15,
   ...
-}:
-writeShellApplication {
-  name = "BorderedScreenshot";
-  runtimeInputs = [grim slurp wl-clipboard gawk imagemagick libnotify];
-  text = ''
-    fn=$(echo -e "regular\nborder\ntwosoyjak\ntwosoyjakscaled\nsparkle" | rofi -dmenu -p "Enter a style")
-    if [ "$fn" == "sparkle" ]; then
-    	region=$(slurp -d -O "${wallpapers}/stickers/sparkle.png")
-    	sleep 1
-    else
-    	region=$(slurp -d)
-    fi
-
-           dimension=$(echo "$region" | awk '{print $2}')
-           w=$(echo "$dimension" | cut -d'x' -f1)
-           h=$(echo "$dimension" | cut -d'x' -f2)
+}: let
+  screenshot_config = (formats.json {}).generate "meme_screenshot_config.json" {
+    sparkle = {
+      stickers = [
+        {
+          path = "${wallpapers}/stickers/sparkle.png";
+          pivot = 3;
+          anchor = 3;
+          scale = 1;
+        }
+      ];
+    };
+    yae = {
+      stickers = [
+        {
+          path = "${wallpapers}/stickers/twosoyjaklumine.png";
+          pivot = 3;
+          anchor = 3;
+          scale = 0.4;
+        }
+        {
+          path = "${wallpapers}/stickers/twosoyjakyae.png";
+          pivot = 2;
+          anchor = 2;
+          scale = 0.4;
+        }
+      ];
+    };
+  };
+in
+  writeShellApplication {
+    name = "BorderedScreenshot";
+    runtimeInputs = [grim slurp wl-clipboard gawk imagemagick libnotify];
+    text = ''
+      fn=$(echo -e "regular\nborder\ntwosoyjak\nsparkle" | rofi -dmenu -p "Enter a style")
 
            random_name=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 30)
            fg="/tmp/$random_name-fg.png"
            out="/tmp/$random_name-output.png"
 
            border(){
-               m=${builtins.toString margin}
-               r=${builtins.toString radius}
+      		region=$(slurp -d)
+           	dimension=$(echo "$region" | awk '{print $2}')
+           	w=$(echo "$dimension" | cut -d'x' -f1)
+           	h=$(echo "$dimension" | cut -d'x' -f2)
+
+               m=${toString margin}
+               r=${toString radius}
 
                grim -g "$region" -t png "$fg"
 
@@ -47,6 +74,7 @@ writeShellApplication {
            }
 
            regular() {
+      			region=$(slurp -d)
                grim -g "$region" -t png "$out"
 
                copy "$out"
@@ -54,44 +82,14 @@ writeShellApplication {
            }
 
            twosoyjak() {
-               grim -g "$region" -t png "$fg"
-               magick -size "$((w))x$((h))" xc:none \
-                 "$fg" -composite \
-                 "${wallpapers}/stickers/twosoyjaklumine.png" -geometry "+0+$((h-750))" -composite \
-                 "${wallpapers}/stickers/twosoyjakyae.png" -geometry "+$((w-500))+$((h-750))" -composite \
-                 "$out"
-
-               copy "$out"
-               rm "$fg" "$out"
-           }
-
-           twosoyjakscaled() {
-               grim -g "$region" -t png "$fg"
-
-               sticker_w=$((800*w/1920))
-               sticker_h=$((750*sticker_w/500))
-
-               magick -size "$((w))x$((h))" xc:none \
-                 "$fg" -composite \
-                 \( "${wallpapers}/stickers/twosoyjaklumine.png" -scale "$((sticker_w))x$((sticker_h))" \) -geometry "+0+$((h-sticker_h))" -composite \
-                 \( "${wallpapers}/stickers/twosoyjakyae.png" -scale "$((sticker_w))x$((sticker_h))" \) -geometry "+$((w-sticker_w))+$((h-sticker_h))" -composite \
-                 "$out"
+               MEME_SCREENSHOT_CONFIG=${screenshot_config} ${lib.getExe mscreenshot} -s yae -o "$out"
 
                copy "$out"
                rm "$fg" "$out"
            }
 
        sparkle() {
-    grim -g "$region" -t png "$fg"
-
-               sticker_w=$((w))
-               sticker_h=$((1080*sticker_w/1920))
-
-               magick -size "$((w))x$((h))" xc:none \
-                 "$fg" -composite \
-                 \( "${wallpapers}/stickers/sparkle.png" -scale "$((sticker_w))x$((sticker_h))" \) -geometry "+0+$((h-sticker_h))" -composite \
-                 "$out"
-
+               MEME_SCREENSHOT_CONFIG=${screenshot_config} ${lib.getExe mscreenshot} -s sparkle -o "$out"
                copy "$out"
                rm "$fg" "$out"
        }
@@ -102,5 +100,5 @@ writeShellApplication {
            }
 
            $fn
-  '';
-}
+    '';
+  }

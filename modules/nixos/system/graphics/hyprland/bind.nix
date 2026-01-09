@@ -11,11 +11,7 @@
     rofiConfig = config.dotfiles.rofi.prompt;
   };
 
-  screenshots = pkgs.callPackage (inputs.self + /packages/scripts/media/screenshots.nix) {
-    slurp = pkgs.slurp.overrideAttrs {
-      src = inputs.image-slurp;
-    };
-  };
+  screenshots = pkgs.callPackage (inputs.self + /packages/scripts/media/screenshots.nix) {};
   screenshotPath = "${lib.user.path.screenshot}/$(date +'%s_grim.png')";
 
   swww_scripts = pkgs.callPackage (inputs.self + /packages/scripts/media/swww_scripts.nix) {
