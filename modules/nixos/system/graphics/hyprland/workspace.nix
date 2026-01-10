@@ -24,9 +24,7 @@ in {
       settings = let
         inherit (cfg.hyprland.monitor) monitorList workspaceList;
       in {
-        workspace = [
-          "1, border:0, rounding:0, gapsin:0, gapsout:0"
-        ] ++ (builtins.concatLists <| lib.lists.zipListsWith (x: y: y |> map (z: "${toString z},monitor:${x}")) monitorList workspaceList);
+        workspace = builtins.concatLists <| lib.lists.zipListsWith (x: y: y |> map (z: "${toString z},monitor:${x}")) monitorList workspaceList;
       };
     };
   };

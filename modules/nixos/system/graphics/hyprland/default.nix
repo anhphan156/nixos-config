@@ -35,6 +35,7 @@ in {
           };
 
           decoration = {
+            shadow.enabled = false;
             # drop_shadow = "yes";
             # shadow_range = "300";
             # shadow_render_power = "4";
@@ -72,28 +73,28 @@ in {
             pseudotile = true;
           };
 
-          windowrulev2 = [
-            "opacity 1.0 override 1.0 override,class:(firefox)"
-            "opacity 1.0 override 1.0 override,class:(librewolf)"
-            "opacity 1.0 override 1.0 override,class:(Google-chrome)"
-            "opacity 1.0 override 1.0 override,class:(virt-manager)"
-            "opacity 1.0 override 1.0 override,class:(vesktop)"
-            "opacity 1.0 override 1.0 override,class:(discord)"
-            "opacity 1.0 override 1.0 override,class:(steam)"
-            "opacity 1.0 override 1.0 override,class:(evince)"
-            "opacity 1.0 override 1.0 override,title:(GlslViewer)"
+          windowrule = [
+            "opacity 1.0 override 1.0 override 1.0 override, match:class firefox"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class librewolf"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class Google-chrome"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class virt-manager"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class vesktop"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class discord"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class steam"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class evince"
+            "opacity 1.0 override 1.0 override 1.0 override, match:title GlslViewer"
 
-            "float,title:(GLFW)"
-            "animation slidefade 20%,title:(GLFW)"
+            "float on, match:title GLFW"
+            "animation slidefade 20%, match:title GLFW"
           ];
 
           layerrule = [
-            "animation popin 20%, ^(rofi)$"
-            "blur, ^(rofi)$"
-            "ignorezero, ^(rofi)$"
-            "dimaround, ^(rofi)$"
+            "animation popin 20%, match:namespace ^(rofi)$"
+            "blur on, match:namespace ^(rofi)$"
+            # "ignorezero, ^(rofi)$"
+            "dim_around on, match:namespace ^(rofi)$"
 
-            "blur,^(ewwblur)$"
+            "blur on, match:namespace ^(ewwblur)$"
           ];
         };
       };
