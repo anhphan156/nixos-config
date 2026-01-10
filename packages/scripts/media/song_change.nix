@@ -1,14 +1,16 @@
 {
+  lib,
   writeShellApplication,
   awesome,
   libnotify,
   gawk,
   wallpapers,
+  is_awesome ? false,
   ...
 }:
 writeShellApplication {
   name = "song_change";
-  runtimeInputs = [awesome libnotify gawk];
+  runtimeInputs = [libnotify gawk] ++ lib.optional is_awesome [awesome];
   text = ''
     session=$(loginctl list-sessions | awk '$4 == "seat0" {print $1}' | xargs loginctl show-session | grep Desktop | cut -d'=' -f2)
 

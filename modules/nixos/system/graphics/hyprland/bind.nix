@@ -11,7 +11,9 @@
     rofiConfig = config.dotfiles.rofi.prompt;
   };
 
-  screenshots = pkgs.callPackage (inputs.self + /packages/scripts/media/screenshots.nix) {};
+  screenshots = pkgs.callPackage (inputs.self + /packages/scripts/media/screenshots.nix) {
+    mscreenshot = inputs.mscreenshot.packages.${pkgs.system}.default;
+  };
   screenshotPath = "${lib.user.path.screenshot}/$(date +'%s_grim.png')";
 
   swww_scripts = pkgs.callPackage (inputs.self + /packages/scripts/media/swww_scripts.nix) {

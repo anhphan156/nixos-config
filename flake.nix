@@ -32,7 +32,7 @@
     in
       pkgs.lib.nixosSystem {
         inherit pkgs;
-        inherit (pkgs) system;
+        # inherit (pkgs) system;
         specialArgs = {inherit inputs;};
         modules =
           (lib.getNixFiles "${self}/hosts/linux/${host}")
@@ -51,9 +51,9 @@
       });
 
     darwinConfigurations = {
-      default = inputs.nix-darwin.lib.darwinSystem rec {
-        system = "x86_64-darwin";
-        pkgs = pkgsFor system;
+      default = inputs.nix-darwin.lib.darwinSystem {
+        # system = "x86_64-darwin";
+        pkgs = pkgsFor "x86_64-darwin";
         specialArgs = {inherit inputs;};
         modules =
           (lib.getNixFiles ./modules/darwin)
@@ -142,10 +142,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # archlinux-keyring = {
-    #   url = "https://archlinux.org/packages/core/any/archlinux-keyring/download/";
-    #   flake = false;
-    # };
+    archlinux-keyring = {
+      url = "https://archlinux.org/packages/core/any/archlinux-keyring/download/";
+      flake = false;
+    };
 
     archlinux-mirrorlist = {
       url = "https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4";

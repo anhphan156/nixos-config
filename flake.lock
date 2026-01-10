@@ -1,9 +1,21 @@
 {
   "nodes": {
+    "archlinux-keyring": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-q+yajnSaM5qvCL14QpjbA62r5IzttsufdXNl9s+IJW8=",
+        "type": "file",
+        "url": "https://archlinux.org/packages/core/any/archlinux-keyring/download/"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://archlinux.org/packages/core/any/archlinux-keyring/download/"
+      }
+    },
     "archlinux-mirrorlist": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-7g/bZfpzRMd9djPURvo0A/COhG1By8IZMHsMnjFK4e4=",
+        "narHash": "sha256-EyMfZEvcooDkNeS8J7P7TU7G5+bRQXA7LjjommyDPIg=",
         "type": "file",
         "url": "https://archlinux.org/mirrorlist/?country=US&ip_version=4&protocol=http"
       },
@@ -636,6 +648,7 @@
     },
     "root": {
       "inputs": {
+        "archlinux-keyring": "archlinux-keyring",
         "archlinux-mirrorlist": "archlinux-mirrorlist",
         "catppuccin": "catppuccin",
         "disko": "disko",

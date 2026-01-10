@@ -17,7 +17,7 @@
         (callPackage (inputs.self + /packages/scripts/media/spawn_ncmpcpp.nix) {})
         (callPackage (inputs.self + /packages/scripts/media/music_retag.nix) {musicPath = lib.user.path.music;})
         (callPackage (inputs.self + /packages/scripts/media/yt-dlp_mp3.nix) {musicPath = lib.user.path.music;})
-        mpc-cli
+        mpc
       ]);
   };
 }
