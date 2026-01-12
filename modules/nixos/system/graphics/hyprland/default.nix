@@ -81,7 +81,7 @@ in {
             "opacity 1.0 override 1.0 override 1.0 override, match:class vesktop"
             "opacity 1.0 override 1.0 override 1.0 override, match:class discord"
             "opacity 1.0 override 1.0 override 1.0 override, match:class steam"
-            "opacity 1.0 override 1.0 override 1.0 override, match:class evince"
+            "opacity 1.0 override 1.0 override 1.0 override, match:class org.gnome.Evince"
             "opacity 1.0 override 1.0 override 1.0 override, match:title GlslViewer"
 
             "float on, match:title GLFW"
