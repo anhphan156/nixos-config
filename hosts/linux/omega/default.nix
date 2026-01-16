@@ -101,5 +101,7 @@ in {
 
   programs.ssh.startAgent = true;
 
+  services.gvfs = enabled;
+
   system.stateVersion = "23.11";
 }
