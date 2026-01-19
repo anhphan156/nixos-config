@@ -7,7 +7,7 @@
     settings = {
       user.name = lib.user.git_name;
       user.email = lib.user.git_email;
-      aliases = {
+      alias = {
         # common aliases
         br = "branch";
         co = "checkout";
@@ -23,9 +23,7 @@
         # update = "submodule update --init --recursive";
         # foreach = "submodule foreach";
       };
-      extraConfig = {
-        pull.rebase = true;
-      };
+      pull.rebase = true;
     };
 
     # includes = [

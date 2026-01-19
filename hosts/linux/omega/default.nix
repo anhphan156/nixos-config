@@ -37,7 +37,7 @@ in {
             offset_1 = -1 * width_1 / scale_1;
           in [
             "${toString width_1}x2160,${toString offset_1}x0,${toString scale_1}"
-            "${toString width_2}x1080@144,0x0,1,bitdepth,10"
+            "${toString width_2}x1080@144,0x0,1"
           ];
           workspaceList = [[4 5 6] [1 2 3]];
         };

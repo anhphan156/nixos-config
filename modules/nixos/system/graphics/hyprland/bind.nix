@@ -47,7 +47,7 @@ in {
 
             # alt tab
             "ALT, TAB, cyclenext"
-            "ALT, TAB, bringactivetotop"
+            "ALT, TAB, alterzorder, top, active"
             "$mod, TAB, focuscurrentorlast"
 
             # scratchpad
