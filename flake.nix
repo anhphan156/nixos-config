@@ -32,7 +32,6 @@
     in
       pkgs.lib.nixosSystem {
         inherit pkgs;
-        # inherit (pkgs) system;
         specialArgs = {inherit inputs;};
         modules =
           (lib.getNixFiles "${self}/hosts/linux/${host}")
@@ -52,7 +51,6 @@
 
     darwinConfigurations = {
       default = inputs.nix-darwin.lib.darwinSystem {
-        # system = "x86_64-darwin";
         pkgs = pkgsFor "x86_64-darwin";
         specialArgs = {inherit inputs;};
         modules =
