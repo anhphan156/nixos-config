@@ -2,10 +2,10 @@
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";
-      mountOptions = ["size=5G" "defaults" "mode=775"];
+      mountOptions = ["size=4G" "defaults" "mode=775"];
     };
     disk = {
-      vdb = {
+      hehe = {
         type = "disk";
         device = "/dev/nvme0n1";
         content = {
@@ -43,7 +43,7 @@
                     };
                     "/swap" = {
                       mountpoint = "/.swapvol";
-                      swap.swapfile.size = "20M";
+                      swap.swapfile.size = "4G";
                     };
                   };
                 };

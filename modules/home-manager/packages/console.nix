@@ -34,5 +34,6 @@
     tree
     man-pages
     ascii
+    vim
   ];
 }
