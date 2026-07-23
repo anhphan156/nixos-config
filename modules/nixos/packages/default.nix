@@ -15,7 +15,7 @@ in {
     gnumake
     curl
     file
-    neovim
+#    neovim
     cachix
     alejandra
     (buildFHSEnv

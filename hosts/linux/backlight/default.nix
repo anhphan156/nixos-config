@@ -9,13 +9,12 @@ in {
   cyanea = {
     host.backlight = true;
     desktopApp = {
-      firefox = enabled;
       librewolf = enabled;
     };
     system = {
       # bootloader.plymouth = enabled;
       hostname = "backlight";
-      acpid = enabled;
+      # acpid = enabled;
       # autorandr = enabled;
       laptop = enabled;
       pipewire = enabled;
@@ -23,11 +22,11 @@ in {
         enable = true;
         impermanence = enabled;
       };
-      xremap = enabled;
+      # xremap = enabled;
     };
     graphical = {
       gui = enabled;
-      awesome = enabled;
+      # awesome = enabled;
       hyprland = {
         enable = mkForce true;
         monitor = {
@@ -46,7 +45,7 @@ in {
     };
     services = {
       waterReminder = enabled;
-      bluetooth = enabled;
+      # bluetooth = enabled;
       redshift = enabled;
       # ollama = {
       #   enable = true;
@@ -58,29 +57,12 @@ in {
       tmux = enabled;
     };
     shell = {
-      xonsh = enabled;
+      # xonsh = enabled;
       # shell-gpt = enabled;
-    };
-    virtualization = {
-      libvirt = enabled;
-      docker = {
-        enable = true;
-        btrfs = true;
-      };
     };
     music = {
       enable = true;
       rpc = enabled;
-    };
-    gaming = {
-      enable = true;
-      gamescopeMonitor = [
-        "-O eDP-1"
-        "-W 1920"
-        "-H 1080"
-      ];
-      nvidia.enable = true;
-      driver = ["nvidia"];
     };
   };
 
@@ -114,7 +96,6 @@ in {
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/libvirt"
-      "/var/lib/private/ollama"
       "/var/db/sudo/lectured"
       "/etc/NetworkManager/system-connections"
       {
@@ -131,20 +112,16 @@ in {
       directories = [
         "data"
         ".ssh"
-        ".mozilla"
-        ".rustup"
+	".mozilla"
+	".librewolf"
         ".cargo"
-        ".stack"
         ".steam"
         ".local/share/Steam"
-        ".local/share/Sandbox Interactive GmbH"
         ".local/share/direnv"
         ".local/share/zsh"
         ".local/share/Anki2"
         ".local/share/mpd"
         ".local/share/nvim-custom"
-        ".config/vesktop"
-        ".config/unity3d/Sandbox Interactive GmbH"
         ".cache"
       ];
     };

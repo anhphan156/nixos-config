@@ -34,12 +34,5 @@
     tree
     man-pages
     ascii
-
-    (callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {})
-    (callPackage "${inputs.self}/packages/kabmat" {})
-    (callPackage "${inputs.self}/packages/scripts/dev/devtui.nix" {
-      basePath = lib.user.path.dev;
-      tmux_code = callPackage "${inputs.self}/packages/scripts/dev/tmux_code_layout.nix" {};
-    })
   ];
 }
