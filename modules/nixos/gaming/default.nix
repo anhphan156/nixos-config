@@ -7,6 +7,9 @@
   options = {
     cyanea.gaming = {
       enable = lib.mkEnableOption "Enable gaming";
+      steam.enable = lib.mkEnableOption "Enable steam";
+      faugus.enable = lib.mkEnableOption "Enable faugus";
+      protonplus.enable = lib.mkEnableOption "Enable protonplus";
       gamescopeMonitor = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [];
@@ -40,7 +43,7 @@
     };
 
     programs = {
-      steam = {
+      steam = lib.mkIf config.cyanea.gaming.steam.enable {
         enable = true;
         gamescopeSession = {
           enable = true;
@@ -50,9 +53,12 @@
       gamemode.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      mangohud
-      protonup-ng
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        mangohud
+        protonup-ng
+      ]
+      ++ lib.optionals config.cyanea.gaming.faugus.enable [faugus-launcher]
+      ++ lib.optionals config.cyanea.gaming.protonplus.enable [protonplus];
   };
 }

@@ -19,8 +19,6 @@
         };
         overlays =
           [
-            inputs.nvim-config.overlays.default
-            inputs.wallpapers.overlays.default
             inputs.dotfiles.overlays.default
           ]
           ++ (map import <| lib.getNixFiles ./overlays);
@@ -41,7 +39,6 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.nixvim.nixosModules.nixvim
             inputs.xremap.nixosModules.default
-            inputs.catppuccin.nixosModules.catppuccin
             inputs.dotfiles.nixosModules.default
             inputs.disko.nixosModules.default
             inputs.impermanence.nixosModules.impermanence
@@ -97,10 +94,8 @@
     lua-pam.url = "github:anhphan156/lua-pam";
     impermanence.url = "github:nix-community/impermanence";
     xremap.url = "github:xremap/nix-flake";
-    catppuccin.url = "github:catppuccin/nix";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
-    wallpapers.url = "github:anhphan156/Wallpapers";
     mscreenshot = {
       url = "git+https://github.com/anhphan156/mscreenshot";
     };
@@ -112,11 +107,6 @@
 
     dotfiles = {
       url = "github:anhphan156/dotfiles";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvim-config = {
-      url = "github:anhphan156/nvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

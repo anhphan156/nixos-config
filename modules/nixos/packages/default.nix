@@ -15,9 +15,10 @@ in {
     gnumake
     curl
     file
-#    neovim
+    neovim
     cachix
     alejandra
+    gcc
     (buildFHSEnv
       <| appimageTools.defaultFhsEnvArgs
       // {

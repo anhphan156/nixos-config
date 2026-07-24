@@ -18,6 +18,7 @@
     ffmpeg
     unzip
     zip
+    unrar
     fortune
     jq
     btop
@@ -34,6 +35,5 @@
     tree
     man-pages
     ascii
-    vim
   ];
 }

@@ -5,18 +5,23 @@
   resolutionList,
   lib,
   symlinkJoin,
-  swww,
+  awww,
   ...
 }: let
   inherit (lib.lists) foldl singleton;
   inherit (lib.strings) concatMapStringsSep;
   inherit (builtins) elemAt head;
 
-  activeMonitorList = foldl (acc: xs: if ("disable" != elemAt xs 1) then acc ++ (xs |> head |> singleton) else acc) [] <| lib.lists.zipListsWith (x: y: [ x y ]) monitorList resolutionList;
+  activeMonitorList =
+    foldl (acc: xs:
+      if ("disable" != elemAt xs 1)
+      then acc ++ (xs |> head |> singleton)
+      else acc) []
+    <| lib.lists.zipListsWith (x: y: [x y]) monitorList resolutionList;
 
   single_monitor = writeShellApplication {
     name = "swww_sm";
-    runtimeInputs = [swww];
+    runtimeInputs = [awww];
     text = ''
       wallpapers=${wallpapers}/single
       random=$(ls $wallpapers | shuf | head -1)
@@ -30,7 +35,7 @@
 
   dual_monitor = writeShellApplication {
     name = "swww_dm";
-    runtimeInputs = [swww];
+    runtimeInputs = [awww];
     text = ''
       wallpapers=${wallpapers}/dual
       random=$(ls $wallpapers | shuf | head -1)

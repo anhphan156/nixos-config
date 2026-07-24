@@ -15,25 +15,29 @@ in {
       # bootloader.plymouth = enabled;
       hostname = "backlight";
       # acpid = enabled;
-      # autorandr = enabled;
       laptop = enabled;
       pipewire = enabled;
       lightControl = {
         enable = true;
         impermanence = enabled;
       };
-      # xremap = enabled;
     };
     graphical = {
       gui = enabled;
-      # awesome = enabled;
       hyprland = {
         enable = mkForce true;
-        monitor = {
-          monitorList = ["eDP-1" "HDMI-A-1"];
-          resolutionList = ["1920x1080,0x0,1" "disable"];
-          workspaceList = [[1 2 3 4]];
-        };
+        extraConfig = ''
+          hl.monitor({
+            output   = "eDP-1",
+            mode     = "1920x1080",
+            position = "0x0",
+            scale    = "1.0",
+          })
+
+          for i = 1, 4 do
+            hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
+          end
+        '';
       }; # hyprland
       sddm = {
         autoLogin.enable = false;
@@ -63,6 +67,12 @@ in {
     music = {
       enable = true;
       rpc = enabled;
+    };
+    gaming = {
+      enable = true;
+      faugus = enabled;
+      protonplus = enabled;
+      nvidia = enabled;
     };
   };
 
@@ -111,11 +121,12 @@ in {
     users."${lib.user.name}" = {
       directories = [
         "data"
+        "Downloads"
         ".ssh"
-	".mozilla"
-	".librewolf"
         ".cargo"
         ".steam"
+        ".config/librewolf"
+        ".config/faugus-launcher"
         ".local/share/Steam"
         ".local/share/direnv"
         ".local/share/zsh"

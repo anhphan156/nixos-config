@@ -20,7 +20,7 @@ in {
       cliphist
       wtype
       wireplumber # streaming stuff
-      swww
+      awww
       (pkgs.callPackage (inputs.self + /packages/scripts/media/swww_scripts.nix) {
         inherit (cfg.hyprland.monitor) monitorList resolutionList;
       })
