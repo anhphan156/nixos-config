@@ -1,18 +1,23 @@
 _: prev: {
-  wrapDesktopItem = desktopItemArgs: derivation: let
-    name = prev.lib.getName derivation;
-    desktopName = name 
+  wrapDesktopItem = desktopItemArgs: myDerivation: let
+    name = prev.lib.getName myDerivation;
+    desktopName =
+      name
       |> prev.lib.strings.stringToCharacters
-      |> prev.lib.concatMapStringsSep "" (x: if x == "_" then " " else x);
+      |> prev.lib.concatMapStringsSep "" (x:
+        if x == "_"
+        then " "
+        else x);
     desktopItem =
-      prev.makeDesktopItem <| {
+      prev.makeDesktopItem
+      <| {
         inherit name desktopName;
         genericName = "Scripts";
         noDisplay = false;
         comment = "";
         icon = "";
         dbusActivatable = false;
-        exec = "${derivation}/bin/${name}";
+        exec = "${myDerivation}/bin/${name}";
         # path = "";
         terminal = false;
         # actions.example = {
@@ -21,17 +26,18 @@ _: prev: {
         #   icon = "/some/icon";
         # };
         # mimeTypes = ["video/mp4"];
-        categories = [ "Utility" ];
+        categories = ["Utility"];
         # implements = ["org.my-program"];
         keywords = [name];
         startupNotify = false;
         startupWMClass = name;
         prefersNonDefaultGPU = false;
         # extraConfig.X-SomeExtension = "somevalue";
-      } // desktopItemArgs;
+      }
+      // desktopItemArgs;
   in
     prev.symlinkJoin {
       inherit name;
-      paths = [derivation desktopItem];
+      paths = [myDerivation desktopItem];
     };
 }

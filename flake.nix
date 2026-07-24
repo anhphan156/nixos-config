@@ -20,6 +20,9 @@
         overlays =
           [
             inputs.dotfiles.overlays.default
+            (_: prev: {
+              mscreenshot = inputs.mscreenshot.packages.${system}.default;
+            })
           ]
           ++ (map import <| lib.getNixFiles ./overlays);
       }
@@ -37,7 +40,6 @@
           ++ (lib.getNixFiles ./modules/nixos)
           ++ [
             inputs.home-manager.nixosModules.home-manager
-            inputs.nixvim.nixosModules.nixvim
             inputs.xremap.nixosModules.default
             inputs.dotfiles.nixosModules.default
             inputs.disko.nixosModules.default
@@ -96,8 +98,10 @@
     xremap.url = "github:xremap/nix-flake";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
     mscreenshot = {
       url = "git+https://github.com/anhphan156/mscreenshot";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-darwin = {
@@ -120,24 +124,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    archlinux-keyring = {
-      url = "https://archlinux.org/packages/core/any/archlinux-keyring/download/";
-      flake = false;
-    };
-
-    archlinux-mirrorlist = {
-      url = "https://archlinux.org/mirrorlist/?country=US&protocol=http&protocol=https&ip_version=4";
-      flake = false;
     };
   };
 }

@@ -57,13 +57,6 @@ in {
       #   startupModel = "llama3.2:1b";
       # };
     };
-    terminal = {
-      tmux = enabled;
-    };
-    shell = {
-      # xonsh = enabled;
-      # shell-gpt = enabled;
-    };
     music = {
       enable = true;
       rpc = enabled;

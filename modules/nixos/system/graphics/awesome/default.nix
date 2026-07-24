@@ -37,6 +37,8 @@ in {
       };
     };
 
-    home-manager.users."${lib.user.name}" = import "${inputs.self}/modules/home-manager/dotfiles/awesomewm";
+    home-manager.users."${lib.user.name}".xdg.configFile = {
+      "awesome/".source = "${pkgs.myDotfiles}/share/awesome";
+    };
   };
 }
