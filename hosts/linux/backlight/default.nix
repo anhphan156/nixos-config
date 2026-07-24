@@ -73,6 +73,7 @@ in {
       faugus = enabled;
       protonplus = enabled;
       nvidia = enabled;
+      driver = ["nvidia"];
     };
   };
 
@@ -133,6 +134,8 @@ in {
         ".local/share/Anki2"
         ".local/share/mpd"
         ".local/share/nvim-custom"
+        ".local/share/applications"
+        ".local/share/umu"
         ".cache"
       ];
     };
