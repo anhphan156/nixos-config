@@ -1,0 +1,8 @@
+{
+  flake.nixosModules.proton = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      protonup-ng
+      protonplus
+    ];
+  };
+}
