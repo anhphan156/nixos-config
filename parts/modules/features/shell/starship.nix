@@ -2,7 +2,7 @@
   flake.nixosModules.starship = {lib, ...}: {
     # programs.zsh.interactiveShellInit = lib.mkBefore "$(starship init zsh)";
     programs.starship = {
-      enable = true;
+      enable = false;
       settings = {
         add_newline = true;
         scan_timeout = 10;

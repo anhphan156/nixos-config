@@ -1,4 +1,4 @@
-{moduleWithSystem, ...}: {
+{inputs, moduleWithSystem, ...}: {
   flake.nixosModules.hyprland = moduleWithSystem ({self', ...}: {
     lib,
     config,
@@ -37,11 +37,17 @@
 
           dontUnpack = true;
 
-          installPhase = ''
+          installPhase = let
+             hyprlandConfig = pkgs.writeText "hyprland.lua" ''
+               ${builtins.readFile "${inputs.dotfiles}/config/hypr/hyprland.lua"}
+               ${extraConfig}
+             '';
+
+	  in ''
             cp -r ${hyprland} $out
             chmod -R u+w $out
             wrapProgram $out/bin/start-hyprland \
-              --set HYPRLAND_CONFIG "${extraConfig}"
+              --set HYPRLAND_CONFIG "${hyprlandConfig}"
           '';
 
           meta.mainProgram = "Hyprland";

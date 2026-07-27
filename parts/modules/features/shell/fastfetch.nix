@@ -4,7 +4,7 @@
     lib,
     ...
   }: {
-    programs.zsh.shellInit = lib.mkBefore "fastfetch";
+
     environment.systemPackages = with pkgs; [
       (symlinkJoin {
         name = "my-fastfetch";

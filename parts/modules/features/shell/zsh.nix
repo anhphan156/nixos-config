@@ -26,13 +26,8 @@
         plugins = ["git" "z" "vi-mode"];
       };
 
-      shellInit = ''
-        GREEN='\033[0;32m'
-        RED='\033[0;31m'
-        MAGENTA='\033[0;35m'
-        NC='\033[0m'
-        printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
-      '';
+
+
     };
   };
 }
