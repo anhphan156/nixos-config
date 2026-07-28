@@ -20,7 +20,7 @@
     config = {
       programs.hyprland = {
         enable = true;
-        package = self'.packages.hyprland;
+        package = self'.packages.hyprland.override {inherit (config.hyprland) extraConfig;};
       };
     };
   });
@@ -31,57 +31,29 @@
     lib,
     ...
   }: {
-    packages.hyprland =
-      (inputs.wrappers.wrapperModules.hyprland.apply {
-        inherit pkgs;
-        "hypr.conf".path = let
-          hyprlandConfig = pkgs.writeText "hyprland.lua" ''
+    packages.hyprland = let
+      wrappedHyprland = {
+        extraConfig ? "",
+        writeText,
+        ...
+      }:
+        (inputs.wrappers.wrapperModules.hyprland.apply {
+          inherit pkgs;
+          "hypr.conf".path = let
+            hyprlandConfig = writeText "hyprland.lua" ''
               ${builtins.readFile "${inputs.dotfiles}/config/hypr/hyprland.lua"}
+              ${extraConfig}
 
-            hl.monitor({
-              output   = "eDP-1",
-              mode     = "1920x1080",
-              position = "0x0",
-              scale    = "1.0",
-            })
+              hl.on("hyprland.start", function()
+                hl.exec_cmd("${lib.getExe self'.packages.noctalia}")
+              end)
 
-            for i = 1, 4 do
-              hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
-            end
-            hl.on("hyprland.start", function()
-              hl.exec_cmd("${lib.getExe self'.packages.noctalia}")
-            end)
-
-            hl.bind("ALT + SPACE", hl.dsp.exec_cmd("${lib.getExe self'.packages.noctalia} msg panel-toggle launcher"))
-          '';
-        in
-          hyprlandConfig;
-      }).wrapper;
+              hl.bind("ALT + SPACE", hl.dsp.exec_cmd("${lib.getExe self'.packages.noctalia} msg panel-toggle launcher"))
+            '';
+          in
+            hyprlandConfig;
+        }).wrapper;
+    in
+      pkgs.callPackage wrappedHyprland {};
   };
-  # perSystem = {pkgs, ...}: {
-  #   packages.hyprland = let
-  #     mkHyprland = {extraConfig ? "", ...}:
-  #       pkgs.symlinkJoin {
-  #         name = "my-hyprland";
-  #         nativeBuildInputs = [pkgs.makeWrapper];
-  #         paths = [pkgs.hyprland];
-  #         postBuild = let
-  #           hyprlandConfig = pkgs.writeText "hyprland.lua" ''
-  #             ${builtins.readFile "${inputs.dotfiles}/config/hypr/hyprland.lua"}
-  #             ${extraConfig}
-  #           '';
-  #         in ''
-  #           wrapProgram $out/bin/Hyprland \
-  #             --add-flags "--config" \
-  #             --add-flags "${hyprlandConfig}" \
-  #         '';
-  #         # meta.mainProgram = "Hyprland";
-  #         passthru = {
-  #           version = pkgs.hyprland.version;
-  #           providedSessions = pkgs.hyprland.providedSessions;
-  #         };
-  #       };
-  #   in
-  #     pkgs.lib.makeOverridable mkHyprland {};
-  # };
 }
