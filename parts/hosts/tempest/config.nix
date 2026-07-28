@@ -4,7 +4,6 @@
       modulesPath,
       config,
       lib,
-      pkgs,
       ...
     }:
     {
@@ -78,13 +77,15 @@
             directories = [
               "data"
               "Downloads"
+              "Pictures"
+              "Documents"
               ".ssh"
-              ".emacs.d"
               ".cargo"
               ".steam"
               ".config/librewolf"
               ".config/faugus-launcher"
               ".local/share/Steam"
+              ".local/share/zathura"
               ".local/share/direnv"
               ".local/share/zsh"
               ".local/share/Anki2"
@@ -92,6 +93,7 @@
               ".local/share/nvim-custom"
               ".local/share/applications"
               ".local/share/umu"
+              ".local/state/noctalia"
               ".cache"
             ];
           };

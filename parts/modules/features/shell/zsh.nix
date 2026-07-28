@@ -45,6 +45,7 @@
               enable = true;
               colors = true;
               caseInsensitive = true;
+              fuzzySearch = true;
             };
 
             autoSuggestions = {

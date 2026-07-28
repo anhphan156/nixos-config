@@ -65,7 +65,8 @@
                     end)
 
                     hl.bind("ALT + SPACE", hl.dsp.exec_cmd("${lib.getExe self'.packages.noctalia} msg panel-toggle launcher"))
-                    hl.bind("Print", hl.dsp.exec_cmd("${lib.getExe self'.packages.screenshotScript}"))
+                    hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("${lib.getExe self'.packages.screenshotScript}"))
+                    hl.bind("Print", hl.dsp.exec_cmd("${lib.getExe self'.packages.noctalia} msg screenshot-fullscreen pick"))
                   '';
                 in
                 hyprlandConfig;

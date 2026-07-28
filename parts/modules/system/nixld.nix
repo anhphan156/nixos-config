@@ -1,7 +1,21 @@
 {
-  flake.nixosModules.nixld = {
+  flake.nixosModules.nixld = { pkgs, ... }: {
     programs.nix-ld = {
       enable = true;
+      libraries = with pkgs; [
+        mesa
+        libGL
+
+        glib
+
+        libxinerama
+        libxcursor
+        libxrender
+        libxscrnsaver
+        libxi
+        libsm
+        libice
+      ];
     };
   };
 }
