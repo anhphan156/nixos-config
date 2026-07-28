@@ -25,7 +25,12 @@
     };
   });
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    self',
+    lib,
+    ...
+  }: {
     packages.hyprland =
       (inputs.wrappers.wrapperModules.hyprland.apply {
         inherit pkgs;
@@ -43,6 +48,11 @@
             for i = 1, 4 do
               hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
             end
+            hl.on("hyprland.start", function()
+              hl.exec_cmd("${lib.getExe self'.packages.noctalia}")
+            end)
+
+            hl.bind("ALT + SPACE", hl.dsp.exec_cmd("${lib.getExe self'.packages.noctalia} msg panel-toggle launcher"))
           '';
         in
           hyprlandConfig;
