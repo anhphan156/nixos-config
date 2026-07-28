@@ -17,7 +17,7 @@
         makeWrapper,
         lua-language-server,
         nixd,
-        alejandra,
+        nixfmt,
         git,
         openssh,
         wl-clipboard,
@@ -58,6 +58,8 @@
           noice-nvim
 
           telescope-nvim
+          telescope-file-browser-nvim
+          telescope-project-nvim
           nvim-treesitter.withAllGrammars
           gitsigns-nvim
           presence-nvim
@@ -88,7 +90,6 @@
           nvim-tree-lua
           leetcode-nvim
           ollama-nvim
-          oil-nvim
           image-nvim
         ];
 
@@ -100,7 +101,7 @@
         otherDeps = lib.makeBinPath [
           lua-language-server
           nixd
-          alejandra
+          nixfmt
           # vscode-langservers-extracted
           # llvmPackages_19.clang-tools
           # glsl_analyzer

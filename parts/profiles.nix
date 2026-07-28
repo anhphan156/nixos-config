@@ -4,6 +4,7 @@
       imports = with self.nixosModules; [
         nixConfig
         nixpkgsConfig
+        nixld
         constants
         bootloader
         locale

@@ -10,6 +10,7 @@
         gdb
         gf
 
+        fd
         ripgrep
         wget
         curl
