@@ -1,4 +1,8 @@
-{inputs, moduleWithSystem, ...}: {
+{
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
   flake.nixosModules.hyprland = moduleWithSystem ({self', ...}: {
     lib,
     config,
@@ -16,47 +20,33 @@
     config = {
       programs.hyprland = {
         enable = true;
-        package = self'.packages.hyprland.override {inherit (config.hyprland) extraConfig;};
+        package = self'.packages.hyprland;
       };
     };
   });
 
   perSystem = {pkgs, ...}: {
-    packages.hyprland = pkgs.callPackage (
-      {
-        stdenv,
-        hyprland,
-        makeWrapper,
-        extraConfig ? "",
-        ...
-      }:
-        stdenv.mkDerivation {
-          name = "wrapped-hyprland";
+    packages.hyprland =
+      (inputs.wrappers.wrapperModules.hyprland.apply {
+        inherit pkgs;
+        "hypr.conf".path = let
+          hyprlandConfig = pkgs.writeText "hyprland.lua" ''
+              ${builtins.readFile "${inputs.dotfiles}/config/hypr/hyprland.lua"}
 
-          nativeBuildInputs = [makeWrapper];
+            hl.monitor({
+              output   = "eDP-1",
+              mode     = "1920x1080",
+              position = "0x0",
+              scale    = "1.0",
+            })
 
-          dontUnpack = true;
-
-          installPhase = let
-             hyprlandConfig = pkgs.writeText "hyprland.lua" ''
-               ${builtins.readFile "${inputs.dotfiles}/config/hypr/hyprland.lua"}
-               ${extraConfig}
-             '';
-
-	  in ''
-            cp -r ${hyprland} $out
-            chmod -R u+w $out
-            wrapProgram $out/bin/start-hyprland \
-              --set HYPRLAND_CONFIG "${hyprlandConfig}"
+            for i = 1, 4 do
+              hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
+            end
           '';
-
-          meta.mainProgram = "Hyprland";
-          passthru = {
-            version = pkgs.hyprland.version;
-            providedSessions = pkgs.hyprland.providedSessions;
-          };
-        }
-    ) {};
+        in
+          hyprlandConfig;
+      }).wrapper;
   };
   # perSystem = {pkgs, ...}: {
   #   packages.hyprland = let

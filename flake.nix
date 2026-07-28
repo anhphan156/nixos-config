@@ -7,7 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
-    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
+    wrappers.url = "github:lassulus/wrappers";
     impermanence.url = "github:nix-community/impermanence";
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";

@@ -1,33 +1,63 @@
 {
-  flake.nixosModules.zsh = {
-    config,
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
+  flake.nixosModules.zsh = moduleWithSystem ({self', ...}: {config, ...}: {
+    # programs.zsh.enable = true;
+    users.users."${config.constants.username}".shell = self'.packages.zsh;
+  });
+
+  perSystem = {
+    self',
     pkgs,
     ...
   }: {
-    users.users."${config.constants.username}".shell = pkgs.zsh;
-    programs.zsh = {
-      enable = true;
-      syntaxHighlighting.enable = true;
-      histFile = "$HOME/.local/share/zsh/zsh_history";
+    packages.zsh =
+      (inputs.wrappers.wrapperModules.zsh.apply {
+        inherit pkgs;
+        settings = {
+          autocd = true;
 
-      interactiveShellInit = ''
-        export ZSHZ_DATA="$HOME/.local/share/zsh/.z";
-      '';
+          shellAliases = {
+            "l" = " ls -la --color";
+            "g" = "git";
+            "v" = " nvim";
+            "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
+            "exit" = " exit";
+            "oil" = " nvim +Oil";
+            "leet" = " nvim +Leet";
+          };
 
-      shellAliases = {
-        "v" = " nvim";
-        "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
-        "exit" = " exit";
-        "leet" = " nvim +Leet";
-      };
+          integrations = {
+            starship = {
+              enable = true;
+              package = self'.packages.starship;
+            };
+          };
 
-      ohMyZsh = {
-        enable = true;
-        plugins = ["git" "z" "vi-mode"];
-      };
+          completion = {
+            enable = true;
+            colors = true;
+          };
 
+          autoSuggestions = {
+            enable = true;
+          };
 
-
-    };
+          history = {
+            file = "$HOME/.local/share/zsh/zsh_history";
+          };
+        };
+        extraRC = ''
+          fastfetch
+          GREEN='\033[0;32m'
+          RED='\033[0;31m'
+          MAGENTA='\033[0;35m'
+          NC='\033[0m'
+          printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
+          source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        '';
+      }).wrapper;
   };
 }
