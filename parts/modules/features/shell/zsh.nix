@@ -6,7 +6,6 @@
 {
   flake.nixosModules.zsh = moduleWithSystem (
     { self', ... }: { config, ... }: {
-      # programs.zsh.enable = true;
       users.users."${config.constants.username}".shell = self'.packages.zsh;
     }
   );
@@ -28,7 +27,6 @@
               "l" = " ls -la --color";
               "g" = "git";
               "v" = " nvim";
-              "lzg" = " lazygit";
               "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
               "exit" = " exit";
               "leet" = " nvim +Leet";
@@ -39,11 +37,15 @@
                 enable = true;
                 package = self'.packages.starship;
               };
+              zoxide = {
+                enable = true;
+              };
             };
 
             completion = {
               enable = true;
               colors = true;
+              extraCompletions = true;
               caseInsensitive = true;
               fuzzySearch = true;
             };
@@ -57,7 +59,8 @@
             };
 
             env = {
-              ZSHZ_DATA = "$HOME/.local/share/zsh/.z";
+              _ZO_DATA_DIR = "$HOME/.local/share/zsh/.z";
+              _ZO_EXCLUDE_DIRS = "/nix/store/*";
             };
           };
           extraRC = ''
@@ -67,8 +70,6 @@
             NC='\033[0m'
             printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
             source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-            source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh
-            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.zsh
           '';
         }).wrapper;
     };
