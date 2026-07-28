@@ -20,6 +20,9 @@
       hyprland
       packages
 
+      # theme
+      catppuccin
+
       # gaming
       nvidia
       faugus

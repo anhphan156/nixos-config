@@ -1,6 +1,6 @@
 {
   flake.nixosModules = {
-    packages = {pkgs, ...}: {
+    packages = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         cachix
 
@@ -16,14 +16,17 @@
         curl
         file
         gnumake
-        (buildFHSEnv
-          <| appimageTools.defaultFhsEnvArgs
-          // {
-            name = "fhs";
-            profile = "export FHS=1";
-            runScript = "zsh";
-            extraOutputsToInstall = ["dev"];
-          })
+        (
+          buildFHSEnv
+          <|
+            appimageTools.defaultFhsEnvArgs
+            // {
+              name = "fhs";
+              profile = "export FHS=1";
+              runScript = "zsh";
+              extraOutputsToInstall = [ "dev" ];
+            }
+        )
 
         killall
         cmatrix

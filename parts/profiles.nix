@@ -1,4 +1,4 @@
-{self, ...}: {
+{ self, ... }: {
   flake.nixosModules = {
     core = {
       imports = with self.nixosModules; [

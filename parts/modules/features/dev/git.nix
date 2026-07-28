@@ -1,5 +1,6 @@
 {
-  flake.nixosModules.git = {config, ...}: {
+  flake.nixosModules.git = { config, pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ lazygit ];
     programs.git = {
       enable = true;
       lfs.enable = true;

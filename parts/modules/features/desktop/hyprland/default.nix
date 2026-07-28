@@ -65,11 +65,16 @@
                     end)
 
                     hl.bind("ALT + SPACE", hl.dsp.exec_cmd("${lib.getExe self'.packages.noctalia} msg panel-toggle launcher"))
+                    hl.bind("Print", hl.dsp.exec_cmd("${lib.getExe self'.packages.screenshotScript}"))
                   '';
                 in
                 hyprlandConfig;
             }).wrapper;
         in
         pkgs.callPackage wrappedHyprland { };
+
+      packages.screenshotScript = pkgs.callPackage ./_packages/screenshotScript.nix {
+        inherit (self'.packages) noctalia;
+      };
     };
 }

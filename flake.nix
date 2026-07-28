@@ -6,6 +6,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
     wrappers.url = "github:lassulus/wrappers";
+    catppuccin.url = "github:catppuccin/nix";
     impermanence.url = "github:nix-community/impermanence";
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
