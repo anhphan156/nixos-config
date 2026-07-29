@@ -12,45 +12,56 @@ in
     {
       lib,
       pkgs,
+      config,
       ...
     }:
     {
-      systemd.services."sddm-random-background" = {
-        script = ''
-          base="${inputs.dotfiles}/misc/wallpapers/single"
-          background=$(ls "$base" | shuf | head -1)
-          ln -sf $base/$background ${randomBg}
-        '';
-        before = [ "display-manager.target" ];
-        after = [ "network.target" ];
-        wantedBy = [
-          "display-manager.target"
-          "multi-user.target"
-        ];
-        serviceConfig = {
-          Type = "oneshot";
-        };
+      options.sddm.defaultSession = lib.mkOption {
+        type = lib.types.str;
+        default = "hyprland";
+        description = "SDDM default sesssion";
       };
 
-      environment.systemPackages = [
-        self'.packages.sddm-astronaut-theme
-      ];
+      config = {
 
-      services.displayManager = {
-        sddm.enable = true;
-        sddm.package = pkgs.kdePackages.sddm;
-        sddm.theme = "sddm-astronaut-theme";
-        sddm.wayland.enable = true;
-        sddm.extraPackages = with pkgs; [
-          kdePackages.qtmultimedia
-          kdePackages.qtsvg
-          kdePackages.qtvirtualkeyboard
-        ];
-        defaultSession = "hyprland";
-        autoLogin = {
-          enable = false;
-          user = lib.constants.name;
+        systemd.services."sddm-random-background" = {
+          script = ''
+            base="${inputs.dotfiles}/misc/wallpapers/single"
+            background=$(ls "$base" | shuf | head -1)
+            ln -sf $base/$background ${randomBg}
+          '';
+          before = [ "display-manager.target" ];
+          after = [ "network.target" ];
+          wantedBy = [
+            "display-manager.target"
+            "multi-user.target"
+          ];
+          serviceConfig = {
+            Type = "oneshot";
+          };
         };
+
+        environment.systemPackages = [
+          self'.packages.sddm-astronaut-theme
+        ];
+
+        services.displayManager = {
+          sddm.enable = true;
+          sddm.package = pkgs.kdePackages.sddm;
+          sddm.theme = "sddm-astronaut-theme";
+          sddm.wayland.enable = true;
+          sddm.extraPackages = with pkgs; [
+            kdePackages.qtmultimedia
+            kdePackages.qtsvg
+            kdePackages.qtvirtualkeyboard
+          ];
+          inherit (config.sddm) defaultSession;
+          autoLogin = {
+            enable = false;
+            user = lib.constants.name;
+          };
+        };
+
       };
     }
   );

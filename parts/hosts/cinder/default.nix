@@ -13,11 +13,12 @@
       core
       fancyShell
       desktop
-      hyprland
+      niri
       packages
 
       # gaming
       proton
+      steam
 
       # tools
       binaryAnalysis
@@ -40,18 +41,26 @@
       config = {
         hostname = "cinder";
 
-        hyprland.extraConfig = ''
-          hl.monitor({
-            output   = "DP-3",
-            mode     = "3840x2160",
-            position = "0x0",
-            scale    = "1.5",
-          })
+        niri = {
+          outputs = {
+            "DP-3" = {
+              mode = "3840x2160@60";
+              scale = 1.5;
+              background-color = "#333333";
+              position = {
+                _attrs = {
+                  x = 0;
+                  y = 0;
+                };
+              };
+              hot-corners = {
+                off = null;
+              };
+            };
+          };
+        };
 
-          for i = 1, 4 do
-            hl.workspace_rule({ workspace = tostring(i), monitor = "DP-3" })
-          end
-        '';
+        sddm.defaultSession = "niri";
 
         # hardware
         boot = {
@@ -73,7 +82,7 @@
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-        # hardware.graphics.enable32Bit = true;
+        hardware.graphics.enable32Bit = true;
 
         fileSystems."/" = {
           device = "none";

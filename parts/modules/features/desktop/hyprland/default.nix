@@ -73,9 +73,5 @@
             }).wrapper;
         in
         pkgs.callPackage wrappedHyprland { };
-
-      packages.screenshotScript = pkgs.callPackage ./_packages/screenshotScript.nix {
-        inherit (self'.packages) noctalia;
-      };
     };
 }
