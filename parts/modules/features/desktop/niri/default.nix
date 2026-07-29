@@ -9,7 +9,6 @@
       ...
     }:
     {
-
       options.niri = {
         outputs = lib.mkOption {
           default = { };
@@ -50,10 +49,6 @@
           inherit outputs;
           binds = import ./_config/keybind.nix { inherit lib noctalia screenshotScript; };
           window-rules = import ./_config/window-rules.nix;
-
-          spawn-at-startup = [
-            "${lib.getExe noctalia}"
-          ];
 
           layout = {
             gaps = 16;

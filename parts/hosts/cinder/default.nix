@@ -13,8 +13,11 @@
       core
       fancyShell
       desktop
-      niri
       packages
+
+      noctalia
+      noctaliaGreeter
+      niri
 
       # gaming
       proton
@@ -22,6 +25,7 @@
 
       # tools
       binaryAnalysis
+      dev
     ];
   };
 
@@ -41,6 +45,11 @@
       config = {
         hostname = "cinder";
 
+        desktop = {
+          defaultSession = "niri";
+          greeterOutput = "DP-3";
+        };
+
         niri = {
           outputs = {
             "DP-3" = {
@@ -59,8 +68,6 @@
             };
           };
         };
-
-        sddm.defaultSession = "niri";
 
         # hardware
         boot = {

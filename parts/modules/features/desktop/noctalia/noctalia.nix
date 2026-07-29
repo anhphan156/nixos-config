@@ -1,4 +1,20 @@
-{ inputs, ... }: {
+{ inputs, moduleWithSystem, ... }: {
+
+  flake.nixosModules.noctalia = moduleWithSystem (
+    { self', ... }: {
+      imports = [
+        # inputs.noctalia.nixosModules.default
+      ];
+
+      programs.noctalia = {
+        enable = true;
+        package = self'.packages.noctalia;
+        systemd.enable = true;
+        recommendedServices.enable = true;
+      };
+    }
+  );
+
   perSystem =
     {
       pkgs,

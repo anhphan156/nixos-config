@@ -25,11 +25,16 @@
       ];
     };
 
+    dev = {
+      imports = with self.nixosModules; [
+        direnv
+      ];
+    };
+
     desktop = {
       imports = with self.nixosModules; [
         pipewire
         font
-        sddm
         librewolf
         kitty
       ];

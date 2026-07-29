@@ -10,7 +10,7 @@
   }
   {
     matches = [ { app-id = "kitty"; } ];
-    opacity = 0.7;
+    opacity = 0.8;
     background-effect = {
       blur = true;
       xray = true;

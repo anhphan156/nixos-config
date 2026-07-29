@@ -8,6 +8,14 @@
     wrappers.url = "github:lassulus/wrappers";
     impermanence.url = "github:nix-community/impermanence";
     preservation.url = "github:nix-community/preservation";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      # inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
+    };
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

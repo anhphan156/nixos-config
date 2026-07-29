@@ -57,6 +57,7 @@ let
     lz-n
     startup-nvim
     vim-tmux-navigator
+    direnv-vim
 
     tokyonight-nvim
 

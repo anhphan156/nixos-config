@@ -17,8 +17,10 @@
       core
       fancyShell
       desktop
-      hyprland
       packages
+
+      sddm
+      hyprland
 
       # gaming
       nvidia
@@ -27,6 +29,7 @@
 
       # tools
       binaryAnalysis
+      dev
     ];
   };
 }
