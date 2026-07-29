@@ -7,6 +7,7 @@
     import-tree.url = "github:denful/import-tree";
     wrappers.url = "github:lassulus/wrappers";
     impermanence.url = "github:nix-community/impermanence";
+    preservation.url = "github:nix-community/preservation";
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
