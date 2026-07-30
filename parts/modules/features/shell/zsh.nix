@@ -24,12 +24,11 @@
             autocd = true;
 
             shellAliases = {
-              "l" = " ls -la --color";
+              "l" = "ls -la --color";
               "g" = "git";
-              "v" = " nvim";
-              "mpv" = " mpv --vo=kitty --vo-kitty-use-shm=yes";
-              "exit" = " exit";
-              "leet" = " nvim +Leet";
+              "v" = "nvim";
+              "mpv" = "mpv --vo=kitty --vo-kitty-use-shm=yes";
+              "leet" = "nvim +Leet";
             };
 
             integrations = {
@@ -46,7 +45,6 @@
               enable = true;
               colors = true;
               extraCompletions = true;
-              caseInsensitive = true;
               fuzzySearch = true;
             };
 
@@ -59,17 +57,22 @@
             };
 
             env = {
-              _ZO_DATA_DIR = "$HOME/.local/share/zsh/.z";
-              _ZO_EXCLUDE_DIRS = "/nix/store/*";
+              "export _ZO_EXCLUDE_DIRS" = "/nix/store/*";
+              "export LS_COLORS" = "di=34:*.zip=31:*.tar=31:*.gz=31:*.xz=31:*.7z=31";
             };
           };
+
           extraRC = ''
             eval "$(direnv hook zsh)"
+
+            zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'l:|=*'
+
             GREEN='\033[0;32m'
             RED='\033[0;31m'
             MAGENTA='\033[0;35m'
             NC='\033[0m'
             printf "''${GREEN}There is''${NC} ''${RED}no''${NC} ''${MAGENTA}place like''${NC} ''${RED}~/''${NC}\n"
+
             source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
           '';
         }).wrapper;

@@ -5,9 +5,6 @@
       libraries = with pkgs; [
         mesa
         libGL
-
-        glib
-
         libxinerama
         libxcursor
         libxrender
@@ -15,6 +12,10 @@
         libxi
         libsm
         libice
+
+        alsa-lib
+
+        glib
       ];
     };
   };

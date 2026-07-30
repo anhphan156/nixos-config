@@ -6,7 +6,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:denful/import-tree";
     wrappers.url = "github:lassulus/wrappers";
-    impermanence.url = "github:nix-community/impermanence";
     preservation.url = "github:nix-community/preservation";
     noctalia = {
       url = "github:noctalia-dev/noctalia";
