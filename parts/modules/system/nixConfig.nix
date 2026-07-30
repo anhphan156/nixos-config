@@ -1,11 +1,6 @@
 {
-  flake.nixosModules.nixConfig = {
+  flake.nixosModules.nixConfig = { config, ... }: {
     nix = {
-      gc = {
-        automatic = true;
-        options = "--delete-older-than 3d";
-      };
-
       settings = {
         auto-optimise-store = true;
         experimental-features = [
@@ -27,6 +22,13 @@
           "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         ];
       };
+    };
+
+    programs.nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/${config.constants.username}/nixos-config";
     };
   };
 }

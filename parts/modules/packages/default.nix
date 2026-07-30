@@ -4,8 +4,8 @@
       environment.systemPackages = with pkgs; [
         cachix
 
-        gcc
         llvmPackages.clang-tools
+        gcc
         valgrind
         gdb
         gf

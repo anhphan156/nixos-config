@@ -25,9 +25,12 @@
       ];
     };
 
-    dev = {
+    dev = { pkgs, ... }: {
       imports = with self.nixosModules; [
         direnv
+      ];
+      environment.systemPackages = with pkgs; [
+        devenv
       ];
     };
 

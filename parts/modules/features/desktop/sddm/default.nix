@@ -47,7 +47,7 @@ in
           kdePackages.qtsvg
           kdePackages.qtvirtualkeyboard
         ];
-        inherit (config.desktop.defaultSession) defaultSession;
+        inherit (config.desktop) defaultSession;
         autoLogin = {
           enable = false;
           user = lib.constants.name;
