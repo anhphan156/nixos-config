@@ -59,6 +59,8 @@
             env = {
               "export _ZO_EXCLUDE_DIRS" = "/nix/store/*";
               "export LS_COLORS" = "di=34:*.zip=31:*.tar=31:*.gz=31:*.xz=31:*.7z=31";
+              "export EDITOR" = "nvim";
+              "export MANPAGER" = "\"nvim +Man!\"";
             };
           };
 

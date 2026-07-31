@@ -45,12 +45,6 @@
     screen_corners = {
       enabled = true;
     };
-    keybinds = {
-      up = [ "Shift+ISO_Left_Tab" ];
-      down = [ "Tab" ];
-      tab_next = [ "Down" ];
-      tab_previous = [ "Up" ];
-    };
     launcher.dmenu.entry = {
       cmd1 = {
         command = "fd --full-path $HOME -t f -e pdf";
@@ -76,6 +70,13 @@
     mode = "dark";
     source = "builtin";
     wallpaper_scheme = "m3-content";
+  };
+
+  keybinds = {
+    up = [ "Shift+ISO_Left_Tab" ];
+    down = [ "Tab" ];
+    tab_next = [ "Down" ];
+    tab_previous = [ "Up" ];
   };
 
   wallpaper = {
