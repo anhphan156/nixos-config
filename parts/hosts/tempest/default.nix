@@ -63,16 +63,6 @@
           end
         '';
 
-        # additional preservation
-        preservation.preserveAt."/persistence" = {
-          users."${config.constants.username}" = {
-            directories = [
-              ".config/faugus-launcher"
-              ".local/share/umu"
-            ];
-          };
-        };
-
         # hardware
         boot = {
           initrd = {

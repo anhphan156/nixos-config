@@ -2,6 +2,8 @@
   flake.nixosModules = {
     packages = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
+        (pass.withExtensions (p: [ p.pass-import ]))
+
         cachix
 
         llvmPackages.clang-tools

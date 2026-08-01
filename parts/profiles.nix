@@ -11,6 +11,7 @@
         user
         sudo
         network
+        gnupg
         git
         neovim
       ];

@@ -40,7 +40,6 @@
             "Games"
             "Development"
             "nixos-config"
-            ".ssh"
             ".steam"
             ".config/librewolf"
             ".config/discord"
@@ -53,6 +52,19 @@
             ".local/share/applications"
             ".local/state/noctalia"
             ".cache"
+
+            {
+              directory = ".gnupg";
+              mode = "0700";
+            }
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+            {
+              directory = ".password-store";
+              mode = "0700";
+            }
           ];
         };
       };

@@ -47,16 +47,16 @@
     };
     launcher.dmenu.entry = {
       cmd1 = {
-        command = "fd --full-path $HOME -t f -e pdf";
-        exec = "zathura \"$HOME/{selection}\"";
+        command = "fd --full-path $HOME -t f -e pdf | awk -F/ '{print $NF \"\\t\" $0}'";
+        exec = "sh -c 'zathura \"$(printf \"%s\" \"{selection}\" | cut -f2)\"'";
         global = false;
         glyph = "terminal";
         label = "Open Documents";
         prefix = "doc";
       };
       cmd2 = {
-        command = "fd --full-path $HOME/Games/vns -t f -e sh";
-        exec = "{selection}";
+        command = "fd --full-path $HOME/Games/vns -t f -e sh | awk -F/ '{print $NF \"\\t\" $0}'";
+        exec = "sh -c '\"$(printf \"%s\" \"{selection}\" | cut -f2)\"'";
         global = false;
         glyph = "terminal";
         label = "Open Ren'Py Game";

@@ -6,6 +6,9 @@
       config = {
         user.name = config.constants.gitname;
         user.email = config.constants.gitemail;
+        user.signingkey = "1131E4D8BB379AA8";
+        commit.gpgsign = true;
+        tag.gpgsign = true;
         alias = {
           # common aliases
           br = "branch";

@@ -1,7 +1,18 @@
 {
-  flake.nixosModules.faugus = { pkgs, ... }: {
+  flake.nixosModules.faugus = { pkgs, config, ... }: {
     environment.systemPackages = with pkgs; [
       faugus-launcher
     ];
+
+    # additional preservation
+    preservation.preserveAt."/persistence" = {
+      users."${config.constants.username}" = {
+        directories = [
+          ".config/faugus-launcher"
+          ".local/share/umu"
+        ];
+      };
+    };
+
   };
 }
