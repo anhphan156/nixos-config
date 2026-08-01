@@ -12,7 +12,7 @@
         '';
       in
       [
-        "L+ ${librewolfCfg} - - - - /persistence/home/backspace/.config/librewolf/librewolf/librewolf.overrides.cfg"
+        "L+ /persistence/home/backspace/.config/librewolf/librewolf/librewolf.overrides.cfg - - - - ${librewolfCfg}"
       ];
   };
 }
