@@ -1,10 +1,66 @@
-{
+{ inputs, ... }: {
   perSystem =
     { pkgs, self', ... }:
     let
-      pkg =
+      mscreenshot =
         {
-          lib,
+          stdenv,
+          pkg-config,
+          meson,
+          ninja,
+          cmake,
+          wayland-protocols,
+          wayland-scanner,
+          wayland,
+          cairo,
+          libxkbcommon,
+          cjson,
+          imagemagick,
+          scdoc,
+          makeWrapper,
+          fetchFromGitHub,
+          ...
+        }:
+        stdenv.mkDerivation {
+          name = "mscreenshot";
+          version = "0.0.1";
+          src = fetchFromGitHub {
+            owner = "anhphan156";
+            repo = "mscreenshot";
+            rev = "1be2e8a6f6a2cd0d7354fb499e3f5b4b1e7cff2f";
+            hash = "sha256-v7BPXtYerqELuwngbVYxuRPGwCOb2wWFJCJC389S5Qg=";
+            fetchSubmodules = true;
+          };
+
+          depsBuildBuild = [ pkg-config ];
+          strictDeps = true;
+
+          nativeBuildInputs = [
+            meson
+            ninja
+            pkg-config
+            cmake
+            scdoc
+            makeWrapper
+            wayland-protocols
+            wayland-scanner
+          ];
+
+          buildInputs = [
+            wayland
+            cairo
+            libxkbcommon
+            cjson
+            imagemagick.dev
+          ];
+
+          meta = {
+            mainProgram = "mscreenshot";
+          };
+        };
+
+      screenshotScript =
+        {
           writeShellApplication,
           grim,
           slurp,
@@ -59,8 +115,9 @@
           };
         in
         writeShellApplication {
-          name = "BorderedScreenshot";
+          name = "screenshot-script";
           runtimeInputs = [
+            mscreenshot
             grim
             slurp
             wl-clipboard
@@ -70,21 +127,6 @@
             noctalia
           ];
           text = ''
-            bordered(){
-            	m=10
-            	r=15
-
-            	grim -g "$region" -t png "$fg"
-
-            	magick -size "$((w+m*2))x$((h+m*2))" xc:none \
-            	  -fill plasma:#abcdef-#ef9889 -draw "roundrectangle 0,0 $((w+m*2)),$((h+m*2)) $r,$r" \
-            	  -fill "$fg" -draw "roundrectangle $((m+2)),$((m+2)) $((w+m-2)),$((h+m-2)) $r,$r" \
-            	  "$out"
-
-            	copy "$out"
-            	rm "$fg" "$out"
-            }
-
             copy() {
             	wl-copy -t image/png < "$out"
             	notify-send "Screenshot" "Screenshot is available in the clipboard" -t 3000 --icon=${wallpapers}/icons/camera_04.png
@@ -104,12 +146,23 @@
             		w=$(echo "$dimension" | cut -d'x' -f1)
             		h=$(echo "$dimension" | cut -d'x' -f2)
 
-            		$template
+                m=10
+                r=15
+
+                grim -g "$region" -t png "$fg"
+
+                magick -size "$((w+m*2))x$((h+m*2))" xc:none \
+                  -fill plasma:#abcdef-#ef9889 -draw "roundrectangle 0,0 $((w+m*2)),$((h+m*2)) $r,$r" \
+                  -fill "$fg" -draw "roundrectangle $((m+2)),$((m+2)) $((w+m-2)),$((h+m-2)) $r,$r" \
+                  "$out"
+
+                copy "$out"
+                rm "$fg" "$out"
             	else
-            		MEME_SCREENSHOT_CONFIG=${screenshot_config} ${lib.getExe mscreenshot} -s "$template" -o "$out"
+            		MEME_SCREENSHOT_CONFIG=${screenshot_config} mscreenshot -s "$template" -o "$out"
 
             		copy "$out"
-            		rm "$fg" "$out"
+            		rm "$out"
             	fi
             }
 
@@ -118,8 +171,9 @@
         };
     in
     {
-      packages.screenshotScript = pkgs.callPackage pkg {
+      packages.screenshotScript = pkgs.callPackage screenshotScript {
         inherit (self'.packages) noctalia;
+        mscreenshot = pkgs.callPackage mscreenshot { };
       };
     };
 }

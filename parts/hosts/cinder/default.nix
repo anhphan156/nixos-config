@@ -16,8 +16,8 @@
       fancyShell
       packages
 
-      noctalia
       noctaliaGreeter
+      noctalia
       niri
 
       # gaming
@@ -27,6 +27,7 @@
       # tools
       binaryAnalysis
       dev
+      libvirt
     ];
   };
 
