@@ -1,9 +1,14 @@
 {
   flake.nixosModules = {
-    binaryAnalysis = {pkgs, ...}: {
+    binaryAnalysis = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         imhex
         ghidra
+
+        file
+        xxd
+        ltrace
+        ascii
       ];
     };
   };

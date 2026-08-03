@@ -27,9 +27,5 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mscreenshot = {
-      url = "git+https://github.com/anhphan156/mscreenshot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 }

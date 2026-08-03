@@ -31,15 +31,14 @@
 
         fd
         ripgrep
+
         wget
         curl
-        file
-        gnumake
 
         cachix
+        gnumake
         killall
         cmatrix
-        bunnyfetch
         pamixer
         fzf
         bat
@@ -50,12 +49,8 @@
         unzip
         zip
         unrar
-        fortune
         jq
         btop
-        lolcat
-        asciiquarium
-        cbonsai
         figlet
         acpid
         mpv
@@ -65,7 +60,6 @@
         entr
         tree
         man-pages
-        ascii
 
         zathura
         discord

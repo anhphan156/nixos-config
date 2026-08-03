@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785566697,
-        "narHash": "sha256-tfoKk+xu/zJM1BLJIuIoduzLXeqwqnPntgJucrOn7gY=",
+        "lastModified": 1785727427,
+        "narHash": "sha256-gqciP0UBZLI1xhRhNlEGtdLiKFFs1HGBegONzRcnj54=",
         "owner": "anhphan156",
         "repo": "dotfiles",
-        "rev": "ab0a52389db2f7af47e6b2507cb78732aa1a267a",
+        "rev": "579c98cfe782c7a0849367fcb79bd15e51574f66",
         "type": "github"
       },
       "original": {
@@ -138,27 +138,6 @@
         "owner": "denful",
         "repo": "import-tree",
         "type": "github"
-      }
-    },
-    "mscreenshot": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768867672,
-        "narHash": "sha256-v7BPXtYerqELuwngbVYxuRPGwCOb2wWFJCJC389S5Qg=",
-        "ref": "refs/heads/main",
-        "rev": "1be2e8a6f6a2cd0d7354fb499e3f5b4b1e7cff2f",
-        "revCount": 14,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/anhphan156/mscreenshot"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://github.com/anhphan156/mscreenshot"
       }
     },
     "neovim-nightly": {
@@ -384,7 +363,6 @@
         "dotfiles": "dotfiles",
         "flake-parts": "flake-parts_2",
         "import-tree": "import-tree",
-        "mscreenshot": "mscreenshot",
         "neovim-nightly": "neovim-nightly_2",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",

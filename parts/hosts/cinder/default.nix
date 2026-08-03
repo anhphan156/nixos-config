@@ -27,6 +27,7 @@
       # tools
       binaryAnalysis
       dev
+      libvirt
     ];
   };
 

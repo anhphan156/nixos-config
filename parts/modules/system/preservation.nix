@@ -13,7 +13,7 @@
           "/var/lib/alsa"
           "/var/lib/bluetooth"
           "/var/lib/nixos"
-          "/var/lib/systemd/coredump"
+          "/var/lib/systemd"
           "/var/lib/libvirt"
           "/var/db/sudo/lectured"
           "/etc/NetworkManager/system-connections"
