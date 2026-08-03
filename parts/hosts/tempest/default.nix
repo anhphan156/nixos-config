@@ -11,7 +11,7 @@
       commonPreservation
 
       # laptop
-      battery
+      # battery
       light
 
       # components
@@ -21,7 +21,8 @@
       packages
 
       sddm
-      hyprland
+      niri
+      noctalia
 
       # gaming
       nvidia
@@ -31,6 +32,7 @@
       # tools
       binaryAnalysis
       dev
+      libvirt
     ];
   };
 
@@ -50,18 +52,24 @@
       config = {
         hostname = "tempest";
 
-        hyprland.extraConfig = ''
-          hl.monitor({
-            output   = "eDP-1",
-            mode     = "1920x1080",
-            position = "0x0",
-            scale    = "1.0",
-          })
-
-          for i = 1, 4 do
-            hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
-          end
-        '';
+        niri = {
+          outputs = {
+            "eDP-1" = {
+              mode = "1920x1080";
+              scale = 1.0;
+              background-color = "#333333";
+              position = {
+                _attrs = {
+                  x = 0;
+                  y = 0;
+                };
+              };
+              hot-corners = {
+                off = null;
+              };
+            };
+          };
+        };
 
         # hardware
         boot = {

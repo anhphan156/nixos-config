@@ -57,7 +57,7 @@
             empty-workspace-above-first = false;
             focus-ring = {
               on = null;
-              width = 5;
+              width = 4;
               active-color = "#cba6f7";
               inactive-color = "#9399b2";
               urgent-color = "#f38ba8";

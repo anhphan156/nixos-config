@@ -20,7 +20,7 @@
     options.desktop = {
       defaultSession = lib.mkOption {
         type = lib.types.str;
-        default = "hyprland";
+        default = "niri";
         description = "Default Sesssion for Display Manager";
       };
       greeterOutput = lib.mkOption {
