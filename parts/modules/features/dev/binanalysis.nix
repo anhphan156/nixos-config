@@ -4,6 +4,7 @@
       environment.systemPackages = with pkgs; [
         imhex
         ghidra
+        radare2
 
         file
         xxd
