@@ -10,10 +10,6 @@
       tempestConfig
       commonPreservation
 
-      # laptop
-      # battery
-      light
-
       # components
       core
       fancyShell
@@ -91,11 +87,18 @@
         hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
         hardware.graphics.enable32Bit = true;
 
-        users.users."${config.constants.username}".initialPassword = "123";
-
         system.stateVersion = "26.05";
 
+        users.users."${config.constants.username}" = {
+          extraGroups = lib.mkAfter [ "video" ];
+          initialPassword = "123";
+        };
+
         # impermance
+        services.udev.extraRules = ''
+          SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", ATTR{brightness}="2400"
+        '';
+
         fileSystems."/persistence".neededForBoot = true;
         fileSystems."/nix".neededForBoot = true;
 
