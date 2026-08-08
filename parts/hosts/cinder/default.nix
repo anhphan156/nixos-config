@@ -36,6 +36,7 @@
       modulesPath,
       config,
       lib,
+      pkgs,
       ...
     }:
     {
@@ -44,6 +45,7 @@
       ];
 
       config = {
+        services.xserver.videoDrivers = [ "amdgpu" ];
         hostname = "cinder";
 
         desktop = {
@@ -54,8 +56,8 @@
         niri = {
           outputs = {
             "DP-3" = {
-              mode = "3840x2160@60";
-              scale = 1.5;
+              mode = "1920x1080@60";
+              scale = 1.0;
               background-color = "#333333";
               position = {
                 _attrs = {
@@ -84,6 +86,7 @@
             kernelModules = [ "dm-snapshot" ];
             luks.devices.cryptroot.device = "/dev/disk/by-uuid/2b1f9642-12a4-44f0-b642-491d9ae9c664";
           };
+          kernelPackages = pkgs.linuxPackages_7_1;
           kernelModules = [ "kvm-amd" ];
           extraModulePackages = [ ];
         };
