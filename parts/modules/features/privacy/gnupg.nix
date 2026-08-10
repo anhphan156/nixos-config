@@ -1,5 +1,8 @@
 {
   flake.nixosModules.gnupg = { pkgs, ... }: {
+    services.udev.packages = [
+      pkgs.yubikey-personalization
+    ];
     programs.gnupg = {
       package = pkgs.gnupg;
       agent = {

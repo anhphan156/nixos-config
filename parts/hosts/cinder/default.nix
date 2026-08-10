@@ -72,6 +72,14 @@
           };
         };
 
+        preservation.preserveAt."/persistence" = {
+          users."${config.constants.username}" = {
+            directories = [
+              ".config/unity3d"
+            ];
+          };
+        };
+
         # hardware
         boot = {
           initrd = {
