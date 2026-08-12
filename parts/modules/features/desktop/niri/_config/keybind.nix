@@ -22,6 +22,9 @@
   "Mod+Shift+U".move-window-down = null;
   "Mod+Shift+I".move-window-up = null;
 
+  "Mod+bracketleft".consume-or-expel-window-left = null;
+  "Mod+bracketright".consume-or-expel-window-right = null;
+
   "Mod+Minus".set-column-width = "-10%";
   "Mod+Equal".set-column-width = "+10%";
 
