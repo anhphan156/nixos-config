@@ -60,6 +60,7 @@
         entr
         tree
         man-pages
+        yubikey-manager
 
         zathura
         discord
