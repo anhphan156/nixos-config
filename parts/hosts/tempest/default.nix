@@ -7,12 +7,12 @@
   flake.nixosConfigurations.tempest = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
       # host main
-      tempestConfig
-      commonPreservation
+      tempest
+      preservation
 
       # components
       core
-      fancyShell
+      shell
       desktop
       packages
 
@@ -32,7 +32,7 @@
     ];
   };
 
-  flake.nixosModules.tempestConfig =
+  flake.nixosModules.tempest =
     {
       modulesPath,
       config,

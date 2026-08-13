@@ -7,13 +7,13 @@
   flake.nixosConfigurations.cinder = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
       # host main
-      cinderConfig
-      commonPreservation
+      cinder
+      preservation
 
       # components
       core
       desktop
-      fancyShell
+      shell
       packages
 
       noctaliaGreeter
@@ -31,7 +31,7 @@
     ];
   };
 
-  flake.nixosModules.cinderConfig =
+  flake.nixosModules.cinder =
     {
       modulesPath,
       config,

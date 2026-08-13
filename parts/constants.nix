@@ -13,7 +13,7 @@
       in
       {
         username = mkConstantStr "backspace";
-        gitname = mkConstantStr "anhphan156";
+        gitname = mkConstantStr "embers";
         gitemail = mkConstantStr "anh.phan156@protonmail.com";
       };
 

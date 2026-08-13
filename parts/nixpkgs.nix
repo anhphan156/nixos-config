@@ -12,7 +12,6 @@
   perSystem =
     {
       system,
-      inputs',
       ...
     }:
     {
@@ -21,7 +20,6 @@
         overlays = [
           inputs.neovim-nightly.overlays.default
           (_: prev: {
-            mscreenshot = inputs'.mscreenshot.packages.default;
             wallpapers = "${inputs.dotfiles}/misc/wallpapers";
           })
         ];

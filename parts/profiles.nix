@@ -17,7 +17,7 @@
       ];
     };
 
-    fancyShell = {
+    shell = {
       imports = with self.nixosModules; [
         fastfetch
         starship

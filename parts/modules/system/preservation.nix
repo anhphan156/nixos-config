@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.nixosModules.commonPreservation = { config, ... }: {
+  flake.nixosModules.preservation = { config, ... }: {
     imports = [
       inputs.preservation.nixosModules.default
     ];
