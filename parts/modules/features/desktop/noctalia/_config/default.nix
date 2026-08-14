@@ -9,7 +9,12 @@
 
     widgets = {
       margin_ends = 0;
-      position = "left";
+      center = [
+        "date"
+        "cat"
+        "clock"
+      ];
+      position = "top";
       scale = 1.7000000178813934;
       thickness = 40;
     };
@@ -26,6 +31,21 @@
     };
 
     widget = { };
+  };
+
+  nightlight = {
+    enabled = true;
+  };
+
+  plugins = {
+    enabled = [ "noctalia/bongocat" ];
+  };
+
+  widget.cat = {
+    audio_spectrum = true;
+    tappy_mode = true;
+    type = "noctalia/bongocat:cat";
+    use_mpris_filter = true;
   };
 
   dock = {
