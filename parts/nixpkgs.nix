@@ -4,7 +4,7 @@
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays = [
         (_: _: {
-          inherit (self'.packages) zathura;
+          inherit (self'.packages) zathura yazi;
         })
       ];
     }

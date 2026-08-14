@@ -2,21 +2,6 @@
   flake.nixosModules = {
     packages = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
-        (pass.withExtensions (p: [
-          (p.pass-import.overrideAttrs {
-            postPatch = ''
-              touch "share/man/man1/pass-import.1"
-              touch "share/man/man1/pimport.1"
-            '';
-            src = pkgs.fetchFromGitHub {
-              owner = "roddhjav";
-              repo = "pass-import";
-              rev = "d1c92a9daa85bc68b3957e09e964cfaeb14457c6";
-              hash = "sha256-JpI61leMoSuCxn1Rl2kLozJ3wrj321Z/v+Hcy/+SIHI=";
-            };
-          })
-        ]))
-
         (
           buildFHSEnv
           <|
@@ -31,10 +16,8 @@
 
         fd
         ripgrep
-
         wget
         curl
-
         cachix
         gnumake
         killall
@@ -45,7 +28,6 @@
         bc
         id3v2
         nix-prefetch-git
-        ffmpeg
         unzip
         zip
         unrar
@@ -55,13 +37,15 @@
         acpid
         mpv
         yt-dlp
+        ffmpeg
         cava
         python3
         entr
         tree
         man-pages
+        pass
         yubikey-manager
-
+        yazi
         zathura
         discord
         keepassxc

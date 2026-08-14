@@ -27,8 +27,6 @@
               "l" = "ls -la --color";
               "g" = "git";
               "v" = "nvim";
-              "mpv" = "mpv --vo=kitty --vo-kitty-use-shm=yes";
-              "leet" = "nvim +Leet";
             };
 
             integrations = {
@@ -67,6 +65,13 @@
 
           extraRC = ''
             eval "$(direnv hook zsh)"
+            function y() {
+              local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+              command yazi "$@" --cwd-file="$tmp"
+              IFS= read -r -d ''' cwd < "$tmp"
+              [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+              command rm -f -- "$tmp"
+            }
 
             zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'l:|=*'
 
