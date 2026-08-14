@@ -14,9 +14,9 @@
 
   perSystem = { pkgs, ... }: {
     packages.neovim = pkgs.callPackage ./_packages/neovim.nix {
-      initLua = "${inputs.dotfiles}/config/neovim/init.lua";
-      myConfig = "${inputs.dotfiles}/config/neovim/myConfig";
-      snippets = "${inputs.dotfiles}/config/neovim/snippets";
+      nvimInit = "${inputs.dotfiles}/config/nvim/init.lua";
+      nvimConfig = "${inputs.dotfiles}/config/nvim/config";
+      nvimSnippets = "${inputs.dotfiles}/config/nvim/snippets";
     };
   };
 }

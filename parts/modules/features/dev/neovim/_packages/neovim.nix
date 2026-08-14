@@ -12,9 +12,9 @@
   curl,
   tree-sitter,
   tmux,
-  initLua,
-  myConfig,
-  snippets,
+  nvimInit,
+  nvimConfig,
+  nvimSnippets,
   vimPlugins,
   runCommandLocal,
   lib,
@@ -115,7 +115,7 @@ let
   packpath = runCommandLocal "packpath" { } ''
     mkdir -p $out/pack/${packageName}/{start,opt}
 
-    ln -vsfT ${myConfig} $out/pack/${packageName}/start/myConfig
+    ln -vsfT ${nvimConfig} $out/pack/${packageName}/start/myConfig
     ${lib.concatMapStringsSep "\n" (
       x: "ln -vsfT ${x} $out/pack/${packageName}/start/${lib.getName x}"
     ) startPluginsWithDeps}
@@ -131,11 +131,11 @@ symlinkJoin {
   postBuild = ''
     wrapProgram $out/bin/nvim \
     	--add-flags '-u' \
-    	--add-flags '${initLua}' \
+    	--add-flags '${nvimInit}' \
     	--add-flags '--cmd' \
     	--add-flags "'set packpath^=${packpath} | set runtimepath^=${packpath}'" \
     	--set-default NVIM_APPNAME nvim-custom \
       --suffix PATH : ${otherDeps} \
-    	--set SNIPPETS ${snippets}
+    	--set SNIPPETS ${nvimSnippets}
   '';
 }
