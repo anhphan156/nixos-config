@@ -8,14 +8,12 @@
     general = with self.modules.nixos; [
       cinder
       preservation
-      core
       shell
       dev
       libvirt
     ];
 
     desktop = with self.modules.nixos; [
-      desktop
       noctaliaGreeter
       noctalia
       niri

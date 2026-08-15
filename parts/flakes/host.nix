@@ -29,6 +29,12 @@ let
     };
 
     config = {
+      general = [
+        self.modules.nixos.core
+      ];
+      desktop = [
+        self.modules.nixos.desktop
+      ];
       pkgs = import inputs.nixpkgs {
         inherit (config) system;
         config.allowUnfree = true;

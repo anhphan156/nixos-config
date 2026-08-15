@@ -9,7 +9,6 @@
     general = with self.modules.nixos; [
       tempest
       preservation
-      core
       shell
       nvidia
       dev
@@ -17,7 +16,6 @@
     ];
 
     desktop = with self.modules.nixos; [
-      desktop
       sddm
       noctalia
       niri
