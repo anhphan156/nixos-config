@@ -8,7 +8,15 @@
 let
   host = { config, ... }: {
     options = {
-      modules = lib.mkOption {
+      general = lib.mkOption {
+        type = with lib.types; listOf deferredModule;
+        default = [ ];
+      };
+      desktop = lib.mkOption {
+        type = with lib.types; listOf deferredModule;
+        default = [ ];
+      };
+      gaming = lib.mkOption {
         type = with lib.types; listOf deferredModule;
         default = [ ];
       };
@@ -43,7 +51,8 @@ in
     flake.nixosConfigurations = lib.mapAttrs (
       _: options:
       inputs.nixpkgs.lib.nixosSystem {
-        inherit (options) modules pkgs;
+        inherit (options) pkgs;
+        modules = with options; general ++ desktop ++ gaming;
       }
     ) config.nixosHosts;
   };

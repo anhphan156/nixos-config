@@ -5,17 +5,23 @@
 {
   nixosHosts.cinder = {
     system = "x86_64-linux";
-    modules = with self.modules.nixos; [
+    general = with self.modules.nixos; [
       cinder
       preservation
       core
       shell
+      dev
+      libvirt
+    ];
+
+    desktop = with self.modules.nixos; [
       desktop
       noctaliaGreeter
       noctalia
       niri
-      dev
-      libvirt
+    ];
+
+    gaming = with self.modules.nixos; [
       proton
       steam
     ];

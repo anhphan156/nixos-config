@@ -6,20 +6,26 @@
 {
   nixosHosts.tempest = {
     system = "x86_64-linux";
-    modules = with self.modules.nixos; [
+    general = with self.modules.nixos; [
       tempest
       preservation
       core
       shell
-      desktop
-      sddm
-      niri
-      noctalia
       nvidia
-      faugus
-      proton
       dev
       libvirt
+    ];
+
+    desktop = with self.modules.nixos; [
+      desktop
+      sddm
+      noctalia
+      niri
+    ];
+
+    gaming = with self.modules.nixos; [
+      faugus
+      proton
     ];
   };
 
