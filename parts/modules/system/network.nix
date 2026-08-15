@@ -1,50 +1,49 @@
 {
-  flake.nixosModules.network = {
-    config,
-    lib,
-    ...
-  }: {
-    options.hostname = lib.mkOption {
-      description = "hostname";
-      type = lib.types.str;
-      default = "defaulthostname";
-    };
+  flake.modules.nixos.core =
+    {
+      config,
+      lib,
+      ...
+    }:
+    {
+      config = {
+        networking = {
+          networkmanager.enable = true;
+          hostName = lib.mkDefault "default";
+          useDHCP = lib.mkDefault true;
+          firewall.enable = true;
 
-    config = {
-      networking = {
-        networkmanager.enable = true;
-        hostName = config.hostname;
-        useDHCP = lib.mkDefault true;
-        firewall.enable = true;
+          nameservers = [
+            "127.0.0.1"
+            "::1"
+          ];
+          dhcpcd.extraConfig = "nohook resolv.conf";
+          networkmanager.dns = "none";
+        };
 
-        nameservers = ["127.0.0.1" "::1"];
-        dhcpcd.extraConfig = "nohook resolv.conf";
-        networkmanager.dns = "none";
-      };
-
-      services.dnscrypt-proxy = {
-        enable = true;
-        settings = {
-          ipv6_servers = true;
-          require_dnssec = true;
-          sources.public-resolvers = {
-            urls = [
-              "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
-              "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
-            ];
-            cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
-            minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+        services.dnscrypt-proxy = {
+          enable = true;
+          settings = {
+            ipv6_servers = true;
+            require_dnssec = true;
+            sources.public-resolvers = {
+              urls = [
+                "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+                "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+              ];
+              cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
+              minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+            };
           };
         };
-      };
 
-      systemd.services.dnscrypt-proxy2.serviceConfig = {
-        StateDirectory = "dnscrypt-proxy";
-      };
+        systemd.services.dnscrypt-proxy2.serviceConfig = {
+          StateDirectory = "dnscrypt-proxy";
+        };
 
-      users.users."${config.constants.username}" = {
-        extraGroups = lib.mkAfter ["networkmanager"];
+        users.users."${config.username}" = {
+          extraGroups = lib.mkAfter [ "networkmanager" ];
+        };
       };
     };
-  };
 }

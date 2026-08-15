@@ -48,6 +48,8 @@
     use_mpris_filter = true;
   };
 
+  location.address = "Toronto, Canada";
+
   dock = {
     enabled = false;
     position = "right";

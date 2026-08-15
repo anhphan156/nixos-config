@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.devenv = { pkgs, ... }: {
+  flake.modules.nixos.dev = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       devenv
     ];

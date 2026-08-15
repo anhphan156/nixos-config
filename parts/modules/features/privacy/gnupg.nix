@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.gnupg = { pkgs, ... }: {
+  flake.modules.nixos.core = { pkgs, ... }: {
     services.udev.packages = [
       pkgs.yubikey-personalization
     ];

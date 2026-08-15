@@ -1,11 +1,11 @@
 {
-  flake.nixosModules.git = { config, ... }: {
+  flake.modules.nixos.core = {
     programs.git = {
       enable = true;
       lfs.enable = true;
       config = {
-        user.name = config.constants.gitname;
-        user.email = config.constants.gitemail;
+        user.name = "embers";
+        user.email = "anh.phan156@protonmail.com";
         user.signingkey = "1131E4D8BB379AA8";
         commit.gpgsign = true;
         tag.gpgsign = true;

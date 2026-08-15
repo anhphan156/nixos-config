@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.font = {pkgs, ...}: {
+  flake.modules.nixos.desktop = { pkgs, ... }: {
     fonts.packages = with pkgs; [
       nerd-fonts.fira-code
       nerd-fonts.symbols-only

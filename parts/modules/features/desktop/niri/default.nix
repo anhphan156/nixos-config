@@ -1,6 +1,6 @@
 { inputs, moduleWithSystem, ... }: {
 
-  flake.nixosModules.niri = moduleWithSystem (
+  flake.modules.nixos.niri = moduleWithSystem (
     { self', ... }:
     {
       lib,

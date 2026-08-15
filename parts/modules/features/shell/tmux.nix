@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.tmux = {pkgs, ...}: {
+  flake.modules.nixos.shell = { pkgs, ... }: {
     programs.tmux = {
       enable = true;
       keyMode = "vi";

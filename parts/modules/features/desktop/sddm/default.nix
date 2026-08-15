@@ -7,10 +7,9 @@ let
   randomBg = "/tmp/random.jpg";
 in
 {
-  flake.nixosModules.sddm = moduleWithSystem (
+  flake.modules.nixos.sddm = moduleWithSystem (
     { self', ... }:
     {
-      lib,
       pkgs,
       config,
       ...
@@ -47,13 +46,12 @@ in
           kdePackages.qtsvg
           kdePackages.qtvirtualkeyboard
         ];
-        inherit (config.desktop) defaultSession;
+        defaultSession = "niri";
         autoLogin = {
           enable = false;
-          user = lib.constants.name;
+          user = config.username;
         };
       };
-
     }
   );
 

@@ -1,24 +1,26 @@
 {
-  flake.nixosModules.pipewire = {
-    pkgs,
-    lib,
-    config,
-    ...
-  }: {
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
+  flake.modules.nixos.desktop =
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    {
+      security.rtkit.enable = true;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+      };
 
-    users.users."${config.constants.username}" = {
-      extraGroups = lib.mkAfter ["audio"];
-    };
+      users.users."${config.username}" = {
+        extraGroups = lib.mkAfter [ "audio" ];
+      };
 
-    environment.systemPackages = with pkgs; [
-      pavucontrol
-    ];
-  };
+      environment.systemPackages = with pkgs; [
+        pavucontrol
+      ];
+    };
 }

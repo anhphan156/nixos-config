@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.c = { pkgs, ... }: {
+  flake.modules.nixos.dev = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       llvmPackages.clang-tools
       gcc

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.bootloader = {lib, ...}: {
+  flake.modules.nixos.core = { lib, ... }: {
     boot = {
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;

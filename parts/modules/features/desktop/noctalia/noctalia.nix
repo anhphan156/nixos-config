@@ -1,6 +1,6 @@
 { inputs, moduleWithSystem, ... }: {
 
-  flake.nixosModules.noctalia = moduleWithSystem (
+  flake.modules.nixos.noctalia = moduleWithSystem (
     { self', ... }: {
       imports = [
         # inputs.noctalia.nixosModules.default

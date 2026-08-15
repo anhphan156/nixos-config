@@ -4,9 +4,9 @@
   ...
 }:
 {
-  flake.nixosModules.zsh = moduleWithSystem (
+  flake.modules.nixos.shell = moduleWithSystem (
     { self', ... }: { config, ... }: {
-      users.users."${config.constants.username}".shell = self'.packages.zsh;
+      users.users."${config.username}".shell = self'.packages.zsh;
     }
   );
 
@@ -27,6 +27,7 @@
               "l" = "ls -la --color";
               "g" = "git";
               "v" = "nvim";
+              "test" = "echo test";
             };
 
             integrations = {

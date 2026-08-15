@@ -4,7 +4,7 @@
   ...
 }:
 {
-  flake.nixosModules.kitty = moduleWithSystem (
+  flake.modules.nixos.desktop = moduleWithSystem (
     { self', ... }: {
       environment.systemPackages = [
         self'.packages.kitty

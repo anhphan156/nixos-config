@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nixConfig = { config, ... }: {
+  flake.modules.nixos.core = { config, ... }: {
     nix = {
       settings = {
         auto-optimise-store = true;
@@ -28,7 +28,7 @@
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/${config.constants.username}/nixos-config";
+      flake = "/home/${config.username}/nixos-config";
     };
   };
 }

@@ -1,37 +1,27 @@
 {
-  inputs,
   self,
   ...
 }:
 {
-  flake.nixosConfigurations.cinder = inputs.nixpkgs.lib.nixosSystem {
-    modules = with self.nixosModules; [
-      # host main
+  nixosHosts.cinder = {
+    system = "x86_64-linux";
+    modules = with self.modules.nixos; [
       cinder
       preservation
-
-      # components
       core
-      desktop
       shell
-      packages
-
+      desktop
       noctaliaGreeter
       noctalia
       niri
-
-      # gaming
-      proton
-      steam
-
-      # tools
-      binaryAnalysis
       dev
       libvirt
+      proton
+      steam
     ];
   };
 
-  flake.nixosModules.cinder =
+  flake.modules.nixos.cinder =
     {
       modulesPath,
       config,
@@ -46,13 +36,9 @@
 
       config = {
         services.xserver.videoDrivers = [ "amdgpu" ];
-        hostname = "cinder";
+        networking.hostName = "cinder";
 
-        desktop = {
-          defaultSession = "niri";
-          greeterOutput = "DP-3";
-        };
-
+        greeterOutput = "DP-3";
         niri = {
           outputs = {
             "DP-3" = {
@@ -73,7 +59,7 @@
         };
 
         preservation.preserveAt."/persistence" = {
-          users."${config.constants.username}" = {
+          users."${config.username}" = {
             directories = [
               ".config/unity3d"
             ];
@@ -94,7 +80,7 @@
             kernelModules = [ "dm-snapshot" ];
             luks.devices.cryptroot.device = "/dev/disk/by-uuid/2b1f9642-12a4-44f0-b642-491d9ae9c664";
           };
-          kernelPackages = pkgs.linuxPackages_7_1;
+          kernelPackages = pkgs.linuxPackages_latest;
           kernelModules = [ "kvm-amd" ];
           extraModulePackages = [ ];
         };
@@ -131,7 +117,7 @@
         };
         swapDevices = [ { device = "/dev/mapper/vg0-swap"; } ];
 
-        users.users."${config.constants.username}".initialPassword = "123";
+        users.users."${config.username}".initialPassword = "123";
 
         system.stateVersion = "26.05";
       };

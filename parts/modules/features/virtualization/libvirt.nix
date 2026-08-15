@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.libvirt =
+  flake.modules.nixos.libvirt =
     {
       config,
       lib,
@@ -23,7 +23,7 @@
 
       programs.virt-manager.enable = true;
 
-      users.users."${config.constants.username}" = {
+      users.users."${config.username}" = {
         extraGroups = lib.mkAfter [ "libvirtd" ];
       };
 

@@ -4,39 +4,31 @@
   ...
 }:
 {
-  flake.nixosConfigurations.tempest = inputs.nixpkgs.lib.nixosSystem {
-    modules = with self.nixosModules; [
-      # host main
+  nixosHosts.tempest = {
+    system = "x86_64-linux";
+    modules = with self.modules.nixos; [
       tempest
       preservation
-
-      # components
       core
       shell
       desktop
-      packages
-
       sddm
       niri
       noctalia
-
-      # gaming
       nvidia
       faugus
       proton
-
-      # tools
-      binaryAnalysis
       dev
       libvirt
     ];
   };
 
-  flake.nixosModules.tempest =
+  flake.modules.nixos.tempest =
     {
       modulesPath,
       config,
       lib,
+      pkgs,
       ...
     }:
     {
@@ -46,7 +38,7 @@
       ];
 
       config = {
-        hostname = "tempest";
+        networking.hostName = "tempest";
 
         niri = {
           outputs = {
@@ -79,6 +71,7 @@
             ];
             kernelModules = [ ];
           };
+          kernelPackages = pkgs.linuxPackages_latest;
           kernelModules = [ "kvm-intel" ];
           extraModulePackages = [ ];
         };

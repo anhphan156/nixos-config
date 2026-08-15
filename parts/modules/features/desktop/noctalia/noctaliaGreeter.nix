@@ -1,30 +1,37 @@
 { inputs, ... }: {
 
-  flake.nixosModules.noctaliaGreeter = { config, ... }: {
+  flake.modules.nixos.noctaliaGreeter = { config, lib, ... }: {
     imports = [
       inputs.noctalia-greeter.nixosModules.default
     ];
 
-    programs.noctalia-greeter = {
-      enable = true;
-      settings = {
-        session.default = config.desktop.defaultSession;
-        user.default = config.constants.username;
+    options.greeterOutput = lib.mkOption {
+      type = lib.types.str;
+      description = "Default monitor for greeter";
+    };
 
-        appearance = {
-          scheme = "Catppuccin";
-          password_style = "random";
-          hide_logo = false;
-          theme_mode = "dark";
-          corner_radius_scale = 12;
-        };
+    config = {
+      programs.noctalia-greeter = {
+        enable = true;
+        settings = {
+          session.default = "niri";
+          user.default = config.username;
 
-        output = {
-          name = config.desktop.greeterOutput;
-        };
+          appearance = {
+            scheme = "Catppuccin";
+            password_style = "random";
+            hide_logo = false;
+            theme_mode = "dark";
+            corner_radius_scale = 12;
+          };
 
-        keyboard = {
-          layout = "us";
+          output = {
+            name = config.greeterOutput;
+          };
+
+          keyboard = {
+            layout = "us";
+          };
         };
       };
     };

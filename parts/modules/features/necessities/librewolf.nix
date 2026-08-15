@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.librewolf = { pkgs, ... }: {
+  flake.modules.nixos.desktop = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [ librewolf ];
     systemd.tmpfiles.rules =
       let

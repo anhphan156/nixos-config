@@ -1,14 +1,10 @@
-{ inputs, moduleWithSystem, ... }: {
-  flake.nixosModules.nixpkgsConfig = moduleWithSystem (
-    { self', ... }: {
-      nixpkgs.config.allowUnfree = true;
-      nixpkgs.overlays = [
-        (_: _: {
-          inherit (self'.packages) zathura yazi;
-        })
-      ];
-    }
-  );
+{ inputs, ... }: {
+  systems = [ "x86_64-linux" ];
+
+  imports = [
+    inputs.flake-parts.flakeModules.modules
+  ];
+
   perSystem =
     {
       system,
