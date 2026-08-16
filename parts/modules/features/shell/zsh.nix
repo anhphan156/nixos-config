@@ -27,7 +27,6 @@
               "l" = "ls -la --color";
               "g" = "git";
               "v" = "nvim";
-              "test" = "echo test";
             };
 
             integrations = {

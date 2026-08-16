@@ -11,9 +11,11 @@
       shell
       dev
       libvirt
+      llamacpp
     ];
 
     desktop = with self.modules.nixos; [
+      desktop
       noctaliaGreeter
       noctalia
       niri

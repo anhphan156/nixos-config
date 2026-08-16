@@ -16,6 +16,7 @@
     ];
 
     desktop = with self.modules.nixos; [
+      desktop
       sddm
       noctalia
       niri
