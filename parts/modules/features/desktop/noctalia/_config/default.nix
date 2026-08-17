@@ -1,26 +1,44 @@
 { wallpapersDir, ... }: {
   config_version = 7;
   accessibility = {
-    ui_scale = 1.300000011920929;
+    ui_scale = 1.3;
   };
 
   bar = {
     order = [ "widgets" ];
 
     widgets = {
-      margin_ends = 0;
+      start = [ "workspaces" ];
       center = [
         "date"
         "cat"
         "clock"
       ];
+      end = [
+        "tray"
+        "notifications"
+        "clipboard"
+        "network"
+        "bluetooth"
+        "volume"
+        "brightness"
+        "battery"
+        "control-center"
+        "session"
+      ];
       position = "top";
-      scale = 1.7000000178813934;
+      background_opacity = 0.5;
+      margin_ends = 0;
+      scale = 1.7;
       thickness = 40;
+      radius = 0;
+      radius_top_left = 0;
+      radius_top_right = 0;
     };
   };
 
   desktop_widgets = {
+    enabled = false;
     schema_version = 2;
     widget_order = [ ];
 
@@ -63,9 +81,11 @@
     launch_apps_as_systemd_services = true; # launch apps as transient systemd services (needs Noctalia to be a user unit)
     panel = {
       launcher_position = "auto";
+      launcher_placement = "attached";
+      transparency_mode = "glass";
     };
     screen_corners = {
-      enabled = true;
+      enabled = false;
     };
     launcher.dmenu.entry = {
       cmd1 = {
@@ -88,10 +108,9 @@
   };
 
   theme = {
-    builtin = "Catppuccin";
     mode = "dark";
-    source = "builtin";
-    wallpaper_scheme = "m3-content";
+    source = "wallpaper";
+    wallpaper_scheme = "soft";
   };
 
   keybinds = {
@@ -103,9 +122,8 @@
 
   wallpaper = {
     directory = wallpapersDir;
-    automation = {
-      enabled = true;
-      interval_seconds = 300;
+    default = {
+      path = "${wallpapersDir}/miku.png";
     };
   };
 }

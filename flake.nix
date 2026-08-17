@@ -21,7 +21,7 @@
     };
     dotfiles = {
       url = "github:anhphan156/dotfiles";
-      inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
     };
     disko = {
       url = "github:nix-community/disko";
