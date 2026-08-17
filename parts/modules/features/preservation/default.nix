@@ -47,6 +47,7 @@
             ".local/share/zathura"
             ".local/share/direnv"
             ".local/share/zsh"
+            ".local/share/atuin"
             ".local/share/zoxide"
             ".local/share/nvim-custom"
             ".local/share/applications"

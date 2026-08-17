@@ -34,6 +34,9 @@
                 enable = true;
                 package = self'.packages.starship;
               };
+              atuin = {
+                enable = true;
+              };
               zoxide = {
                 enable = true;
               };

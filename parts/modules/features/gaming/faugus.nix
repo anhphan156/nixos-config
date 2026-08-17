@@ -6,7 +6,7 @@
 
     # additional preservation
     preservation.preserveAt."/persistence" = {
-      users."${config.constants.username}" = {
+      users."${config.username}" = {
         directories = [
           ".config/faugus-launcher"
           ".local/share/umu"

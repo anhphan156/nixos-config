@@ -35,11 +35,6 @@ let
       pkgs = import inputs.nixpkgs {
         inherit (config) system;
         config.allowUnfree = true;
-        overlays = [
-          (_: _: {
-            inherit (self.packages.${config.system}) zathura yazi;
-          })
-        ];
       };
     };
   };

@@ -44,9 +44,8 @@
       man-pages
       pass
       yubikey-manager
-      yazi
-      zathura
       discord
+      vesktop
       keepassxc
       baobab
     ];

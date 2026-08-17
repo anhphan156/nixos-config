@@ -87,7 +87,7 @@
 
         system.stateVersion = "26.05";
 
-        users.users."${config.constants.username}" = {
+        users.users."${config.username}" = {
           extraGroups = lib.mkAfter [ "video" ];
           initialPassword = "123";
         };
