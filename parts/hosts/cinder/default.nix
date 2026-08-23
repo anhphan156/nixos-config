@@ -12,6 +12,10 @@
       dev
       libvirt
       llamacpp
+      hermes
+      tailscale
+      jellyfin
+      caddy
     ];
 
     desktop = with self.modules.nixos; [

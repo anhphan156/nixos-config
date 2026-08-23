@@ -32,12 +32,10 @@
       unrar
       jq
       btop
-      figlet
       acpid
       mpv
       yt-dlp
       ffmpeg
-      cava
       python3
       entr
       tree

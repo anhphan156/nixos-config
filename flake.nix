@@ -7,6 +7,7 @@
     import-tree.url = "github:denful/import-tree";
     wrappers.url = "github:lassulus/wrappers";
     preservation.url = "github:nix-community/preservation";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       # inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
