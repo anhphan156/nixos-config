@@ -18,7 +18,7 @@
             "::1"
           ];
           dhcpcd.extraConfig = "nohook resolv.conf";
-          networkmanager.dns = "none";
+          networkmanager.dns = lib.mkDefault "none";
         };
 
         services.dnscrypt-proxy = {

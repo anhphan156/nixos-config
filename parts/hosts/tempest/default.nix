@@ -13,6 +13,8 @@
       nvidia
       dev
       libvirt
+      nixld
+      mullvad
     ];
 
     desktop = with self.modules.nixos; [

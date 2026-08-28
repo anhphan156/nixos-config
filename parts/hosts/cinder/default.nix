@@ -11,11 +11,8 @@
       shell
       dev
       libvirt
-      llamacpp
-      hermes
-      tailscale
-      jellyfin
-      caddy
+      nixld
+      mullvad
     ];
 
     desktop = with self.modules.nixos; [
