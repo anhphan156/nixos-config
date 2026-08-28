@@ -1,0 +1,76 @@
+{ config, ... }: {
+  preservation = {
+    preserveAt."/persistence" = {
+      users."${config.username}" = {
+        directories = [
+          ".renpy"
+        ];
+      };
+    };
+  };
+
+  fileSystems."/persistence".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
+
+  disko.devices.nodev."/" = {
+    fsType = "tmpfs";
+    mountOptions = [
+      "size=4G"
+      "defaults"
+      "mode=775"
+    ];
+  };
+  disko.devices.disk.hehe = {
+    type = "disk";
+    device = "/dev/nvme0n1";
+    content = {
+      type = "gpt";
+      partitions = {
+        ESP = {
+          size = "512M";
+          type = "EF00";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+            mountOptions = [
+              "defaults"
+            ];
+          };
+        };
+        luks = {
+          size = "100%";
+          content = {
+            type = "luks";
+            name = "crypted";
+            passwordFile = "/tmp/secret.key";
+            content = {
+              type = "btrfs";
+              extraArgs = [ "-f" ];
+              subvolumes = {
+                "/persistence" = {
+                  mountpoint = "/persistence";
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
+                };
+                "/nix" = {
+                  mountpoint = "/nix";
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
+                };
+                "/swap" = {
+                  mountpoint = "/.swapvol";
+                  swap.swapfile.size = "4G";
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  }; # disko end
+}

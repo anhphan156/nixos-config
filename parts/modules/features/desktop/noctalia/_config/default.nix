@@ -111,6 +111,10 @@
     mode = "dark";
     source = "wallpaper";
     wallpaper_scheme = "soft";
+    templates.builtin_ids = [
+      "gtk3"
+      "gtk4"
+    ];
   };
 
   keybinds = {

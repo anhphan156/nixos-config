@@ -8,8 +8,9 @@
     preservation.preserveAt."/persistence" = {
       users."${config.username}" = {
         directories = [
-          ".config/faugus-launcher"
           ".local/share/umu"
+          ".local/share/faugus-launcher"
+          ".config/faugus-launcher"
         ];
       };
     };

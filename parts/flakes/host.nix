@@ -50,7 +50,11 @@ in
       _: options:
       inputs.nixpkgs.lib.nixosSystem {
         inherit (options) pkgs;
-        modules = with options; general ++ desktop ++ gaming;
+        modules = [
+          inputs.disko.nixosModules.default
+          inputs.preservation.nixosModules.default
+        ]
+        ++ (with options; general ++ desktop ++ gaming);
       }
     ) config.nixosHosts;
   };

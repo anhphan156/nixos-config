@@ -1,9 +1,5 @@
-{ inputs, ... }: {
+{
   flake.modules.nixos.preservation = { config, ... }: {
-    imports = [
-      inputs.preservation.nixosModules.default
-    ];
-
     systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
     preservation = {
       enable = true;
@@ -53,7 +49,6 @@
             ".local/share/applications"
             ".local/state/noctalia"
             ".cache"
-
             {
               directory = ".gnupg";
               mode = "0700";
