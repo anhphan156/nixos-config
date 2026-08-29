@@ -37,6 +37,7 @@
             "Development"
             "nixos-config"
             ".steam"
+            ".config/Signal"
             ".config/librewolf"
             ".config/discord"
             ".local/share/Steam"

@@ -4,6 +4,8 @@
       users."${config.username}" = {
         directories = [
           ".renpy"
+          ".config/qBittorrent"
+          "/home/backspace/.local/share/qBittorrent"
         ];
       };
     };

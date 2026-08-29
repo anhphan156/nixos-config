@@ -32,7 +32,6 @@
       unrar
       jq
       btop
-      acpid
       mpv
       yt-dlp
       ffmpeg
@@ -44,7 +43,8 @@
       yubikey-manager
       discord
       vesktop
-      keepassxc
+      signal-desktop
+      qbittorrent
       baobab
     ];
   };
