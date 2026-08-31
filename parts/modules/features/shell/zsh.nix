@@ -5,8 +5,9 @@
 }:
 {
   flake.modules.nixos.shell = moduleWithSystem (
-    { self', ... }: { config, ... }: {
+    { self', ... }: { config, pkgs, ... }: {
       users.users."${config.username}".shell = self'.packages.zsh;
+      environment.systemPackages = with pkgs; [ fzf ];
     }
   );
 
@@ -67,7 +68,7 @@
           };
 
           extraRC = ''
-            eval "$(direnv hook zsh)"
+            eval "$(${pkgs.lib.getExe pkgs.direnv} hook zsh)"
             function y() {
               local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
               command yazi "$@" --cwd-file="$tmp"

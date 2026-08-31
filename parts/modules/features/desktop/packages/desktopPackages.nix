@@ -22,7 +22,6 @@
       killall
       cmatrix
       pamixer
-      fzf
       bat
       bc
       id3v2

@@ -28,7 +28,7 @@
             add_newline = true;
             scan_timeout = 10;
             format = lib.concatStrings [
-              "[➜](bold green) $directory$c$rust$nix_shell$os"
+              "[➜](bold green) $directory, $hostname, $c$rust$nix_shell$os"
               "$line_break"
               "$character"
             ];
@@ -45,10 +45,13 @@
               error_symbol = "[↪](bold red)";
               vimcmd_symbol = "[󰕷](bold white)";
             };
+            directory = {
+              format = "[$path]($style)[$read_only]($read_only_style)";
+            };
             hostname = {
               ssh_only = false;
               format = lib.concatStrings [
-                "[$hostname](bold green)"
+                "[$hostname](bold cyan)"
               ];
             };
             username = {
