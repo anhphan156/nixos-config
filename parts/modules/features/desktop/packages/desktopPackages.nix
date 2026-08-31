@@ -41,6 +41,8 @@
       man-pages
       pass
       yubikey-manager
+      nom
+      just
       discord
       vesktop
       signal-desktop

@@ -4,7 +4,7 @@
   ...
 }:
 {
-  flake.modules.nixos.core = moduleWithSystem (
+  flake.modules.nixos.neovim = moduleWithSystem (
     { self', ... }: {
       environment.systemPackages = [
         self'.packages.neovim

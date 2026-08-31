@@ -7,8 +7,10 @@
     system = "x86_64-linux";
     general = with self.modules.nixos; [
       cinder
+      boot
       preservation
       shell
+      neovim
       dev
       libvirt
       nixld
@@ -43,7 +45,7 @@
 
       config = {
         services.xserver.videoDrivers = [ "amdgpu" ];
-        # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+        boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
         greeterOutput = "DP-3";
         niri = {

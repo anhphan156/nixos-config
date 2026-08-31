@@ -7,10 +7,12 @@
     system = "x86_64-linux";
     general = with self.modules.nixos; [
       (import ./_config)
+      boot
       preservation
       shell
       nvidia
       dev
+      neovim
       libvirt
       nixld
       mullvad
