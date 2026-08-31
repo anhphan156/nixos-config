@@ -8,6 +8,10 @@
     wrappers.url = "github:lassulus/wrappers";
     preservation.url = "github:nix-community/preservation";
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       # inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache

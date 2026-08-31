@@ -43,7 +43,7 @@
 
       config = {
         services.xserver.videoDrivers = [ "amdgpu" ];
-        networking.hostName = "cinder";
+        # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
         greeterOutput = "DP-3";
         niri = {

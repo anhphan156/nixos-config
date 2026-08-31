@@ -47,12 +47,13 @@ in
 
   config = {
     flake.nixosConfigurations = lib.mapAttrs (
-      _: options:
+      host: options:
       inputs.nixpkgs.lib.nixosSystem {
         inherit (options) pkgs;
         modules = [
           inputs.disko.nixosModules.default
           inputs.preservation.nixosModules.default
+          { networking.hostName = host; }
         ]
         ++ (with options; general ++ desktop ++ gaming);
       }
