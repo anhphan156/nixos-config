@@ -15,6 +15,7 @@
       libvirt
       nixld
       mullvad
+      tailscale
     ];
 
     desktop = with self.modules.nixos; [
@@ -66,6 +67,20 @@
             };
           };
         };
+
+        networking.nftables.ruleset = ''
+          table inet excludeTraffic {
+            chain excludeOutgoing {
+              type route hook output priority 0; policy accept;
+              ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+            }
+            chain excludeDns {
+              type filter hook output priority -10; policy accept;
+              ip daddr 100.100.100.100 udp dport 53 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+              ip daddr 100.100.100.100 tcp dport 53 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+            }
+          }
+        '';
 
         preservation.preserveAt."/persistence" = {
           users."${config.username}" = {

@@ -9,7 +9,7 @@
       options = {
         caddyUrl = lib.mkOption {
           type = lib.types.str;
-          default = "aether.local";
+          default = "localhost";
           description = "Default url for webserver";
         };
       };
@@ -17,15 +17,17 @@
       config = {
         networking = {
           networkmanager.enable = true;
-          hostName = lib.mkDefault "default";
-          useDHCP = lib.mkDefault true;
+          networkmanager.dns = lib.mkForce "none";
+
           firewall.enable = true;
+          nftables.enable = true;
+
+          useDHCP = false;
+          dhcpcd.enable = false;
 
           nameservers = [
             "9.9.9.9"
           ];
-          dhcpcd.extraConfig = "nohook resolv.conf";
-          networkmanager.dns = lib.mkDefault "none";
         };
 
         services.dnscrypt-proxy = {
