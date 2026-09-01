@@ -5,7 +5,7 @@
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [ nssTools ];
+  caddyUrl = "aether.rainbow-exponential.ts.net";
 
   sdImage.compressImage = false;
 
@@ -21,8 +21,6 @@
     firewall = {
       allowedTCPPorts = [
         22
-        80
-        443
       ];
     };
     nameservers = [

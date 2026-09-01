@@ -8,6 +8,7 @@
     ]
     ++ (with self.modules.nixos; [
       shell
+      tailscale
       caddy
       jellyfin
     ]);

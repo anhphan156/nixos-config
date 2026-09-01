@@ -8,7 +8,6 @@
 
     services.caddy = {
       virtualHosts.${config.caddyUrl}.extraConfig = lib.mkAfter ''
-        tls internal
         redir /jellyfin /jellyfin/ 308
         handle_path /jellyfin/* {
             reverse_proxy 127.0.0.1:8096
