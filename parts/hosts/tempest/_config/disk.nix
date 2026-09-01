@@ -5,7 +5,7 @@
         directories = [
           ".renpy"
           ".config/qBittorrent"
-          "/home/backspace/.local/share/qBittorrent"
+          ".local/share/qBittorrent"
         ];
       };
     };
