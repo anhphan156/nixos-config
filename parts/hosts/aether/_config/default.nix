@@ -5,6 +5,8 @@
   ...
 }:
 {
+  environment.systemPackages = with pkgs; [ nssTools ];
+
   sdImage.compressImage = false;
 
   boot.kernelPackages = pkgs.linuxPackages;
@@ -17,7 +19,11 @@
 
   networking = {
     firewall = {
-      allowedTCPPorts = [ 22 ];
+      allowedTCPPorts = [
+        22
+        80
+        443
+      ];
     };
     nameservers = [
       "9.9.9.9"
