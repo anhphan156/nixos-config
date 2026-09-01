@@ -21,9 +21,6 @@
           useDHCP = lib.mkDefault true;
           firewall.enable = true;
 
-          hosts = {
-            "192.168.0.199" = [ config.caddyUrl ];
-          };
           nameservers = [
             "9.9.9.9"
           ];
