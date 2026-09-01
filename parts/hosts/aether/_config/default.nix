@@ -5,10 +5,19 @@
   ...
 }:
 {
+  services.mullvad-vpn = {
+    enable = true;
+    gui.enable = false;
+  };
+
   caddyUrl = "aether.rainbow-exponential.ts.net";
 
   sdImage.compressImage = false;
 
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
   boot.kernelPackages = pkgs.linuxPackages;
   boot.supportedFilesystems.zfs = lib.mkForce false;
 
