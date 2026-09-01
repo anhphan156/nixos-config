@@ -6,6 +6,14 @@
       ...
     }:
     {
+      options = {
+        caddyUrl = lib.mkOption {
+          type = lib.types.str;
+          default = "aether.local";
+          description = "Default url for webserver";
+        };
+      };
+
       config = {
         networking = {
           networkmanager.enable = true;
@@ -13,9 +21,11 @@
           useDHCP = lib.mkDefault true;
           firewall.enable = true;
 
+          hosts = {
+            "192.168.0.199" = [ config.caddyUrl ];
+          };
           nameservers = [
-            "127.0.0.1"
-            "::1"
+            "9.9.9.9"
           ];
           dhcpcd.extraConfig = "nohook resolv.conf";
           networkmanager.dns = lib.mkDefault "none";

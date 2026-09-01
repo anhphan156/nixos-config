@@ -8,6 +8,8 @@
     ]
     ++ (with self.modules.nixos; [
       shell
+      caddy
+      jellyfin
     ]);
   };
 
