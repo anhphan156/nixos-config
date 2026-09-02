@@ -15,8 +15,7 @@
       dev
       neovim
       libvirt
-      nixld
-      mullvad
+      gnupg
     ];
 
     desktop = with self.modules.nixos; [

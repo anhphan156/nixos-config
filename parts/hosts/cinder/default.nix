@@ -14,8 +14,7 @@
       neovim
       dev
       libvirt
-      nixld
-      mullvad
+      gnupg
       tailscale
     ];
 

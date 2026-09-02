@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.nixld = { pkgs, ... }: {
+  flake.modules.nixos.desktop = { pkgs, ... }: {
     programs.nix-ld = {
       enable = true;
       libraries = with pkgs; [

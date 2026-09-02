@@ -5,7 +5,6 @@
       ghidra
       radare2
 
-      file
       xxd
       ltrace
       ascii

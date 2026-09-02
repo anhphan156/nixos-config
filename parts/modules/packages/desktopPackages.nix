@@ -13,23 +13,12 @@
           }
       )
 
-      fd
-      ripgrep
-      wget
-      curl
-      cachix
-      gnumake
-      killall
       cmatrix
       pamixer
       bat
       bc
       id3v2
-      nix-prefetch-git
-      unzip
-      zip
       unrar
-      jq
       btop
       mpv
       yt-dlp

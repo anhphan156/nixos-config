@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.mullvad =
+  flake.modules.nixos.desktop =
     {
       config,
       pkgs,
