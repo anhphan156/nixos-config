@@ -43,6 +43,7 @@
       sbctl
       nom
       just
+      nmap
       discord
       vesktop
       signal-desktop

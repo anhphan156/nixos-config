@@ -7,6 +7,7 @@
     system = "x86_64-linux";
     general = with self.modules.nixos; [
       cinder
+      lzbt
       preservation
       shell
       neovim
@@ -91,12 +92,6 @@
 
         # hardware
         boot = {
-          loader.systemd-boot.enable = true;
-          loader.efi.canTouchEfiVariables = true;
-          loader.systemd-boot.configurationLimit = 3;
-
-          consoleLogLevel = lib.mkDefault 0;
-
           initrd = {
             availableKernelModules = [
               "xhci_pci"

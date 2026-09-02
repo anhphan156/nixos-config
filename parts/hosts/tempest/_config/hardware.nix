@@ -11,21 +11,6 @@
   ];
 
   boot = {
-    loader.systemd-boot.enable = lib.mkForce false;
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
-      configurationLimit = 3;
-      measuredBoot = {
-        enable = true;
-        pcrs = [
-          0
-          4
-          7
-        ];
-      };
-    };
-
     initrd = {
       availableKernelModules = [
         "xhci_pci"

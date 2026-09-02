@@ -7,6 +7,7 @@
     system = "x86_64-linux";
     general = with self.modules.nixos; [
       (import ./_config)
+      lzbt
       preservation
       shell
       nvidia
