@@ -11,6 +11,21 @@
   ];
 
   boot = {
+    loader.systemd-boot.enable = lib.mkForce false;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+      configurationLimit = 3;
+      measuredBoot = {
+        enable = true;
+        pcrs = [
+          0
+          4
+          7
+        ];
+      };
+    };
+
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -20,6 +35,9 @@
         "rtsx_usb_sdmmc"
       ];
       kernelModules = [ ];
+      systemd.enable = true;
+      luks.fido2Support = false;
+      luks.devices."crypted".crypttabExtraOpts = [ "fido2-device=auto" ];
     };
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-intel" ];

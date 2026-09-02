@@ -24,7 +24,6 @@
       packages.noctalia =
         (inputs.wrappers.wrapperModules.noctalia.apply {
           inherit pkgs;
-          package = pkgs.noctalia;
           settings = import ./_config {
             wallpapersDir = "${inputs.dotfiles}/misc/wallpapers/single";
           };

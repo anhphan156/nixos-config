@@ -50,12 +50,15 @@ in
       host: options:
       inputs.nixpkgs.lib.nixosSystem {
         inherit (options) pkgs;
-        modules = [
-          inputs.disko.nixosModules.default
-          inputs.preservation.nixosModules.default
-          { networking.hostName = host; }
-        ]
-        ++ (with options; general ++ desktop ++ gaming);
+        modules =
+          with inputs;
+          [
+            disko.nixosModules.default
+            preservation.nixosModules.default
+            lanzaboote.nixosModules.lanzaboote
+            { networking.hostName = host; }
+          ]
+          ++ (with options; general ++ desktop ++ gaming);
       }
     ) config.nixosHosts;
   };

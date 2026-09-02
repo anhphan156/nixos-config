@@ -8,6 +8,10 @@
     wrappers.url = "github:lassulus/wrappers";
     preservation.url = "github:nix-community/preservation";
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
       inputs.nixpkgs.follows = "nixpkgs";

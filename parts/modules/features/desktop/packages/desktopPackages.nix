@@ -40,6 +40,7 @@
       man-pages
       pass
       yubikey-manager
+      sbctl
       nom
       just
       discord

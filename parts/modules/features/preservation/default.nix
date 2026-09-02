@@ -11,6 +11,7 @@
           "/var/lib/nixos"
           "/var/lib/systemd"
           "/var/lib/libvirt"
+          "/var/lib/sbctl"
           "/var/db/sudo/lectured"
           "/etc/NetworkManager/system-connections"
           {
