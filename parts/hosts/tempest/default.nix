@@ -9,6 +9,7 @@
       (import ./_config)
       lzbt
       preservation
+      ephemeralUser
       shell
       nvidia
       dev

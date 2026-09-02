@@ -14,4 +14,11 @@
       };
     };
   };
+
+  flake.modules.nixos.ephemeralUser = { config, ... }: {
+    users.mutableUsers = false;
+    users.users."${config.username}" = {
+      hashedPasswordFile = "/persistence/passwords/backspace.hash";
+    };
+  };
 }

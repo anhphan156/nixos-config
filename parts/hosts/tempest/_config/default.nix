@@ -5,8 +5,6 @@
   ];
 
   config = {
-    networking.hostName = "tempest";
-
     niri = {
       outputs = {
         "eDP-1" = {
@@ -32,7 +30,6 @@
 
     users.users."${config.username}" = {
       extraGroups = lib.mkAfter [ "video" ];
-      initialPassword = "123";
     };
 
     system.stateVersion = "26.05";

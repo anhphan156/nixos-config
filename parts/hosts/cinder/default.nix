@@ -9,6 +9,7 @@
       cinder
       lzbt
       preservation
+      ephemeralUser
       shell
       neovim
       dev
@@ -140,8 +141,6 @@
           ];
         };
         swapDevices = [ { device = "/dev/mapper/vg0-swap"; } ];
-
-        users.users."${config.username}".initialPassword = "123";
 
         system.stateVersion = "26.05";
       };
