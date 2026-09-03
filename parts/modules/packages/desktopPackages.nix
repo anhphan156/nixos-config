@@ -53,6 +53,7 @@
           qbittorrent
           baobab
           memeGen
+          self'.packages.cakeWallet
         ];
     }
   );
