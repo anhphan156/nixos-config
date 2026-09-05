@@ -68,7 +68,8 @@
           };
 
           extraRC = ''
-            eval "$(${pkgs.lib.getExe pkgs.direnv} hook zsh)"
+            eval "$(${with pkgs; lib.getExe direnv} hook zsh)"
+            eval "$(${with pkgs; lib.getExe devenv} hook zsh)"
             function y() {
               local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
               command yazi "$@" --cwd-file="$tmp"

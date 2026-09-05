@@ -42,7 +42,7 @@
           tree
           man-pages
           pass
-          yubikey-manager
+          proton-pass-cli
           sbctl
           nom
           just
