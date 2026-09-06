@@ -41,6 +41,7 @@
             ".config/Signal"
             ".config/librewolf"
             ".config/discord"
+            ".config/vesktop"
             ".config/cake_wallet"
             ".local/share/Steam"
             ".local/share/zathura"

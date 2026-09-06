@@ -4,7 +4,7 @@
       enable = true;
       lfs.enable = true;
       config = {
-        user.name = "embers";
+        user.name = "exclusiveor";
         user.email = "anh.phan156@protonmail.com";
         user.signingkey = "1131E4D8BB379AA8";
         commit.gpgsign = true;

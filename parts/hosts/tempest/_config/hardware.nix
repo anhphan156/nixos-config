@@ -10,6 +10,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  fileSystems."/persistence".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
+
   boot = {
     initrd = {
       availableKernelModules = [

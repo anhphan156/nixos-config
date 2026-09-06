@@ -47,6 +47,7 @@
           nom
           just
           nmap
+          librewolf
           discord
           vesktop
           signal-desktop

@@ -1,19 +1,4 @@
-{ config, ... }: {
-  preservation = {
-    preserveAt."/persistence" = {
-      users."${config.username}" = {
-        directories = [
-          ".renpy"
-          ".config/qBittorrent"
-          ".local/share/qBittorrent"
-        ];
-      };
-    };
-  };
-
-  fileSystems."/persistence".neededForBoot = true;
-  fileSystems."/nix".neededForBoot = true;
-
+{
   disko.devices.nodev."/" = {
     fsType = "tmpfs";
     mountOptions = [

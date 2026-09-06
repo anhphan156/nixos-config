@@ -5,6 +5,18 @@
   ];
 
   config = {
+    preservation = {
+      preserveAt."/persistence" = {
+        users."${config.username}" = {
+          directories = [
+            ".renpy"
+            ".config/qBittorrent"
+            ".local/share/qBittorrent"
+          ];
+        };
+      };
+    };
+
     niri = {
       outputs = {
         "eDP-1" = {
