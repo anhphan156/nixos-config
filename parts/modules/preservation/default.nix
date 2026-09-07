@@ -30,7 +30,6 @@
 
         users."${config.username}" = {
           directories = [
-            "data"
             "Downloads"
             "Pictures"
             "Documents"
@@ -43,15 +42,7 @@
             ".config/discord"
             ".config/vesktop"
             ".config/cake_wallet"
-            ".local/share/Steam"
-            ".local/share/zathura"
-            ".local/share/direnv"
-            ".local/share/zsh"
-            ".local/share/atuin"
-            ".local/share/zoxide"
-            ".local/share/nvim-custom"
-            ".local/share/applications"
-            ".local/state/noctalia"
+            ".local"
             ".cache"
             {
               directory = ".gnupg";

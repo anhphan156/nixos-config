@@ -11,7 +11,6 @@
           directories = [
             ".renpy"
             ".config/qBittorrent"
-            ".local/share/qBittorrent"
           ];
         };
       };

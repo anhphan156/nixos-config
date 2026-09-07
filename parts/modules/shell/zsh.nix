@@ -55,7 +55,7 @@
             };
 
             history = {
-              file = "$HOME/.local/share/zsh/zsh_history";
+              file = "$HOME/.local/share/zsh_history";
             };
 
             env = {
@@ -63,7 +63,7 @@
               "export LS_COLORS" = "di=34:*.zip=31:*.tar=31:*.gz=31:*.xz=31:*.7z=31";
               "export EDITOR" = "nvim";
               "export MANPAGER" = "\"nvim +Man!\"";
-              "export FZF_PATH" = "~/.local/share/zsh/";
+              "export FZF_PATH" = "~/.local/share";
             };
           };
 
