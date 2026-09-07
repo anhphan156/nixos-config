@@ -7,6 +7,7 @@
       inputs.nixos-hardware.nixosModules.raspberry-pi-4
     ]
     ++ (with self.modules.nixos; [
+      openssh
       shell
       tailscale
       caddy

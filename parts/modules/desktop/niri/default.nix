@@ -54,7 +54,7 @@
             gaps = 16;
             center-focused-column = "never";
             always-center-single-column = true;
-            empty-workspace-above-first = true;
+            empty-workspace-above-first = false;
             focus-ring = {
               on = null;
               width = 4;
