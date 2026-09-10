@@ -1,4 +1,10 @@
-{ config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   imports = [
     ./disk.nix
     ./hardware.nix
@@ -11,6 +17,8 @@
           directories = [
             ".renpy"
             ".config/qBittorrent"
+            ".config/fcitx"
+            ".config/fcitx5"
           ];
         };
       };
@@ -32,6 +40,17 @@
             off = null;
           };
         };
+      };
+    };
+
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+
+      fcitx5 = {
+        addons = with pkgs; [
+          qt6Packages.fcitx5-unikey
+        ];
       };
     };
 
