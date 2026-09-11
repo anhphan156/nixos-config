@@ -48,6 +48,7 @@
       type = "fcitx5";
 
       fcitx5 = {
+        waylandFrontend = true;
         addons = with pkgs; [
           qt6Packages.fcitx5-unikey
         ];

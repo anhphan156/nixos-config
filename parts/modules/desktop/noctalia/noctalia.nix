@@ -3,7 +3,7 @@
   flake.modules.nixos.noctalia = moduleWithSystem (
     { self', ... }: {
       imports = [
-        # inputs.noctalia.nixosModules.default
+        inputs.noctalia.nixosModules.default
       ];
 
       programs.noctalia = {

@@ -44,6 +44,7 @@
           pass
           proton-pass-cli
           sbctl
+          memeGen
           nom
           just
           nmap
@@ -53,8 +54,8 @@
           signal-desktop
           qbittorrent
           baobab
-          memeGen
           self'.packages.cakeWallet
+          tor-browser
         ];
     }
   );

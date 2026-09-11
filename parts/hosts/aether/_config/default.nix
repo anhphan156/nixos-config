@@ -1,12 +1,15 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 {
   caddyUrl = "aether.rainbow-exponential.ts.net";
 
   sdImage.compressImage = false;
+
+  users.users.${config.username}.initialPassword = "123";
 
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;

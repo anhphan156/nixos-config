@@ -15,7 +15,7 @@
 
         alsa-lib
 
-        glib
+        dbus
       ];
     };
   };
