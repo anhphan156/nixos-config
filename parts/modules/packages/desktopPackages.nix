@@ -23,6 +23,13 @@
             categories = [ "Utility" ];
           };
 
+          myAnki = pkgs.anki.withAddons (
+            with pkgs.ankiAddons;
+            [
+              review-heatmap
+            ]
+          );
+
         in
         with pkgs;
         [
@@ -56,6 +63,7 @@
           baobab
           self'.packages.cakeWallet
           tor-browser
+          myAnki
         ];
     }
   );
