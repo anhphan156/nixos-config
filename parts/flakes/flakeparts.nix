@@ -17,7 +17,6 @@
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = [
-          inputs.neovim-nightly.overlays.default
           (_: prev: {
             wallpapers = "${inputs.dotfiles}/misc/wallpapers";
           })

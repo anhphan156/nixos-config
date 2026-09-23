@@ -31,10 +31,6 @@
       url = "github:noctalia-dev/noctalia-greeter";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dotfiles = {
       url = "github:anhphan156/dotfiles";
       flake = false;

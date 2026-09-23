@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   modulesPath,
@@ -27,7 +26,7 @@
       luks.fido2Support = false;
       luks.devices."crypted".crypttabExtraOpts = [ "fido2-device=auto" ];
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };

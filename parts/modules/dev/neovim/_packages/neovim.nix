@@ -93,16 +93,6 @@ let
     lua-language-server
     nixd
     nixfmt
-    # vscode-langservers-extracted
-    # llvmPackages_19.clang-tools
-    # glsl_analyzer
-    # haskell-language-server
-    # stack
-    # rust-analyzer
-    # cargo
-    # rustc
-    # ghc
-    # gcc
     tree-sitter
     git
     openssh

@@ -17,6 +17,7 @@
       nvimInit = "${inputs.dotfiles}/config/nvim/init.lua";
       nvimConfig = "${inputs.dotfiles}/config/nvim/config";
       nvimSnippets = "${inputs.dotfiles}/config/nvim/snippets";
+      neovim = pkgs.neovim-unwrapped;
     };
   };
 }
