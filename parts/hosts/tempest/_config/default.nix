@@ -1,3 +1,4 @@
+inputs:
 {
   pkgs,
   config,
@@ -51,6 +52,7 @@
         waylandFrontend = true;
         addons = with pkgs; [
           qt6Packages.fcitx5-unikey
+          inputs.fcitx5-latin.packages."x86_64-linux".default
         ];
       };
     };

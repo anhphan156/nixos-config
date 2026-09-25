@@ -63,6 +63,7 @@
           baobab
           self'.packages.cakeWallet
           tor-browser
+          obsidian
           myAnki
         ];
     }

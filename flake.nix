@@ -39,5 +39,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fcitx5-latin = {
+      url = "github:anhphan156/fcitx5-latin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
